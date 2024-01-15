@@ -7,4 +7,15 @@
     <RootNamespace>Proyecto_Merck</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ProyectoMerck.Business\ProyectoMerck.Business.csproj" />
+    <ProjectReference Include="..\ProyectoMerck.DataAccess\ProyectoMerck.DataAccess.csproj" />
+    <ProjectReference Include="..\ProyectoMerck.Models\ProyectoMerck.Models.csproj" />
+    <ProjectReference Include="..\ProyectoMerck.Utilities\ProyectoMerck.Utilities.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,7 +1,11 @@
+using Proyecto_Merck;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+DependencyInyector.InyectServices(builder.Services);
 
 var app = builder.Build();
 
