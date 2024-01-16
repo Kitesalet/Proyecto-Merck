@@ -25,7 +25,7 @@ namespace Proyecto_Merck.Controllers
                 return View("Index", model);
             }
 
-            return RedirectToAction("Index", "Reserve", new {AgeCount = 400});
+            return RedirectToAction("Index", "Reserve", new {FertilityLevel = 400, CurrentAge = model.CurrentAge, FirstAge = model.FirstFertilityAge});
         }
     }
 }

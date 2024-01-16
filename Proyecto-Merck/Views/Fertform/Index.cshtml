@@ -1,5 +1,7 @@
 ﻿@model ProyectoMerck.Models.ViewModels.FertformVM
 
+@using (Html.BeginForm("FertilityCalculator", "Fertform", HttpMethod.Post))
+{
 <header style="background-color:#2EBDCD">
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light mb-3">
         <div class="container-fluid">
@@ -16,9 +18,13 @@
                 </ul>
             </div>
         </div>
-    </nav>
-    <img src="/Imagenes/LogoMerck.jpg" class="d-block mx-auto" style="margin-bottom:30px; width:50%"/>
+    </nav>    
     <div class="container-fluid text-center" style="margin-bottom:70px;">
+        <div class="row mb-3">
+            <div class="col-12">
+                <img src="/Imagenes/LogoMerck.jpg" />
+            </div>
+        </div>
         <div class="row" style="font-size:20px">
             <div class="col-3 text-end">
                 <i style="color: white; font-size: 2em; opacity:0.5;font-weight:900;" class="bi bi-chevron-left"></i>
@@ -32,16 +38,13 @@
                 </div>
             </div>
             <div class="col-3 text-start">
-                <i style="color: white; font-size: 2em; opacity:0.5" class="bi bi-chevron-right"></i>
+                 <button type="submit"><i style="color: white; font-size: 2em; opacity:0.5" class="bi bi-chevron-right"></i></button>
             </div>
         </div>
     </div>
     <div style="height:100px; background-color: white; border-top-left-radius:30px; border-top-right-radius:30px">   
     </div>
 </header>
-
-@using (Html.BeginForm("FertilityCalculator", "Fertform", HttpMethod.Post))
-{
     <div class="container">
     <div class="row border-bottom pb-5">
         <div class="col-6 col-md-5 col-lg-4 d-flex justify-content-end">
@@ -82,12 +85,10 @@
                 }), new { @class = "form-control" })
             </div>
         </div>
+          @Html.ValidationSummary(false)
     </div>
 </div>
 
-@Html.ValidationSummary(false);
-
-<button type="submit">Enviar</button>
 }
 
 

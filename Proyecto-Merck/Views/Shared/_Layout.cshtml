@@ -8,6 +8,46 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Proyecto_Merck.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart(ovuleCount) {
+
+            var array = [['Estado', 'Ovulos']]
+
+            for (var x = 450; x >= 0; x--) {
+                var label;
+                label = '';
+                array.push([label, x]);
+            }
+
+            var data = google.visualization.arrayToDataTable(array);
+
+            var options = {
+                title: 'Tasa de Fertilidad',
+                curveType: 'function',
+                legend: { position: 'bottom' },
+                crosshair: {
+                    color: '#2EBDCD',
+                    trigger: 'selection'
+                },
+                width: '100%'
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+
+            chart.draw(data, options);
+
+            var ovulosReales = -1 * (-450 + ovuleCount);
+
+            chart.setSelection([{
+                row: ovulosReales,
+                column: 1
+            }])
+
+        }
+    </script>
 </head>
 <body>
 
