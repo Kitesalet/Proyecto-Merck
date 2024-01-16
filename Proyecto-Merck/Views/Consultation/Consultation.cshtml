@@ -1,0 +1,142 @@
+﻿@model ConsultationViewModel
+@using ProyectoMerck.Models.ViewModels
+
+@{
+    ViewData["Title"] = "Consutation";
+}
+
+<header style="background-color:#2EBDCD">
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light">
+        <div class="container-fluid">
+            <a href="@Url.Action("Index", "Fertility")" class="btn"><i style="color: white; font-size: 1.5em" class="bi bi-chevron-left"></i></a>
+            <button style="color: white; font-size: 2em" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <i class="bi bi-list" style="color:white"></i>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a style="color:white" class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+
+<div class="row" style="background-color: #2EBDCD; margin:0">
+    <div class="col-md-12">
+        <div class="col-12 text-center vh-50" style="margin-top: 35px">
+            <img class="mb-4" style="display:block; margin-left:auto; margin-right:auto" src="~/imagenes/LogoMerck.jpg" />
+
+            <div class="text-center" style="margin-top: 65px; margin-bottom: 45px; color:#aff3fb;">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <img src="~/imagenes/FlechaIzquierda.png" />
+                    </div>
+                    <div class="col">
+                        <p class="display-4" style="margin-bottom:0;">Consultation</p>
+                    </div>
+                    <div class="col">
+                        <img src="~/imagenes/FlechaDerecha.png" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="background-color: #ffff; border-top-left-radius: 1000px; border-top-right-radius: 1000px; height: 50px;margin:0">
+    </div>
+</div>
+
+
+<div class="container">
+    <form method="post" asp-action="EnviarConsulta" class="mx-auto mt-5" style="max-width: 400px;">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+        <div class="mb-3">
+            <div class="input-group">
+                <div class="input-group-append">
+                    <img src="~/imagenes/FotoUbicacion.png" style="width: 80px; height: 80px;" />
+                </div>
+                <div class="input-group-append" style="margin-left:20px">
+                    <label asp-for="Country" class="form-label" style="color: #776793; text-align:center; font-size: 23px; font-weight: 500; margin-bottom: 5px;">Country</label>
+                    <input asp-for="Country" class="form-control">
+                </div>
+            </div>
+            <span asp-validation-for="Country" class="text-danger"></span>
+        </div>
+
+
+        <div class="mb-3">
+            <div class="input-group">
+                <div class="input-group-append">
+                    <img src="~/imagenes/FotoUbicacion.png" style="width: 80px; height: 80px;" />
+                </div>
+                <div class="input-group-append" style="margin-left:20px">
+                <label asp-for="Province" class="form-label" style="color: #776793; text-align:center; font-size: 23px; font-weight: 500; margin-bottom: 5px;">Province</label>
+                <input asp-for="Province" class="form-control">
+                </div>
+            </div>
+            <span asp-validation-for="Province" class="text-danger"></span>
+        </div>
+
+
+
+        <div class="mb-3">
+            <div class="input-group">
+                <div class="input-group-append">
+                    <img src="~/imagenes/FotoUbicacion.png" style="width: 80px; height: 80px;" />
+                </div>
+                <div class="input-group-append" style="margin-left:20px">
+                <label asp-for="Location" class="form-label" style="color: #776793; text-align:center; font-size: 23px; font-weight: 500; margin-bottom: 5px;">Location</label>
+                <input asp-for="Location" class="form-control">
+                </div>
+            </div>
+            <span asp-validation-for="Province" class="text-danger"></span>
+        </div>
+
+
+
+        <div class="mb-3">
+            <div class="input-group">
+                <div class="input-group-append">
+                    <img src="~/imagenes/FotoConsulta.png" style="width: 80px; height: 80px;" />
+                </div>
+                <div class="input-group-append" style="margin-left:20px">
+                <label asp-for="ReasonConsultation" class="form-label" style="color: #ef4488; text-align:center; font-size: 23px; font-weight: 500; margin:0px;">Reason Consultation</label>
+                <select asp-for="ReasonConsultation" class="form-control" id="edadActual" style="width: 210px; border-radius: 5px;">
+                    <option value=""></option>
+                    <option>Edad y Reserva Ovárica</option>
+                    <option>Evaluación de Reserva Ovárica</option>
+                    <option>Mejora de la Fertilidad</option>
+                    <option>Enfermedades y Fertilidad</option>
+                    <option>Preservación de la Fertilidad</option>
+                </select>
+                </div>
+            </div>
+            <span asp-validation-for="ReasonConsultation" class="text-danger"></span>
+        </div>
+
+
+
+
+        <div class="mb-3">
+            <div class="input-group">
+                <div class="input-group-append">
+                    <img src="~/imagenes/FotoEmail.png" style="width: 80px; height: 80px;" />
+                </div>
+                <div class="input-group-append" style="margin-left:20px">
+                <label asp-for="Email" class="form-label" style="color: #ef4488; text-align:center; font-size: 23px; font-weight: 500; margin:0px;">Email</label>
+                <input asp-for="Email" class="form-control">
+                </div>
+            </div>
+            <span asp-validation-for="Province" class="text-danger"></span>
+        </div>
+
+
+        <a asp-controller="Consultation" asp-action="Notification" class="btn btn-info col-8 offset-2 p-9 btn-rounded custom-btn btn-text-white" style="border-radius: 35px; border: 2px solid white; background-color: #067785; color: #94d4de;margin-right:90px; font-size:17px">Enviar</a>
+        @* <button type="submit" class="btn btn-info col-8 offset-2 p-9 btn-rounded custom-btn btn-text-white" style="border-radius: 35px; border: 2px solid white; background-color: #067785; color: #94d4de;margin-right:60px; font-size:17px">Enviar</button> *@
+    </form>
+</div>
