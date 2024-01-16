@@ -1,0 +1,67 @@
+﻿@{
+    ViewData["Title"] = "Indicator";
+}
+
+<header style="background-color:#2EBDCD">
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light">
+        <div class="container-fluid">
+            <a href="@Url.Action("Index", "Fertility")" class="btn"><i style="color: white; font-size: 1.5em" class="bi bi-chevron-left"></i></a>
+            <button style="color: white; font-size: 2em" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <i class="bi bi-list" style="color:white"></i>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a style="color:white" class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+
+<div class="row" style="background-color: #2EBDCD; margin:0">
+    <div class="col-md-12">
+        <div class="col-12 text-center vh-50" style="margin-top: 35px">
+            <img class="mb-4" style="display:block; margin-left:auto; margin-right:auto" src="~/imagenes/LogoMerck.jpg" />
+
+            <div class="text-center" style="margin-top: 65px; margin-bottom: 45px; color:#aff3fb;">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <img src="~/imagenes/FlechaIzquierda.png" />
+                    </div>
+                    <div class="col">
+                        <p class="display-4" style="margin-bottom:0;">Indicator</p>
+                    </div>
+                    <div class="col">
+                        <img src="~/imagenes/FlechaDerecha.png" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="background-color: #ffff; border-top-left-radius: 1000px; border-top-right-radius: 1000px; height: 50px;margin:0">
+    </div>
+</div>
+
+<div class="container">
+    <div class="row justify-content-center align-items-center h-100">
+        <div class="col-12">
+            <p>
+                Ovarian reserve is a key indicator of a woman's reproductive health and refers to the quantity and quality of the eggs she has in her ovaries. As a woman ages, it is natural for ovarian reserve to gradually decrease. This decline is due to the natural depletion of ovarian follicles over time. Low ovarian reserve may be associated with a reduction in fertility and can be an important factor to consider for women planning to conceive.
+
+                The decrease in ovarian reserve can impact a woman's ability to conceive naturally and may also affect the response to fertility treatments. It's important to note that the rate of decline in ovarian reserve can vary among women, and genetic and environmental factors can also play a significant role. Women who are aware of their ovarian reserve can make informed decisions about family planning and explore options such as fertility preservation if they so desire.
+
+                In clinical practice, tests of ovarian reserve are conducted to assess the status of the ovaries and anticipate potential reproductive challenges. Women who are mindful of changes in their ovarian reserve can work closely with healthcare professionals to develop personalized strategies and make informed decisions about motherhood.
+            </p>
+        </div>
+
+        <div class="col-12 mt-3">
+            <a asp-controller="Consultation" asp-action="Consultation" class="btn btn-info col-8 offset-2 p-9 btn-rounded custom-btn btn-text-white" style="border-radius: 35px; border: 2px solid white; background-color: #067785; color: #94d4de;margin-right:90px; font-size:17px">Contact Center</a>
+        </div>
+
+    </div>
+</div>
+
