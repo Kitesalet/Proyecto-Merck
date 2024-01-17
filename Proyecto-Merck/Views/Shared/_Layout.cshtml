@@ -11,42 +11,6 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
         google.charts.load('current', { 'packages': ['corechart'] });
-        google.charts.setOnLoadCallback(drawChart);
-        function drawChart(ovuleCount) {
-
-            var array = [['Estado', 'Ovulos']]
-
-            for (var x = 450; x >= 0; x--) {
-                var label;
-                label = '';
-                array.push([label, x]);
-            }
-
-            var data = google.visualization.arrayToDataTable(array);
-
-            var options = {
-                title: 'Tasa de Fertilidad',
-                curveType: 'function',
-                legend: { position: 'bottom' },
-                crosshair: {
-                    color: '#2EBDCD',
-                    trigger: 'selection'
-                },
-                width: '100%'
-            };
-
-            var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-
-            chart.draw(data, options);
-
-            var ovulosReales = -1 * (-450 + ovuleCount);
-
-            chart.setSelection([{
-                row: ovulosReales,
-                column: 1
-            }])
-
-        }
     </script>
 </head>
 <body>
@@ -60,6 +24,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/chart.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

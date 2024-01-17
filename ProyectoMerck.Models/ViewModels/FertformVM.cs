@@ -14,6 +14,5 @@ namespace ProyectoMerck.Models.ViewModels
         public string? CurrentAge { get; set; }
 
 
-
     }
 }

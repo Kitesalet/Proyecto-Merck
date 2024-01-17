@@ -38,7 +38,7 @@
                 </div>
             </div>
             <div class="col-3 text-start">
-                 <button type="submit"><i style="color: white; font-size: 2em; opacity:0.5" class="bi bi-chevron-right"></i></button>
+                 <i style="color: white; font-size: 2em; opacity:0.5" class="bi bi-chevron-right"></i>
             </div>
         </div>
     </div>
@@ -56,7 +56,7 @@
             </div>
             <div class="row">
                 @Html.DropDownListFor(model => model.CurrentAge,
-                         Enumerable.Range(12, 40).Select(age =>
+                         Enumerable.Range(12, 48).Select(age =>
                          new SelectListItem
                 {
                     Text = age.ToString(),
@@ -85,7 +85,11 @@
                 }), new { @class = "form-control" })
             </div>
         </div>
-          @Html.ValidationSummary(false)
+            <div class="row">
+                @Html.ValidationSummary(false)
+
+                <button type="submit" class="btn col-5 col-md-4 p-2 my-5 border-light offset-4" style="color: white; border-radius: 50px; background-color: darkcyan">Enviar</button>
+            </div>
     </div>
 </div>
 
