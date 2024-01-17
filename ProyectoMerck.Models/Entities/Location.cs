@@ -17,7 +17,7 @@ namespace ProyectoMerck.Models.Entities
         [Required]
         public string LocationName { get; set; } = null!;
 
-        [ForeignKey("IdProvince")]
+        [ForeignKey("ProvinceId")]
         public virtual Province Province { get; set; }
     }
 }
