@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ProyectoMerck.Models.Enums;
 using ProyectoMerck.Models.ViewModels;
+using ProyectoMerck.Utilities;
 
 namespace Proyecto_Merck.Controllers
 {
@@ -8,8 +10,17 @@ namespace Proyecto_Merck.Controllers
         public IActionResult Index(ReserveVM model)
         {
 
-
             return View(model);
+
+        }
+
+        public IActionResult RedirectIndicator(ReserveVM model)
+        {
+
+            FertilityLevel fertLevel = FertCalculator.FertLevelCalculator(model.CurrentAge);
+
+            return RedirectToAction("Indicator","Indicator", new {FertilityLevel = fertLevel});
+
         }
     }
 }
