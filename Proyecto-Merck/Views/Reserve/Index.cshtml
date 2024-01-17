@@ -44,24 +44,24 @@
             </div>
         </div>
         <div class="row">
-            <a class="btn col-5 col-md-4 p-2 my-5 border-light offset-4" style="color: white; border-radius: 50px; background-color: darkcyan" href="@Url.Action("Indicator", "Indicator")">Quiero saber mas!</a>
+            <a class="btn col-5 col-md-4 p-2 my-5 border-light offset-4" style="color: white; border-radius: 50px; background-color: darkcyan" href="@Url.Action("RedirectIndicator", "Reserve", new {CurrentAge = @Model.CurrentAge})">Quiero saber mas!</a>
         </div>
     </div>
     <div style="height:100px; background-color: white; border-top-left-radius:30px; border-top-right-radius:30px">
     </div>
 </header>
-<div class="container">
-    <div class="row">
-        <div class="d-flex justify-content-center">
+
             <div id="chart_div"></div>
-        </div>
-    </div>
-</div>
+
+
+
 
 <script>
 
 
-    var ovuleCount = @Model.FertilityLevel;
+    var ovuleCount = @Model.CurrentAge;
+
+    console.log(ovuleCount);
 
     google.charts.setOnLoadCallback(function () {
         drawChart(ovuleCount);

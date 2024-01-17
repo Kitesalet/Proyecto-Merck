@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProyectoMerck.Models.ViewModels;
+using ProyectoMerck.Utilities;
 
 namespace Proyecto_Merck.Controllers
 {
@@ -7,7 +8,6 @@ namespace Proyecto_Merck.Controllers
     {
         public IActionResult Index()
         {
-
 
             return View();
         }
@@ -25,7 +25,9 @@ namespace Proyecto_Merck.Controllers
                 return View("Index", model);
             }
 
-            return RedirectToAction("Index", "Reserve", new {FertilityLevel = 400, CurrentAge = model.CurrentAge, FirstAge = model.FirstFertilityAge});
+            double ovocites = FertCalculator.CalculateOvocites(int.Parse(model.CurrentAge));
+
+            return RedirectToAction("Index", "Reserve", new {FertilityLevel = ovocites , CurrentAge = model.CurrentAge, FirstAge = model.FirstFertilityAge});
         }
     }
 }
