@@ -1,11 +1,18 @@
 using Proyecto_Merck;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Proyecto_Merck.Areas.Identity.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+//var connectionString = builder.Configuration.GetConnectionString("AppMerckContextConnection") ?? throw new InvalidOperationException("Connection string 'AppMerckContextConnection' not found.");
+
+//builder.Services.AddDbContext<AppMerckContext>(options => options.UseSqlServer(connectionString));
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-DependencyInyector.InyectServices(builder.Services);
+DependencyInyector.InyectServices(builder.Services, builder.Configuration);
 
 var app = builder.Build();
 
@@ -22,6 +29,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
