@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProyectoMerck.Models.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ namespace ProyectoMerck.Models.ViewModels
         public int CurrentAge { get; set; }
 
         public int FirstAge { get; set; }
-        public int FertilityLevel { get; set; }
+        public FertilityLevel FertilityLevel { get; set; }
 
     }
 }

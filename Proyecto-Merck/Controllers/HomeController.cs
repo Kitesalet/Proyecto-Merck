@@ -17,12 +17,5 @@ namespace Proyecto_Merck.Controllers
         {
             return View("Index");
         }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-
     }
 }

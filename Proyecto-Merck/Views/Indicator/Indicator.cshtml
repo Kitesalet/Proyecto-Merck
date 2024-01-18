@@ -1,4 +1,9 @@
-﻿@{
+﻿@model ReserveVM
+@using ProyectoMerck.Models.Enums
+@using ProyectoMerck.Models.ViewModels
+
+
+@{
     ViewData["Title"] = "Indicator";
 }
 
@@ -33,7 +38,7 @@
                         <img src="~/imagenes/FlechaIzquierda.png" />
                     </div>
                     <div class="col">
-                        <p class="display-4" style="margin-bottom:0;">Indicator</p>
+                        <p class="display-4" style="margin-bottom:0;">Indicador</p>
                     </div>
                     <div class="col">
                         <img src="~/imagenes/FlechaDerecha.png" />
@@ -49,17 +54,46 @@
 <div class="container">
     <div class="row justify-content-center align-items-center h-100">
         <div class="col-12">
-            <p>
-                Ovarian reserve is a key indicator of a woman's reproductive health and refers to the quantity and quality of the eggs she has in her ovaries. As a woman ages, it is natural for ovarian reserve to gradually decrease. This decline is due to the natural depletion of ovarian follicles over time. Low ovarian reserve may be associated with a reduction in fertility and can be an important factor to consider for women planning to conceive.
+            @switch (Model.FertilityLevel)
+            {
+                case FertilityLevel.High:
+                    <p id="Height">
+                        La reserva ovárica ALTA es un indicador clave de la salud reproductiva de una mujer y se refiere a la cantidad y calidad de óvulos que tiene en sus ovarios. A medida que la mujer envejece, es natural que la reserva ovárica vaya disminuyendo paulatinamente. Esta disminución se debe al agotamiento natural de los folículos ováricos con el tiempo. La baja reserva ovárica puede estar asociada con una fertilidad reducida y puede ser un factor importante a considerar para las mujeres que planean concebir.
 
-                The decrease in ovarian reserve can impact a woman's ability to conceive naturally and may also affect the response to fertility treatments. It's important to note that the rate of decline in ovarian reserve can vary among women, and genetic and environmental factors can also play a significant role. Women who are aware of their ovarian reserve can make informed decisions about family planning and explore options such as fertility preservation if they so desire.
+                        La disminución de la reserva ovárica puede afectar la capacidad de una mujer para concebir de forma natural y también puede afectar la respuesta a los tratamientos de fertilidad. Es importante señalar que la tasa de disminución de la reserva ovárica puede variar entre mujeres y que los factores genéticos y ambientales también pueden desempeñar un papel importante. Las mujeres que conocen su reserva ovárica pueden tomar decisiones informadas sobre planificación familiar y explorar opciones como la preservación de la fertilidad si así lo desean.
 
-                In clinical practice, tests of ovarian reserve are conducted to assess the status of the ovaries and anticipate potential reproductive challenges. Women who are mindful of changes in their ovarian reserve can work closely with healthcare professionals to develop personalized strategies and make informed decisions about motherhood.
-            </p>
+                        En la práctica clínica, las pruebas de reserva ovárica se realizan para evaluar el estado de los ovarios y anticipar posibles desafíos reproductivos. Las mujeres que conocen los cambios en su reserva ovárica pueden trabajar en estrecha colaboración con los profesionales de la salud para desarrollar estrategias personalizadas y tomar decisiones informadas sobre la maternidad.
+                    </p>
+                    break;
+
+                case FertilityLevel.Medium:
+                    <p id="Medium">
+                        La reserva ovárica MEDIA es un indicador clave de la salud reproductiva de una mujer y se refiere a la cantidad y calidad de óvulos que tiene en sus ovarios. A medida que la mujer envejece, es natural que la reserva ovárica vaya disminuyendo paulatinamente. Esta disminución se debe al agotamiento natural de los folículos ováricos con el tiempo. La baja reserva ovárica puede estar asociada con una fertilidad reducida y puede ser un factor importante a considerar para las mujeres que planean concebir.
+
+                        La disminución de la reserva ovárica puede afectar la capacidad de una mujer para concebir de forma natural y también puede afectar la respuesta a los tratamientos de fertilidad. Es importante señalar que la tasa de disminución de la reserva ovárica puede variar entre mujeres y que los factores genéticos y ambientales también pueden desempeñar un papel importante. Las mujeres que conocen su reserva ovárica pueden tomar decisiones informadas sobre planificación familiar y explorar opciones como la preservación de la fertilidad si así lo desean.
+
+                        En la práctica clínica, las pruebas de reserva ovárica se realizan para evaluar el estado de los ovarios y anticipar posibles desafíos reproductivos. Las mujeres que conocen los cambios en su reserva ovárica pueden trabajar en estrecha colaboración con los profesionales de la salud para desarrollar estrategias personalizadas y tomar decisiones informadas sobre la maternidad.
+                    </p>
+                    break;
+
+                case FertilityLevel.Low:
+                    <p id="Low">
+                        La baja reserva ovárica es un indicador clave de la salud reproductiva de una mujer y se refiere a la cantidad y calidad de los óvulos que tiene en sus ovarios. A medida que la mujer envejece, es natural que la reserva ovárica vaya disminuyendo paulatinamente. Esta disminución se debe al agotamiento natural de los folículos ováricos con el tiempo. La baja reserva ovárica puede estar asociada con una reducción de la fertilidad y puede ser un factor importante a considerar para las mujeres que planean concebir.
+
+                        La disminución de la reserva ovárica puede afectar la capacidad de una mujer para concebir de forma natural y también puede afectar la respuesta a los tratamientos de fertilidad. Es importante señalar que la tasa de disminución de la reserva ovárica puede variar entre las mujeres y que los factores genéticos y ambientales también pueden desempeñar un papel importante. Las mujeres que conocen su reserva ovárica pueden tomar decisiones informadas sobre planificación familiar y explorar opciones como la preservación de la fertilidad si así lo desean.
+
+                        En la práctica clínica, se realizan pruebas de reserva ovárica para evaluar el estado de los ovarios y anticipar posibles desafíos reproductivos. Las mujeres que son conscientes de los cambios en su reserva ovárica pueden trabajar en estrecha colaboración con los profesionales de la salud para desarrollar estrategias personalizadas y tomar decisiones informadas sobre la maternidad.
+                    </p>
+                    break;
+
+                default:
+                    <p> Nivel de fertilidad no reconocido </p>
+                    break;
+            }
         </div>
 
-        <div class="col-12 mt-3">
-            <a asp-controller="Consultation" asp-action="Consultation" class="btn btn-info col-8 offset-2 p-9 btn-rounded custom-btn btn-text-white" style="border-radius: 35px; border: 2px solid white; background-color: #067785; color: #94d4de;margin-right:90px; font-size:17px">Contact Center</a>
+        <div class="col-12 mt-2">
+            <a asp-controller="Consultation" asp-action="Consultation" class="btn btn-info col-8 offset-2 p-9 btn-rounded custom-btn btn-text-white" style="border-radius: 35px; border: 2px solid white; background-color: #067785; color: #94d4de;margin-right:70px; font-size:17px">Contactar Centro</a>
         </div>
 
     </div>
