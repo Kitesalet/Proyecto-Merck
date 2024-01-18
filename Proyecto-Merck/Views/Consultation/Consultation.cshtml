@@ -36,7 +36,7 @@
                         <img src="~/imagenes/FlechaIzquierda.png" />
                     </div>
                     <div class="col">
-                        <p class="display-4" style="margin-bottom:0;">Consultation</p>
+                        <p class="display-4" style="margin-bottom:0;">Consulta</p>
                     </div>
                     <div class="col">
                         <img src="~/imagenes/FlechaDerecha.png" />
@@ -51,32 +51,32 @@
 
 
 <div class="container">
-    <form method="post" asp-action="EnviarConsulta" class="mx-auto mt-5" style="max-width: 400px;">
+    <form method="post" asp-action="EnviarConsulta" class="mx-auto mt-5 " style="max-width: 400px;">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
 
-        <div class="mb-3">
+        <div class="mb-3" style="padding-left:40px">
             <div class="input-group">
                 <div class="input-group-append">
                     <img src="~/imagenes/FotoUbicacion.png" style="width: 80px; height: 80px;" />
                 </div>
                 <div class="input-group-append" style="margin-left:20px">
-                    <label asp-for="Country" class="form-label" style="color: #776793; text-align:center; font-size: 23px; font-weight: 500; margin-bottom: 5px;">Country</label>
-                    <input asp-for="Country" class="form-control">
+                    <label asp-for="Country" class="form-label" style="color: #776793; text-align:center; font-size: 23px; font-weight: 500; margin-bottom: 5px;">Pais</label>
+                    <input asp-for="Country" class="form-control" style="width: 200px">
                 </div>
             </div>
             <span asp-validation-for="Country" class="text-danger"></span>
         </div>
 
 
-        <div class="mb-3">
+        <div class="mb-3" style="padding-left:40px">
             <div class="input-group">
                 <div class="input-group-append">
                     <img src="~/imagenes/FotoUbicacion.png" style="width: 80px; height: 80px;" />
                 </div>
                 <div class="input-group-append" style="margin-left:20px">
-                <label asp-for="Province" class="form-label" style="color: #776793; text-align:center; font-size: 23px; font-weight: 500; margin-bottom: 5px;">Province</label>
-                <input asp-for="Province" class="form-control">
+                    <label asp-for="Province" class="form-label" style="color: #776793; text-align:center; font-size: 23px; font-weight: 500; margin-bottom: 5px;">Provincia</label>
+                    <input asp-for="Province" class="form-control" style="width: 200px">
                 </div>
             </div>
             <span asp-validation-for="Province" class="text-danger"></span>
@@ -84,14 +84,14 @@
 
 
 
-        <div class="mb-3">
+        <div class="mb-3" style="padding-left:40px">
             <div class="input-group">
                 <div class="input-group-append">
                     <img src="~/imagenes/FotoUbicacion.png" style="width: 80px; height: 80px;" />
                 </div>
                 <div class="input-group-append" style="margin-left:20px">
-                <label asp-for="Location" class="form-label" style="color: #776793; text-align:center; font-size: 23px; font-weight: 500; margin-bottom: 5px;">Location</label>
-                <input asp-for="Location" class="form-control">
+                    <label asp-for="Location" class="form-label" style="color: #776793; text-align:center; font-size: 23px; font-weight: 500; margin-bottom: 5px;">Locacion</label>
+                    <input asp-for="Location" class="form-control" style="width: 200px">
                 </div>
             </div>
             <span asp-validation-for="Province" class="text-danger"></span>
@@ -99,21 +99,21 @@
 
 
 
-        <div class="mb-3">
+        <div class="mb-3" style="padding-left:40px">
             <div class="input-group">
                 <div class="input-group-append">
                     <img src="~/imagenes/FotoConsulta.png" style="width: 80px; height: 80px;" />
                 </div>
                 <div class="input-group-append" style="margin-left:20px">
-                <label asp-for="ReasonConsultation" class="form-label" style="color: #ef4488; text-align:center; font-size: 23px; font-weight: 500; margin:0px;">Reason Consultation</label>
-                <select asp-for="ReasonConsultation" class="form-control" id="edadActual" style="width: 210px; border-radius: 5px;">
-                    <option value=""></option>
-                    <option>Edad y Reserva Ovárica</option>
-                    <option>Evaluación de Reserva Ovárica</option>
-                    <option>Mejora de la Fertilidad</option>
-                    <option>Enfermedades y Fertilidad</option>
-                    <option>Preservación de la Fertilidad</option>
-                </select>
+                    <label asp-for="ReasonConsultation" class="form-label" style="color: #ef4488; text-align:center; font-size: 23px; font-weight: 500; margin:0px;">Motivo consulta</label>
+                    <select asp-for="ReasonConsultation" class="form-control" id="edadActual" style="width: 200px; border-radius: 5px;">
+                        <option value=""></option>
+                        <option>Edad y Reserva Ovárica</option>
+                        <option>Evaluación de Reserva Ovárica</option>
+                        <option>Mejora de la Fertilidad</option>
+                        <option>Enfermedades y Fertilidad</option>
+                        <option>Preservación de la Fertilidad</option>
+                    </select>
                 </div>
             </div>
             <span asp-validation-for="ReasonConsultation" class="text-danger"></span>
@@ -122,21 +122,21 @@
 
 
 
-        <div class="mb-3">
+        <div class="mb-3" style="padding-left:40px">
             <div class="input-group">
                 <div class="input-group-append">
                     <img src="~/imagenes/FotoEmail.png" style="width: 80px; height: 80px;" />
                 </div>
                 <div class="input-group-append" style="margin-left:20px">
-                <label asp-for="Email" class="form-label" style="color: #ef4488; text-align:center; font-size: 23px; font-weight: 500; margin:0px;">Email</label>
-                <input asp-for="Email" class="form-control">
+                    <label asp-for="Email" class="form-label" style="color: #ef4488; text-align:center; font-size: 23px; font-weight: 500; margin:0px;">Mail contacto</label>
+                    <input asp-for="Email" class="form-control" style="width: 200px">
                 </div>
             </div>
             <span asp-validation-for="Province" class="text-danger"></span>
         </div>
 
 
-        <a asp-controller="Consultation" asp-action="Notification" class="btn btn-info col-8 offset-2 p-9 btn-rounded custom-btn btn-text-white" style="border-radius: 35px; border: 2px solid white; background-color: #067785; color: #94d4de;margin-right:90px; font-size:17px">Enviar</a>
+        <a asp-controller="Consultation" asp-action="Notification" class="btn btn-info col-8 offset-2 p-9 btn-rounded custom-btn btn-text-white" style="border-radius: 35px; border: 2px solid white; background-color: #067785; color: #94d4de;margin-right:70px; font-size:17px">Enviar</a>
         @* <button type="submit" class="btn btn-info col-8 offset-2 p-9 btn-rounded custom-btn btn-text-white" style="border-radius: 35px; border: 2px solid white; background-color: #067785; color: #94d4de;margin-right:60px; font-size:17px">Enviar</button> *@
     </form>
 </div>

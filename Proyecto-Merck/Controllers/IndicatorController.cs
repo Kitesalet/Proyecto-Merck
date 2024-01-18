@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProyectoMerck.Models.Enums;
+using ProyectoMerck.Models.ViewModels;
 
 namespace Proyecto_Merck.Controllers
 {
@@ -10,7 +11,7 @@ namespace Proyecto_Merck.Controllers
             return View();
         }
 
-        public IActionResult Indicator(FertilityLevel level) 
+        public IActionResult Indicator(ReserveVM level) 
         {
 
 
