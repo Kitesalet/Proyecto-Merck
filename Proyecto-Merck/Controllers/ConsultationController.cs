@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ProyectoMerck.Business.Interfaces;
 using ProyectoMerck.DataAccess.Interfaces;
+using ProyectoMerck.Models.ViewModels;
 
 namespace Proyecto_Merck.Controllers
 {
@@ -32,14 +33,18 @@ namespace Proyecto_Merck.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public IActionResult AddConsultation(int model)
-        //{
+        [HttpPost]
+        public async Task<IActionResult> AddConsultation(ConsultationViewModel model)
+        {
 
-        //    string url = HttpContext.Request.GetDisplayUrl();
+            model.Url = HttpContext.Request.GetDisplayUrl();
 
-            
+            //Hay que settear de esta forma la clínica cuando tengamos la elección acá
+            model.Clinic = "Map Real Clinic Here";
 
-        //}
+            var flag = await _service.CreateConsultationAsync(model);
+
+            return RedirectToAction(nameof(Notification));
+        }
     }
 }

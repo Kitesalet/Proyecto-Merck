@@ -6,6 +6,7 @@ using ProyectoMerck.Business.Interfaces;
 using ProyectoMerck.Business.Services;
 using ProyectoMerck.DataAccess;
 using ProyectoMerck.DataAccess.Interfaces;
+using ProyectoMerck.DataAccess.Repositories;
 using System.Runtime.CompilerServices;
 
 namespace Proyecto_Merck
@@ -28,12 +29,17 @@ namespace Proyecto_Merck
 
             //Repositories
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IConsultationRepository, ConsultationRepository>();
+            services.AddScoped<IClinicRepository, ClinicRepository>();
+            services.AddScoped<IProvinceRepository, ProvinceRepository>();
+            services.AddScoped<ILocationRepository, LocationRepository>();
 
             //Services
             services.AddScoped<IConsultationService, ConsultationService>();
             services.AddScoped<IProvinceService, ProvinceService>();
             services.AddScoped<IClinicService, ClinicService>();
             services.AddScoped<ILocationService, LocationService>();
+
 
             return services;
 

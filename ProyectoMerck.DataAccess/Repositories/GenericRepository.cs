@@ -27,7 +27,9 @@ namespace ProyectoMerck.DataAccess.Repositories
             try
             {
 
-                await _context.Set<T>().AddAsync(entity);
+                await _set.AddAsync(entity);
+
+                await _context.SaveChangesAsync();
 
                 return true;
 

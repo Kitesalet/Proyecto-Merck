@@ -19,3 +19,13 @@ html {
     position: relative;
     min-height: 100%;
 }
+
+.merck-button {
+    color: white;
+    border-radius: 50px;
+    background-color: darkcyan;
+}
+
+.merck-button:hover{
+    background-color:aquamarine;
+}
