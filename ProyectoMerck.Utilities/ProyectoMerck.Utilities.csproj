@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ProyectoMerck.DataAccess\ProyectoMerck.DataAccess.csproj" />
     <ProjectReference Include="..\ProyectoMerck.Models\ProyectoMerck.Models.csproj" />
   </ItemGroup>
 

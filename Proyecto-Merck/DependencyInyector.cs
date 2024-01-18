@@ -2,6 +2,10 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Proyecto_Merck.Areas.Identity.Data;
+using ProyectoMerck.Business.Interfaces;
+using ProyectoMerck.Business.Services;
+using ProyectoMerck.DataAccess;
+using ProyectoMerck.DataAccess.Interfaces;
 using System.Runtime.CompilerServices;
 
 namespace Proyecto_Merck
@@ -13,6 +17,7 @@ namespace Proyecto_Merck
         {
             //Automapper - Utilities
             services.AddAutoMapper(typeof(Mapper));
+
             //Database Connection
             services.AddDbContext<AppMerckContext>(options =>
             {
@@ -20,6 +25,15 @@ namespace Proyecto_Merck
             });
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<AppMerckContext>();
+
+            //Repositories
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            //Services
+            services.AddScoped<IConsultationService, ConsultationService>();
+            services.AddScoped<IProvinceService, ProvinceService>();
+            services.AddScoped<IClinicService, ClinicService>();
+            services.AddScoped<ILocationService, LocationService>();
 
             return services;
 
