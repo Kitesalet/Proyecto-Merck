@@ -1,4 +1,7 @@
 ﻿using AutoMapper;
+using ProyectoMerck.Business.DTOs;
+using ProyectoMerck.DataAccess.DTOs;
+using ProyectoMerck.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +15,17 @@ namespace ProyectoMerck.Utilities
 
         public Mapper()
         {
-            
+            //Province
+            CreateMap<GetProvinceDto, Province>().ReverseMap();
+
+            //Consultation
+            CreateMap<GetConsultationDto, Consultation>().ReverseMap();
+
+            //Clinic
+            CreateMap<GetClinicDto, Clinic>().ReverseMap();
+
+            //Location
+            CreateMap<GetLocationDto, Location>().ReverseMap();
 
 
         }
