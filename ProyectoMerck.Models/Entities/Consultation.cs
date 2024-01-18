@@ -11,12 +11,9 @@ namespace ProyectoMerck.Models.Entities
     {
         [Key]
         public int Id { get; set; }
-
         public string ConsultationReason { get; set; } = null!;
-
         public string Clinic { get; set; } = null!;
-
-        public DateTime DateAndtime { get; set; }
+        public DateTime DateAndtime { get; set; } 
         public Uri Url { get; set; }
     }
 }

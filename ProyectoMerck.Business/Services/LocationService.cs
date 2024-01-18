@@ -25,6 +25,8 @@ namespace ProyectoMerck.Business.Services
         public async Task<List<GetLocationDto>> GetLocations()
         {
 
+
+
             var locations = await _context.LocationRepository.GetAllAsync();
 
             var locationsDto = _mapper.Map<List<GetLocationDto>>(locations);

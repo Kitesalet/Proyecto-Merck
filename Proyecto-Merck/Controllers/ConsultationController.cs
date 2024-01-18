@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http.Extensions;
+using Microsoft.AspNetCore.Mvc;
 using ProyectoMerck.Business.Interfaces;
 using ProyectoMerck.DataAccess.Interfaces;
 
@@ -30,5 +31,15 @@ namespace Proyecto_Merck.Controllers
         {
             return View();
         }
+
+        //[HttpPost]
+        //public IActionResult AddConsultation(int model)
+        //{
+
+        //    string url = HttpContext.Request.GetDisplayUrl();
+
+            
+
+        //}
     }
 }

@@ -32,5 +32,10 @@ namespace ProyectoMerck.Business.Services
             return mappedConsultations;
 
         }
+
+        //Crear un metodo para agregar consultas en la base de datos
+
+
+
     }
 }

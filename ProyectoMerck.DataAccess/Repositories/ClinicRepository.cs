@@ -10,6 +10,5 @@ namespace ProyectoMerck.DataAccess.Repositories
         {
         }
 
-
     }
 }
