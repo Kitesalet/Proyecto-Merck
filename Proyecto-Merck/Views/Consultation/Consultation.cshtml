@@ -51,7 +51,7 @@
 
 
 <div class="container">
-    <form method="post" asp-action="EnviarConsulta" class="mx-auto mt-5 " style="max-width: 400px;">
+    <form method="post" asp-action="AddConsultation" class="mx-auto mt-5 " style="max-width: 400px;">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
 
@@ -135,8 +135,6 @@
             <span asp-validation-for="Province" class="text-danger"></span>
         </div>
 
-
-        <a asp-controller="Consultation" asp-action="Notification" class="btn btn-info col-8 offset-2 p-9 btn-rounded custom-btn btn-text-white" style="border-radius: 35px; border: 2px solid white; background-color: #067785; color: #94d4de;margin-right:70px; font-size:17px">Enviar</a>
-        @* <button type="submit" class="btn btn-info col-8 offset-2 p-9 btn-rounded custom-btn btn-text-white" style="border-radius: 35px; border: 2px solid white; background-color: #067785; color: #94d4de;margin-right:60px; font-size:17px">Enviar</button> *@
+        <button type="submit" class="btn btn-info col-8 offset-2 p-9 btn-rounded custom-btn btn-text-white" style="border-radius: 35px; border: 2px solid white; background-color: #067785; color: #94d4de;margin-right:60px; font-size:17px">Enviar</button>
     </form>
 </div>

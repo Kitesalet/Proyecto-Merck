@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace ProyectoMerck.Business.Interfaces
 {
-    public interface IConsultationService
+    public interface IClinicService
     {
 
-        public Task<List<GetConsultationDto>> GetAllConsultationsAsync();
+        public Task<List<GetClinicDto>> GetAllClinicsAsync();
 
     }
 }
