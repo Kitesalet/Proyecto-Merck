@@ -18,6 +18,7 @@ namespace Proyecto_Merck
             //Automapper - Utilities
             services.AddAutoMapper(typeof(Mapper));
 
+
             //Database Connection
             services.AddDbContext<AppMerckContext>(options =>
             {
@@ -34,6 +35,7 @@ namespace Proyecto_Merck
             services.AddScoped<IProvinceService, ProvinceService>();
             services.AddScoped<IClinicService, ClinicService>();
             services.AddScoped<ILocationService, LocationService>();
+
 
             return services;
 

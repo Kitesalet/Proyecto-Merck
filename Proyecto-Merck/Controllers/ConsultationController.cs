@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http.Extensions;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using ProyectoMerck.Business.Interfaces;
 using ProyectoMerck.DataAccess.Interfaces;
@@ -7,12 +9,12 @@ namespace Proyecto_Merck.Controllers
 {
     public class ConsultationController : Controller
     {
-
+        private readonly IEmailSender _emailSender;
         private readonly IConsultationService _service;
 
-        public ConsultationController(IConsultationService service)
+        public ConsultationController(IConsultationService service, IEmailSender emailSender)
         {
-
+            _emailSender = emailSender;
             _service = service;
 
         }
@@ -38,8 +40,7 @@ namespace Proyecto_Merck.Controllers
 
         //    string url = HttpContext.Request.GetDisplayUrl();
 
-            
-
+   
         //}
     }
 }

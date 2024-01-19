@@ -12,8 +12,8 @@ using Proyecto_Merck.Areas.Identity.Data;
 namespace ProyectoMerck.DataAccess.Migrations
 {
     [DbContext(typeof(AppMerckContext))]
-    [Migration("20240117171738_primera-migration-imanol")]
-    partial class primeramigrationimanol
+    [Migration("20240119134816_PrimeraMigracion")]
+    partial class PrimeraMigracion
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -368,7 +368,7 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Id = 1,
                             Clinic = "CEGYR Medicina Reproductiva",
                             ConsultationReason = "Edad y Reserva Ovarica",
-                            DateAndtime = new DateTime(2024, 1, 17, 14, 17, 37, 163, DateTimeKind.Local).AddTicks(3584),
+                            DateAndtime = new DateTime(2024, 1, 19, 10, 48, 16, 72, DateTimeKind.Local).AddTicks(5614),
                             Url = "https://ejemplo.com/"
                         },
                         new
@@ -376,7 +376,7 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Id = 2,
                             Clinic = "Centro de Investigaciones en Medicina Reproductiva",
                             ConsultationReason = "Evaluación de Reserva Ovárica",
-                            DateAndtime = new DateTime(2024, 1, 17, 14, 17, 37, 163, DateTimeKind.Local).AddTicks(3674),
+                            DateAndtime = new DateTime(2024, 1, 19, 10, 48, 16, 72, DateTimeKind.Local).AddTicks(5702),
                             Url = "https://ejemplo2.com/"
                         });
                 });
