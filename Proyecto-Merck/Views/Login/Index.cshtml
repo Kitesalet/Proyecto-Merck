@@ -1,0 +1,71 @@
+﻿@model ProyectoMerck.Models.ViewModels.LoginVM
+
+<div class="d-flex align-items-center justify-content-center" style="height: 100vh; background-color: #2EBDCD; margin: 0;">
+        @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+        {
+            <div class="container mx-auto" style="width:360px">
+                <div class="row">
+                    <div class="col my-4">
+                        <img src="/Imagenes/LogoMerck.jpg"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        @Html.LabelFor(m => m.Username, "Ingrese su email", new {@class = "h3"})
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        @Html.TextBoxFor(m => m.Username,new { @class = "form-control",type="email", required = true })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        @Html.LabelFor(m => m.Password, "Ingrese su password", new {@class = "h3 my-3"})
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", type = "password", required = true })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        @Html.ValidationSummary(false,"", new { @class = "text-danger h5" })
+                    </div>
+                </div>
+                <div class="row">
+                    @* <div class="col">
+                        <button type="submit" class="merck-button btn p-4 my-5 border-light col-12">Ingreso Administradores</button>
+                    </div> *@
+                <div class="col-12">
+                    <a class="btn col-12 col-md-12 p-4 my-5 border-light merck-button" href="@Url.Action("Reports", "Reports")">Ingreso Administradores</a>
+                </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-12">
+                        <a class="btn col-12 col-md-12 p-4 my-5 border-light merck-button" href="@Url.Action("Index", "Fertform")">Ingreso Invitados</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script defer>
+    Swal.fire({
+    icon: "error",
+    title: "Oops...",
+    text: "Something went wrong!",
+});
+</script>
+
+
+
+   
+
+
+                        
