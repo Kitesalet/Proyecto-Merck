@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ProyectoMerck.DataAccess\ProyectoMerck.DataAccess.csproj" />
     <ProjectReference Include="..\ProyectoMerck.Models\ProyectoMerck.Models.csproj" />
     <ProjectReference Include="..\ProyectoMerck.Utilities\ProyectoMerck.Utilities.csproj" />

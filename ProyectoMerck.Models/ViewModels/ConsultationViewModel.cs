@@ -9,8 +9,9 @@ namespace ProyectoMerck.Models.ViewModels
         public string? Location { get; set; }
         public string? ReasonConsultation { get; set; }
         public string? Clinic { get; set; }
-        public string? Email { get; set; } 
-        public string Url { get; set; }
+        public string? Email { get; set; }
+        public DateTime DateAndtime { get; set; }
+        public string? Url { get; set; }
 
     }
 }
