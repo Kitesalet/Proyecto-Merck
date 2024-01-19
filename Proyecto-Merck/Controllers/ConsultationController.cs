@@ -47,6 +47,8 @@ namespace Proyecto_Merck.Controllers
             var flag = await _service.CreateConsultationAsync(model);
 
             var emailSubject = "Consulta";
+
+            // Poner los datos del formulario a emailbody
             var emailBody = "Contenido";
             await _mailSender.EmailAsync(model.Email, emailSubject, emailBody);
 
