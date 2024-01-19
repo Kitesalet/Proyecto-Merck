@@ -2,15 +2,14 @@ using Proyecto_Merck;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Proyecto_Merck.Areas.Identity.Data;
+using ProyectoMerck.Utilities;
+using ProyectoMerck.DataAccess.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
-//var connectionString = builder.Configuration.GetConnectionString("AppMerckContextConnection") ?? throw new InvalidOperationException("Connection string 'AppMerckContextConnection' not found.");
 
-//builder.Services.AddDbContext<AppMerckContext>(options => options.UseSqlServer(connectionString));
-
-
-// Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<IEmailSendeer, EmailSender>();
 
 DependencyInyector.InyectServices(builder.Services, builder.Configuration);
 

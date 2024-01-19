@@ -40,7 +40,6 @@ namespace Proyecto_Merck
             services.AddScoped<IClinicService, ClinicService>();
             services.AddScoped<ILocationService, LocationService>();
 
-
             return services;
 
         }

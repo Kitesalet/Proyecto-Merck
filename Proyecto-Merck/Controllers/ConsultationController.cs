@@ -10,11 +10,13 @@ namespace Proyecto_Merck.Controllers
     {
 
         private readonly IConsultationService _service;
+        private readonly IEmailSendeer _mailSender;
 
-        public ConsultationController(IConsultationService service)
+        public ConsultationController(IConsultationService service, IEmailSendeer mailSender)
         {
 
             _service = service;
+            _mailSender = mailSender;
 
         }
 
@@ -43,6 +45,10 @@ namespace Proyecto_Merck.Controllers
             model.Clinic = "Map Real Clinic Here";
 
             var flag = await _service.CreateConsultationAsync(model);
+
+            var emailSubject = "Consulta";
+            var emailBody = "Contenido";
+            await _mailSender.EmailAsync(model.Email, emailSubject, emailBody);
 
             return RedirectToAction(nameof(Notification));
         }
