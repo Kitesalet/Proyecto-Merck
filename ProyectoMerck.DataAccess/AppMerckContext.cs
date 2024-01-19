@@ -21,17 +21,17 @@ public class AppMerckContext : IdentityDbContext<IdentityUser>
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
-        //var seeders = new List<IEntitySeeder>
-        //    {
-        //        new ConsultationSeeder(),
-        //        new ClinicSeeder(),
-        //        new ProvinceSeeder(),
-        //        new LocationSeeder(),
-        //    };
-        //foreach (var seeder in seeders)
-        //{
-        //    seeder.SeedDataBase(builder);
-        //}
+        var seeders = new List<IEntitySeeder>
+            {
+                new ConsultationSeeder(),
+                new ClinicSeeder(),
+                new ProvinceSeeder(),
+                new LocationSeeder(),
+            };
+        foreach (var seeder in seeders)
+        {
+            seeder.SeedDataBase(builder);
+        }
         base.OnModelCreating(builder);
 
         // Customize the ASP.NET Identity model and override the defaults if needed.
