@@ -1,12 +1,17 @@
 ﻿
 
 using AutoMapper;
+using ClosedXML.Excel;
+using Microsoft.AspNetCore.Mvc;
 using ProyectoMerck.Business.DTOs;
 using ProyectoMerck.Business.Interfaces;
 using ProyectoMerck.DataAccess.DTOs;
 using ProyectoMerck.DataAccess.Interfaces;
 using ProyectoMerck.Models.Entities;
 using ProyectoMerck.Models.ViewModels;
+using ProyectoMerck.Utilities;
+using System.Data;
+
 
 namespace ProyectoMerck.Business.Services
 {
@@ -66,6 +71,18 @@ namespace ProyectoMerck.Business.Services
 
         }
 
+        public Task PrintPdf(DateTime? fechaInicio, DateTime? fechaFin)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public async Task<FileResult> ExportPeopleToExcel(DateTime? initionTime, DateTime? endTime)
+        {
+            var consulta = await _context.ConsultationRepository.GetConsultationByDate(initionTime, endTime);
+            var nombreArchivo = $"Reporte.xlsx";
+            return ExcelHelper.GenerarExcel(nombreArchivo, consulta);
+        }
 
     }
 }

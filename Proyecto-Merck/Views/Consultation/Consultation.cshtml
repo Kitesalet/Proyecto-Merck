@@ -62,7 +62,13 @@
                 </div>
                 <div class="input-group-append" style="margin-left:20px">
                     <label asp-for="Country" class="form-label" style="color: #776793; text-align:center; font-size: 23px; font-weight: 500; margin-bottom: 5px;">Pais</label>
-                    <input asp-for="Country" class="form-control" style="width: 200px">
+                    <select asp-for="Country" class="form-control" style="width: 200px">
+                        <option value=""> Seleccionar Pais</option>
+                        <option>Argentina</option>
+                        <option>Uruguay</option>
+                        <option>Brasil</option>
+                        <option>Chile</option>
+                    </select>
                 </div>
             </div>
             <span asp-validation-for="Country" class="text-danger"></span>
@@ -75,8 +81,11 @@
                     <img src="~/imagenes/FotoUbicacion.png" style="width: 80px; height: 80px;" />
                 </div>
                 <div class="input-group-append" style="margin-left:20px">
-                    <label asp-for="Province" class="form-label" style="color: #776793; text-align:center; font-size: 23px; font-weight: 500; margin-bottom: 5px;">Provincia</label>
-                    <input asp-for="Province" class="form-control" style="width: 200px">
+                    <label asp-for="Province" class="form-label" style="color: #776793; text-align:center; font-size: 23px; font-weight: 500; margin-bottom: 5px;" onchange="capturarProvinciaSeleccionada(this)">Provincia</label>
+                    <select asp-for="Province" class="form-control" style="width: 200px">
+                        <option value="">Seleccionar Provincia</option>
+                        <option>Capital Federal</option>
+                    </select>
                 </div>
             </div>
             <span asp-validation-for="Province" class="text-danger"></span>
@@ -91,10 +100,13 @@
                 </div>
                 <div class="input-group-append" style="margin-left:20px">
                     <label asp-for="Location" class="form-label" style="color: #776793; text-align:center; font-size: 23px; font-weight: 500; margin-bottom: 5px;">Locacion</label>
-                    <input asp-for="Location" class="form-control" style="width: 200px">
+                    <select asp-for="Location" class="form-control" style="width: 200px">
+                        <option value="">Seleccionar Localidad</option>
+                        <option>Caballito</option>
+                    </select>
                 </div>
             </div>
-            <span asp-validation-for="Province" class="text-danger"></span>
+            <span asp-validation-for="Location" class="text-danger"></span>
         </div>
 
 
@@ -107,7 +119,7 @@
                 <div class="input-group-append" style="margin-left:20px">
                     <label asp-for="ReasonConsultation" class="form-label" style="color: #ef4488; text-align:center; font-size: 23px; font-weight: 500; margin:0px;">Motivo consulta</label>
                     <select asp-for="ReasonConsultation" class="form-control" id="edadActual" style="width: 200px; border-radius: 5px;">
-                        <option value=""></option>
+                        <option value="">Motivo Consulta</option>
                         <option>Edad y Reserva Ovárica</option>
                         <option>Evaluación de Reserva Ovárica</option>
                         <option>Mejora de la Fertilidad</option>
@@ -129,10 +141,15 @@
                 </div>
                 <div class="input-group-append" style="margin-left:20px">
                     <label asp-for="Email" class="form-label" style="color: #ef4488; text-align:center; font-size: 23px; font-weight: 500; margin:0px;">Mail contacto</label>
-                    <input asp-for="Email" class="form-control" style="width: 200px">
+                    <input asp-for="Email" class="form-control" placeholder="Correo electrónico" style="width: 200px">
                 </div>
             </div>
-            <span asp-validation-for="Province" class="text-danger"></span>
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="container">
+            <div class="row" id="clinica" name="clinica">
+            </div>
         </div>
 
         <button type="submit" class="btn btn-info col-8 offset-2 p-9 btn-rounded custom-btn btn-text-white" style="border-radius: 35px; border: 2px solid white; background-color: #067785; color: #94d4de;margin-right:60px; font-size:17px">Enviar</button>

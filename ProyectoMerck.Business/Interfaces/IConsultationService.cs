@@ -19,9 +19,9 @@ namespace ProyectoMerck.Business.Interfaces
 
         public Task<bool> CreateConsultationAsync(ConsultationViewModel model);
 
-        //public Task PrintPdf(DateTime? fechaInicio, DateTime? fechaFin);
+        public Task PrintPdf(DateTime? fechaInicio, DateTime? fechaFin);
 
-        //public Task<FileResult> ExportPeopleToExcel(DateTime? fechaInicio, DateTime? fechaFin);
+        public Task<FileResult> ExportPeopleToExcel(DateTime? fechaInicio, DateTime? fechaFin);
 
 
     }
