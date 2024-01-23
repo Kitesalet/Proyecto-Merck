@@ -17,6 +17,7 @@ namespace Proyecto_Merck.Controllers
         {
             if(int.Parse(model.CurrentAge) < int.Parse(model.FirstFertilityAge))
             {
+                TempData["Error"] = "Las edades ingresadas son invalidas";
                 ModelState.AddModelError("Invalid Ages", "Las edades ingresadas son invalidas!");
             }
 

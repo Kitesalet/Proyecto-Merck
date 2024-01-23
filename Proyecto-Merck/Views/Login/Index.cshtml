@@ -30,17 +30,14 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col">
+                    <div class="col mt-2">
                         @Html.ValidationSummary(false,"", new { @class = "text-danger h5" })
                     </div>
                 </div>
                 <div class="row">
-                    @* <div class="col">
+                    <div class="col">
                         <button type="submit" class="merck-button btn p-4 my-5 border-light col-12">Ingreso Administradores</button>
-                    </div> *@
-                <div class="col-12">
-                    <a class="btn col-12 col-md-12 p-4 my-5 border-light merck-button" href="@Url.Action("Reports", "Reports")">Ingreso Administradores</a>
-                </div>
+                    </div>       
                 </div>
                 <hr />
                 <div class="row">
@@ -53,15 +50,6 @@
     </div>
 
 
-<script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-<script defer>
-    Swal.fire({
-    icon: "error",
-    title: "Oops...",
-    text: "Something went wrong!",
-});
-</script>
 
 
 

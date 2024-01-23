@@ -25,7 +25,7 @@ namespace Proyecto_Merck
                 options.UseSqlServer(configuration.GetConnectionString("AppMerckContextConnection"));
             });
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<AppMerckContext>();
+            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false).AddEntityFrameworkStores<AppMerckContext>();
 
             //Repositories
             services.AddScoped<IUnitOfWork, UnitOfWork>();

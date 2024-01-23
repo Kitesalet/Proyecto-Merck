@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using ProyectoMerck.Business.Interfaces;
 using ProyectoMerck.DataAccess.Interfaces;
 using ProyectoMerck.Models.ViewModels;
+using ProyectoMerck.Resources;
+using System.Resources;
 
 namespace Proyecto_Merck.Controllers
 {
@@ -10,13 +12,11 @@ namespace Proyecto_Merck.Controllers
     {
 
         private readonly IConsultationService _service;
-        private readonly IEmailSendeer _mailSender;
 
-        public ConsultationController(IConsultationService service, IEmailSendeer mailSender)
+        public ConsultationController(IConsultationService service)
         {
 
             _service = service;
-            _mailSender = mailSender;
 
         }
 
@@ -44,13 +44,7 @@ namespace Proyecto_Merck.Controllers
             //Hay que settear de esta forma la clínica cuando tengamos la elección acá
             model.Clinic = "Map Real Clinic Here";
 
-            var flag = await _service.CreateConsultationAsync(model);
-
-            var emailSubject = "Consulta";
-
-            // Poner los datos del formulario a emailbody
-            var emailBody = "Contenido";
-            await _mailSender.EmailAsync(model.Email, emailSubject, emailBody);
+            var flag = await _service.CreateConsultationAsync(model); 
 
             return RedirectToAction(nameof(Notification));
         }

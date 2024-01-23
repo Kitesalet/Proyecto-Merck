@@ -22,23 +22,15 @@ namespace Proyecto_Merck.Controllers
             if (ModelState.IsValid)
             {
 
-                IdentityUser user = new IdentityUser()
-                {
-
-                    UserName = model.Username,
-                    Email = model.Username
-
-                };
-
-                var logged = await _signInManager.PasswordSignInAsync(user, model.Password, true, false);
+                var logged = await _signInManager.PasswordSignInAsync(model.Username, model.Password, true, false);
 
                 if(logged.Succeeded)
                 {
-                    return RedirectToAction("Index", "Reports");
+                    return RedirectToAction("Reports", "Reports");
                 }
                 else
                 {
-                    TempData["LoginError"] = "Error";
+                    TempData["Error"] = "El usuario no existe y/o las credenciales son incorrectas";
                     ModelState.AddModelError("", "El usuario no existe y/o las credenciales son incorrectas");
                 }
 
@@ -49,6 +41,15 @@ namespace Proyecto_Merck.Controllers
             
 
 
+
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+
+            await _signInManager.SignOutAsync();
+
+            return RedirectToAction(nameof(Index));
 
         }
 
