@@ -1,6 +1,9 @@
 ﻿
 
 using AutoMapper;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc;
+using Proyecto_Merck.Areas.Identity.Data;
 using ProyectoMerck.Business.DTOs;
 using ProyectoMerck.Business.Interfaces;
 using ProyectoMerck.DataAccess.DTOs;
@@ -65,7 +68,6 @@ namespace ProyectoMerck.Business.Services
             return mappedConsultations;
 
         }
-
 
     }
 }
