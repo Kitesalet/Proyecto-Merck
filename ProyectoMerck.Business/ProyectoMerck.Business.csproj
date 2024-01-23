@@ -13,6 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ProyectoMerck.DataAccess\ProyectoMerck.DataAccess.csproj" />
     <ProjectReference Include="..\ProyectoMerck.Models\ProyectoMerck.Models.csproj" />
+    <ProjectReference Include="..\ProyectoMerck.Resources\ProyectoMerck.Resources.csproj" />
     <ProjectReference Include="..\ProyectoMerck.Utilities\ProyectoMerck.Utilities.csproj" />
   </ItemGroup>
 

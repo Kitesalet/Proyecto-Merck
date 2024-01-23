@@ -86,9 +86,12 @@
             </div>
         </div>
             <div class="row">
-                @Html.ValidationSummary(false)
-
-                <button type="submit" class="btn col-5 col-md-4 p-2 my-5 border-light offset-4 merck-button">Enviar</button>
+                <div class="col-12 d-flex justify-content-center text-danger h5">
+                    @Html.ValidationSummary(false)
+                </div>
+                <div class="row">
+                    <button type="submit" class="btn col-5 col-md-4 p-2 my-3 border-light offset-4 merck-button">Enviar</button>
+                </div>
             </div>
     </div>
 </div>

@@ -10,6 +10,9 @@ using ProyectoMerck.DataAccess.DTOs;
 using ProyectoMerck.DataAccess.Interfaces;
 using ProyectoMerck.Models.Entities;
 using ProyectoMerck.Models.ViewModels;
+using ProyectoMerck.Resources;
+using ProyectoMerck.Utilities;
+using System.Resources;
 
 namespace ProyectoMerck.Business.Services
 {
@@ -17,12 +20,14 @@ namespace ProyectoMerck.Business.Services
     {
         private readonly IUnitOfWork _context;
         private readonly IMapper _mapper;
+        private readonly IEmailSendeer _mailSender;
 
-        public ConsultationService(IUnitOfWork context, IMapper mapper)
+        public ConsultationService(IUnitOfWork context, IMapper mapper, IEmailSendeer mailSender)
         {
 
             _context = context;
             _mapper = mapper;
+            _mailSender = mailSender;
 
         }
 
@@ -47,6 +52,17 @@ namespace ProyectoMerck.Business.Services
                 flag = await _context.ConsultationRepository.Add(consultation);
 
                 await _context.SaveChanges();
+
+                //Envia el email
+                ResourceManager manager = new ResourceManager("ProyectoMerck.Resources.ConsultationResources", typeof(ConsultationResources).Assembly);
+
+                var emailSubject = manager.GetString("EmailSubject");
+                var emailBody = manager.GetString("EmailBody");
+
+                var emailSubjectFormatted = String.Format(emailSubject, new Random().Next(1, 9999999));
+                var emailBodyFormatted = String.Format(emailBody, model.Clinic, model.Email, model.ReasonConsultation);
+
+                await _mailSender.EmailAsync(model.Email, emailSubjectFormatted, emailBodyFormatted);
 
                 return flag;
             }

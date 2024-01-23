@@ -5,6 +5,8 @@ using Proyecto_Merck.Areas.Identity.Data;
 using ProyectoMerck.Business.Interfaces;
 using ProyectoMerck.DataAccess.Interfaces;
 using ProyectoMerck.Models.ViewModels;
+using ProyectoMerck.Resources;
+using System.Resources;
 
 namespace Proyecto_Merck.Controllers
 {
@@ -12,14 +14,12 @@ namespace Proyecto_Merck.Controllers
     {
 
         private readonly IConsultationService _service;
-        private readonly IEmailSendeer _mailSender;
         private readonly AppMerckContext _context;
 
-        public ConsultationController(IConsultationService service, IEmailSendeer mailSender, AppMerckContext context)
+        public ConsultationController(IConsultationService service, AppMerckContext context)
         {
             _context = context;
             _service = service;
-            _mailSender = mailSender;
 
         }
 
@@ -77,17 +77,13 @@ namespace Proyecto_Merck.Controllers
 
                 var flag = await _service.CreateConsultationAsync(model);
 
-                var emailSubject = "Consulta";
-
-                // Poner los datos del formulario a emailbody
-                var emailBody = "Contenido";
-                await _mailSender.EmailAsync(model.Email, emailSubject, emailBody);
-
-
-
                 return RedirectToAction("Notification", model);
+
             }
-            return View("Consultation", model);
+
+            return View("Consultation",model);
+ 
         }
+
     }
 }
