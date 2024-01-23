@@ -16,10 +16,13 @@ namespace ProyectoMerck.Utilities
         private string? SendGridSecret { get; set; }
         private string? FromEmail { get; set; }
 
+        private string ToEmail { get; set; }
+
         public EmailSender(IConfiguration _config)
         {
             SendGridSecret = _config["Sendgrid:SecretKey"];
             FromEmail = _config["Sendgrid:FromEmail"];
+            ToEmail = _config["Sendgrid:ToEmail"];
         }
 
         public async Task<bool> EmailAsync(string email, string subject, string htmlMessage)
@@ -27,7 +30,7 @@ namespace ProyectoMerck.Utilities
             var client = new SendGridClient(SendGridSecret);
             var from = new EmailAddress(FromEmail);
             //Si queremos hacer pruebas, se cambia el mail del to;
-            var to = new EmailAddress("mariocoria025@gmail.com"); //mariocoria025@gmail.com
+            var to = new EmailAddress(ToEmail); //mariocoria025@gmail.com
             var msg = MailHelper.CreateSingleEmail(from, to, subject, "", htmlMessage);
 
             try
