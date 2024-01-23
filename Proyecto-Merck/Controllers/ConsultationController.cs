@@ -14,10 +14,9 @@ namespace Proyecto_Merck.Controllers
     {
 
         private readonly IConsultationService _service;
-        private readonly IEmailSendeer _mailSender;
         private readonly AppMerckContext _context;
 
-        public ConsultationController(IConsultationService service, IEmailSendeer mailSender, AppMerckContext context)
+        public ConsultationController(IConsultationService service, AppMerckContext context)
         {
             _context = context;
             _service = service;
@@ -76,9 +75,15 @@ namespace Proyecto_Merck.Controllers
                 //Hay que settear de esta forma la clínica cuando tengamos la elección acá
                 model.Clinic = "Map Real Clinic Here";
 
-            var flag = await _service.CreateConsultationAsync(model); 
+                var flag = await _service.CreateConsultationAsync(model);
 
-            return RedirectToAction(nameof(Notification));
+                return RedirectToAction("Notification", model);
+
+            }
+
+            return View("Consultation",model);
+ 
         }
+
     }
 }

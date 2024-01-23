@@ -22,7 +22,7 @@ namespace ProyectoMerck.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-     public class ConsultationResources {
+    public class ConsultationResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -88,5 +88,5 @@ namespace ProyectoMerck.Resources {
                 return ResourceManager.GetString("EmailSubject", resourceCulture);
             }
         }
-     }
+    }
 }

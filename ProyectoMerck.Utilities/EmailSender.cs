@@ -27,7 +27,7 @@ namespace ProyectoMerck.Utilities
             var client = new SendGridClient(SendGridSecret);
             var from = new EmailAddress(FromEmail);
             //Si queremos hacer pruebas, se cambia el mail del to;
-            var to = new EmailAddress("mercktest111@gmail.com"); //mariocoria025@gmail.com
+            var to = new EmailAddress("mariocoria025@gmail.com"); //mariocoria025@gmail.com
             var msg = MailHelper.CreateSingleEmail(from, to, subject, "", htmlMessage);
 
             try
