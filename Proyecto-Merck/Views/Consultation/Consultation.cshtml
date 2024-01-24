@@ -54,7 +54,6 @@
     <form method="post" asp-action="AddConsultation" class="mx-auto mt-5 " style="max-width: 400px;">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-
         <div class="mb-3" style="padding-left:40px">
             <div class="input-group">
                 <div class="input-group-append">
@@ -116,6 +115,25 @@
             <span asp-validation-for="Location" class="text-danger"></span>
         </div>
 
+        <div class="mb-3" style="padding-left:40px">
+            <div class="input-group">
+                <div class="input-group-append">
+                    <img src="~/imagenes/FotoUbicacion.png" style="width: 80px; height: 80px;" />
+                </div>
+                <div class="input-group-append" style="margin-left:20px">
+                    <label asp-for="Clinic" class="form-label" style="color: #776793; text-align:center; font-size: 23px; font-weight: 500; margin-bottom: 5px;">Clinicas</label>
+                    <select asp-for="Clinic" name="Clinic" class="form-control" id="Clinic" style="width: 200px; border-radius: 5px;">
+                        <option value="">Seleccionar Clinica</option>
+                        @foreach (var clinic in Model.Clinics)
+                        {
+                            <option value="@clinic.Text">@clinic.Text</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <span asp-validation-for="Clinic" class="text-danger"></span>
+        </div>
+
 
 
         <div class="mb-3" style="padding-left:40px">
@@ -125,7 +143,7 @@
                 </div>
                 <div class="input-group-append" style="margin-left:20px">
                     <label asp-for="ReasonConsultation" class="form-label" style="color: #ef4488; text-align:center; font-size: 23px; font-weight: 500; margin:0px;">Motivo consulta</label>
-                    <select asp-for="ReasonConsultation" class="form-control" id="edadActual" style="width: 200px; border-radius: 5px;">
+                    <select asp-for="ReasonConsultation" class="form-control" style="width: 200px; border-radius: 5px;">
                         <option value="">Seleccione una Consulta</option>
                         <option>Edad y Reserva Ovárica</option>
                         <option>Evaluación de Reserva Ovárica</option>
@@ -136,26 +154,6 @@
                 </div>
             </div>
             <span asp-validation-for="ReasonConsultation" class="text-danger"></span>
-        </div>
-
-        <div class="mb-3" style="padding-left:40px">
-            <div class="input-group">
-                <div class="input-group-append">
-                    <img src="~/imagenes/FotoConsulta.png" style="width: 80px; height: 80px;" />
-                </div>
-                <div class="input-group-append" style="margin-left:20px">
-                    <label asp-for="Clinic" class="form-label" style="color: #ef4488; text-align:center; font-size: 23px; font-weight: 500; margin:0px;">Clinica</label>
-                    <select asp-for="Clinic" class="form-control" style="width: 200px; border-radius: 5px;">
-                        <option value="">Seleccione una Clinica</option>
-                        <option>Edad y Reserva Ovárica</option>
-                        <option>Evaluación de Reserva Ovárica</option>
-                        <option>Mejora de la Fertilidad</option>
-                        <option>Enfermedades y Fertilidad</option>
-                        <option>Preservación de la Fertilidad</option>
-                    </select>
-                </div>
-            </div>
-            <span asp-validation-for="Clinic" class="text-danger"></span>
         </div>
 
 
@@ -173,7 +171,117 @@
             <span asp-validation-for="Email" class="text-danger"></span>
         </div>
 
+
+
+
         <button type="submit" class="btn btn-info col-8 offset-2 p-9 btn-rounded custom-btn btn-text-white" style="border-radius: 35px; border: 2px solid white; background-color: #067785; color: #94d4de;margin-right:60px; font-size:17px">Enviar</button>
     </form>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var provinceSelect = document.getElementById("Province");
+        var locationSelect = document.getElementById("Location");
+        var clinicSelect = document.getElementById("Clinic");
+
+        provinceSelect.addEventListener("change", function () {
+            var selectedProvince = provinceSelect.value;
+
+            // Realiza una solicitud fetch al servidor para obtener las localidades
+            fetch(`/Consultation/GetLocaties?province=${selectedProvince}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Error: ${response.statusText}`);
+                    }
+                    return response.json();
+                })
+                .then(locations => {
+                    // Maneja la respuesta del servidor y actualiza el select de localidades
+                    updateLocationSelect(locations);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+
+            // Realiza una solicitud fetch adicional para obtener las clínicas basadas en la provincia seleccionada
+            fetch(`/Consultation/GetClinics?province=${selectedProvince}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Error: ${response.statusText}`);
+                    }
+                    return response.json();
+                })
+                .then(clinics => {
+                    // Maneja la respuesta del servidor y actualiza el select de clínicas
+                    updateClinicSelect(clinics);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        });
+
+        function updateLocationSelect(locations) {
+            // Borra las opciones actuales en el select de localidades
+            locationSelect.innerHTML = "<option value=''>Seleccionar Localidad</option>";
+
+            // Agrega las nuevas opciones basadas en la respuesta del servidor
+            locations.forEach(function (location) {
+                var option = document.createElement("option");
+                option.value = location.value;
+                option.text = location.text;
+                locationSelect.add(option);
+            });
+        }
+
+        function updateClinicSelect(clinics) {
+            // Borra las opciones actuales en el select de clínicas
+            clinicSelect.innerHTML = "<option value=''>Seleccionar Clinica</option>";
+
+            // Agrega las nuevas opciones basadas en la respuesta del servidor
+            clinics.forEach(function (clinic) {
+                var option = document.createElement("option");
+                option.value = clinic.text;
+                option.text = clinic.text;
+                clinicSelect.add(option);
+            });
+        }
+
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
