@@ -15,8 +15,7 @@ namespace ProyectoMerck.Utilities
     {
         private string? SendGridSecret { get; set; }
         private string? FromEmail { get; set; }
-
-        private string ToEmail { get; set; }
+        private string? ToEmail { get; set; }
 
         public EmailSender(IConfiguration _config)
         {

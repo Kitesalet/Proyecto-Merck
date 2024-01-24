@@ -1,15 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+
+using ProyectoMerck.Resources;
+using System.ComponentModel.DataAnnotations;
 
 namespace ProyectoMerck.Models.ViewModels
 {
     public class LoginVM
     {
-        public string Username { get; set; }    
+        [EmailAddress(ErrorMessageResourceType = typeof(ValidationResources), ErrorMessageResourceName = "Email")]
+        [Required(ErrorMessageResourceType = typeof(ValidationResources), ErrorMessageResourceName = "Required")]
+        public string Email { get; set; }
 
+        [Required(ErrorMessageResourceType = typeof(ValidationResources), ErrorMessageResourceName = "Required")]
         public string Password { get; set; }    
 
     }

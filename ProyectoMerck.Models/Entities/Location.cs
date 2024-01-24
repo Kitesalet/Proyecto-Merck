@@ -14,6 +14,7 @@ namespace ProyectoMerck.Models.Entities
         public int Id { get; set; }
 
         public int? ProvinceId { get; set; }
+
         [Required]
         public string LocationName { get; set; } = null!;
 
