@@ -1,9 +1,14 @@
 html {
+    font-family: 'Roboto', sans-serif;
     font-size: 14px;
     height: 100vh;
     width: 100vw;
     box-sizing: border-box;
+    position: relative;
+    min-height: 100%;
 }
+
+
 
 @media (min-width: 768px) {
     html {
@@ -15,19 +20,17 @@ html {
     box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
-html {
-    position: relative;
-    min-height: 100%;
-}
 
 .merck-button {
+    font-weight:bold;
     color: white;
-    border-radius: 50px;
+    border-radius: 5px;
     background-color: darkcyan;
 }
 
 .merck-button:hover{
-    background-color:aquamarine;
+    background-color:aqua;
+    color:white;
 }
 
 .metck-button:active{
