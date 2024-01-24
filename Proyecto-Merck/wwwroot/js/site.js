@@ -4,11 +4,31 @@
 // Write your JavaScript code.
 
 
-let button = document.getElementsByClassName('merck-button');
+var buttons = document.querySelectorAll('.merck-button');
 
-console.log(button);
+var buttonSpinnerCounter = 0;
+buttons.forEach(function (button) {
 
-button.addEventListener('click', function () {
-    alert('Button!')
+    console.log(button);
+
+    if (buttonSpinnerCounter == 0) {
+        button.addEventListener('click', function () {
+
+            console.log(this);
+
+            let spinnerContainer = this.querySelector('.spinner-container');
+            let buttonSpan = this.querySelector('.m-button-span');
+
+            buttonSpan.classList.add('d-none');
+            spinnerContainer.classList.add('spinner-grow', 'text-light');
+
+            buttonSpinnerCounter++;
+        })
+    }
+
+
+
 });
+
+
 

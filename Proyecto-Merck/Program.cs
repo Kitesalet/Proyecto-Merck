@@ -4,12 +4,15 @@ using Microsoft.EntityFrameworkCore;
 using Proyecto_Merck.Areas.Identity.Data;
 using ProyectoMerck.Utilities;
 using ProyectoMerck.DataAccess.Interfaces;
+using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IEmailSendeer, EmailSender>();
+builder.Services.AddScoped<IRegexHelper, RegexHelper>();
+
 
 DependencyInyector.InyectServices(builder.Services, builder.Configuration);
 
