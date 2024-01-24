@@ -44,7 +44,7 @@ namespace ProyectoMerck.Models.ViewModels
 
         public List<SelectListItem> Provinces { get; set; } = new List<SelectListItem>();
         public List<SelectListItem> Locations { get; set; } = new List<SelectListItem>();
-
+        public List<SelectListItem> Clinics { get; set; } = new List<SelectListItem>();
 
     }
 }
