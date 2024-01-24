@@ -11,12 +11,12 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        @Html.LabelFor(m => m.Username, "Ingrese su email", new {@class = "h3"})
+                        @Html.LabelFor(m => m.Email, "Ingrese su email", new {@class = "h3"})
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
-                        @Html.TextBoxFor(m => m.Username,new { @class = "form-control",type="email", required = true })
+                        @Html.TextBoxFor(m => m.Email,new { @class = "form-control",type="email" })
                     </div>
                 </div>
                 <div class="row">
@@ -26,7 +26,7 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", type = "password", required = true })
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", type = "password" })
                     </div>
                 </div>
                 <div class="row">
@@ -36,13 +36,19 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <button type="submit" class="merck-button btn p-4 my-5 border-light col-12">Ingreso Administradores</button>
+                        <button type="submit" class="merck-button btn p-4 my-5 border-light col-12">
+                            <span class="m-button-span">Ingreso Administradores</span>
+                            <span class="spinner-container"></span>
+                        </button>
                     </div>       
                 </div>
                 <hr />
                 <div class="row">
                     <div class="col-12">
-                        <a class="btn col-12 col-md-12 p-4 my-5 border-light merck-button" href="@Url.Action("Index", "Fertform")">Ingreso Invitados</a>
+                        <a class="merck-button btn col-12 col-md-12 p-4 my-5 border-light" href="@Url.Action("Index", "Fertform")" >
+                            <span class="m-button-span">Ingreso Invitados</span>
+                            <span class="spinner-container"></span>
+                        </a>
                     </div>
                 </div>
             </div>

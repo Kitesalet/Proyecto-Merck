@@ -11,7 +11,7 @@
             <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
                     <li class="nav-item">
-                        <a style="color:white" class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Login</a>
+                        <a style="color:white" class="nav-link" asp-area="" asp-controller="Login" asp-action="Index">Login</a>
                     </li>
                 </ul>
             </div>
@@ -19,7 +19,7 @@
     </nav>
     <div class="container">
         <div class="row">
-            <div class="col-9 offset-3">
+            <div class="d-flex justify-content-center">
                 <img src="/Imagenes/LogoMerckRosa.jpg" style="margin-bottom:30px; width:50%" />
             </div>
         </div>
@@ -43,8 +43,11 @@
                 <h3 style="font-weight:300; opacity:0.7" class="text-light">A LOS @Model.FirstAge AÑOS</h3>
             </div>
         </div>
-        <div class="row">
-            <a class="btn col-5 col-md-4 p-2 my-5 border-light offset-4 merck-button"  href="@Url.Action("RedirectIndicator", "Reserve", new {CurrentAge = @Model.CurrentAge})">Quiero saber mas!</a>
+        <div class="row d-flex justify-content-center">
+            <a class="btn col-5 col-md-4 p-2 my-5 border-light merck-button"  href="@Url.Action("RedirectIndicator", "Reserve", new {CurrentAge = @Model.CurrentAge})">
+                <span class="m-button-span">Quiero saber mas!</span>
+                <span class="spinner-container"></span>    
+            </a>
         </div>
     </div>
     <div style="height:100px; background-color: white; border-top-left-radius:30px; border-top-right-radius:30px">

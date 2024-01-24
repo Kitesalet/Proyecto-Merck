@@ -13,7 +13,7 @@
             <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
                     <li class="nav-item">
-                        <a style="color:white" class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Login</a>
+                        <a style="color:white" class="nav-link" asp-area="" asp-controller="Login" asp-action="Index">Login</a>
                     </li>
                 </ul>
             </div>
@@ -45,13 +45,13 @@
     <div style="height:100px; background-color: white; border-top-left-radius:30px; border-top-right-radius:30px">   
     </div>
 </header>
-    <div class="container">
+<div class="container">
     <div class="row border-bottom pb-5">
         <div class="col-6 col-md-5 col-lg-4 d-flex justify-content-end">
             <img src="/Imagenes/IconoEdadActual.png">
         </div>
         <div class="col-5">
-            <div class="row d-flex pb-3">
+            <div class="row pb-3">
                 <h3 style="color:#4A1896">Edad Actual</h3>
             </div>
             <div class="row">
@@ -65,19 +65,17 @@
             </div>
         </div>
     </div>
-</div>
-<div class="container">
     <div class="row border-bottom pb-5 pt-3">
         <div class="col-6 col-md-5 col-lg-4 d-flex justify-content-end">
             <img src="/Imagenes/IconoEdadPrimeraMenstruacion.png">
         </div>
         <div class="col-5">
-            <div class="row d-flex pb-3">
+            <div class="row pb-3">
                 <h3 style="color:#CA287C">Edad Primera Menstruación</h3>
             </div>
             <div class="row">
                 @Html.DropDownListFor(model => model.FirstFertilityAge,
-                         Enumerable.Range(11, 17).Select(age =>
+                         Enumerable.Range(11, 10).Select(age =>
                          new SelectListItem
                 {
                     Text = age.ToString(),
@@ -89,8 +87,13 @@
                 <div class="col-12 d-flex justify-content-center text-danger h5">
                     @Html.ValidationSummary(false)
                 </div>
-                <div class="row">
-                    <button type="submit" class="btn col-5 col-md-4 p-2 my-3 border-light offset-4 merck-button">Enviar</button>
+                <div class="row m-0">
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn col-8 col-sm-5 offset-sm-2 offset-md-0 col-md-4 p-2 my-3 border-light merck-button">
+                            <span class="spinner-container"></span>
+                            <span class="m-button-span">Enviar</span>
+                        </button>
+                    </div>
                 </div>
             </div>
     </div>
