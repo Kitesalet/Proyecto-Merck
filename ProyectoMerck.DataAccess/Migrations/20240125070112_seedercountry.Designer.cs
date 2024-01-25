@@ -12,8 +12,8 @@ using Proyecto_Merck.Areas.Identity.Data;
 namespace ProyectoMerck.DataAccess.Migrations
 {
     [DbContext(typeof(AppMerckContext))]
-    [Migration("20240117171738_primera-migration-imanol")]
-    partial class primeramigrationimanol
+    [Migration("20240125070112_seedercountry")]
+    partial class seedercountry
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -368,7 +368,7 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Id = 1,
                             Clinic = "CEGYR Medicina Reproductiva",
                             ConsultationReason = "Edad y Reserva Ovarica",
-                            DateAndtime = new DateTime(2024, 1, 17, 14, 17, 37, 163, DateTimeKind.Local).AddTicks(3584),
+                            DateAndtime = new DateTime(2024, 1, 25, 4, 1, 11, 735, DateTimeKind.Local).AddTicks(8009),
                             Url = "https://ejemplo.com/"
                         },
                         new
@@ -376,8 +376,32 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Id = 2,
                             Clinic = "Centro de Investigaciones en Medicina Reproductiva",
                             ConsultationReason = "Evaluación de Reserva Ovárica",
-                            DateAndtime = new DateTime(2024, 1, 17, 14, 17, 37, 163, DateTimeKind.Local).AddTicks(3674),
+                            DateAndtime = new DateTime(2024, 1, 25, 4, 1, 11, 735, DateTimeKind.Local).AddTicks(8101),
                             Url = "https://ejemplo2.com/"
+                        });
+                });
+
+            modelBuilder.Entity("ProyectoMerck.Models.Entities.Country", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CountryName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Countries");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CountryName = "Argentina"
                         });
                 });
 

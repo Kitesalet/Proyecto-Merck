@@ -365,7 +365,7 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Id = 1,
                             Clinic = "CEGYR Medicina Reproductiva",
                             ConsultationReason = "Edad y Reserva Ovarica",
-                            DateAndtime = new DateTime(2024, 1, 22, 10, 53, 45, 884, DateTimeKind.Local).AddTicks(6105),
+                            DateAndtime = new DateTime(2024, 1, 25, 4, 1, 11, 735, DateTimeKind.Local).AddTicks(8009),
                             Url = "https://ejemplo.com/"
                         },
                         new
@@ -373,8 +373,32 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Id = 2,
                             Clinic = "Centro de Investigaciones en Medicina Reproductiva",
                             ConsultationReason = "Evaluación de Reserva Ovárica",
-                            DateAndtime = new DateTime(2024, 1, 22, 10, 53, 45, 884, DateTimeKind.Local).AddTicks(6213),
+                            DateAndtime = new DateTime(2024, 1, 25, 4, 1, 11, 735, DateTimeKind.Local).AddTicks(8101),
                             Url = "https://ejemplo2.com/"
+                        });
+                });
+
+            modelBuilder.Entity("ProyectoMerck.Models.Entities.Country", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CountryName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Countries");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CountryName = "Argentina"
                         });
                 });
 

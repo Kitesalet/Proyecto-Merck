@@ -18,11 +18,14 @@ public class AppMerckContext : IdentityDbContext<IdentityUser>
     public DbSet<Clinic> Clinics { get; set; }
     public DbSet<Location> Locations { get; set; }
     public DbSet<Province> Provinces { get; set; }
+    public DbSet<Country> Countries { get; set; }
+    public object Country { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
         var seeders = new List<IEntitySeeder>
             {
+                new CountrySeeder(),
                 new ConsultationSeeder(),
                 new ClinicSeeder(),
                 new ProvinceSeeder(),

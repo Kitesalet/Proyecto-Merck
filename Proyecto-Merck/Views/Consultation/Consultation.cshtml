@@ -38,9 +38,7 @@
                     <div class="col">
                         <p class="display-4" style="margin-bottom:0;">Consulta</p>
                     </div>
-                    <div class="col">
-                        <img src="~/imagenes/FlechaDerecha.png" />
-                    </div>
+                    <div class="col"></div>
                 </div>
             </div>
         </div>
@@ -61,13 +59,13 @@
                 </div>
                 <div class="input-group-append" style="margin-left:20px">
                     <label asp-for="Country" class="form-label" style="color: #776793; text-align:center; font-size: 23px; font-weight: 500; margin-bottom: 5px;">Pais</label>
-                    <select asp-for="Country" class="form-control" id="edadActual" style="width: 200px; border-radius: 5px;">
-                        <option value="">Seleccione el Pais</option>
-                        <option>Argentina</option>
-                        <option>Uruaguay</option>
-                        <option>Brazil</option>
-                        <option>Chile</option>
-                        <option>Colombia</option>
+                    <select asp-for="Country" class="form-control" id="Country" style="width: 200px; border-radius: 5px;">
+                        <option value="">Seleccione un Pais</option>
+                        @foreach (var country in Model.Countries)
+                        {
+                            <option value="@country.Value">@country.Text</option>
+                        }
+                        
                     </select>
                 </div>
             </div>
@@ -126,34 +124,12 @@
                         <option value="">Seleccionar Clinica</option>
                         @foreach (var clinic in Model.Clinics)
                         {
-                            <option value="@clinic.Text">@clinic.Text</option>
+                            <option value="@clinic.Value">@clinic.Text</option>
                         }
                     </select>
                 </div>
             </div>
             <span asp-validation-for="Clinic" class="text-danger"></span>
-        </div>
-
-
-
-        <div class="mb-3" style="padding-left:40px">
-            <div class="input-group">
-                <div class="input-group-append">
-                    <img src="~/imagenes/FotoConsulta.png" style="width: 80px; height: 80px;" />
-                </div>
-                <div class="input-group-append" style="margin-left:20px">
-                    <label asp-for="ReasonConsultation" class="form-label" style="color: #ef4488; text-align:center; font-size: 23px; font-weight: 500; margin:0px;">Motivo consulta</label>
-                    <select asp-for="ReasonConsultation" class="form-control" style="width: 200px; border-radius: 5px;">
-                        <option value="">Seleccione una Consulta</option>
-                        <option>Edad y Reserva Ovárica</option>
-                        <option>Evaluación de Reserva Ovárica</option>
-                        <option>Mejora de la Fertilidad</option>
-                        <option>Enfermedades y Fertilidad</option>
-                        <option>Preservación de la Fertilidad</option>
-                    </select>
-                </div>
-            </div>
-            <span asp-validation-for="ReasonConsultation" class="text-danger"></span>
         </div>
 
 
@@ -172,9 +148,21 @@
         </div>
 
 
-
-
-        <button type="submit" class="btn btn-info col-8 offset-2 p-9 btn-rounded custom-btn btn-text-white" style="border-radius: 35px; border: 2px solid white; background-color: #067785; color: #94d4de;margin-right:60px; font-size:17px">Enviar</button>
+        <div class="mb-3" style="padding-left:40px">
+            <div class="input-group">
+                <div class="input-group-append">
+                    <img src="~/imagenes/FotoConsulta.png" style="width: 80px; height: 80px;" />
+                </div>
+                <div class="input-group-append" style="margin-left:20px">
+                    <label asp-for="ReasonConsultation" class="form-label" style="color: #ef4488; text-align:center; font-size: 23px; font-weight: 500; margin:0px;">Motivo consulta</label>
+                    <input asp-for="ReasonConsultation" class="form-control" placeholder="Escriba su Consulta" style="width: 200px; border-radius: 5px;">
+                </div>
+            </div>
+            <span asp-validation-for="ReasonConsultation" class="text-danger"></span>
+        </div>
+        <div class="d-flex align-items-center justify-content-center">
+            <button type="submit" class="btn col-5 col-md-4 p-2 my-5 border-light merck-button">Enviar</button>
+        </div>
     </form>
 </div>
 
