@@ -37,10 +37,10 @@ namespace Proyecto_Merck.Controllers
                     items: _context.Provinces.ToList(),
                     value: p => p.Id.ToString(),
                     text: p => p.ProvinceName
-                ),
+                ), 
 
                 Locations = GetSelectListItems(
-                    items:_context.Locations.ToList(),
+                    items: _context.Locations.ToList(),
                     value: c => c.Id.ToString(),
                     text: c => c.LocationName
                 ),
@@ -50,6 +50,13 @@ namespace Proyecto_Merck.Controllers
                     value: c => c.Id.ToString(),
                     text: c => c.ClinicName
                 ),
+
+                Countries = GetSelectListItems(
+                    items: _context.Countries.ToList(),
+                    value: c => c.Id.ToString(),
+                    text: c => c.CountryName
+                ),
+
             };
 
             return View("Consultation", model);

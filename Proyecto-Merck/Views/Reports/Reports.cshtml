@@ -1,4 +1,8 @@
-﻿<header style="background-color:#2EBDCD">
+﻿@model ExportViewModel
+@using ProyectoMerck.Models.ViewModels
+
+
+<header style="background-color:#2EBDCD">
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light">
         <div class="container-fluid">
             <a href="@Url.Action("Index", "Home")" class="btn"><i style="color: white; font-size: 1.5em" class="bi bi-chevron-left"></i></a>
@@ -31,11 +35,14 @@
     <div class="d-flex">
         <div style="margin-right: 10px; margin-left: 10px;">
             <form id="exportForm">
-                <label for="fechaInicio">Fecha de Inicio:</label>
-                <input type="date" id="fechaInicio" name="fechaInicio" class="form-control" max="2024-12-31">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <label asp-for="FechaInicio">Fecha de Inicio:</label>
+                <input asp-for="FechaInicio" type="date" id="FechaInicio" name="FechaInicio" class="form-control" max="2024-12-31">
+                <span asp-validation-for="FechaInicio"></span>
 
-                <label for="fechaFin">Fecha de Fin:</label>
-                <input type="date" id="fechaFin" name="fechaFin" class="form-control" max="2024-12-31">
+                <label asp-for="FechaFin">Fecha de Fin:</label>
+                <input asp-for="FechaFin" type="date" id="FechaFin" name="FechaFin" class="form-control" max="2024-12-31">
+                <span asp-validation-for="FechaFin"></span>
 
                 <button type="button" onclick="exportar('excel')" class="btn btn-primary mt-3" style="border-radius: 35px; border: 2px solid white; background-color: #067785; color: #94d4de; font-size: 17px;">
                     Exportar Excel

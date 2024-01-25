@@ -33,22 +33,30 @@ namespace Proyecto_Merck.Controllers
             return View();
         }
 
-        public IActionResult PrintPdf(DateTime? fechaInicio, DateTime? fechaFin)
-        {
-            IQueryable<Consultation> consultasQuery = _context.Consultations;
 
-            if (fechaInicio != null)
+
+
+        public IActionResult PrintPdf(ExportViewModel model)
+        {
+            if (ModelState.IsValid == false) 
             {
-                // Considerar solo la parte de la fecha
-                fechaInicio = fechaInicio?.Date;
-                consultasQuery = consultasQuery.Where(c => c.DateAndtime.Date >= fechaInicio);
+                return View("Reports", model);
             }
 
-            if (fechaFin != null)
+            IQueryable<Consultation> consultasQuery = _context.Consultations;
+
+            if (model.FechaInicio != null)
             {
                 // Considerar solo la parte de la fecha
-                fechaFin = fechaFin?.Date;
-                consultasQuery = consultasQuery.Where(c => c.DateAndtime.Date <= fechaFin);
+                model.FechaInicio = model.FechaInicio.Date;
+                consultasQuery = consultasQuery.Where(c => c.DateAndtime.Date >= model.FechaInicio);
+            }
+
+            if (model.FechaFin != null)
+            {
+                // Considerar solo la parte de la fecha
+                model.FechaFin = model.FechaFin.Date;
+                consultasQuery = consultasQuery.Where(c => c.DateAndtime.Date <= model.FechaFin);
             }
 
             List<Consultation> consultas = consultasQuery
