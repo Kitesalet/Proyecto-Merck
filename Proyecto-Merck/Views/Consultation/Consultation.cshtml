@@ -5,13 +5,13 @@
     ViewData["Title"] = "Consutation";
 }
 
-<header style="background-color:#2EBDCD">
+<header class="header-bg-color">
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light">
         <div class="container-fluid">
-            <a href="@Url.Action("Index", "Home")" class="btn"><i style="color: white; font-size: 1.5em" class="bi bi-chevron-left"></i></a>
-            <button style="color: white; font-size: 2em" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+            <a href="@Url.Action("Index", "Home")" class="btn"><i class="bi bi-chevron-left header-icon-left"></i></a>
+            <button class="navbar-toggler header-burger" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
-                <i class="bi bi-list" style="color:white"></i>
+                <i class="bi bi-list text-light"></i>
             </button>
             <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
@@ -23,43 +23,42 @@
         </div>
     </nav>
 </header>
-
-
-<div class="row" style="background-color: #2EBDCD; margin:0">
+<div class="row subheader-body">
     <div class="col-md-12">
-        <div class="col-12 text-center vh-50" style="margin-top: 35px">
-            <img class="mb-4" style="display:block; margin-left:auto; margin-right:auto" src="~/imagenes/LogoMerck.jpg" />
-
-            <div class="text-center" style="margin-top: 65px; margin-bottom: 45px; color:#aff3fb;">
+        <div class="col-12 text-center vh-50 mt-35">
+            <img class="mb-4 subheader-img" src="~/imagenes/LogoMerck.jpg" />
+            <div class="text-center subheader-div">
                 <div class="row align-items-center">
                     <div class="col">
                         <img src="~/imagenes/FlechaIzquierda.png" />
                     </div>
                     <div class="col">
-                        <p class="display-4" style="margin-bottom:0;">Consulta</p>
+                        <p class="display-4 mb-0">
+                            Consulta
+                        </p>
                     </div>
                     <div class="col"></div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row" style="background-color: #ffff; border-top-left-radius: 1000px; border-top-right-radius: 1000px; height: 50px;margin:0">
+    <div class="row rounded-header">
     </div>
 </div>
 
 
 <div class="container">
-    <form method="post" asp-action="AddConsultation" class="mx-auto mt-5 " style="max-width: 400px;">
+    <form method="post" asp-action="AddConsultation" class="mx-auto mt-5 consultation-form-width">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-        <div class="mb-3" style="padding-left:40px">
+        <div class="mb-3 pt-40">
             <div class="input-group">
                 <div class="input-group-append">
-                    <img src="~/imagenes/FotoUbicacion.png" style="width: 80px; height: 80px;" />
+                    <img src="~/imagenes/FotoUbicacion.png" class="w-80-h-80"/>
                 </div>
-                <div class="input-group-append" style="margin-left:20px">
-                    <label asp-for="Country" class="form-label" style="color: #776793; text-align:center; font-size: 23px; font-weight: 500; margin-bottom: 5px;">Pais</label>
-                    <select asp-for="Country" class="form-control" id="Country" style="width: 200px; border-radius: 5px;">
+                <div class="input-group-append ml-40">
+                    <label asp-for="Country" class="form-label consultation-label">Pais</label>
+                    <select asp-for="Country" class="form-control consultation-select" id="Country">
                         <option value="">Seleccione un Pais</option>
                         @foreach (var country in Model.Countries)
                         {
@@ -73,14 +72,14 @@
         </div>
 
 
-        <div class="mb-3" style="padding-left:40px">
+        <div class="mb-3 pt-40">
             <div class="input-group">
                 <div class="input-group-append">
-                    <img src="~/imagenes/FotoUbicacion.png" style="width: 80px; height: 80px;" />
+                    <img src="~/imagenes/FotoUbicacion.png" class="w-80-h-80"/>
                 </div>
-                <div class="input-group-append" style="margin-left:20px">
-                    <label asp-for="Province" class="form-label" style="color: #776793; text-align:center; font-size: 23px; font-weight: 500; margin-bottom: 5px;">Provincia</label>
-                    <select asp-for="Province" name="Province" class="form-control" id="Province" style="width: 200px; border-radius: 5px;">
+                <div class="input-group-append ml-20">
+                    <label asp-for="Province" class="form-label consultation-label">Provincia</label>
+                    <select asp-for="Province" name="Province" class="form-control consultation-select" id="Province">
                         <option value="">Seleccionar Provincia</option>
                         @foreach (var province in Model.Provinces)
                         {
@@ -94,14 +93,14 @@
 
 
 
-        <div class="mb-3" style="padding-left:40px">
+        <div class="mb-3 pt-40">
             <div class="input-group">
                 <div class="input-group-append">
-                    <img src="~/imagenes/FotoUbicacion.png" style="width: 80px; height: 80px;" />
+                    <img src="~/imagenes/FotoUbicacion.png" class="w-80-h-80"/>
                 </div>
-                <div class="input-group-append" style="margin-left:20px">
-                    <label asp-for="Location" class="form-label" style="color: #776793; text-align:center; font-size: 23px; font-weight: 500; margin-bottom: 5px;">Locacion</label>
-                    <select asp-for="Location" name="Location" class="form-control" id="Location" style="width: 200px; border-radius: 5px;">
+                <div class="input-group-append ml-20">
+                    <label asp-for="Location" class="form-label consultation-label">Locacion</label>
+                    <select asp-for="Location" name="Location" class="form-control consultation-select" id="Location">
                         <option value="">Seleccionar Localidad</option>
                         @foreach (var location in Model.Locations)
                         {
@@ -113,14 +112,14 @@
             <span asp-validation-for="Location" class="text-danger"></span>
         </div>
 
-        <div class="mb-3" style="padding-left:40px">
+        <div class="mb-3 pt-40">
             <div class="input-group">
                 <div class="input-group-append">
-                    <img src="~/imagenes/FotoUbicacion.png" style="width: 80px; height: 80px;" />
+                    <img src="~/imagenes/FotoUbicacion.png" class="w-80-h-80" />
                 </div>
-                <div class="input-group-append" style="margin-left:20px">
-                    <label asp-for="Clinic" class="form-label" style="color: #776793; text-align:center; font-size: 23px; font-weight: 500; margin-bottom: 5px;">Clinicas</label>
-                    <select asp-for="Clinic" name="Clinic" class="form-control" id="Clinic" style="width: 200px; border-radius: 5px;">
+                <div class="input-group-append ml-20">
+                    <label asp-for="Clinic" class="form-label consultation-label">Clinica</label>
+                    <select asp-for="Clinic" name="Clinic" class="form-control consultation-select" id="Clinic">
                         <option value="">Seleccionar Clinica</option>
                         @foreach (var clinic in Model.Clinics)
                         {
@@ -134,28 +133,28 @@
 
 
 
-        <div class="mb-3" style="padding-left:40px">
+        <div class="mb-3 pt-40">
             <div class="input-group">
                 <div class="input-group-append">
-                    <img src="~/imagenes/FotoEmail.png" style="width: 80px; height: 80px;" />
+                    <img src="~/imagenes/FotoEmail.png" class="w-80-h-80" />
                 </div>
-                <div class="input-group-append" style="margin-left:20px">
-                    <label asp-for="Email" class="form-label" style="color: #ef4488; text-align:center; font-size: 23px; font-weight: 500; margin:0px;">Mail contacto</label>
-                    <input asp-for="Email" class="form-control" placeholder="Correo Electronico" style="width: 200px">
+                <div class="input-group-append ml-20">
+                    <label asp-for="Email" class="form-label consultation-label-2">Mail contacto</label>
+                    <input asp-for="Email" class="form-control consultation-select" placeholder="Correo Electronico">
                 </div>
             </div>
             <span asp-validation-for="Email" class="text-danger"></span>
         </div>
 
 
-        <div class="mb-3" style="padding-left:40px">
+        <div class="mb-3 pt-40">
             <div class="input-group">
                 <div class="input-group-append">
-                    <img src="~/imagenes/FotoConsulta.png" style="width: 80px; height: 80px;" />
+                    <img src="~/imagenes/FotoConsulta.png" class="w-80-h-80"/>
                 </div>
-                <div class="input-group-append" style="margin-left:20px">
-                    <label asp-for="ReasonConsultation" class="form-label" style="color: #ef4488; text-align:center; font-size: 23px; font-weight: 500; margin:0px;">Motivo consulta</label>
-                    <input asp-for="ReasonConsultation" class="form-control" placeholder="Escriba su Consulta" style="width: 200px; border-radius: 5px;">
+                <div class="input-group-append ml-20">
+                    <label asp-for="ReasonConsultation" class="form-label consultation-label-2">Motivo consulta</label>
+                    <input asp-for="ReasonConsultation" class="form-control consultation-select" placeholder="Escriba su Consulta">
                 </div>
             </div>
             <span asp-validation-for="ReasonConsultation" class="text-danger"></span>

@@ -22,7 +22,7 @@ namespace Proyecto_Merck
             //Database Connection
             services.AddDbContext<AppMerckContext>(options =>
             {
-                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+                options.UseSqlServer(configuration.GetConnectionString("AppMerckContextConnection"));
             });
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false).AddEntityFrameworkStores<AppMerckContext>();
 
