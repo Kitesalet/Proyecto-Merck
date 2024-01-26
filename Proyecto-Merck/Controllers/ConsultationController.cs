@@ -9,8 +9,8 @@ using ProyectoMerck.Models.ViewModels;
 using ProyectoMerck.Resources;
 using System.Resources;
 
-namespace Proyecto_Merck.Controllers
-{
+namespace Proyecto_Merck.Controllers;
+
     public class ConsultationController : Controller
     {
 

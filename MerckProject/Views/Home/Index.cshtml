@@ -1,0 +1,50 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+@{
+
+    var xxxx = Localizer;
+
+    var ddddd = xxxx["Lol"];
+
+    Console.WriteLine("d");
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+
+</head>
+<body class="d-flex align-items-center justify-content-center body">
+
+    <h1 class="text-center">@Localizer["Lol"]</h1>
+
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-12">
+                <img class="mb-100" src="~/Imagenes/LogoInicioMerck.png" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">                  
+                <a id="m-button" class="btn col-7 py-4 my-5 border-light merck-button" href="@Url.Action("Index", "Login")">
+                    <span class="spinner-container"></span>
+                    <span class="m-button-span">Comenzar</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/site.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
