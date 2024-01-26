@@ -1,0 +1,94 @@
+﻿@model List<ProyectoMerck.Models.Entities.Consultation>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reportas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h1 {
+            color: #2EBDCD;
+            margin: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #2EBDCD;
+            color: white;
+        }
+
+        img {
+            max-width: 100px;
+        }
+
+    </style>
+</head>
+<body>
+    <div style="margin-left: 900px; width: 300px; height: 100px;">
+        <img src="~/imagenes/LogoMerck.jpg" class="img-fluid" alt="Logo Merck">
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1 class="text-center">Reporte Consultas</h1>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-12">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Motivo de Consulta</th>
+                            <th>Clinica</th>
+                            <th>Fecha y Hora</th>
+                            <th>URL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var consulta in Model)
+                        {
+                            <tr>
+                                <td>@consulta.ConsultationReason</td>
+                                <td>@consulta.Clinic</td>
+                                <td>@consulta.DateAndtime</td>
+                                <td>@consulta.Url</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

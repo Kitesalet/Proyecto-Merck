@@ -2,7 +2,7 @@
 using ProyectoMerck.Models.ViewModels;
 using ProyectoMerck.Utilities;
 
-namespace Proyecto_Merck.Controllers
+namespace MerckProje.Controllers
 {
     public class FertformController : Controller
     {
