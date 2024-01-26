@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MerckProject.Resources {
+namespace MerckProject.Resources.Views.Home {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace MerckProject.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class ConsultationResources {
+    public class Index {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ConsultationResources() {
+        internal Index() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace MerckProject.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ProyectoMerck.Resources.ConsultationResources", typeof(ConsultationResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MerckProject.Resources.Views.Home.Index", typeof(Index).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,31 +61,29 @@ namespace MerckProject.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;!DOCTYPE html&gt;
-        ///&lt;html lang=&quot;en&quot;&gt;
-        ///&lt;head&gt;
-        ///    &lt;meta charset=&quot;UTF-8&quot;&gt;
-        ///    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
-        ///    &lt;title&gt;Merck Fertilidad&lt;/title&gt;
-        ///&lt;/head&gt;
-        ///&lt;body style=&quot;font-family: &apos;Arial&apos;, sans-serif; background-color: #f8f8f8; margin-top: 20px; padding: 0;&quot;&gt;
-        ///
-        ///    &lt;div style=&quot;max-width: 600px; margin: 20px auto; background-color: #fff; border-radius: 10px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); padding: 20px; text-align: center;&quot;&gt;
-        ///
-        ///        &lt;!-- Centered Merck Ico [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to English.
         /// </summary>
-        public static string EmailBody {
+        public static string Language {
             get {
-                return ResourceManager.GetString("EmailBody", resourceCulture);
+                return ResourceManager.GetString("Language", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Consulta N# {0}.
+        ///   Looks up a localized string similar to Language.
         /// </summary>
-        public static string EmailSubject {
+        public static string ScreenLanguage {
             get {
-                return ResourceManager.GetString("EmailSubject", resourceCulture);
+                return ResourceManager.GetString("ScreenLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start.
+        /// </summary>
+        public static string Start {
+            get {
+                return ResourceManager.GetString("Start", resourceCulture);
             }
         }
     }

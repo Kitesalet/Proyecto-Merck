@@ -61,16 +61,34 @@ namespace ProyectoMerck.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0}.
+        ///   Looks up a localized string similar to Clinic.
         /// </summary>
-        public static string Display {
+        public static string Clinic {
             get {
-                return ResourceManager.GetString("Display", resourceCulture);
+                return ResourceManager.GetString("Clinic", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to El formato del correo electrónico no es válido..
+        ///   Looks up a localized string similar to Country.
+        /// </summary>
+        public static string Country {
+            get {
+                return ResourceManager.GetString("Country", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DateTime.
+        /// </summary>
+        public static string DateAndTime {
+            get {
+                return ResourceManager.GetString("DateAndTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The email format is incorrect.
         /// </summary>
         public static string Email {
             get {
@@ -79,7 +97,61 @@ namespace ProyectoMerck.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to El campo {0} es obligatorio..
+        ///   Looks up a localized string similar to The selected ages are invalid!.
+        /// </summary>
+        public static string InvalidAges {
+            get {
+                return ResourceManager.GetString("InvalidAges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Date and Time format.
+        /// </summary>
+        public static string InvalidDateTimeFormat {
+            get {
+                return ResourceManager.GetString("InvalidDateTimeFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Location.
+        /// </summary>
+        public static string Location {
+            get {
+                return ResourceManager.GetString("Location", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The user doesnt exist or these credentials are incorrect..
+        /// </summary>
+        public static string NonExistingUser {
+            get {
+                return ResourceManager.GetString("NonExistingUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to State.
+        /// </summary>
+        public static string Province {
+            get {
+                return ResourceManager.GetString("Province", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Consultation Motive.
+        /// </summary>
+        public static string ReasonConsultation {
+            get {
+                return ResourceManager.GetString("ReasonConsultation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The {0} field is required..
         /// </summary>
         public static string Required {
             get {
@@ -88,11 +160,29 @@ namespace ProyectoMerck.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to La Url no es válida..
+        ///   Looks up a localized string similar to The Url is invalid..
         /// </summary>
-        public static string Url {
+        public static string URL {
             get {
-                return ResourceManager.GetString("Url", resourceCulture);
+                return ResourceManager.GetString("URL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to URL.
+        /// </summary>
+        public static string UrlDisplay {
+            get {
+                return ResourceManager.GetString("UrlDisplay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        public static string VModelEmail {
+            get {
+                return ResourceManager.GetString("VModelEmail", resourceCulture);
             }
         }
     }

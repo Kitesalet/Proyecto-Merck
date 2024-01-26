@@ -117,16 +117,46 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Display" xml:space="preserve">
-    <value>{0}</value>
-  </data>
   <data name="Email" xml:space="preserve">
-    <value>El formato del correo electrónico no es válido.</value>
+    <value>The email format is incorrect</value>
   </data>
   <data name="Required" xml:space="preserve">
-    <value>El campo {0} es obligatorio.</value>
+    <value>The {0} field is required.</value>
   </data>
-  <data name="Url" xml:space="preserve">
-    <value>La Url no es válida.</value>
+  <data name="URL" xml:space="preserve">
+    <value>The Url is invalid.</value>
+  </data>
+  <data name="NonExistingUser" xml:space="preserve">
+    <value>The user doesnt exist or these credentials are incorrect.</value>
+  </data>
+  <data name="InvalidAges" xml:space="preserve">
+    <value>The selected ages are invalid!</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="Province" xml:space="preserve">
+    <value>State</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="ReasonConsultation" xml:space="preserve">
+    <value>Consultation Motive</value>
+  </data>
+  <data name="Clinic" xml:space="preserve">
+    <value>Clinic</value>
+  </data>
+  <data name="VModelEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="DateAndTime" xml:space="preserve">
+    <value>DateTime</value>
+  </data>
+  <data name="InvalidDateTimeFormat" xml:space="preserve">
+    <value>Invalid Date and Time format</value>
+  </data>
+  <data name="UrlDisplay" xml:space="preserve">
+    <value>URL</value>
   </data>
 </root>

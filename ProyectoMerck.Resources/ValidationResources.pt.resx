@@ -118,6 +118,49 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Email" xml:space="preserve">
-    <value>El formato du correo eletronico nao e validado.</value>
+    <value> o eu formato du correo eletronico</value>
+  </data>
+  <data name="Required" xml:space="preserve">
+    <value>
+O campo {0} é obrigatório.</value>
+  </data>
+  <data name="URL" xml:space="preserve">
+    <value>O URL não é válido.
+</value>
+  </data>
+  <data name="NonExistingUser" xml:space="preserve">
+    <value>
+O usuário não existe e/ou as credenciais estão incorretas</value>
+  </data>
+  <data name="InvalidAges" xml:space="preserve">
+    <value>
+As idades inseridas sao invalidas!</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>País</value>
+  </data>
+  <data name="Province" xml:space="preserve">
+    <value>Província</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Localização</value>
+  </data>
+  <data name="Clinic" xml:space="preserve">
+    <value>Clínica</value>
+  </data>
+  <data name="VModelEmail" xml:space="preserve">
+    <value>Correo Eleitronico</value>
+  </data>
+  <data name="DateAndTime" xml:space="preserve">
+    <value>Fecha</value>
+  </data>
+  <data name="InvalidDateTimeFormat" xml:space="preserve">
+    <value>Formato do feicha e invalidado</value>
+  </data>
+  <data name="UrlDisplay" xml:space="preserve">
+    <value>URL</value>
+  </data>
+  <data name="ReasonConsultation" xml:space="preserve">
+    <value>Razao do Consulta</value>
   </data>
 </root>

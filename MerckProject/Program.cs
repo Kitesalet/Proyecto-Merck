@@ -20,7 +20,7 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
     var supportedCultures = new[]
     {
         new CultureInfo("pt"),
-        new CultureInfo("en-us"),
+        new CultureInfo("en"),
         new CultureInfo("es-ar")
     };
 

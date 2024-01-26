@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,13 +117,49 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Start" xml:space="preserve">
-    <value>Comenzar</value>
+  <data name="Consultationn" xml:space="preserve">
+    <value>Consulta</value>
   </data>
-  <data name="Language" xml:space="preserve">
-    <value>Español</value>
+  <data name="SelectCountry" xml:space="preserve">
+    <value>Seleccion un pais</value>
   </data>
-  <data name="ScreenLanguage" xml:space="preserve">
-    <value>Idioma</value>
+  <data name="Country" xml:space="preserve">
+    <value>Pais</value>
+  </data>
+  <data name="Province" xml:space="preserve">
+    <value>Provincia</value>
+  </data>
+  <data name="SelectProvince" xml:space="preserve">
+    <value>Seleccionar Provincia</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Locación</value>
+  </data>
+  <data name="SelectLocation" xml:space="preserve">
+    <value>Seleccionar Localidad</value>
+  </data>
+  <data name="Clinic" xml:space="preserve">
+    <value>Clínica</value>
+  </data>
+  <data name="SelectClinic" xml:space="preserve">
+    <value>Seleccionar Clínica</value>
+  </data>
+  <data name="ContactMail" xml:space="preserve">
+    <value>Mail de contacto</value>
+  </data>
+  <data name="MailPlaceholder" xml:space="preserve">
+    <value>Ingrese su Correo Electrónico</value>
+  </data>
+  <data name="ConsultMotive" xml:space="preserve">
+    <value>Motivo de consulta</value>
+  </data>
+  <data name="MotivePlaceholder" xml:space="preserve">
+    <value>Escriba su motivo</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Enviar</value>
+  </data>
+  <data name="ReasonConsultation" xml:space="preserve">
+    <value>Razón de Consulta</value>
   </data>
 </root>

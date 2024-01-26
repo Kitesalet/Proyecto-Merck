@@ -1,6 +1,4 @@
-﻿
-
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc;
 using Proyecto_Merck.Areas.Identity.Data;
@@ -10,9 +8,9 @@ using ProyectoMerck.DataAccess.DTOs;
 using ProyectoMerck.DataAccess.Interfaces;
 using ProyectoMerck.Models.Entities;
 using ProyectoMerck.Models.ViewModels;
-using ProyectoMerck.Resources;
 using ProyectoMerck.Utilities;
 using System.Resources;
+using MerckProject.Resources;
 
 namespace ProyectoMerck.Business.Services
 {
