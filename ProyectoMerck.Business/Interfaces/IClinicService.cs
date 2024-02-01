@@ -13,5 +13,7 @@ namespace ProyectoMerck.Business.Interfaces
 
         public Task<List<GetClinicDto>> GetAllClinicsAsync();
 
+
+        // metodos
     }
 }
