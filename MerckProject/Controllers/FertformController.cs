@@ -1,11 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProyectoMerck.Models.ViewModels;
+using ProyectoMerck.Resources;
 using ProyectoMerck.Utilities;
+using System.Resources;
 
 namespace MerckProject.Controllers
 {
     public class FertformController : Controller
     {
+        private const string _ValidationResourceLocation = "ProyectoMerck.Resources.ValidationResources";
+
+
         public IActionResult Index()
         {
 
@@ -15,10 +20,14 @@ namespace MerckProject.Controllers
         [HttpPost]
         public IActionResult FertilityCalculator(FertformVM model)
         {
+
+            string culture = CultureHelper.GetCultureFromCookie(HttpContext.Request.Cookies[".AspNetCore.Culture"]);
+            ResourceManager manager = new ResourceManager(_ValidationResourceLocation, typeof(ValidationResources).Assembly);
+
             if(int.Parse(model.CurrentAge) < int.Parse(model.FirstFertilityAge))
             {
-                TempData["Error"] = "Las edades ingresadas son invalidas";
-                ModelState.AddModelError("Invalid Ages", "Las edades ingresadas son invalidas!");
+                TempData["Error"] = manager.GetString("InvalidAges");
+                ModelState.AddModelError("InvalidAges", manager.GetString("InvalidAges"));
             }
 
             if(!ModelState.IsValid)

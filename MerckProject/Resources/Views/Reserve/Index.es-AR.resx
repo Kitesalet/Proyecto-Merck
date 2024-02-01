@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,13 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Start" xml:space="preserve">
-    <value>Comenzar</value>
+  <data name="ActualAge" xml:space="preserve">
+    <value>ACTUAL AGE: </value>
   </data>
-  <data name="Language" xml:space="preserve">
-    <value>Español</value>
+  <data name="ActualAgeNumber" xml:space="preserve">
+    <value>{0} AÑOS</value>
   </data>
-  <data name="ScreenLanguage" xml:space="preserve">
-    <value>Idioma</value>
+  <data name="FirstPeriod" xml:space="preserve">
+    <value>1ERA MENSTRUACIÓN:</value>
+  </data>
+  <data name="FirstPeriodAge" xml:space="preserve">
+    <value>A LOS {0} AÑOS</value>
+  </data>
+  <data name="KnowMore" xml:space="preserve">
+    <value>Quiero saber mas!</value>
+  </data>
+  <data name="FertilityRate" xml:space="preserve">
+    <value>Tasa de Fertilidad</value>
   </data>
 </root>

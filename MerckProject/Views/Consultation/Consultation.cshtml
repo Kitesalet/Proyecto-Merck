@@ -1,8 +1,11 @@
 ﻿@model ConsultationViewModel
 @using ProyectoMerck.Models.ViewModels
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 
 @{
     ViewData["Title"] = "Consutation";
+
 }
 
 <header class="header-bg-color">
@@ -36,7 +39,7 @@
                     </div>
                     <div class="col">
                         <p class="display-4 mb-0">
-                            Consulta
+                            @Localizer["Consultation"].Value
                         </p>
                     </div>
                     <div class="col"></div>
@@ -59,9 +62,9 @@
                     <img src="~/imagenes/FotoUbicacion.png" class="w-80-h-80"/>
                 </div>
                 <div class="input-group-append ml-40">
-                    <label asp-for="Country" class="form-label consultation-label">Pais</label>
+                    <label asp-for="Country" class="form-label consultation-label">@Localizer["Country"].Value</label>
                     <select asp-for="Country" class="form-control consultation-select" id="Country">
-                        <option value="">Seleccione un Pais</option>
+                        <option value="">@Localizer["SelectCountry"].Value</option>
                         @foreach (var country in Model.Countries)
                         {
                             <option value="@country.Value">@country.Text</option>
@@ -82,7 +85,7 @@
                 <div class="input-group-append ml-20">
                     <label asp-for="Province" class="form-label consultation-label">Provincia</label>
                     <select asp-for="Province" name="Province" class="form-control consultation-select" id="Province">
-                        <option value="">Seleccionar Provincia</option>
+                        <option value="">@Localizer["SelectProvince"].Value</option>
                         @foreach (var province in Model.Provinces)
                         {
                             <option value="@province.Value">@province.Text</option>
@@ -101,9 +104,9 @@
                     <img src="~/imagenes/FotoUbicacion.png" class="w-80-h-80"/>
                 </div>
                 <div class="input-group-append ml-20">
-                    <label asp-for="Location" class="form-label consultation-label">Locacion</label>
+                    <label asp-for="Location" class="form-label consultation-label">@Localizer["Location"].Value</label>
                     <select asp-for="Location" name="Location" class="form-control consultation-select" id="Location">
-                        <option value="">Seleccionar Localidad</option>
+                        <option value="">@Localizer["SelectLocation"].Value</option>
                         @foreach (var location in Model.Locations)
                         {
                             <option value="@location.Value">@location.Text</option>
@@ -120,9 +123,9 @@
                     <img src="~/imagenes/FotoUbicacion.png" class="w-80-h-80" />
                 </div>
                 <div class="input-group-append ml-20">
-                    <label asp-for="Clinic" class="form-label consultation-label">Clinica</label>
+                    <label asp-for="Clinic" class="form-label consultation-label">@Localizer["Clinic"].Value</label>
                     <select asp-for="Clinic" name="Clinic" class="form-control consultation-select" id="Clinic">
-                        <option value="">Seleccionar Clinica</option>
+                        <option value="">@Localizer["SelectClinic"]</option>
                         @foreach (var clinic in Model.Clinics)
                         {
                             <option value="@clinic.Value">@clinic.Text</option>
@@ -141,8 +144,8 @@
                     <img src="~/imagenes/FotoEmail.png" class="w-80-h-80" />
                 </div>
                 <div class="input-group-append ml-20">
-                    <label asp-for="Email" class="form-label consultation-label-2">Mail contacto</label>
-                    <input asp-for="Email" class="form-control consultation-select" placeholder="Correo Electronico">
+                    <label asp-for="Email" class="form-label consultation-label-2">@Localizer["ContactMail"]</label>
+                    <input asp-for="Email" class="form-control consultation-select" placeholder="@Localizer["MailPlaceholder"].Value">
                 </div>
             </div>
             <span asp-validation-for="Email" class="text-danger"></span>
@@ -155,15 +158,15 @@
                     <img src="~/imagenes/FotoConsulta.png" class="w-80-h-80"/>
                 </div>
                 <div class="input-group-append ml-20">
-                    <label asp-for="ReasonConsultation" class="form-label consultation-label-2">Motivo consulta</label>
-                    <input asp-for="ReasonConsultation" class="form-control consultation-select" placeholder="Escriba su Consulta">
+                    <label asp-for="ReasonConsultation" class="form-label consultation-label-2">@Localizer["ReasonConsultation"].Value</label>
+                    <input asp-for="ReasonConsultation" class="form-control consultation-select" placeholder="@Localizer["MotivePlaceholder"].Value">
                 </div>
             </div>
             <span asp-validation-for="ReasonConsultation" class="text-danger"></span>
         </div>
         <div class="d-flex align-items-center justify-content-center">
             <button type="submit" class="btn col-5 col-md-4 p-2 my-5 border-light merck-button">
-                <span class="m-button-span">Enviar</span>
+                <span class="m-button-span">@Localizer["Send"].Value</span>
                 <span class="spinner-container"></span></button>
         </div>
     </form>
@@ -213,7 +216,7 @@
 
         function updateLocationSelect(locations) {
             // Borra las opciones actuales en el select de localidades
-            locationSelect.innerHTML = "<option value=''>Seleccionar Localidad</option>";
+            locationSelect.innerHTML = "<option value=''>" + @Localizer["SelectLocation"].Value + "</option>";
 
             // Agrega las nuevas opciones basadas en la respuesta del servidor
             locations.forEach(function (location) {
@@ -226,7 +229,7 @@
 
         function updateClinicSelect(clinics) {
             // Borra las opciones actuales en el select de clínicas
-            clinicSelect.innerHTML = "<option value=''>Seleccionar Clinica</option>";
+            clinicSelect.innerHTML = "<option value=''>" + @Localizer["SelectClinic"] + "</option>";
 
             // Agrega las nuevas opciones basadas en la respuesta del servidor
             clinics.forEach(function (clinic) {

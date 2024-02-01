@@ -1,6 +1,4 @@
-﻿
-
-using ProyectoMerck.Resources;
+﻿using ProyectoMerck.Resources;
 using System.ComponentModel.DataAnnotations;
 
 namespace ProyectoMerck.Models.ViewModels

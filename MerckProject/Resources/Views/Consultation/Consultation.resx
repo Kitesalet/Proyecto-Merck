@@ -117,13 +117,49 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Start" xml:space="preserve">
-    <value>Comenzar</value>
+  <data name="Consultationn" xml:space="preserve">
+    <value>Consultation</value>
   </data>
-  <data name="Language" xml:space="preserve">
-    <value>Español</value>
+  <data name="SelectCountry" xml:space="preserve">
+    <value>Select a Country</value>
   </data>
-  <data name="ScreenLanguage" xml:space="preserve">
-    <value>Idioma</value>
+  <data name="Country" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="Province" xml:space="preserve">
+    <value>State</value>
+  </data>
+  <data name="SelectProvince" xml:space="preserve">
+    <value>Select a State</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="SelectLocation" xml:space="preserve">
+    <value>Select a Location</value>
+  </data>
+  <data name="Clinic" xml:space="preserve">
+    <value>Clinic</value>
+  </data>
+  <data name="SelectClinic" xml:space="preserve">
+    <value>Select a Clinic</value>
+  </data>
+  <data name="ContactMail" xml:space="preserve">
+    <value>Contact Mail</value>
+  </data>
+  <data name="MailPlaceholder" xml:space="preserve">
+    <value>Enter your Email</value>
+  </data>
+  <data name="ConsultMotive" xml:space="preserve">
+    <value>Consultation Motive</value>
+  </data>
+  <data name="MotivePlaceholder" xml:space="preserve">
+    <value>Write your motive</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="ReasonConsultation" xml:space="preserve">
+    <value>Consultation Reason</value>
   </data>
 </root>

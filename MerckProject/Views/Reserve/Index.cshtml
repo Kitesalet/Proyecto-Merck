@@ -1,4 +1,6 @@
 ﻿@model ProyectoMerck.Models.ViewModels.ReserveVM
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 
 <header style="background-color:#EA3B95;">
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light mb-3 ">
@@ -25,27 +27,27 @@
         </div>
         <div class="row">
             <div class="col offset-3">
-                <h3 class="text-light">EDAD ACTUAL:</h3>
+                <h3 class="text-light">@Localizer["ActualAge"].Value</h3>
             </div>
         </div>
         <div class="row">
             <div class="col offset-3">
-                <h3 style="font-weight:300; opacity:0.7" class="text-light">@Model.CurrentAge AÑOS</h3>
+                <h3 style="font-weight:300; opacity:0.7" class="text-light">@String.Format(Localizer["ActualAgeNumber"].Value,Model.CurrentAge.ToString())</h3>
             </div>
         </div>
         <div class="row mt-4">
             <div class="col offset-3">
-                <h3 class="text-light">1ERA MENSTRUACIÓN:</h3>
+                <h3 class="text-light">@Localizer["FirstPeriod"].Value</h3>
             </div>
         </div>
         <div class="row mb-3">
             <div class="col offset-3">
-                <h3 style="font-weight:300; opacity:0.7" class="text-light">A LOS @Model.FirstAge AÑOS</h3>
+                <h3 style="font-weight:300; opacity:0.7" class="text-light">@String.Format(Localizer["FirstPeriodAge"].Value, Model.FirstAge.ToString())</h3>
             </div>
         </div>
         <div class="row d-flex justify-content-center">
             <a class="btn col-5 col-md-4 p-2 my-5 border-light merck-button"  href="@Url.Action("RedirectIndicator", "Reserve", new {CurrentAge = @Model.CurrentAge})">
-                <span class="m-button-span">Quiero saber mas!</span>
+                <span class="m-button-span">@Localizer["KnowMore"].Value</span>
                 <span class="spinner-container"></span>    
             </a>
         </div>
@@ -53,7 +55,7 @@
     <div style="height:100px; background-color: white; border-top-left-radius:30px; border-top-right-radius:30px">
     </div>
 </header>
- <h3 class="text-center">Tasa de Fertilidad</h3>
+ <h3 class="text-center">@Localizer["FertilityRate"].Value</h3>
  
                      <div class="col d-flex justify-content-center" id="chart_div"></div>
  

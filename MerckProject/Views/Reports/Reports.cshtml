@@ -1,6 +1,7 @@
 ﻿@model ExportViewModel
 @using ProyectoMerck.Models.ViewModels
-
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 
 <header class="header-bg-color">
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light">
@@ -27,7 +28,7 @@
                         </a>
                     </div>
                     <div class="col">
-                        <p class="display-4 mb-0">Reporte</p>
+                        <p class="display-4 mb-0">@Localizer["Title"].Value</p>
                     </div>
                     <div class="col"></div>
                 </div>
@@ -42,20 +43,20 @@
         <div class="mr-10-ml-10">
             <form id="exportForm">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <label asp-for="FechaInicio">Fecha de Inicio:</label>
+                <label asp-for="FechaInicio">@Localizer["StartDate"].Value</label>
                 <input asp-for="FechaInicio" type="date" id="FechaInicio" name="FechaInicio" class="form-control" max="2024-12-31">
                 <span asp-validation-for="FechaInicio"></span>
 
-                <label asp-for="FechaFin">Fecha de Fin:</label>
+                <label asp-for="FechaFin">@Localizer["EndDate"].Value</label>
                 <input asp-for="FechaFin" type="date" id="FechaFin" name="FechaFin" class="form-control" max="2024-12-31">
                 <span asp-validation-for="FechaFin"></span>
 
                 <div class="row">
                     <button type="button" onclick="exportar('excel')" class="btn col-12 col-md-6 p-2 my-5 border-light merck-button">
-                        Exportar Excel
+                        @Localizer["ExportExcel"].Value
                     </button>
                     <button type="button" onclick="exportar('pdf')" class="btn col-12 col-md-6 p-2 my-5 border-light merck-button">
-                        Exportar PDF
+                        @Localizer["ExportPdf"].Value
                     </button>
                 </div>
 
