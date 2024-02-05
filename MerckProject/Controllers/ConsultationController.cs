@@ -67,11 +67,6 @@ namespace MerckProject.Controllers
             }).ToList();
         }
 
-        public IActionResult Notification()
-        {
-            return View();
-        }
-
         [HttpGet]
         public IActionResult GetLocaties(string province)
         {
@@ -157,14 +152,41 @@ namespace MerckProject.Controllers
             {
 
                 model.Url = HttpContext.Request.GetDisplayUrl();
-                
+
                 var flag = await _service.CreateConsultationAsync(model);
 
-                return RedirectToAction("Notification", model);
+                return RedirectToAction("Consultation", model);
 
             }
+            else
+            {
+                model.Provinces = GetSelectListItems(
+                items: _context.Provinces.ToList(),
+                value: p => p.Id.ToString(),
+                text: p => p.ProvinceName
+            );
 
-            return View("Consultation",model);
+                model.Locations = GetSelectListItems(
+                items: _context.Locations.ToList(),
+                value: c => c.Id.ToString(),
+                text: c => c.LocationName
+            );
+
+                model.Clinics = GetSelectListItems(
+                items: _context.Clinics.ToList(),
+                value: c => c.Id.ToString(),
+                text: c => c.ClinicName
+            );
+
+                model.Countries = GetSelectListItems(
+                items: _context.Countries.ToList(),
+                value: c => c.Id.ToString(),
+                text: c => c.CountryName
+
+             );
+
+                return View("Consultation", model);
+            }
  
         }
 

@@ -52,119 +52,127 @@
 <div class="container">
     <form method="post" asp-action="AddConsultation" class="mx-auto mt-5 consultation-form-width">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="row">
+            <div class="col text-center">
+                <img src="~/imagenes/FotoUbicacion.png" class="img-fluid" />
+            </div>
+            <div class="col-8 p-0">
+                <label asp-for="Country" class="form-label consultation-label">Pais</label>
+                <select asp-for="Country" class="form-control consultation-select" id="Country">
+                    <option value="">Seleccione un Pais</option>
+                    @foreach (var country in Model.Countries)
+                    {
+                        <option value="@country.Value">@country.Text</option>
+                    }
 
-        <div class="mb-3 pt-40">
-            <div class="input-group">
-                <div class="input-group-append">
-                    <img src="~/imagenes/FotoUbicacion.png" class="w-80-h-80"/>
-                </div>
-                <div class="input-group-append ml-40">
-                    <label asp-for="Country" class="form-label consultation-label">Pais</label>
-                    <select asp-for="Country" class="form-control consultation-select" id="Country">
-                        <option value="">Seleccione un Pais</option>
-                        @foreach (var country in Model.Countries)
-                        {
-                            <option value="@country.Value">@country.Text</option>
-                        }
-                        
-                    </select>
-                </div>
+                </select>
             </div>
             <span asp-validation-for="Country" class="text-danger"></span>
         </div>
 
 
-        <div class="mb-3 pt-40">
-            <div class="input-group">
-                <div class="input-group-append">
-                    <img src="~/imagenes/FotoUbicacion.png" class="w-80-h-80"/>
-                </div>
-                <div class="input-group-append ml-20">
-                    <label asp-for="Province" class="form-label consultation-label">Provincia</label>
-                    <select asp-for="Province" name="Province" class="form-control consultation-select" id="Province">
-                        <option value="">Seleccionar Provincia</option>
-                        @foreach (var province in Model.Provinces)
-                        {
-                            <option value="@province.Value">@province.Text</option>
-                        }
-                    </select>
-                </div>
+        <div class="row mt-3">
+            <div class="col text-center">
+                <img src="~/imagenes/FotoUbicacion.png" class="img-fluid" />
+            </div>
+            <div class="col-8 p-0">
+                <label asp-for="Province" class="form-label consultation-label">Provincia</label>
+                <select asp-for="Province" name="Province" class="form-control consultation-select" id="Province">
+                    <option value="">Seleccionar Provincia</option>
+                    @foreach (var province in Model.Provinces)
+                    {
+                        <option value="@province.Value">@province.Text</option>
+                    }
+                </select>
             </div>
             <span asp-validation-for="Province" class="text-danger"></span>
         </div>
 
 
 
-        <div class="mb-3 pt-40">
-            <div class="input-group">
-                <div class="input-group-append">
-                    <img src="~/imagenes/FotoUbicacion.png" class="w-80-h-80"/>
-                </div>
-                <div class="input-group-append ml-20">
-                    <label asp-for="Location" class="form-label consultation-label">Locacion</label>
-                    <select asp-for="Location" name="Location" class="form-control consultation-select" id="Location">
-                        <option value="">Seleccionar Localidad</option>
-                        @foreach (var location in Model.Locations)
-                        {
-                            <option value="@location.Value">@location.Text</option>
-                        }
-                    </select>
-                </div>
+        <div class="row mt-3">
+            <div class="col text-center">
+                <img src="~/imagenes/FotoUbicacion.png" class="img-fluid" />
+            </div>
+            <div class="col-8 p-0">
+                <label asp-for="Location" class="form-label consultation-label">Locacion</label>
+                <select asp-for="Location" name="Location" class="form-control consultation-select" id="Location">
+                    <option value="">Seleccionar Localidad</option>
+                    @foreach (var location in Model.Locations)
+                    {
+                        <option value="@location.Value">@location.Text</option>
+                    }
+                </select>
             </div>
             <span asp-validation-for="Location" class="text-danger"></span>
         </div>
 
-        <div class="mb-3 pt-40">
-            <div class="input-group">
-                <div class="input-group-append">
-                    <img src="~/imagenes/FotoUbicacion.png" class="w-80-h-80" />
-                </div>
-                <div class="input-group-append ml-20">
-                    <label asp-for="Clinic" class="form-label consultation-label">Clinica</label>
-                    <select asp-for="Clinic" name="Clinic" class="form-control consultation-select" id="Clinic">
-                        <option value="">Seleccionar Clinica</option>
-                        @foreach (var clinic in Model.Clinics)
-                        {
-                            <option value="@clinic.Value">@clinic.Text</option>
-                        }
-                    </select>
-                </div>
+        <div class="row mt-3">
+            <div class="col text-center">
+                <img src="~/imagenes/FotoUbicacion.png" class="img-fluid" />
+            </div>
+            <div class="col-8 p-0">
+                <label asp-for="Clinic" class="form-label consultation-label">Clinica</label>
+                <select asp-for="Clinic" name="Clinic" class="form-control consultation-select" id="Clinic">
+                    <option value="">Seleccionar Clinica</option>
+                    @foreach (var clinic in Model.Clinics)
+                    {
+                        <option value="@clinic.Value">@clinic.Text</option>
+                    }
+                </select>
             </div>
             <span asp-validation-for="Clinic" class="text-danger"></span>
         </div>
 
 
 
-        <div class="mb-3 pt-40">
-            <div class="input-group">
-                <div class="input-group-append">
-                    <img src="~/imagenes/FotoEmail.png" class="w-80-h-80" />
-                </div>
-                <div class="input-group-append ml-20">
-                    <label asp-for="Email" class="form-label consultation-label-2">Mail contacto</label>
-                    <input asp-for="Email" class="form-control consultation-select" placeholder="Correo Electronico">
-                </div>
+        <div class="row mt-3">
+            <div class="col text-center">
+                <img src="~/imagenes/FotoEmail.png" class="img-fluid" />
+            </div>
+            <div class="col-8 p-0">
+                <label asp-for="Email" class="form-label consultation-label-2">Mail contacto</label>
+                <input asp-for="Email" class="form-control consultation-select" placeholder="Correo Electronico">
             </div>
             <span asp-validation-for="Email" class="text-danger"></span>
         </div>
 
 
-        <div class="mb-3 pt-40">
-            <div class="input-group">
-                <div class="input-group-append">
-                    <img src="~/imagenes/FotoConsulta.png" class="w-80-h-80"/>
-                </div>
-                <div class="input-group-append ml-20">
-                    <label asp-for="ReasonConsultation" class="form-label consultation-label-2">Motivo consulta</label>
-                    <input asp-for="ReasonConsultation" class="form-control consultation-select" placeholder="Escriba su Consulta">
-                </div>
+        <div class="row mt-3">
+            <div class="col text-center">
+                <img src="~/imagenes/FotoConsulta.png" class="img-fluid" />
+            </div>
+            <div class="col-8 p-0">
+                <label asp-for="ReasonConsultation" class="form-label consultation-label-2">Motivo consulta</label>
+                <input asp-for="ReasonConsultation" class="form-control consultation-select" placeholder="Escriba su Consulta">
             </div>
             <span asp-validation-for="ReasonConsultation" class="text-danger"></span>
         </div>
+
+
+
+
         <div class="d-flex align-items-center justify-content-center">
-            <button type="submit" class="btn col-5 col-md-4 p-2 my-5 border-light merck-button">
-                <span class="m-button-span">Enviar</span>
-                <span class="spinner-container"></span></button>
+            <button type="submit" class="btn col-5 col-md-4 p-2 my-5 border-light merck-button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Enviar
+            </button>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" data-bs-backdrop="static">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Consulta enviada</h5>
+                    </div>
+                    <div class="modal-body">
+                        <h1 class="text-center" style="color:#2EBDCD;">Muchas gracias!</h1>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="@Url.Action("Index", "Home")" class="btn btn-primary">Volver a consultar</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </form>
 </div>
@@ -231,7 +239,7 @@
             // Agrega las nuevas opciones basadas en la respuesta del servidor
             clinics.forEach(function (clinic) {
                 var option = document.createElement("option");
-                option.value = clinic.text;
+                option.value = clinic.value;
                 option.text = clinic.text;
                 clinicSelect.add(option);
             });

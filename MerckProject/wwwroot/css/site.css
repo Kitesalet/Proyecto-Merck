@@ -1,5 +1,5 @@
 html {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Noto Sans', sans-serif;
     font-size: 14px;
     height: 100vh;
     width: 100vw;
@@ -72,6 +72,7 @@ html {
     background-color: #2EBDCD;
     height: 100vh;
     margin: 0;
+    font-family: 'Noto Sans', sans-serif;
 }
 
 .mb-100{
@@ -137,6 +138,11 @@ html {
 
 .w-200{
     width:200px;
+}
+
+.img-fluid {
+    max-width: 85%;
+    margin-right: auto; /* Esto centrará la imagen en el contenedor */
 }
 
 /*Reporte*/
