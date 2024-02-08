@@ -64,10 +64,9 @@
                     {
                         <option value="@country.Value">@country.Text</option>
                     }
-
                 </select>
+                <span asp-validation-for="Country" class="text-danger"></span>
             </div>
-            <span asp-validation-for="Country" class="text-danger"></span>
         </div>
 
 
@@ -84,8 +83,8 @@
                         <option value="@province.Value">@province.Text</option>
                     }
                 </select>
+                <span asp-validation-for="Province" class="text-danger"></span>
             </div>
-            <span asp-validation-for="Province" class="text-danger"></span>
         </div>
 
 
@@ -103,8 +102,8 @@
                         <option value="@location.Value">@location.Text</option>
                     }
                 </select>
+                <span asp-validation-for="Location" class="text-danger"></span>
             </div>
-            <span asp-validation-for="Location" class="text-danger"></span>
         </div>
 
         <div class="row mt-3">
@@ -120,8 +119,8 @@
                         <option value="@clinic.Value">@clinic.Text</option>
                     }
                 </select>
+                <span asp-validation-for="Clinic" class="text-danger"></span>
             </div>
-            <span asp-validation-for="Clinic" class="text-danger"></span>
         </div>
 
 
@@ -133,8 +132,8 @@
             <div class="col-8 p-0">
                 <label asp-for="Email" class="form-label consultation-label-2">Mail contacto</label>
                 <input asp-for="Email" class="form-control consultation-select" placeholder="Correo Electronico">
+                <span asp-validation-for="Email" class="text-danger"></span>
             </div>
-            <span asp-validation-for="Email" class="text-danger"></span>
         </div>
 
 
@@ -144,9 +143,9 @@
             </div>
             <div class="col-8 p-0">
                 <label asp-for="ReasonConsultation" class="form-label consultation-label-2">Motivo consulta</label>
-                <input asp-for="ReasonConsultation" class="form-control consultation-select" placeholder="Escriba su Consulta">
+                <textarea asp-for="ReasonConsultation" class="form-control consultation-select" placeholder="Escriba su Consulta"></textarea>
+                <span asp-validation-for="ReasonConsultation" class="text-danger"></span>
             </div>
-            <span asp-validation-for="ReasonConsultation" class="text-danger"></span>
         </div>
 
 
