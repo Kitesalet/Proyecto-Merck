@@ -1,0 +1,93 @@
+﻿@model ExportViewModel
+@using ProyectoMerck.Models.ViewModels
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+<div class="modal fade" id="reportsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 1000px; height: 1000px;" role="document">
+        <div class="modal-content">
+            <header class="header-bg-color">
+                <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light">
+                    <div class="container-fluid">
+                        <a href="@Url.Action("Index", "Home")" class="btn"><i class="bi bi-chevron-left header-icon-left"></i></a>
+                        <button class="navbar-toggler header-burger" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                            <i class="bi bi-list text-light"></i>
+                        </button>
+                        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        </div>
+                    </div>
+                </nav>
+            </header>
+            <div class="row subheader-body">
+                <div class="col-md-12">
+                    <div class="col-12 text-center vh-50 mt-35">
+                        <img class="mb-4 subheader-img" src="~/imagenes/LogoMerck.jpg" />
+                        <div class="text-center subheader-div">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <a href="@Url.Action("Index","Login")">
+                                        <img src="~/imagenes/FlechaIzquierda.png" />
+                                    </a>
+                                </div>
+                                <div class="col">
+                                    <p class="display-4 mb-0">@Localizer["Title"].Value</p>
+                                </div>
+                                <div class="col"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row rounded-header">
+                </div>
+            </div>
+            <div class="d-flex justify-content-center align-items-center">
+                <div class="d-flex">
+                    <div class="mr-10-ml-10">
+                        <form id="exportForm">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <label asp-for="FechaInicio">@Localizer["StartDate"].Value</label>
+                            <input asp-for="FechaInicio" type="date" id="FechaInicio" name="FechaInicio" class="form-control" max="2024-12-31">
+                            <span asp-validation-for="FechaInicio"></span>
+
+                            <label asp-for="FechaFin">@Localizer["EndDate"].Value</label>
+                            <input asp-for="FechaFin" type="date" id="FechaFin" name="FechaFin" class="form-control" max="2024-12-31">
+                            <span asp-validation-for="FechaFin"></span>
+
+                            <div class="row">
+                                <button type="button" onclick="exportar('excel')" class="btn col-12 col-md-6 p-2 my-5 border-light merck-button">
+                                    @Localizer["ExportExcel"].Value
+                                </button>
+                                <button type="button" onclick="exportar('pdf')" class="btn col-12 col-md-6 p-2 my-5 border-light merck-button">
+                                    @Localizer["ExportPdf"].Value
+                                </button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <script src="~/js/Navbar.js" asp-append-version="true"></script>
+
+
+            <script>
+                function exportar(tipo) {
+                    var form = document.getElementById('exportForm');
+                    var action = tipo === 'excel' ? "@Url.Action("ExportPeopleToExcel")" : "@Url.Action("PrintPdf")";
+                    form.action = action;
+                    form.submit();
+                }
+
+                document.addEventListener('DOMContentLoaded', function () {
+                    const burger = document.getElementById('burger');
+                    const navList = document.getElementById('navList');
+
+                    burger.addEventListener('click', function () {
+                        navList.classList.toggle('show');
+                    });
+                });
+
+            </script>
+        </div>
+    </div>
+</div>
