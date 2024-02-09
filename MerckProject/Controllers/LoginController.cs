@@ -28,6 +28,8 @@ namespace MerckProject.Controllers
 
             string culture = CultureHelper.GetCultureFromCookie(HttpContext.Request.Cookies[".AspNetCore.Culture"]);
 
+            model.CurrentCulture = culture;
+
             ResourceManager manager = new ResourceManager(_validationResourceLocation, typeof(ConsultationResources).Assembly);
 
             if (!_regexHelper.ValidEmail(model.Email))
@@ -69,8 +71,13 @@ namespace MerckProject.Controllers
         public IActionResult Index()
         {
 
+            LoginVM model = new LoginVM();
 
-            return View();
+            string culture = CultureHelper.GetCultureFromCookie(HttpContext.Request.Cookies[".AspNetCore.Culture"]);
+
+            model.CurrentCulture = culture;
+
+            return View(model);
         }
     }
 }
