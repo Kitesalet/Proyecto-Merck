@@ -365,7 +365,7 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Id = 1,
                             Clinic = "CEGYR Medicina Reproductiva",
                             ConsultationReason = "Edad y Reserva Ovarica",
-                            DateAndtime = new DateTime(2024, 1, 25, 4, 1, 11, 735, DateTimeKind.Local).AddTicks(8009),
+                            DateAndtime = new DateTime(2024, 2, 14, 10, 48, 4, 640, DateTimeKind.Local).AddTicks(1872),
                             Url = "https://ejemplo.com/"
                         },
                         new
@@ -373,7 +373,7 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Id = 2,
                             Clinic = "Centro de Investigaciones en Medicina Reproductiva",
                             ConsultationReason = "Evaluación de Reserva Ovárica",
-                            DateAndtime = new DateTime(2024, 1, 25, 4, 1, 11, 735, DateTimeKind.Local).AddTicks(8101),
+                            DateAndtime = new DateTime(2024, 2, 14, 10, 48, 4, 640, DateTimeKind.Local).AddTicks(2012),
                             Url = "https://ejemplo2.com/"
                         });
                 });
