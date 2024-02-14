@@ -1,4 +1,266 @@
 ﻿@model ConsultationViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@using ProyectoMerck.Models.ViewModels
+@inject IViewLocalizer Localizer
+
+@{
+    ViewData["Title"] = "Consutation";
+}
+
+<header class="header-bg-color">
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light">
+        <div class="container-fluid">
+            <a href="@Url.Action("Index", "Home")" class="btn"><i class="bi bi-chevron-left header-icon-left"></i></a>
+            <button class="navbar-toggler header-burger" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <i class="bi bi-list text-light"></i>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a style="color:white" class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="row subheader-body">
+    <div class="col-md-12">
+        <div class="col-12 text-center vh-50 mt-35">
+            <img class="mb-4 subheader-img" src="~/imagenes/LogoMerck.jpg" />
+            <div class="text-center subheader-div">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <a href="@Url.Action("Indicator","Indicator")">
+                            <img src="~/imagenes/FlechaIzquierda.png" />
+                        </a>
+                    </div>
+                    <div class="col">
+                        <p class="display-4 mb-0">
+                            Consulta
+                        </p>
+                    </div>
+                    <div class="col"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row rounded-header">
+    </div>
+</div>
+
+
+<div class="container">
+    <form method="post" asp-action="AddConsultation" class="mx-auto mt-5 consultation-form-width">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="row">
+            <div class="col text-center">
+                <img src="~/imagenes/FotoUbicacion.png" class="img-fluid" />
+            </div>
+            <div class="col-8 p-0">
+                <label asp-for="Country" class="form-label consultation-label">Pais</label>
+                <select asp-for="Country" class="form-control consultation-select" id="Country">
+                    <option value="">Seleccione un Pais</option>
+                    @foreach (var country in Model.Countries)
+                    {
+                        <option value="@country.Value">@country.Text</option>
+                    }
+                </select>
+                <span asp-validation-for="Country" class="text-danger"></span>
+            </div>
+        </div>
+
+
+        <div class="row mt-3">
+            <div class="col text-center">
+                <img src="~/imagenes/FotoUbicacion.png" class="img-fluid" />
+            </div>
+            <div class="col-8 p-0">
+                <label asp-for="Province" class="form-label consultation-label">Provincia</label>
+                <select asp-for="Province" name="Province" class="form-control consultation-select" id="Province">
+                    <option value="">Seleccionar Provincia</option>
+                    @foreach (var province in Model.Provinces)
+                    {
+                        <option value="@province.Value">@province.Text</option>
+                    }
+                </select>
+                <span asp-validation-for="Province" class="text-danger"></span>
+            </div>
+        </div>
+
+
+
+        <div class="row mt-3">
+            <div class="col text-center">
+                <img src="~/imagenes/FotoUbicacion.png" class="img-fluid" />
+            </div>
+            <div class="col-8 p-0">
+                <label asp-for="Location" class="form-label consultation-label">Locacion</label>
+                <select asp-for="Location" name="Location" class="form-control consultation-select" id="Location">
+                    <option value="">Seleccionar Localidad</option>
+                    @foreach (var location in Model.Locations)
+                    {
+                        <option value="@location.Value">@location.Text</option>
+                    }
+                </select>
+                <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col text-center">
+                <img src="~/imagenes/FotoUbicacion.png" class="img-fluid" />
+            </div>
+            <div class="col-8 p-0">
+                <label asp-for="Clinic" class="form-label consultation-label">Clinica</label>
+                <select asp-for="Clinic" name="Clinic" class="form-control consultation-select" id="Clinic">
+                    <option value="">Seleccionar Clinica</option>
+                    @foreach (var clinic in Model.Clinics)
+                    {
+                        <option value="@clinic.Value">@clinic.Text</option>
+                    }
+                </select>
+                <span asp-validation-for="Clinic" class="text-danger"></span>
+            </div>
+        </div>
+
+
+
+        <div class="row mt-3">
+            <div class="col text-center">
+                <img src="~/imagenes/FotoEmail.png" class="img-fluid" />
+            </div>
+            <div class="col-8 p-0">
+                <label asp-for="Email" class="form-label consultation-label-2">Mail contacto</label>
+                <input asp-for="Email" class="form-control consultation-select" placeholder="Correo Electronico">
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+        </div>
+
+
+        <div class="row mt-3">
+            <div class="col text-center">
+                <img src="~/imagenes/FotoConsulta.png" class="img-fluid" />
+            </div>
+            <div class="col-8 p-0">
+                <label asp-for="ReasonConsultation" class="form-label consultation-label-2">Motivo consulta</label>
+                <textarea asp-for="ReasonConsultation" class="form-control consultation-select" placeholder="Escriba su Consulta"></textarea>
+                <span asp-validation-for="ReasonConsultation" class="text-danger"></span>
+            </div>
+        </div>
+
+
+
+
+        <div class="d-flex align-items-center justify-content-center">
+            <button type="submit" class="btn col-5 col-md-4 p-2 my-5 border-light merck-button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Enviar
+            </button>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" data-bs-backdrop="static">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">@Localizer["ConsultAgain"].Value</h5>
+                    </div>
+                    <div class="modal-body">
+                        <h1 class="text-center" style="color:#2EBDCD;">@Localizer["ThankYou"].Value</h1>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="@Url.Action("Index", "Home")" class="btn btn-primary">@Localizer["ConsultAgain"]</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var provinceSelect = document.getElementById("Province");
+        var locationSelect = document.getElementById("Location");
+        var clinicSelect = document.getElementById("Clinic");
+
+        provinceSelect.addEventListener("change", function () {
+            var selectedProvince = provinceSelect.value;
+
+            // Realiza una solicitud fetch al servidor para obtener las localidades
+            fetch(`/Consultation/GetLocaties?province=${selectedProvince}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Error: ${response.statusText}`);
+                    }
+                    return response.json();
+                })
+                .then(locations => {
+                    // Maneja la respuesta del servidor y actualiza el select de localidades
+                    updateLocationSelect(locations);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+
+            // Realiza una solicitud fetch adicional para obtener las clínicas basadas en la provincia seleccionada
+            fetch(`/Consultation/GetClinics?province=${selectedProvince}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Error: ${response.statusText}`);
+                    }
+                    return response.json();
+                })
+                .then(clinics => {
+                    // Maneja la respuesta del servidor y actualiza el select de clínicas
+                    updateClinicSelect(clinics);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        });
+
+        function updateLocationSelect(locations) {
+            // Borra las opciones actuales en el select de localidades
+            locationSelect.innerHTML = "<option value=''>Seleccionar Localidad</option>";
+
+            // Agrega las nuevas opciones basadas en la respuesta del servidor
+            locations.forEach(function (location) {
+                var option = document.createElement("option");
+                option.value = location.value;
+                option.text = location.text;
+                locationSelect.add(option);
+            });
+        }
+
+        function updateClinicSelect(clinics) {
+            // Borra las opciones actuales en el select de clínicas
+            clinicSelect.innerHTML = "<option value=''>Seleccionar Clinica</option>";
+
+            // Agrega las nuevas opciones basadas en la respuesta del servidor
+            clinics.forEach(function (clinic) {
+                var option = document.createElement("option");
+                option.value = clinic.value;
+                option.text = clinic.text;
+                clinicSelect.add(option);
+            });
+        }
+
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+@* @model ConsultationViewModel
 @using ProyectoMerck.Models.ViewModels
 @using Microsoft.AspNetCore.Mvc.Localization
 @inject IViewLocalizer Localizer
@@ -247,7 +509,7 @@
 
 
 
-
+ *@
 
 
 

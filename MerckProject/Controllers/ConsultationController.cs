@@ -67,11 +67,6 @@ namespace MerckProject.Controllers
             }).ToList();
         }
 
-        public IActionResult Notification()
-        {
-            return View();
-        }
-
         [HttpGet]
         public IActionResult GetLocaties(string province)
         {
@@ -160,7 +155,7 @@ namespace MerckProject.Controllers
                 
                 var flag = await _service.CreateConsultationAsync(model);
 
-                return RedirectToAction("Notification", model);
+                return RedirectToAction("Consultation", model);
 
             }
             else
