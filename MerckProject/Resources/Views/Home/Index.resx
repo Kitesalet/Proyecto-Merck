@@ -121,7 +121,7 @@
     <value>English</value>
   </data>
   <data name="Start" xml:space="preserve">
-    <value>Start</value>
+    <value>&amp;nbsp; &amp;nbsp; Start &amp;nbsp; &amp;nbsp;</value>
   </data>
   <data name="ScreenLanguage" xml:space="preserve">
     <value>Language</value>

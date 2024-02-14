@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Proyecto_Merck.Models;
+using ProyectoMerck.Models.ViewModels;
+using ProyectoMerck.Utilities;
 using System.Diagnostics;
 
 namespace MerckProject.Controllers
@@ -15,7 +17,12 @@ namespace MerckProject.Controllers
 
         public IActionResult Index()
         {
-            return View("Index");
+
+            HomeVM model = new HomeVM();
+
+            model.CurrentCulture = CultureHelper.GetCultureFromCookie(HttpContext.Request.Cookies[".AspNetCore.Culture"]);
+
+            return View(model);
         }
     }
 }

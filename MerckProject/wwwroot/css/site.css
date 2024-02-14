@@ -74,6 +74,30 @@ html {
     margin: 0;
 }
 
+.flag-large{
+    height:100px;
+    width:150px;
+    opacity: 0.4;
+}
+
+.flag-small{
+    height:20px;
+    width:30px;
+    opacity: 0.4;
+}
+
+.flag-small:hover{
+    opacity:1;
+    height:30px;
+    width: 40px;
+}
+
+.flag-selected{
+    opacity:1;
+    height:30px;
+    width:40px;
+}
+
 .mb-70{
     margin-bottom:70px;
 }

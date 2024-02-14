@@ -130,7 +130,7 @@ O campo {0} é obrigatório.</value>
   </data>
   <data name="NonExistingUser" xml:space="preserve">
     <value>
-O usuário não existe e/ou as credenciais estão incorretas</value>
+O usuario nao existe e/ou as credenciais estao incorretas</value>
   </data>
   <data name="InvalidAges" xml:space="preserve">
     <value>

@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Mvc.Localization
 @inject IViewLocalizer Localizer
-
+@model ProyectoMerck.Models.ViewModels.HomeVM
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,32 +14,32 @@
 
 </head>
 <body class="d-flex align-items-center justify-content-center body">
-    
-    <h1 class="text-center text-light">@Localizer["ScreenLanguage"]: @Localizer["Language"]</h1>
-    @*Comment*@
+    <header class="header-bg-color">
+        <nav class="navbar navbar-expand-sm navbar-light">
+            <div class="container-fluid">
+                <form action="@Url.Action("ChangeCulture","Language")" method="get" id="languageForm" class="m-2">
+                    <input type="hidden" id="cultureInput" name="culture" />
+                    <span value="en"  class="btn"><img src="~/Imagenes/Flag_of_the_United_Kingdom.png" class="flag-small @(Model.CurrentCulture == "en" ? "flag-selected" : "")" /></span>
+                    <span value="pt"  class="btn"><img src="~/Imagenes/Flag_of_Portugal.svg" class="flag-small @(Model.CurrentCulture == "pt" ? "flag-selected" : "")" /></span>
+                    <span value="es"  class="btn"><img src="~/Imagenes/Spain_flag_300.png" class="flag-small @(Model.CurrentCulture == "es" ? "flag-selected" : "")" /></span>
+                </form>
+            </div>
+        </nav>
+    </header>
+@*     <h1 class="text-center text-light">@Localizer["ScreenLanguage"]: @Localizer["Language"]</h1>
+ *@    <div class="container text-center">
+        <div class="row">
+            <div class="col-12">
+                <img src="~/Imagenes/LogoInicioMerck.png" />
+            </div>
+        </div>
+    </div>
     <div class="container text-center">
         <div class="row">
             <div class="col-12">
-                <img class="mb-70" src="~/Imagenes/LogoInicioMerck.png" />
-            </div>
-        </div>
-        <div class="row">
-            <form action="@Url.Action("ChangeCulture","Language")" method="get" id="languageForm">
-                <div class="col">
-                    <select name="culture" id="languageSelector" class="form-control">
-                        <option value="" disabled selected>-- Lenguaje / Lingua / Language --</option>
-                        <option value="es">Español</option>
-                        <option value="en">English</option>
-                        <option value="pt">Portugués</option>
-                    </select>
-                </div>
-            </form>
-        </div>
-        <div class="row">
-            <div class="col-12">                  
-                <a id="m-button" class="btn col-7 py-4 my-5 border-light merck-button" href="@Url.Action("Index", "Login")">
+                <a id="m-button" class="btn py-4 my-5 border-light merck-button" style="" href="@Url.Action("Index", "Login")">
                     <span class="spinner-container"></span>
-                    <span class="m-button-span">@Localizer["Start"]</span>
+                    <span class="m-button-span">@(Localizer["Start"])</span>
                 </a>
             </div>
         </div>
@@ -55,13 +55,28 @@
 </html>
 
 <script>
-    var languageSelect = document.getElementById('languageSelector');
-    var languageForm = document.getElementById('languageForm')
 
-    languageSelect.addEventListener('change', function(){
-        if (this.value !== "") {
-            languageForm.submit();
-        }
+    var flags = document.querySelectorAll('.flag-small');
+
+    flags.forEach(function (flag) {
+
+        flag.addEventListener('click', function(){
+            
+            flags.forEach(function(flag){
+                flag.classList.remove('flag-selected');
+            })
+
+            console.log(flag);
+
+            flag.classList.add('flag-selected');
+
+            var cultureValue = flag.parentElement.getAttribute('value');
+
+            var elemento = document.getElementById('cultureInput').value = cultureValue;
+
+            document.getElementById('languageForm').submit();
+
+        })
     })
 
 </script>

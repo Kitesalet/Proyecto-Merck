@@ -11,22 +11,26 @@
 }
 
 <header class="header-bg-color">
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light">
+    <nav class="navbar navbar-expand-sm navbar-light">
         <div class="container-fluid">
-            <a href="@Url.Action("Index", "Home")" class="btn"><i class="bi bi-chevron-left header-icon-left"></i></a>
-            <button class="navbar-toggler header-burger" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <i class="bi bi-list text-light"></i>
-            </button>
-            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="@Url.Action("Index", "Home")" class="btn"><i class="bi bi-chevron-left header-icon-left"></i></a>
+
+                <ul class="navbar-nav">
                     <li class="nav-item">
                         <a style="color:white" class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Login</a>
                     </li>
                 </ul>
             </div>
+            <form action="@Url.Action("ChangeCulture","Language")" method="get" id="languageForm" class="m-2">
+                <input type="hidden" id="cultureInput" name="culture" />
+                <span value="en" class="btn"><img src="~/Imagenes/Flag_of_the_United_Kingdom.png" class="flag-small @(Model.CurrentCulture == "en" ? "flag-selected" : "")" /></span>
+                <span value="pt" class="btn"><img src="~/Imagenes/Flag_of_Portugal.svg" class="flag-small @(Model.CurrentCulture == "pt" ? "flag-selected" : "")" /></span>
+                <span value="es" class="btn"><img src="~/Imagenes/Spain_flag_300.png" class="flag-small @(Model.CurrentCulture == "es" ? "flag-selected" : "")" /></span>
+            </form>
         </div>
     </nav>
+
 </header>
 <div class="d-flex align-items-center justify-content-center body">
         @using (Html.BeginForm("Login", "Login", FormMethod.Post))
@@ -84,7 +88,30 @@
 </div>
 
 
+<script>
+    var flags = document.querySelectorAll('.flag-small');
 
+    flags.forEach(function (flag) {
+
+        flag.addEventListener('click', function () {
+
+            flags.forEach(function (flag) {
+                flag.classList.remove('flag-selected');
+            })
+
+            console.log(flag);
+
+            flag.classList.add('flag-selected');
+
+            var cultureValue = flag.parentElement.getAttribute('value');
+
+            var elemento = document.getElementById('cultureInput').value = cultureValue;
+
+            document.getElementById('languageForm').submit();
+
+        })
+    })
+</script>
 
 
    

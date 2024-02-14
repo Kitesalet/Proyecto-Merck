@@ -12,5 +12,7 @@ namespace ProyectoMerck.Models.ViewModels
         [Required(ErrorMessageResourceType = typeof(ValidationResources), ErrorMessageResourceName = "Required")]
         public string Password { get; set; }    
 
+        public string CurrentCulture { get; set; }
+
     }
 }

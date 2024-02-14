@@ -79,7 +79,7 @@ namespace MerckProject.Resources.Views.Home {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Start.
+        ///   Looks up a localized string similar to &amp;nbsp; &amp;nbsp; Start &amp;nbsp; &amp;nbsp;.
         /// </summary>
         public static string Start {
             get {
