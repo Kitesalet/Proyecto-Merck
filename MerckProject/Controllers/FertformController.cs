@@ -20,24 +20,28 @@ namespace MerckProject.Controllers
         [HttpPost]
         public IActionResult FertilityCalculator(FertformVM model)
         {
-
             string culture = CultureHelper.GetCultureFromCookie(HttpContext.Request.Cookies[".AspNetCore.Culture"]);
             ResourceManager manager = new ResourceManager(_ValidationResourceLocation, typeof(ValidationResources).Assembly);
 
-            if(int.Parse(model.CurrentAge) < int.Parse(model.FirstFertilityAge))
+            if (int.Parse(model.CurrentAge) < int.Parse(model.FirstFertilityAge))
             {
                 TempData["Error"] = manager.GetString("InvalidAges");
                 ModelState.AddModelError("InvalidAges", manager.GetString("InvalidAges"));
-            }
-
-            if(!ModelState.IsValid)
-            {
                 return View("Index", model);
             }
 
             double ovocites = FertCalculator.CalculateOvocites(int.Parse(model.CurrentAge));
 
-            return RedirectToAction("Index", "Reserve", new {FertilityLevel = ovocites , CurrentAge = model.CurrentAge, FirstAge = model.FirstFertilityAge});
+            return RedirectToAction("Index", "Reserve", new
+            {
+                FertilityLevel = ovocites,
+                CurrentAge = model.CurrentAge,
+                QuestionUser = model.QuestionUser,
+                FirstAge = model.FirstFertilityAge
+            });
         }
+
+
+
     }
 }
