@@ -12,6 +12,7 @@ namespace ProyectoMerck.Models.ViewModels
         public string? FirstFertilityAge { get; set; }
 
         public string? CurrentAge { get; set; }
+        public string? QuestionUser { get; set; }
 
 
     }

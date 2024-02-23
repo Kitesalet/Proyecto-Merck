@@ -44,59 +44,86 @@
         <div class="row rounded-header">
         </div>
     </div>
-<div class="container">
-    <div class="row border-bottom pb-5">
-        <div class="col-6 col-md-5 col-lg-4 d-flex justify-content-end">
-            <img src="/Imagenes/IconoEdadActual.png">
-        </div>
-        <div class="col-5">
-            <div class="row pb-3">
-                <h3 style="color:#4A1896">@Localizer["ActualAge"].Value</h3>
+    <div class="container">
+        <div class="row border-bottom pb-5">
+            <div class="col-6 col-md-5 col-lg-4 d-flex justify-content-end">
+                <img src="/Imagenes/IconoEdadActual.png">
             </div>
-            <div class="row">
-                @Html.DropDownListFor(model => model.CurrentAge,
-                         Enumerable.Range(12, 48).Select(age =>
-                         new SelectListItem
+            <div class="col-5">
+                <div class="row pb-3 mt-2">
+                    <h3 style="color:#4A1896">@Localizer["ActualAge"].Value</h3>
+                </div>
+                <div class="row">
+                    @Html.DropDownListFor(model => model.CurrentAge,
+                             Enumerable.Range(18, 60).Select(age =>
+                             new SelectListItem
                 {
                     Text = age.ToString(),
                     Value = age.ToString()
                 }), new { @class = "form-control" })
+                </div>
             </div>
         </div>
-    </div>
-    <div class="row border-bottom pb-5 pt-3">
-        <div class="col-6 col-md-5 col-lg-4 d-flex justify-content-end">
-            <img src="/Imagenes/IconoEdadPrimeraMenstruacion.png">
-        </div>
-        <div class="col-5">
-            <div class="row pb-3">
-                <h3 style="color:#CA287C">@Localizer["FirstAge"].Value</h3>
+
+        <div class="row border-bottom pb-5 pt-3">
+            <div class="col-6 col-md-5 col-lg-4 d-flex justify-content-end">
+                <img src="/Imagenes/IconoEdadActual.png">
             </div>
-            <div class="row">
-                @Html.DropDownListFor(model => model.FirstFertilityAge,
-                         Enumerable.Range(11, 10).Select(age =>
-                         new SelectListItem
+            <div class="col-5">
+                <div class="row pb-3">
+                    <h3 style="color:#4A1896">@Localizer["At what age would you like to be a mother in the future?"].Value</h3>
+                </div>
+                <div class="row">
+                    @{
+                        var ageList = Enumerable.Range(18, 55).Select(age =>
+                        new SelectListItem
+                {
+                    Text = age == 0 ? "No lo sé aún" : age.ToString(),
+                    Value = age.ToString()
+                }).ToList();
+                        ageList.Insert(0, new SelectListItem { Text = "No lo sé aún", Value = "0" });
+
+                        @Html.DropDownListFor(model => model.QuestionUser, ageList, new { @class = "form-control" })
+                    }
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row border-bottom pb-5 pt-3">
+            <div class="col-6 col-md-5 col-lg-4 d-flex justify-content-end">
+                <img src="/Imagenes/IconoEdadPrimeraMenstruacion.png">
+            </div>
+            <div class="col-5">
+                <div class="row pb-3">
+                    <h3 style="color:#CA287C">@Localizer["FirstAge"].Value</h3>
+                </div>
+                <div class="row">
+                    @Html.DropDownListFor(model => model.FirstFertilityAge,
+                             Enumerable.Range(11, 10).Select(age =>
+                             new SelectListItem
                 {
                     Text = age.ToString(),
                     Value = age.ToString()
                 }), new { @class = "form-control" })
+                </div>
             </div>
         </div>
-            <div class="row">
-                <div class="col-12 d-flex justify-content-center h5" style="color: #e61e50">
-                    @Html.ValidationSummary(false)
-                </div>
+
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center h5" style="color: #e61e50">
+                @Html.ValidationSummary(false)
+            </div>
+            <div class="col-12 d-flex justify-content-center">
+                <button type="submit" class="btn col-8 col-sm-5 offset-sm-2 offset-md-0 col-md-4 p-2 my-3 border-light merck-button">
+                    <span class="spinner-container"></span>
+                    <span class="m-button-span">@Localizer["Send"]</span>
+                </button>
+            </div>
+        </div>
     </div>
-            <div class="row m-0">
-                <div class="p-3 px-0 d-flex justify-content-center">
-                    <button type="submit" class="btn col-7 col-sm-5 offset-sm-2 offset-md-0 col-md-4 p-2 my-3 border-light merck-button">
-                        <span class="spinner-container"></span>
-                        <span class="m-button-span">@Localizer["Send"]</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-</div>
+
+
 
 }
 

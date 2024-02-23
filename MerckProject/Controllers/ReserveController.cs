@@ -19,7 +19,13 @@ namespace MerckProject.Controllers
 
             FertilityLevel fertLevel = FertCalculator.FertLevelCalculator(model.CurrentAge);
 
-            return RedirectToAction("Indicator","Indicator", new {FertilityLevel = fertLevel});
+
+            return RedirectToAction("Indicator", "Indicator", new
+            {
+                FertilityLevel = fertLevel,
+                CurrentAge = model.CurrentAge,
+                QuestionUser = model.QuestionUser
+            });
 
         }
     }

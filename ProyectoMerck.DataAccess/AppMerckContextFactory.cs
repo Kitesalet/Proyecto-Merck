@@ -34,6 +34,4 @@ namespace ProyectoMerck.DataAccess
                 return new AppMerckContext(optionsBuilder.Options);
             }
         }
-
-    
 }
