@@ -11,15 +11,16 @@ namespace MerckProject.Controllers
     public class LoginController : Controller
     {
         private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<IdentityUser> _userManager;
         private readonly IRegexHelper _regexHelper;
         private const string _validationResourceLocation = "ProyectoMerck.Resources.ValidationResources"; 
 
-        public LoginController(SignInManager<IdentityUser> user, IRegexHelper regexHelper)
+        public LoginController(SignInManager<IdentityUser> user, IRegexHelper regexHelper, UserManager<IdentityUser> userManager)
         {
 
             _signInManager = user;
             _regexHelper = regexHelper;
-
+            _userManager = userManager;
         }
 
         [HttpPost]
@@ -41,6 +42,23 @@ namespace MerckProject.Controllers
 
             if (ModelState.IsValid)
             {
+
+                //IdentityUser user = new IdentityUser()
+                //{
+                //    Email = model.Email,
+                //    UserName = model.Email
+                //};
+
+                //try
+                //{
+                //    await _userManager.CreateAsync(user, model.Password);
+
+                //}
+                //catch
+                //{
+
+                //}
+
                 var logged = await _signInManager.PasswordSignInAsync(model.Email, model.Password, true, false);
 
                 if(logged.Succeeded)

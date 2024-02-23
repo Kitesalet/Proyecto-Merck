@@ -167,12 +167,10 @@ namespace ProyectoMerck.DataAccess.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderKey")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -209,12 +207,10 @@ namespace ProyectoMerck.DataAccess.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -365,7 +361,7 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Id = 1,
                             Clinic = "CEGYR Medicina Reproductiva",
                             ConsultationReason = "Edad y Reserva Ovarica",
-                            DateAndtime = new DateTime(2024, 2, 14, 10, 32, 18, 305, DateTimeKind.Local).AddTicks(9611),
+                            DateAndtime = new DateTime(2024, 2, 22, 17, 0, 28, 457, DateTimeKind.Local).AddTicks(3644),
                             Url = "https://ejemplo.com/"
                         },
                         new
@@ -373,7 +369,7 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Id = 2,
                             Clinic = "Centro de Investigaciones en Medicina Reproductiva",
                             ConsultationReason = "Evaluación de Reserva Ovárica",
-                            DateAndtime = new DateTime(2024, 2, 14, 10, 32, 18, 305, DateTimeKind.Local).AddTicks(9700),
+                            DateAndtime = new DateTime(2024, 2, 22, 17, 0, 28, 457, DateTimeKind.Local).AddTicks(3736),
                             Url = "https://ejemplo2.com/"
                         });
                 });

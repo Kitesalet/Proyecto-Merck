@@ -20,7 +20,14 @@ namespace MerckProject.Controllers
 
             HomeVM model = new HomeVM();
 
-            model.CurrentCulture = CultureHelper.GetCultureFromCookie(HttpContext.Request.Cookies[".AspNetCore.Culture"]);
+            try
+            {
+                model.CurrentCulture = CultureHelper.GetCultureFromCookie(HttpContext.Request.Cookies[".AspNetCore.Culture"]);
+            }
+            catch
+            {
+
+            }
 
             return View(model);
         }

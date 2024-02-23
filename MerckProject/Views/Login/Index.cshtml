@@ -32,7 +32,7 @@
     </nav>
 
 </header>
-<div class="d-flex align-items-center justify-content-center body">
+<div class="d-flex align-items-center justify-content-center body" style="height: 100vh">
         @using (Html.BeginForm("Login", "Login", FormMethod.Post))
         {
             <div class="container mx-auto login-container">
@@ -77,7 +77,7 @@
                 <hr />
                 <div class="row">
                     <div class="col-12">
-                        <a class="merck-button btn col-12 col-md-12 p-4 my-5 border-light" href="@Url.Action("Index", "Fertform")" >
+                        <a class="merck-button btn col-12 col-md-12 p-4 border-light" href="@Url.Action("Index", "Fertform")" >
                             <span class="m-button-span">@Localizer["GuestLogin"]</span>
                             <span class="spinner-container"></span>
                         </a>
@@ -87,6 +87,8 @@
         }
 </div>
 
+
+<partial name="_ValidationScriptsPartial">
 
 <script>
     var flags = document.querySelectorAll('.flag-small');

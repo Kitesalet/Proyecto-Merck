@@ -55,7 +55,7 @@
                 </div>
                 <div class="row">
                     @Html.DropDownListFor(model => model.CurrentAge,
-                             Enumerable.Range(18, 60).Select(age =>
+                             Enumerable.Range(18, 33).Select(age =>
                              new SelectListItem
                 {
                     Text = age.ToString(),
@@ -75,7 +75,7 @@
                 </div>
                 <div class="row">
                     @{
-                        var ageList = Enumerable.Range(18, 55).Select(age =>
+                        var ageList = Enumerable.Range(18, 33).Select(age =>
                         new SelectListItem
                 {
                     Text = age == 0 ? "No lo sé aún" : age.ToString(),

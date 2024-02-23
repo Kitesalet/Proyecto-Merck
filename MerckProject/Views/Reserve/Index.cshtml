@@ -64,11 +64,10 @@
 
 
     var ovuleCount = @Model.CurrentAge;
-
-    console.log(ovuleCount);
+    var familyAge = @Model.QuestionUser;
 
     google.charts.setOnLoadCallback(function () {
-        drawChart(ovuleCount);
+        drawChart(ovuleCount, familyAge);
     });
 
 </script>

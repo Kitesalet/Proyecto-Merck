@@ -7,12 +7,13 @@ namespace ProyectoMerck.Models.ViewModels
     {
         [EmailAddress(ErrorMessageResourceType = typeof(ValidationResources), ErrorMessageResourceName = "Email")]
         [Required(ErrorMessageResourceType = typeof(ValidationResources), ErrorMessageResourceName = "Required")]
+        
         public string Email { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(ValidationResources), ErrorMessageResourceName = "Required")]
         public string Password { get; set; }    
 
-        public string CurrentCulture { get; set; }
+        public string? CurrentCulture { get; set; }
 
     }
 }

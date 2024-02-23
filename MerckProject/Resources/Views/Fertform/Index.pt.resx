@@ -119,11 +119,10 @@
   </resheader>
   <data name="FirstAge" xml:space="preserve">
     <value>
-Idade da primeira menstruação</value>
+Idade atual</value>
   </data>
   <data name="ActualAge" xml:space="preserve">
-    <value>Idade atual
-</value>
+    <value>Idade desejada para constituir família</value>
   </data>
   <data name="FertilityCalculator" xml:space="preserve">
     <value>Indicador</value>
