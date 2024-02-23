@@ -65,10 +65,9 @@
 
     var ovuleCount = @Model.CurrentAge;
 
-    console.log(ovuleCount);
 
     google.charts.setOnLoadCallback(function () {
-        drawChart(ovuleCount);
+        drawChart(ovuleCount, 30);
     });
 
 </script>

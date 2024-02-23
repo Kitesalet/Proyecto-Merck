@@ -1,25 +1,8 @@
-function drawChart(ovuleCount) {
+function drawChart(ovuleCount, endAge) {
     var array = [['Años', 'Foliculos']];
 
     var dataValues = [
-        [0, 691832.5],
-        [1, 659040.4167],
-        [2, 659040.4167],
-        [3, 617430.75],
-        [4, 578228.8333],
-        [5, 541296.1667],
-        [6, 506501.6667],
-        [7, 473722.25],
-        [8, 442842],
-        [9, 413751.8333],
-        [10, 386348.5833],
-        [11, 360535.0833],
-        [12, 336220.4167],
-        [13, 313318.5],
-        [14, 274735.75],
-        [15, 252303.5833],
-        [16, 234289.3333],
-        [17, 217327.8333],
+        //De 18 a 30 fertilidad alta
         [18, 201359.4167],
         [19, 186328.0833],
         [20, 172180.8333],
@@ -32,7 +15,7 @@ function drawChart(ovuleCount) {
         [27, 94099.33333],
         [28, 85475.83333],
         [29, 77387.91667],
-        [30, 69809.16667],
+        [30, 69809.16667], // 30 en adelante fertilidad media
         [31, 62715.16667],
         [32, 56083.75],
         [33, 49894.58333],
@@ -42,7 +25,7 @@ function drawChart(ovuleCount) {
         [37, 29237.16667],
         [38, 25036.41667],
         [39, 21204.5],
-        [40, 17737],
+        [40, 17737], // 40 en adelante fertilidad baja
         [41, 14630.16667],
         [42, 11881.5],
         [43, 9486.333333],
@@ -52,34 +35,66 @@ function drawChart(ovuleCount) {
         [47, 3206.083333],
         [48, 1641],
         [49, 1684],
-        [50, 1198],
-        [51, 844.25],
-        [52, 590.9166667],
-        [53, 411.25],
-        [54, 285.3333333],
-        [55, 197.3333333],
-        [56, 136.25],
-        [57, 93.91666667],
-        [58, 64.66666667],
-        [59, 44.5],
-        [60, 33]
+        [50, 1198]
+
     ];
 
-    array = array.concat(dataValues);
+    console.log(ovuleCount);
 
+    let selectedDataValues = [];
+    let ageInterval;
+    let fertilityLevel = "";
+
+    if (endAge === 0) {
+
+        array = array.concat(dataValues);
+
+    } else {
+
+        ageInterval = endAge - ovuleCount;
+
+        if (endAge >= 40) {
+
+            for (let i = ovuleCount - 18; i <= endAge - 18; i++) {
+                selectedDataValues.push(dataValues[i]);
+            }
+            fertilityLevel = "BAJA";
+
+        }
+        else if (endAge >= 30) {
+            for (let i = ovuleCount - 18; i <= endAge - 13; i++) {
+                selectedDataValues.push(dataValues[i]);
+            }
+            fertilityLevel = "MEDIA"
+
+        }
+        else {
+            for (let i = ovuleCount - 18; i <= endAge - 8; i++) {
+                selectedDataValues.push(dataValues[i]);
+            }
+
+            fertilityLevel = "ALTA"
+        }
+
+        array = array.concat(selectedDataValues);
+
+    }
+
+    
     var data = google.visualization.arrayToDataTable(array);
 
     var options = {
-        title: 'Tasa de Fertilidad',
+        title: 'Tasa de Fertilidad Al Momento De Iniciar: ' + fertilityLevel,
         curveType: 'function',
         legend: { position: 'bottom' },
         crosshair: {
             color: '#2EBDCD',
             trigger: 'selection'
         },
-        tooltip: { isHtml: true }, // enable HTML content in tooltip
+        tooltip: { isHtml: true }, 
         width: '100%'
     };
+
 
     var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
 
@@ -87,7 +102,11 @@ function drawChart(ovuleCount) {
 
     chart.setSelection([
         {
-            row: ovuleCount,
+            row: ovuleCount - ovuleCount, 
+            column: 1
+        },
+        {
+            row: ageInterval, // Assuming ageInterval is an index
             column: 1
         }
     ]);

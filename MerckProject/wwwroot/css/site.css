@@ -84,13 +84,15 @@ html {
     height:20px;
     width:30px;
     opacity: 0.4;
+    border-radius: 100px;
 }
 
-.flag-small:hover{
-    opacity:1;
-    height:30px;
-    width: 40px;
-}
+    .flag-small:hover {
+        opacity: 1;
+        height: 30px;
+        width: 40px;
+        border-radius: 50px;
+    }
 
 .flag-selected{
     opacity:1;
@@ -110,10 +112,10 @@ html {
 }
 
 
-.merck-button:hover{
-    background-color:aqua;
-    color:white;
-}
+    .merck-button:hover {
+        background-color: #0f69af;
+        color: white;
+    }
 
 .metck-button:active{
     background-color:blue;

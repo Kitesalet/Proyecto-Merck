@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ProyectoMerck.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class seedercountry : Migration
+    public partial class fixer : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -140,8 +140,8 @@ namespace ProyectoMerck.DataAccess.Migrations
                 name: "AspNetUserLogins",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
-                    ProviderKey = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
@@ -185,8 +185,8 @@ namespace ProyectoMerck.DataAccess.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -248,8 +248,8 @@ namespace ProyectoMerck.DataAccess.Migrations
                 columns: new[] { "Id", "Clinic", "ConsultationReason", "DateAndtime", "Url" },
                 values: new object[,]
                 {
-                    { 1, "CEGYR Medicina Reproductiva", "Edad y Reserva Ovarica", new DateTime(2024, 1, 25, 4, 1, 11, 735, DateTimeKind.Local).AddTicks(8009), "https://ejemplo.com/" },
-                    { 2, "Centro de Investigaciones en Medicina Reproductiva", "Evaluación de Reserva Ovárica", new DateTime(2024, 1, 25, 4, 1, 11, 735, DateTimeKind.Local).AddTicks(8101), "https://ejemplo2.com/" }
+                    { 1, "CEGYR Medicina Reproductiva", "Edad y Reserva Ovarica", new DateTime(2024, 2, 22, 17, 0, 28, 457, DateTimeKind.Local).AddTicks(3644), "https://ejemplo.com/" },
+                    { 2, "Centro de Investigaciones en Medicina Reproductiva", "Evaluación de Reserva Ovárica", new DateTime(2024, 2, 22, 17, 0, 28, 457, DateTimeKind.Local).AddTicks(3736), "https://ejemplo2.com/" }
                 });
 
             migrationBuilder.InsertData(
