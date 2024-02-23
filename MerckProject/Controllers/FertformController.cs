@@ -23,7 +23,7 @@ namespace MerckProject.Controllers
             string culture = CultureHelper.GetCultureFromCookie(HttpContext.Request.Cookies[".AspNetCore.Culture"]);
             ResourceManager manager = new ResourceManager(_ValidationResourceLocation, typeof(ValidationResources).Assembly);
 
-            if (int.Parse(model.CurrentAge) < int.Parse(model.FirstFertilityAge))
+            if (int.Parse(model.CurrentAge) < int.Parse(model.FirstFertilityAge) || int.Parse(model.CurrentAge) > int.Parse(model.QuestionUser))
             {
                 TempData["Error"] = manager.GetString("InvalidAges");
                 ModelState.AddModelError("InvalidAges", manager.GetString("InvalidAges"));
