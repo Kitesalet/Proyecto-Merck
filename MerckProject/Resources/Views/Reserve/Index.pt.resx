@@ -138,4 +138,10 @@
     <value>Taxa de fertilidade
 </value>
   </data>
+  <data name="OvoLevel" xml:space="preserve">
+    <value>Cantidade du Ovocitos: {0}</value>
+  </data>
+  <data name="FoliName" xml:space="preserve">
+    <value>Foliculos</value>
+  </data>
 </root>

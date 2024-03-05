@@ -51,7 +51,7 @@
             </div>
             <div class="col-5">
                 <div class="row pb-3 mt-2">
-                    <h3 style="color:#4A1896">@Localizer["ActualAge"].Value</h3>
+                    <h3 style="color:#4A1896">@Localizer["FirstAge"].Value</h3>
                 </div>
                 <div class="row">
                     @Html.DropDownListFor(model => model.CurrentAge,
@@ -96,11 +96,11 @@
             </div>
             <div class="col-5">
                 <div class="row pb-3">
-                    <h3 style="color:#CA287C">@Localizer["FirstAge"].Value</h3>
+                    <h3 style="color:#CA287C">@Localizer["ActualAge"].Value</h3>
                 </div>
                 <div class="row">
                     @Html.DropDownListFor(model => model.FirstFertilityAge,
-                             Enumerable.Range(11, 33).Select(age =>
+                             Enumerable.Range(11, 40).Select(age =>
                              new SelectListItem
                 {
                     Text = age.ToString(),

@@ -52,22 +52,37 @@
             </a>
         </div>
     </div>
-    <div style="height:100px; background-color: white; border-top-left-radius:30px; border-top-right-radius:30px">
+    <div style="height:50px; background-color: white; border-top-left-radius:30px; border-top-right-radius:30px">
     </div>
 </header>
  <h3 class="text-center">@Localizer["FertilityRate"].Value</h3>
- 
-                     <div class="col d-flex justify-content-center" id="chart_div"></div>
- 
+ <h5 class="text-center">@String.Format(Localizer["OvoLevel"].Value, Model.OvoCount.ToString())</h5>
 
+<!-- Gráfico de google charts-->
+<!-- <div class="col d-flex justify-content-center" id="chart_div"></div> -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 d-flex justify-content-center">
+            <canvas id="myChart"></canvas>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/chart.js"></script>
 <script>
 
 
     var ovuleCount = @Model.CurrentAge;
     var familyAge = @Model.QuestionUser;
+    var foliName = '@Localizer["FoliName"]';
+
 
     google.charts.setOnLoadCallback(function () {
-        drawChart(ovuleCount, familyAge);
+        //drawChart(ovuleCount, familyAge);
+        drawChart2(ovuleCount, familyAge, foliName);
     });
+
+    //drawChart2(ovuleCount, familyAge);
 
 </script>
