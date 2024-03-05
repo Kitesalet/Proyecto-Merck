@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ActualAge" xml:space="preserve">
-    <value>ACTUAL AGE: </value>
+    <value>EDAD ACTUAL: </value>
   </data>
   <data name="ActualAgeNumber" xml:space="preserve">
     <value>{0} AÑOS</value>
@@ -134,5 +134,11 @@
   </data>
   <data name="FertilityRate" xml:space="preserve">
     <value>Tasa de Fertilidad</value>
+  </data>
+  <data name="OvoLevel" xml:space="preserve">
+    <value>Cantidad de Ovocitos: {0}</value>
+  </data>
+  <data name="FoliName" xml:space="preserve">
+    <value>Folículos</value>
   </data>
 </root>
