@@ -23,24 +23,30 @@ namespace MerckProject.Controllers
             string culture = CultureHelper.GetCultureFromCookie(HttpContext.Request.Cookies[".AspNetCore.Culture"]);
             ResourceManager manager = new ResourceManager(_ValidationResourceLocation, typeof(ValidationResources).Assembly);
 
-            if (int.Parse(model.CurrentAge) < int.Parse(model.FirstFertilityAge) || int.Parse(model.CurrentAge) > int.Parse(model.QuestionUser) && int.Parse(model.QuestionUser) != 0)
+            int questionUserInt;
+            if (int.TryParse(model.QuestionUser, out questionUserInt))
             {
+
+                double ovocites = FertCalculator.CalculateOvocites(model.SelectedYear, model.SelectedMonth, questionUserInt);
+
+                return RedirectToAction("Index", "Reserve", new
+                {
+                    FertilityLevel = ovocites,
+                    OvoCount = Math.Round(ovocites, 2),
+                    SelectedYear = model.SelectedYear,
+                    SelectedMonth = model.SelectedMonth,
+                    QuestionUser = questionUserInt,
+                });
+            }
+            else
+            {
+                // Manejar el caso de error si la conversión falla
                 TempData["Error"] = manager.GetString("InvalidAges");
                 ModelState.AddModelError("InvalidAges", manager.GetString("InvalidAges"));
                 return View("Index", model);
             }
-
-            double ovocites = FertCalculator.CalculateOvocites(int.Parse(model.CurrentAge));
-
-            return RedirectToAction("Index", "Reserve", new
-            {
-                FertilityLevel = ovocites,
-                OvoCount = Math.Round(ovocites,2),
-                CurrentAge = model.CurrentAge,
-                QuestionUser = model.QuestionUser,
-                FirstAge = model.FirstFertilityAge
-            });
         }
+
 
 
 

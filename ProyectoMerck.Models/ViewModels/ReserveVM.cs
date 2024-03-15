@@ -9,9 +9,9 @@ namespace ProyectoMerck.Models.ViewModels
 {
     public class ReserveVM
     {
+        public int SelectedYear { get; set; }
+        public int SelectedMonth { get; set; }
 
-        public int CurrentAge { get; set; }
-        public int FirstAge { get; set; }
         public int QuestionUser { get; set; }
 
         public double OvoCount { get; set; }

@@ -17,13 +17,13 @@ namespace MerckProject.Controllers
         public IActionResult RedirectIndicator(ReserveVM model)
         {
 
-            FertilityLevel fertLevel = FertCalculator.FertLevelCalculator(model.CurrentAge);
+            FertilityLevel fertLevel = FertCalculator.FertLevelCalculator(model.SelectedYear);
 
 
             return RedirectToAction("Indicator", "Indicator", new
             {
                 FertilityLevel = model.FertilityLevel,
-                CurrentAge = model.CurrentAge,
+                CurrentAge = model.SelectedYear,
                 QuestionUser = model.QuestionUser,
                 OvoCount = Math.Round(model.OvoCount,2)
             });
