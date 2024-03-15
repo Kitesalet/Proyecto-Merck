@@ -1,12 +1,11 @@
 ﻿using ProyectoMerck.Models.Enums;
 
-
 namespace ProyectoMerck.Utilities
 {
     public static class FertCalculator
     {
 
-        public static double CalculateOvocites(int age)
+        public static double CalculateOvocites(int age, int selectedYear, int questionUser)
         {
             //Formula tentativa
             //double y = 319.29 * Math.Pow(age, 2) - 29392 * age + 659780;
@@ -60,7 +59,6 @@ namespace ProyectoMerck.Utilities
 
 
         }
-        
 
         public static FertilityLevel FertLevelCalculator(int age)
         {
