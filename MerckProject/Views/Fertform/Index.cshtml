@@ -45,7 +45,7 @@
         </div>
     </div>
     <div class="container">
-        <div class="row border-bottom pb-5">
+        <div class="row border-bottom pb-5 pt-3">
             <div class="col-6 col-md-5 col-lg-4 d-flex justify-content-end">
                 <img src="/Imagenes/IconoEdadActual.png">
             </div>
@@ -54,13 +54,14 @@
                     <h3 style="color:#4A1896">@Localizer["FirstAge"].Value</h3>
                 </div>
                 <div class="row">
-                    @Html.DropDownListFor(model => model.CurrentAge,
-                             Enumerable.Range(18, 33).Select(age =>
-                             new SelectListItem
-                {
-                    Text = age.ToString(),
-                    Value = age.ToString()
-                }), new { @class = "form-control" })
+                    <div class="col">
+                        <label for="currentAgeYears">Años:</label>
+                        <input type="number" class="form-control" id="SelectedYear" name="SelectedYear" placeholder="Años">
+                    </div>
+                    <div class="col">
+                        <label for="currentAgeMonths">Meses:</label>
+                        <input type="number" class="form-control" id="SelectedMonth" name="SelectedMonth" placeholder="Meses" min="1" max="12">
+                    </div>
                 </div>
             </div>
         </div>
@@ -71,44 +72,25 @@
             </div>
             <div class="col-5">
                 <div class="row pb-3">
-                    <h3 style="color:#4A1896">@Localizer["At what age would you like to be a mother in the future?"].Value</h3>
+                    <h3 style="color:#4A1896">@Localizer["At future?"].Value</h3>
                 </div>
                 <div class="row">
                     @{
-                        var ageList = Enumerable.Range(18, 33).Select(age =>
-                        new SelectListItem
-                {
-                    Text = age == 0 ? "No lo sé aún" : age.ToString(),
-                    Value = age.ToString()
-                }).ToList();
-                        ageList.Insert(0, new SelectListItem { Text = "No lo sé aún", Value = "0" });
+                        var ageOptions = new List<SelectListItem>
+                            {
+                            new SelectListItem { Text = "0-3 años", Value = "3" },
+                            new SelectListItem { Text = "4-6 años", Value = "6" },
+                            new SelectListItem { Text = "7-10 años", Value = "10" },
+                            new SelectListItem { Text = ">10 años", Value = "10+" },
+                            new SelectListItem { Text = "No lo sé aún", Value = "0" }
+                            };
 
-                        @Html.DropDownListFor(model => model.QuestionUser, ageList, new { @class = "form-control" })
+                        @Html.DropDownListFor(model => model.QuestionUser, ageOptions, new { @class = "form-control" })
                     }
                 </div>
             </div>
         </div>
 
-
-        <div class="row border-bottom pb-5 pt-3">
-            <div class="col-6 col-md-5 col-lg-4 d-flex justify-content-end">
-                <img src="/Imagenes/IconoEdadPrimeraMenstruacion.png">
-            </div>
-            <div class="col-5">
-                <div class="row pb-3">
-                    <h3 style="color:#CA287C">@Localizer["ActualAge"].Value</h3>
-                </div>
-                <div class="row">
-                    @Html.DropDownListFor(model => model.FirstFertilityAge,
-                             Enumerable.Range(11, 40).Select(age =>
-                             new SelectListItem
-                {
-                    Text = age.ToString(),
-                    Value = age.ToString()
-                }), new { @class = "form-control" })
-                </div>
-            </div>
-        </div>
 
         <div class="row">
             <div class="col-12 d-flex justify-content-center h5" style="color: #e61e50">
