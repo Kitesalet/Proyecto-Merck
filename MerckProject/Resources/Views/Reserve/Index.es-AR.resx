@@ -136,7 +136,7 @@
     <value>Tasa de Fertilidad</value>
   </data>
   <data name="OvoLevel" xml:space="preserve">
-    <value>Cantidad de Ovocitos: {0}</value>
+    <value>Cantidad de Ovocitos Actual: {0}</value>
   </data>
   <data name="FoliName" xml:space="preserve">
     <value>Folículos</value>
