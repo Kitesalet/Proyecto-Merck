@@ -7,8 +7,6 @@ namespace ProyectoMerck.Utilities
 
         public static double CalculateOvocites(int age, int selectedYear, int questionUser)
         {
-            //Formula tentativa
-            //double y = 319.29 * Math.Pow(age, 2) - 29392 * age + 659780;
 
             Dictionary<int, double> dataValues = new Dictionary<int, double>
             {

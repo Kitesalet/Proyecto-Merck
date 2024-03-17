@@ -10,7 +10,6 @@ namespace MerckProject.Controllers
     {
         private const string _ValidationResourceLocation = "ProyectoMerck.Resources.ValidationResources";
 
-
         public IActionResult Index()
         {
 
@@ -27,6 +26,32 @@ namespace MerckProject.Controllers
             if (int.TryParse(model.QuestionUser, out questionUserInt))
             {
 
+                //Valida que las edades sean validas en base a los limites del grafico, se puede convertir en un service
+                if(model.SelectedYear > 40 && questionUserInt == 11)
+                {
+                    TempData["Error"] = $"No puede elegir esa opcion teniendo su edad actual!";
+                    ModelState.AddModelError("InvalidAges", $"No puede elegir esa opcion teniendo su edad actual!");
+                    return View("Index", model);
+                }
+                if(model.SelectedYear > 40 && questionUserInt == 10)
+                {
+                    TempData["Error"] = $"No puede elegir esa opcion teniendo su edad actual!";
+                    ModelState.AddModelError("InvalidAges", $"No puede elegir esa opcion teniendo su edad actual!");
+                    return View("Index", model);
+                }
+                if(model.SelectedYear > 44 && questionUserInt == 6)
+                {
+                    TempData["Error"] = $"No puede elegir esa opcion teniendo su edad actual!";
+                    ModelState.AddModelError("InvalidAges", $"No puede elegir esa opcion teniendo su edad actual!");
+                    return View("Index", model);
+                }
+                if(model.SelectedYear > 47 && questionUserInt == 3)
+                {
+                    TempData["Error"] = $"No puede elegir esa opcion teniendo su edad actual!";
+                    ModelState.AddModelError("InvalidAges", $"No puede elegir esa opcion teniendo su edad actual!");
+                    return View("Index", model);
+                }
+
                 double ovocites = FertCalculator.CalculateOvocites(model.SelectedYear, model.SelectedMonth, questionUserInt);
 
                 return RedirectToAction("Index", "Reserve", new
@@ -41,8 +66,8 @@ namespace MerckProject.Controllers
             else
             {
                 // Manejar el caso de error si la conversión falla
-                TempData["Error"] = manager.GetString("InvalidAges");
-                ModelState.AddModelError("InvalidAges", manager.GetString("InvalidAges"));
+                TempData["Error"] = $"No puede elegir esa opción teniendo {questionUserInt}!";
+                ModelState.AddModelError("InvalidAges", $"No puede elegir esa opción teniendo {questionUserInt}!");
                 return View("Index", model);
             }
         }
