@@ -20,32 +20,24 @@ namespace MerckProject.Controllers
         public IActionResult FertilityCalculator(FertformVM model)
         {
             string culture = CultureHelper.GetCultureFromCookie(HttpContext.Request.Cookies[".AspNetCore.Culture"]);
+            bool errorFlag = false;
             ResourceManager manager = new ResourceManager(_ValidationResourceLocation, typeof(ValidationResources).Assembly);
+
 
             int questionUserInt;
             if (int.TryParse(model.QuestionUser, out questionUserInt))
             {
 
                 //Valida que las edades sean validas en base a los limites del grafico, se puede convertir en un service
-                if(model.SelectedYear > 40 && questionUserInt == 11)
+                if(model.SelectedYear > 40 && questionUserInt == 11 ||
+                   model.SelectedYear > 40 && questionUserInt == 10 ||
+                   model.SelectedYear > 44 && questionUserInt == 6  ||
+                   model.SelectedYear > 47 && questionUserInt == 3)
                 {
-                    TempData["Error"] = $"No puede elegir esa opcion teniendo su edad actual!";
-                    ModelState.AddModelError("InvalidAges", $"No puede elegir esa opcion teniendo su edad actual!");
-                    return View("Index", model);
+                    errorFlag = true;
                 }
-                if(model.SelectedYear > 40 && questionUserInt == 10)
-                {
-                    TempData["Error"] = $"No puede elegir esa opcion teniendo su edad actual!";
-                    ModelState.AddModelError("InvalidAges", $"No puede elegir esa opcion teniendo su edad actual!");
-                    return View("Index", model);
-                }
-                if(model.SelectedYear > 44 && questionUserInt == 6)
-                {
-                    TempData["Error"] = $"No puede elegir esa opcion teniendo su edad actual!";
-                    ModelState.AddModelError("InvalidAges", $"No puede elegir esa opcion teniendo su edad actual!");
-                    return View("Index", model);
-                }
-                if(model.SelectedYear > 47 && questionUserInt == 3)
+
+                if (!errorFlag)
                 {
                     TempData["Error"] = $"No puede elegir esa opcion teniendo su edad actual!";
                     ModelState.AddModelError("InvalidAges", $"No puede elegir esa opcion teniendo su edad actual!");
