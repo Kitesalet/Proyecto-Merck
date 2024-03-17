@@ -9,15 +9,11 @@ namespace ProyectoMerck.Models.ViewModels
 {
     public class FertformVM
     {
-        [Required(ErrorMessage = "Año es obligatorio.")]
-        [Range(1900, 2100, ErrorMessage = "Por favor ingrese un año válido.")]
-        [Display(Name = "Año")]
-        public int SelectedYear { get; set; }
 
-        [Required(ErrorMessage = "Mes es obligatorio.")]
-        [Range(1, 12, ErrorMessage = "Por favor ingrese un mes válido.")]
-        [Display(Name = "Mes")]
+        public int SelectedYear { get; set; }
         public int SelectedMonth { get; set; }
+
+        public DateTime SelectedDate { get;set; }
 
         public string? QuestionUser { get; set; }
 

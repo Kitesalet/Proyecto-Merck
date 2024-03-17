@@ -653,6 +653,11 @@ function drawChart2(firstAge, endAge, foliName, firstMonth) {
 
     } else {
 
+        modifiedFirstAge = firstAge;
+
+        ageMonth = parseFloat(`${modifiedFirstAge}.${firstMonth}`);
+
+        console.log(ageMonth);
         dataValues.forEach(function (element, index) {
 
             if (element[0] === ageMonth) {
@@ -663,7 +668,9 @@ function drawChart2(firstAge, endAge, foliName, firstMonth) {
 
         });
 
-        for (let i = modifiedFirstAge; i < dataValues.length; i++) {
+        indexEnd = dataValues.length;
+
+        for (let i = arrayIndexNumber; i < indexEnd; i++) {
             selectedDataValues.push(dataValues[i]);
         }
     }

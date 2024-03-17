@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DocumentFormat.OpenXml.Bibliography;
+using Microsoft.AspNetCore.Mvc;
 using ProyectoMerck.Models.ViewModels;
 using ProyectoMerck.Resources;
 using ProyectoMerck.Utilities;
@@ -22,7 +23,28 @@ namespace MerckProject.Controllers
             string culture = CultureHelper.GetCultureFromCookie(HttpContext.Request.Cookies[".AspNetCore.Culture"]);
             bool errorFlag = false;
             ResourceManager manager = new ResourceManager(_ValidationResourceLocation, typeof(ValidationResources).Assembly);
+            int currentMonth = DateTime.Now.Month;
+            int currentYear = DateTime.Now.Year;
+            int monthAge = currentMonth - model.SelectedDate.Month;
+            int yearAge = currentYear - model.SelectedDate.Year;
 
+            //Revisa si la persona todavía no cumplio años en ese mismo año
+            if (monthAge == 0)
+            {
+                //Si justo ese mes cumplio años, queda 1
+                monthAge = 1;
+            }
+            else if(monthAge < 0)
+            {
+                //Si todavía no cumplio años, se le resta 1 año a su edad actual
+                yearAge--;
+
+                //Como el numero queda negativo, se suma a 12 para tener los meses actuales
+                monthAge = 12 + monthAge;
+            }            
+    
+            model.SelectedYear = yearAge;
+            model.SelectedMonth = monthAge;
 
             int questionUserInt;
             if (int.TryParse(model.QuestionUser, out questionUserInt))
@@ -37,7 +59,7 @@ namespace MerckProject.Controllers
                     errorFlag = true;
                 }
 
-                if (!errorFlag)
+                if (errorFlag)
                 {
                     TempData["Error"] = $"No puede elegir esa opcion teniendo su edad actual!";
                     ModelState.AddModelError("InvalidAges", $"No puede elegir esa opcion teniendo su edad actual!");
