@@ -1,8 +1,8 @@
-﻿using DocumentFormat.OpenXml.Bibliography;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using ProyectoMerck.Models.ViewModels;
 using ProyectoMerck.Resources;
 using ProyectoMerck.Utilities;
+using System;
 using System.Resources;
 
 namespace MerckProject.Controllers
@@ -66,13 +66,128 @@ namespace MerckProject.Controllers
                     return View("Index", model);
                 }
 
-                double ovocites = FertCalculator.CalculateOvocites(model.SelectedYear, model.SelectedMonth, questionUserInt);
+                //Solo funciona poniendo -1, es un tema de la ecuacion
+                int ageInMonths = (yearAge * 12) + monthAge - 1;
+                double ovocites = FertCalculator.CalculateFollicles(ageInMonths);
+                double folicularOvocites = FertCalculator.CalculateEuploidFollicles(model.SelectedYear, ovocites);
+                int oldSelectedYear = model.SelectedYear;
+
+
+                List<Tuple<string, double>> dataValues = new List<Tuple<string, double>>();
+
+                switch (questionUserInt)
+                {
+                    case 3:
+
+                        for(int i = 0; i < 4; i++)
+                        {
+                            if(i == 0)
+                            {
+                                
+                                dataValues.Add(Tuple.Create<string, double>($"{model.SelectedYear} Años", folicularOvocites));
+                                model.SelectedYear++;
+
+                            }
+                            else
+                            {
+
+                                ageInMonths += 12;
+                                double newOvo = FertCalculator.CalculateFollicles(ageInMonths);
+                                double newFolicularOvocites = FertCalculator.CalculateEuploidFollicles(model.SelectedYear, newOvo);
+                                dataValues.Add(Tuple.Create<string, double>($"{model.SelectedYear}", newFolicularOvocites));
+                                model.SelectedYear++;
+
+                            }
+
+                        }
+
+                        break;
+
+                    case 6:
+
+                        for (int i = 0; i < 4; i++)
+                        {
+                            if(i == 0)
+                            {
+                                ageInMonths += 48;
+                                model.SelectedYear += 4;
+
+                            }
+
+                            double newOvo = FertCalculator.CalculateFollicles(ageInMonths);
+                            double newFolicularOvocites = FertCalculator.CalculateEuploidFollicles(model.SelectedYear, newOvo);
+                            ageInMonths += 12;
+                            dataValues.Add(Tuple.Create<string, double>($"{model.SelectedYear}", newFolicularOvocites));
+                            model.SelectedYear++;
+
+                        }
+
+                        break;
+
+                    case 10:
+
+                        for (int i = 0; i < 4; i++)
+                        {
+                            if (i == 0)
+                            {
+                                ageInMonths += 84;
+                                model.SelectedYear += 7;
+
+                            }
+
+                            double newOvo = FertCalculator.CalculateFollicles(ageInMonths);
+                            double newFolicularOvocites = FertCalculator.CalculateEuploidFollicles(model.SelectedYear, newOvo);
+                            ageInMonths += 12;
+                            dataValues.Add(Tuple.Create<string, double>($"{model.SelectedYear}", newFolicularOvocites));
+                            model.SelectedYear++;
+
+
+                        }
+
+                        break;
+
+                    case 11:
+
+                        ageInMonths += 120;
+                        model.SelectedYear += 10;
+                        int finalValue = 50 - model.SelectedYear;
+
+                        for (int i = model.SelectedYear ; i <= 50; i++)
+                        {
+
+                            double newOvo = FertCalculator.CalculateFollicles(ageInMonths);
+                            double newFolicularOvocites = FertCalculator.CalculateEuploidFollicles(model.SelectedYear, newOvo);
+                            ageInMonths += 12;
+                            dataValues.Add(Tuple.Create<string, double>($"{model.SelectedYear}", newFolicularOvocites));
+                            model.SelectedYear++;
+
+                        }
+
+                        break;
+
+                    case 0:
+
+                        for (int i = model.SelectedYear; i <= 50; i++)
+                        {
+
+                            double newOvo = FertCalculator.CalculateFollicles(ageInMonths);
+                            double newFolicularOvocites = FertCalculator.CalculateEuploidFollicles(model.SelectedYear, newOvo);
+                            ageInMonths += 12;
+                            dataValues.Add(Tuple.Create<string, double>($"{model.SelectedYear}", newFolicularOvocites));
+                            model.SelectedYear++;
+
+                        }
+
+                        break;
+                }
+
+                
 
                 return RedirectToAction("Index", "Reserve", new
                 {
                     FertilityLevel = ovocites,
                     OvoCount = Math.Round(ovocites, 2),
-                    SelectedYear = model.SelectedYear,
+                    SelectedYear = oldSelectedYear,
                     SelectedMonth = model.SelectedMonth,
                     QuestionUser = questionUserInt,
                 });
