@@ -119,7 +119,7 @@
   </resheader>
   <data name="FirstAge" xml:space="preserve">
     <value>
-Idade atual</value>
+Idade</value>
   </data>
   <data name="ActualAge" xml:space="preserve">
     <value>Idade desejada para constituir família</value>
@@ -130,10 +130,10 @@ Idade atual</value>
   <data name="Send" xml:space="preserve">
     <value>Enviar</value>
   </data>
-  <data name="At what age would you like to be a mother in the future?" xml:space="preserve">
-    <value>A qué edad te gustaría ser madre en el futuro?</value>
-  </data>
   <data name="At future?" xml:space="preserve">
+    <value>Edad planificada</value>
+  </data>
+  <data name="k" xml:space="preserve">
     <value>A futuro?</value>
   </data>
 </root>

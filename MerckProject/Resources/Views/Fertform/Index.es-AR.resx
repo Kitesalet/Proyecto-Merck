@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="FirstAge" xml:space="preserve">
-    <value>Edad actual</value>
+    <value>Edad</value>
   </data>
   <data name="ActualAge" xml:space="preserve">
     <value>Edad planificada para comenzar una familia</value>
@@ -129,10 +129,10 @@
   <data name="Send" xml:space="preserve">
     <value>Enviar</value>
   </data>
-  <data name="At what age would you like to be a mother in the future?" xml:space="preserve">
-    <value>A qué edad te gustaría ser madre en el futuro?</value>
-  </data>
   <data name="At future?" xml:space="preserve">
+    <value>Edad planificada</value>
+  </data>
+  <data name="k" xml:space="preserve">
     <value>A futuro?</value>
   </data>
 </root>
