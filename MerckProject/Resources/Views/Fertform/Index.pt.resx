@@ -122,7 +122,7 @@
 Idade atual</value>
   </data>
   <data name="ActualAge" xml:space="preserve">
-    <value>Idade desejada para constituir família</value>
+    <value>Idade desejada</value>
   </data>
   <data name="FertilityCalculator" xml:space="preserve">
     <value>Indicador</value>
@@ -131,6 +131,6 @@ Idade atual</value>
     <value>Enviar</value>
   </data>
   <data name="At what age would you like to be a mother in the future?" xml:space="preserve">
-    <value>A qué edad te gustaría ser madre en el futuro?</value>
+    <value>Edad planificada</value>
   </data>
 </root>
