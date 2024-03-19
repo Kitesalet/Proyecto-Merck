@@ -19,7 +19,7 @@ namespace MerckProject.Controllers
         }
 
         [HttpPost]
-        public IActionResult FertilityCalculator(FertformVM model)
+        public IActionResult FertilityCalculator(FertformVM model) //dxdfsojgofgipdfl
         {
             string culture = CultureHelper.GetCultureFromCookie(HttpContext.Request.Cookies[".AspNetCore.Culture"]);
             bool errorFlag = false;
