@@ -121,7 +121,7 @@
     <value>Edad actual</value>
   </data>
   <data name="ActualAge" xml:space="preserve">
-    <value>Edad planificada para comenzar una familia</value>
+    <value>Edad planificada</value>
   </data>
   <data name="FertilityCalculator" xml:space="preserve">
     <value>Indicador</value>
