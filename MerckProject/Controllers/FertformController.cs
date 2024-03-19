@@ -78,7 +78,7 @@ namespace MerckProject.Controllers
 
                 switch (questionUserInt)
                 {
-                    case 3:
+                    case 3://
 
                         for (int i = 0; i < 4; i++)
                         {
