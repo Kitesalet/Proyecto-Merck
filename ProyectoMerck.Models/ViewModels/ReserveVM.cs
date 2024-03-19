@@ -15,6 +15,8 @@ namespace ProyectoMerck.Models.ViewModels
         public int QuestionUser { get; set; }
 
         public double OvoCount { get; set; }
+
+        public string OvoMatrix { get; set; }
         public FertilityLevel FertilityLevel { get; set; }
 
     }

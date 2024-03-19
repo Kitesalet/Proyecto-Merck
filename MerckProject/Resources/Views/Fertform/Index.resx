@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="FirstAge" xml:space="preserve">
-    <value>Current Age</value>
+    <value>Age</value>
   </data>
   <data name="ActualAge" xml:space="preserve">
     <value>Desired age</value>

@@ -59,12 +59,15 @@
 <script src="~/js/chart.js"></script>
 <script>
 
-    var ovuleCount = @Model.SelectedYear;
-    var familyAge = @Model.QuestionUser;
-    var foliName = '@Localizer["FoliName"]';
+    var startAge = @Model.SelectedYear;
+    var startMonth = @Model.SelectedMonth;
+    var dataValues = JSON.parse('@Html.Raw(Model.OvoMatrix)');
+    var foliName = '@Localizer["FoliName"].Value'
+    
+    console.log(dataValues[1]);
 
     google.charts.setOnLoadCallback(function () {
-        drawChart2(ovuleCount, familyAge, foliName);
+        drawChart2(dataValues, foliName);
     });
 
 </script>

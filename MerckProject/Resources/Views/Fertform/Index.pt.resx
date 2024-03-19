@@ -119,7 +119,7 @@
   </resheader>
   <data name="FirstAge" xml:space="preserve">
     <value>
-Idade atual</value>
+Idade</value>
   </data>
   <data name="ActualAge" xml:space="preserve">
     <value>Idade desejada</value>
