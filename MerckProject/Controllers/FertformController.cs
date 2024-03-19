@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using ProyectoMerck.Models.ViewModels;
 using ProyectoMerck.Resources;
 using ProyectoMerck.Utilities;
@@ -51,9 +52,9 @@ namespace MerckProject.Controllers
             {
 
                 //Valida que las edades sean validas en base a los limites del grafico, se puede convertir en un service
-                if(model.SelectedYear > 40 && questionUserInt == 11 ||
+                if (model.SelectedYear > 40 && questionUserInt == 11 ||
                    model.SelectedYear > 40 && questionUserInt == 10 ||
-                   model.SelectedYear > 44 && questionUserInt == 6  ||
+                   model.SelectedYear > 44 && questionUserInt == 6 ||
                    model.SelectedYear > 47 && questionUserInt == 3)
                 {
                     errorFlag = true;
@@ -79,12 +80,12 @@ namespace MerckProject.Controllers
                 {
                     case 3:
 
-                        for(int i = 0; i < 4; i++)
+                        for (int i = 0; i < 4; i++)
                         {
-                            if(i == 0)
+                            if (i == 0)
                             {
-                                
-                                dataValues.Add(Tuple.Create<string, double>($"{model.SelectedYear} Años", folicularOvocites));
+
+                                dataValues.Add(Tuple.Create<string, double>($"AÑOS {model.SelectedYear}", folicularOvocites));
                                 model.SelectedYear++;
 
                             }
@@ -94,7 +95,7 @@ namespace MerckProject.Controllers
                                 ageInMonths += 12;
                                 double newOvo = FertCalculator.CalculateFollicles(ageInMonths);
                                 double newFolicularOvocites = FertCalculator.CalculateEuploidFollicles(model.SelectedYear, newOvo);
-                                dataValues.Add(Tuple.Create<string, double>($"{model.SelectedYear}", newFolicularOvocites));
+                                dataValues.Add(Tuple.Create<string, double>($"{model.SelectedYear} AÑOS", newFolicularOvocites));
                                 model.SelectedYear++;
 
                             }
@@ -107,7 +108,7 @@ namespace MerckProject.Controllers
 
                         for (int i = 0; i < 4; i++)
                         {
-                            if(i == 0)
+                            if (i == 0)
                             {
                                 ageInMonths += 48;
                                 model.SelectedYear += 4;
@@ -116,8 +117,8 @@ namespace MerckProject.Controllers
 
                             double newOvo = FertCalculator.CalculateFollicles(ageInMonths);
                             double newFolicularOvocites = FertCalculator.CalculateEuploidFollicles(model.SelectedYear, newOvo);
-                            ageInMonths += 12;
-                            dataValues.Add(Tuple.Create<string, double>($"{model.SelectedYear}", newFolicularOvocites));
+                            ageInMonths += 12;                          
+                            dataValues.Add(Tuple.Create<string, double>($"{model.SelectedYear} AÑOS", newFolicularOvocites));
                             model.SelectedYear++;
 
                         }
@@ -138,7 +139,7 @@ namespace MerckProject.Controllers
                             double newOvo = FertCalculator.CalculateFollicles(ageInMonths);
                             double newFolicularOvocites = FertCalculator.CalculateEuploidFollicles(model.SelectedYear, newOvo);
                             ageInMonths += 12;
-                            dataValues.Add(Tuple.Create<string, double>($"{model.SelectedYear}", newFolicularOvocites));
+                            dataValues.Add(Tuple.Create<string, double>($"{model.SelectedYear} AÑOS", newFolicularOvocites));
                             model.SelectedYear++;
 
 
@@ -152,13 +153,13 @@ namespace MerckProject.Controllers
                         model.SelectedYear += 10;
                         int finalValue = 50 - model.SelectedYear;
 
-                        for (int i = model.SelectedYear ; i <= 50; i++)
+                        for (int i = model.SelectedYear; i <= 50; i++)
                         {
 
                             double newOvo = FertCalculator.CalculateFollicles(ageInMonths);
                             double newFolicularOvocites = FertCalculator.CalculateEuploidFollicles(model.SelectedYear, newOvo);
                             ageInMonths += 12;
-                            dataValues.Add(Tuple.Create<string, double>($"{model.SelectedYear}", newFolicularOvocites));
+                            dataValues.Add(Tuple.Create<string, double>($"{model.SelectedYear} AÑOS", newFolicularOvocites));
                             model.SelectedYear++;
 
                         }
@@ -173,7 +174,7 @@ namespace MerckProject.Controllers
                             double newOvo = FertCalculator.CalculateFollicles(ageInMonths);
                             double newFolicularOvocites = FertCalculator.CalculateEuploidFollicles(model.SelectedYear, newOvo);
                             ageInMonths += 12;
-                            dataValues.Add(Tuple.Create<string, double>($"{model.SelectedYear}", newFolicularOvocites));
+                            dataValues.Add(Tuple.Create<string, double>($"{model.SelectedYear} AÑOS", newFolicularOvocites));
                             model.SelectedYear++;
 
                         }
@@ -181,15 +182,16 @@ namespace MerckProject.Controllers
                         break;
                 }
 
-                
+                //Paso a JSON la matriz de ovocitos creada arriba
+                string ovoMatrixJson = JsonConvert.SerializeObject(dataValues);
+
 
                 return RedirectToAction("Index", "Reserve", new
                 {
-                    FertilityLevel = ovocites,
-                    OvoCount = Math.Round(ovocites, 2),
+                    OvoCount = folicularOvocites,
                     SelectedYear = oldSelectedYear,
-                    SelectedMonth = model.SelectedMonth,
                     QuestionUser = questionUserInt,
+                    OvoMatrix = ovoMatrixJson
                 });
             }
             else

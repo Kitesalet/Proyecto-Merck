@@ -61,11 +61,13 @@
 
     var startAge = @Model.SelectedYear;
     var startMonth = @Model.SelectedMonth;
-    var endAge = @Model.QuestionUser;
-    var foliName = '@Localizer["FoliName"]';
+    var dataValues = JSON.parse('@Html.Raw(Model.OvoMatrix)');
+    var foliName = '@Localizer["FoliName"].Value'
+    
+    console.log(dataValues[1]);
 
     google.charts.setOnLoadCallback(function () {
-        drawChart2(startAge, endAge, foliName);
+        drawChart2(dataValues, foliName);
     });
 
 </script>
