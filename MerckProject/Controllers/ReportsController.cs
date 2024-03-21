@@ -37,18 +37,29 @@ namespace MerckProject.Controllers
 
         public IActionResult PrintPdf(ExportViewModel model)
         {
-            if (ModelState.IsValid == false) 
+            if (ModelState.IsValid == false)
             {
+                TempData["Error"] = "Las fechas ingresadas son invalidas!";
+
                 return View("Reports", model);
             }
 
             IQueryable<Consultation> consultasQuery = _context.Consultations;
+
+            if(model.FechaInicio > model.FechaFin || model.FechaInicio == null || model.FechaFin == null)
+            {
+
+                TempData["Error"] = "Las fechas ingresadas son invalidas!";
+
+                return View("Reports", model);
+            }
 
             if (model.FechaInicio != null)
             {
                 // Considerar solo la parte de la fecha
                 model.FechaInicio = model.FechaInicio.Date;
                 consultasQuery = consultasQuery.Where(c => c.DateAndtime.Date >= model.FechaInicio);
+
             }
 
             if (model.FechaFin != null)
@@ -62,11 +73,13 @@ namespace MerckProject.Controllers
                 .Select(v => new Consultation()
                 {
                     ConsultationReason = v.ConsultationReason,
-                    Clinic = v.Clinic,
+                    ClinicName = v.ClinicName,
                     DateAndtime = v.DateAndtime,
                     Url = v.Url,
                 })
                 .ToList();
+
+            
 
             return new Rotativa.AspNetCore.ViewAsPdf("/Views/Reports/PrintPdf.cshtml", consultas)
             {
@@ -77,8 +90,30 @@ namespace MerckProject.Controllers
         }
 
 
+        public async Task<IActionResult> ExportPeopleToExcel(ExportViewModel model)
+        {
+
+            if (ModelState.IsValid == false)
+            {
+                TempData["Error"] = "Las fechas ingresadas son invalidas!";
+
+                return View("Reports", model);
+            }
+
+            if (model.FechaInicio > model.FechaFin || model.FechaInicio == DateTime.MinValue || model.FechaFin == DateTime.MinValue)
+            {
+
+                TempData["Error"] = "Las fechas ingresadas son invalidas!";
+
+                return View("Reports", model);
+            }
+
+            return await ExportPeopleToExcel1(model.FechaInicio, model.FechaFin);
+
+        }
+
         [HttpGet]
-        public async Task<FileResult> ExportPeopleToExcel(DateTime? fechaInicio, DateTime? fechaFin)
+        public async Task<FileResult> ExportPeopleToExcel1(DateTime? fechaInicio, DateTime? fechaFin)
         {
             IQueryable<Consultation> consultasQuery = _context.Consultations;
 
@@ -104,6 +139,7 @@ namespace MerckProject.Controllers
 
         private FileResult GenerarExcel(string nombreArchivo, IEnumerable<Consultation> consultas)
         {
+
             DataTable dataTable = new DataTable("Reporte");
             dataTable.Columns.AddRange(new DataColumn[]
             {
@@ -117,7 +153,7 @@ namespace MerckProject.Controllers
             {
                 dataTable.Rows.Add(
                     consulta.ConsultationReason,
-                    consulta.Clinic,
+                    consulta.ClinicName,
                     consulta.DateAndtime,
                     consulta.Url
                     );

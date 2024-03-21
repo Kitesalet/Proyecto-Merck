@@ -161,8 +161,54 @@ html {
     margin: 0px;
 }
 
+.clinic-text{
+    text-align: center;
+}
+
 .w-200{
     width:200px;
+}
+
+.nonselected-clinic {
+    color: #8C92AC;
+    background-color: #E4E7F8;
+    border-radius: 10px;
+    font-size: 4em;
+    cursor: pointer;
+}
+
+.selected-clinic {
+    color: white;
+    background-color: #EC3B96;
+    border-radius: 8px;
+    font-size: 4em;
+    box-shadow: 5px 5px 5px gray;
+}
+
+.clinic-container {
+/*    height: 6rem;
+    border-radius: 10px;
+    background-color: #583B93;*/
+}
+
+.submit-button {
+    color: white;
+    border-radius: 50px;
+    background-color: darkcyan;
+}
+
+.clinic-container-error {
+    height: 6rem;
+    border-radius: 10px;
+    background-color: red;
+}
+
+.hidden-icon {
+    display: none;
+}
+
+.visible-icon {
+    display: block;
 }
 
 /*Reporte*/

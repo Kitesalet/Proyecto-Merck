@@ -12,13 +12,17 @@ namespace ProyectoMerck.Models.Entities
     {
         [Key]
         public int Id { get; set; }
+        public double Latitude { get; set; }
 
-        public int? ProvinceId { get; set; }
+        public double Longitude { get; set; }
 
-        [Required]
-        public string LocationName { get; set; } = null!;
+        public string Title { get; set; }
 
-        [ForeignKey("ProvinceId")]
-        public virtual Province Province { get; set; }
+        public string Subtitle { get; set; }
+
+
+        [ForeignKey(nameof(ProvinceLocation))]
+        public int ProvinceLocationId { get; set; }
+        public ProvinceLocation ProvinceLocation { get; set; }
     }
 }

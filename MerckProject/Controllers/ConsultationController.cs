@@ -1,8 +1,12 @@
-﻿using Microsoft.AspNetCore.Http.Extensions;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using Proyecto_Merck.Areas.Identity.Data;
 using ProyectoMerck.Business.Interfaces;
+using ProyectoMerck.Models.Entities;
 using ProyectoMerck.Models.ViewModels;
 
 namespace MerckProject.Controllers
@@ -12,51 +16,64 @@ namespace MerckProject.Controllers
 
         private readonly IConsultationService _service;
         private readonly AppMerckContext _context;
+        private readonly IMapper _mapper;
 
-        public ConsultationController(IConsultationService service, AppMerckContext context)
+        public ConsultationController(IConsultationService service, AppMerckContext context, IMapper mapper)
         {
             _context = context;
             _service = service;
+            _mapper = mapper;
 
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Consultation()
         {
-            return View();
-        }
 
-        public IActionResult Consultation()
-        {
-            var model = new ConsultationViewModel
-            {
-                Provinces = GetSelectListItems(
-                    items: _context.Provinces.ToList(),
-                    value: p => p.Id.ToString(),
-                    text: p => p.ProvinceName
-                ), 
+            ConsultationViewModel model = new ConsultationViewModel();
 
-                Locations = GetSelectListItems(
-                    items: _context.Locations.ToList(),
-                    value: c => c.Id.ToString(),
-                    text: c => c.LocationName
-                ),
+            model.CountryList = await _context.Countries.ToListAsync();
+            model.ProvincList = await _context.Provinces.ToListAsync();
+            model.ProvinceLocationList = await _context.ProvinceLocations.ToListAsync();
+            var locationsDto = await _context.Locations.ToListAsync();
 
-                Clinics = GetSelectListItems(
-                    items: _context.Clinics.ToList(),
-                    value: c => c.Id.ToString(),
-                    text: c => c.ClinicName
-                ),
-
-                Countries = GetSelectListItems(
-                    items: _context.Countries.ToList(),
-                    value: c => c.Id.ToString(),
-                    text: c => c.CountryName
-                ),
-
-            };
+            model.LocationsList = locationsDto;
+            model.Locations = JsonConvert.SerializeObject(locationsDto, Formatting.Indented);
 
             return View("Consultation", model);
         }
+
+        //public IActionResult Consultation()
+        //{
+        //    var model = new ConsultationViewModel
+        //    {
+        //        Provinces = GetSelectListItems(
+        //            items: _context.Provinces.ToList(),
+        //            value: p => p.Id.ToString(),
+        //            text: p => p.ProvinceName
+        //        ), 
+
+        //        Locations = GetSelectListItems(
+        //            items: _context.Locations.ToList(),
+        //            value: c => c.Id.ToString(),
+        //            text: c => c.LocationName
+        //        ),
+
+        //        Clinics = GetSelectListItems(
+        //            items: _context.Clinics.ToList(),
+        //            value: c => c.Id.ToString(),
+        //            text: c => c.ClinicName
+        //        ),
+
+        //        Countries = GetSelectListItems(
+        //            items: _context.Countries.ToList(),
+        //            value: c => c.Id.ToString(),
+        //            text: c => c.CountryName
+        //        ),
+
+        //    };
+
+        //    return View("Consultation", model);
+        //}
 
         private List<SelectListItem> GetSelectListItems<T>(IEnumerable<T> items, Func<T, string> value, Func<T, string> text)
         {
@@ -67,27 +84,27 @@ namespace MerckProject.Controllers
             }).ToList();
         }
 
-        [HttpGet]
-        public IActionResult GetLocaties(string province)
-        {
-            if (string.IsNullOrEmpty(province))
-            {
-                return Json(new List<SelectListItem>());
-            }
+        //[HttpGet]
+        //public IActionResult GetLocaties(string province)
+        //{
+        //    if (string.IsNullOrEmpty(province))
+        //    {
+        //        return Json(new List<SelectListItem>());
+        //    }
 
-            int provinceId = Convert.ToInt32(province);
+        //    int provinceId = Convert.ToInt32(province);
 
-            var locationsFiltered = _context.Locations
-                .Where(l => l.ProvinceId == provinceId)
-                .Select(l => new SelectListItem
-                {
-                    Value = l.Id.ToString(),
-                    Text = l.LocationName.ToString()
-                })
-                .ToList();
+        //    var locationsFiltered = _context.Locations
+        //        .Where(l => l.ProvinceId == provinceId)
+        //        .Select(l => new SelectListItem
+        //        {
+        //            Value = l.Id.ToString(),
+        //            Text = l.LocationName.ToString()
+        //        })
+        //        .ToList();
 
-            return Json(locationsFiltered);
-        }
+        //    return Json(locationsFiltered);
+        //}
 
 
         [HttpGet]
@@ -152,47 +169,59 @@ namespace MerckProject.Controllers
             {
 
                 model.Url = HttpContext.Request.GetDisplayUrl();
-                
+
                 var flag = await _service.CreateConsultationAsync(model);
 
-                return RedirectToAction("Consultation", model);
+                TempData["Success"] = "True";
+
+                return RedirectToAction("Index", "Fertform");
 
             }
             else
             {
 
-                model.Provinces = GetSelectListItems(
-                items: _context.Provinces.ToList(),
-                value: p => p.Id.ToString(),
-                text: p => p.ProvinceName);
+                //model.Provinces = GetSelectListItems(
+                //items: _context.Provinces.ToList(),
+                //value: p => p.Id.ToString(),
+                //text: p => p.ProvinceName);
 
 
-                model.Locations = GetSelectListItems(
-                         items: _context.Locations.ToList(),
-                         value: c => c.Id.ToString(),
-                         text: c => c.LocationName
-                     );
+                //model.Locations = GetSelectListItems(
+                //         items: _context.Locations.ToList(),
+                //         value: c => c.Id.ToString(),
+                //         text: c => c.LocationName
+                //     );
 
-                model.Clinics = GetSelectListItems(
-                    items: _context.Clinics.ToList(),
-                    value: c => c.Id.ToString(),
-                    text: c => c.ClinicName
-                );
+                //model.Clinics = GetSelectListItems(
+                //    items: _context.Clinics.ToList(),
+                //    value: c => c.Id.ToString(),
+                //    text: c => c.ClinicName
+                //);
 
-                model.Countries = GetSelectListItems(
-                    items: _context.Countries.ToList(),
-                    value: c => c.Id.ToString(),
-                    text: c => c.CountryName
-                );
+                //model.Countries = GetSelectListItems(
+                //    items: _context.Countries.ToList(),
+                //    value: c => c.Id.ToString(),
+                //    text: c => c.CountryName
+                //);
 
+                model.CountryList = await _context.Countries.ToListAsync();
+                model.ProvincList = await _context.Provinces.ToListAsync();
+                model.ProvinceLocationList = await _context.ProvinceLocations.ToListAsync();
+                var locationsDto = await _context.Locations.ToListAsync();
+
+                model.LocationsList = locationsDto;
+                model.Locations = JsonConvert.SerializeObject(locationsDto, Formatting.Indented);
+
+                TempData["Error"] = "El envio del formulario no se pudo enviar correctamente";
 
                 return View("Consultation", model);
 
             }
 
 
- 
-        }
 
+
+
+        }
     }
 }

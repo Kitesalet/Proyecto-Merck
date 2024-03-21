@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Proyecto_Merck.Areas.Identity.Data;
 
@@ -11,9 +12,11 @@ using Proyecto_Merck.Areas.Identity.Data;
 namespace ProyectoMerck.DataAccess.Migrations
 {
     [DbContext(typeof(AppMerckContext))]
-    partial class AppMerckContextModelSnapshot : ModelSnapshot
+    [Migration("20240321210506_djfgh")]
+    partial class djfgh
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -288,64 +291,17 @@ namespace ProyectoMerck.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            ClinicName = "HIALITUS",
                             ConsultationReason = "Stringer",
-                            DateAndtime = new DateTime(2024, 3, 21, 19, 23, 57, 510, DateTimeKind.Local).AddTicks(3594),
+                            DateAndtime = new DateTime(2024, 3, 21, 18, 5, 5, 336, DateTimeKind.Local).AddTicks(4361),
                             SelectedLocationIndex = 2,
                             Url = "www.google.com"
                         },
                         new
                         {
                             Id = 2,
-                            ClinicName = "CRECER",
                             ConsultationReason = "Inter",
-                            DateAndtime = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateAndtime = new DateTime(2024, 3, 21, 18, 5, 5, 336, DateTimeKind.Local).AddTicks(4375),
                             SelectedLocationIndex = 3,
-                            Url = "www.google.com"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            ClinicName = "HOSPITAL ITALIANO",
-                            ConsultationReason = "Inter",
-                            DateAndtime = new DateTime(2024, 3, 21, 19, 23, 57, 510, DateTimeKind.Local).AddTicks(3610),
-                            SelectedLocationIndex = 4,
-                            Url = "www.google.com"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            ClinicName = "MERCK 1",
-                            ConsultationReason = "Inter",
-                            DateAndtime = new DateTime(2024, 3, 21, 19, 23, 57, 510, DateTimeKind.Local).AddTicks(3611),
-                            SelectedLocationIndex = 5,
-                            Url = "www.google.com"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            ClinicName = "IDERT",
-                            ConsultationReason = "Inter",
-                            DateAndtime = new DateTime(2024, 3, 21, 19, 23, 57, 510, DateTimeKind.Local).AddTicks(3613),
-                            SelectedLocationIndex = 6,
-                            Url = "www.google.com"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            ClinicName = "JUERTE",
-                            ConsultationReason = "Inter",
-                            DateAndtime = new DateTime(2024, 3, 21, 19, 23, 57, 510, DateTimeKind.Local).AddTicks(3657),
-                            SelectedLocationIndex = 7,
-                            Url = "www.google.com"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            ClinicName = "CRECER",
-                            ConsultationReason = "Inter",
-                            DateAndtime = new DateTime(2024, 3, 21, 19, 23, 57, 510, DateTimeKind.Local).AddTicks(3659),
-                            SelectedLocationIndex = 8,
                             Url = "www.google.com"
                         });
                 });

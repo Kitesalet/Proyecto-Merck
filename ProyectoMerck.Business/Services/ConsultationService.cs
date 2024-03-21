@@ -11,6 +11,9 @@ using ProyectoMerck.Models.ViewModels;
 using ProyectoMerck.Utilities;
 using System.Resources;
 using MerckProject.Resources;
+using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.IdentityModel.Abstractions;
+using Microsoft.EntityFrameworkCore;
 
 namespace ProyectoMerck.Business.Services
 {
@@ -19,10 +22,11 @@ namespace ProyectoMerck.Business.Services
         private readonly IUnitOfWork _context;
         private readonly IMapper _mapper;
         private readonly IEmailSendeer _mailSender;
+        private readonly AppMerckContext _dbContext;
 
-        public ConsultationService(IUnitOfWork context, IMapper mapper, IEmailSendeer mailSender)
+        public ConsultationService(IUnitOfWork context, IMapper mapper, IEmailSendeer mailSender, AppMerckContext dbContext)
         {
-
+            _dbContext = dbContext;
             _context = context;
             _mapper = mapper;
             _mailSender = mailSender;
@@ -42,10 +46,16 @@ namespace ProyectoMerck.Business.Services
                 Consultation consultation = new Consultation()
                 {
                     DateAndtime = DateTime.Now,
-                    Clinic = model.Clinic,
+                    SelectedLocationIndex = model.SelectedLocationIndex,
                     ConsultationReason = model.ReasonConsultation,
-                    Url = newUri
+                    Url = model.Url
                 };
+
+                var clinicName = await _dbContext.Locations
+                                                    .Where(c => c.Id == model.SelectedLocationIndex)
+                                                    .FirstOrDefaultAsync();
+
+                consultation.ClinicName = clinicName.Title;
 
                 flag = await _context.ConsultationRepository.Add(consultation);
 

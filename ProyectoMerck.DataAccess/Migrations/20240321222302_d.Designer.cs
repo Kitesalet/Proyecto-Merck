@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Proyecto_Merck.Areas.Identity.Data;
 
@@ -11,9 +12,11 @@ using Proyecto_Merck.Areas.Identity.Data;
 namespace ProyectoMerck.DataAccess.Migrations
 {
     [DbContext(typeof(AppMerckContext))]
-    partial class AppMerckContextModelSnapshot : ModelSnapshot
+    [Migration("20240321222302_d")]
+    partial class d
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -290,7 +293,7 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Id = 1,
                             ClinicName = "HIALITUS",
                             ConsultationReason = "Stringer",
-                            DateAndtime = new DateTime(2024, 3, 21, 19, 23, 57, 510, DateTimeKind.Local).AddTicks(3594),
+                            DateAndtime = new DateTime(2024, 3, 21, 19, 23, 1, 586, DateTimeKind.Local).AddTicks(8390),
                             SelectedLocationIndex = 2,
                             Url = "www.google.com"
                         },
@@ -308,8 +311,8 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Id = 3,
                             ClinicName = "HOSPITAL ITALIANO",
                             ConsultationReason = "Inter",
-                            DateAndtime = new DateTime(2024, 3, 21, 19, 23, 57, 510, DateTimeKind.Local).AddTicks(3610),
-                            SelectedLocationIndex = 4,
+                            DateAndtime = new DateTime(2024, 3, 21, 19, 23, 1, 586, DateTimeKind.Local).AddTicks(8427),
+                            SelectedLocationIndex = 3,
                             Url = "www.google.com"
                         },
                         new
@@ -317,8 +320,8 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Id = 4,
                             ClinicName = "MERCK 1",
                             ConsultationReason = "Inter",
-                            DateAndtime = new DateTime(2024, 3, 21, 19, 23, 57, 510, DateTimeKind.Local).AddTicks(3611),
-                            SelectedLocationIndex = 5,
+                            DateAndtime = new DateTime(2024, 3, 21, 19, 23, 1, 586, DateTimeKind.Local).AddTicks(8429),
+                            SelectedLocationIndex = 3,
                             Url = "www.google.com"
                         },
                         new
@@ -326,8 +329,8 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Id = 5,
                             ClinicName = "IDERT",
                             ConsultationReason = "Inter",
-                            DateAndtime = new DateTime(2024, 3, 21, 19, 23, 57, 510, DateTimeKind.Local).AddTicks(3613),
-                            SelectedLocationIndex = 6,
+                            DateAndtime = new DateTime(2024, 3, 21, 19, 23, 1, 586, DateTimeKind.Local).AddTicks(8431),
+                            SelectedLocationIndex = 3,
                             Url = "www.google.com"
                         },
                         new
@@ -335,8 +338,8 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Id = 6,
                             ClinicName = "JUERTE",
                             ConsultationReason = "Inter",
-                            DateAndtime = new DateTime(2024, 3, 21, 19, 23, 57, 510, DateTimeKind.Local).AddTicks(3657),
-                            SelectedLocationIndex = 7,
+                            DateAndtime = new DateTime(2024, 3, 21, 19, 23, 1, 586, DateTimeKind.Local).AddTicks(8495),
+                            SelectedLocationIndex = 3,
                             Url = "www.google.com"
                         },
                         new
@@ -344,8 +347,8 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Id = 7,
                             ClinicName = "CRECER",
                             ConsultationReason = "Inter",
-                            DateAndtime = new DateTime(2024, 3, 21, 19, 23, 57, 510, DateTimeKind.Local).AddTicks(3659),
-                            SelectedLocationIndex = 8,
+                            DateAndtime = new DateTime(2024, 3, 21, 19, 23, 1, 586, DateTimeKind.Local).AddTicks(8497),
+                            SelectedLocationIndex = 3,
                             Url = "www.google.com"
                         });
                 });

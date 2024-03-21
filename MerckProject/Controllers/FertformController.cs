@@ -21,6 +21,13 @@ namespace MerckProject.Controllers
         [HttpPost]
         public IActionResult FertilityCalculator(FertformVM model) //dxdfsojgofgipdfl
         {
+            if(model.SelectedDate == DateTime.MinValue)
+            {
+                TempData["Error"] = "Por favor, seleccione una fecha valida";
+
+                return View(nameof(Index), model);
+            }
+
             string culture = CultureHelper.GetCultureFromCookie(HttpContext.Request.Cookies[".AspNetCore.Culture"]);
             bool errorFlag = false;
             ResourceManager manager = new ResourceManager(_ValidationResourceLocation, typeof(ValidationResources).Assembly);
@@ -55,7 +62,8 @@ namespace MerckProject.Controllers
                 if (model.SelectedYear > 40 && questionUserInt == 11 ||
                    model.SelectedYear > 40 && questionUserInt == 10 ||
                    model.SelectedYear > 44 && questionUserInt == 6 ||
-                   model.SelectedYear > 47 && questionUserInt == 3)
+                   model.SelectedYear > 47 && questionUserInt == 3 ||
+                   model.SelectedYear < 12)
                 {
                     errorFlag = true;
                 }
@@ -78,7 +86,7 @@ namespace MerckProject.Controllers
 
                 switch (questionUserInt)
                 {
-                    case 3://
+                    case 3:
 
                         for (int i = 0; i < 4; i++)
                         {

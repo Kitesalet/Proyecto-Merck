@@ -45,12 +45,12 @@
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <label asp-for="FechaInicio">@Localizer["StartDate"].Value</label>
                 <input asp-for="FechaInicio" type="date" id="FechaInicio" name="FechaInicio" class="form-control" max="2024-12-31">
-                <span asp-validation-for="FechaInicio"></span>
-
+@*                 <span asp-validation-for="FechaInicio"></span>
+ *@
                 <label asp-for="FechaFin">@Localizer["EndDate"].Value</label>
                 <input asp-for="FechaFin" type="date" id="FechaFin" name="FechaFin" class="form-control" max="2024-12-31">
-                <span asp-validation-for="FechaFin"></span>
-
+@*                 <span asp-validation-for="FechaFin"></span>
+ *@
                 <div class="row">
                     <button type="button" onclick="exportar('excel')" class="btn col-12 col-md-6 p-2 my-5 border-light merck-button">
                         @Localizer["ExportExcel"].Value
@@ -64,8 +64,6 @@
         </div>
     </div>
 </div>
-<script src="~/js/Navbar.js" asp-append-version="true"></script>
-
 
 <script>
     function exportar(tipo) {
@@ -74,14 +72,5 @@
         form.action = action;
         form.submit();
     }
-
-    document.addEventListener('DOMContentLoaded', function () {
-        const burger = document.getElementById('burger');
-        const navList = document.getElementById('navList');
-
-        burger.addEventListener('click', function () {
-            navList.classList.toggle('show');
-        });
-    });
 
 </script>
