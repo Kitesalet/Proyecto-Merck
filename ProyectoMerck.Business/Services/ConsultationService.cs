@@ -51,11 +51,12 @@ namespace ProyectoMerck.Business.Services
                     Url = model.Url
                 };
 
-                var clinicName = await _dbContext.Locations
+                string? clinicName = await _dbContext.Locations
                                                     .Where(c => c.Id == model.SelectedLocationIndex)
+                                                    .Select(c => c.Title)
                                                     .FirstOrDefaultAsync();
 
-                consultation.ClinicName = clinicName.Title;
+                consultation.ClinicName = clinicName;
 
                 flag = await _context.ConsultationRepository.Add(consultation);
 
@@ -68,7 +69,7 @@ namespace ProyectoMerck.Business.Services
                 var emailBody = manager.GetString("EmailBody");
 
                 var emailSubjectFormatted = String.Format(emailSubject, new Random().Next(1, 9999999));
-                var emailBodyFormatted = String.Format(emailBody, model.Clinic, model.Email, model.ReasonConsultation);
+                var emailBodyFormatted = String.Format(emailBody, clinicName, model.Email, model.ReasonConsultation);
 
                 await _mailSender.EmailAsync(model.Email, emailSubjectFormatted, emailBodyFormatted);
 

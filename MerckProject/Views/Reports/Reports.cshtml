@@ -67,6 +67,14 @@
 
 <script>
     function exportar(tipo) {
+
+        Swal.fire({
+            icon: "info",
+            title: "Ha iniciado la descarga del archivo...",
+            showConfirmButton: false,
+            timer: 1000
+        });
+
         var form = document.getElementById('exportForm');
         var action = tipo === 'excel' ? "@Url.Action("ExportPeopleToExcel")" : "@Url.Action("PrintPdf")";
         form.action = action;
