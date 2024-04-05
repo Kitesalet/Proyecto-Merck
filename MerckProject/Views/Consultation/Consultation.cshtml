@@ -28,7 +28,11 @@
 <div class="row subheader-body">
     <div class="col-md-12">
         <div class="col-12 text-center vh-50 mt-35">
-            <img class="mb-4 subheader-img" src="~/imagenes/LogoMerck.jpg" />
+            <div class="row">
+                <div class="d-flex justify-content-center">
+                    <img src="/Imagenes/MERCK_LOGO_White_RGB.png" style="height:33px" />
+                </div>
+            </div>
             <div class="text-center subheader-div">
                 <div class="row align-items-center">
                     <div class="col">
@@ -156,11 +160,14 @@
             </div>
             <div class="col-8 pe-3">
                 <label asp-for="Email" class="form-label consultation-label-2">Mail contacto</label>
-                <row class="d-flex align-self-end">
+                <div class="d-flex align-self-end">
                     @Html.TextBoxFor(p => p.Email,
                              new { @class = "form-control" })    
-                <br />
-                <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="row">
+                        <span asp-validation-for="Email" class="text-danger"></span>
+
+                </div>
             </div>
         </div>
 
@@ -171,12 +178,15 @@
             </div>
             <div class="col-8 pe-3">
                 <label asp-for="ReasonConsultation" class="form-label consultation-label-2">Motivo consulta</label>
-                <row class="d-flex align-self-end">
+                <div class="d-flex align-self-end">
+
                     @Html.TextAreaFor(p => p.ReasonConsultation,
-                             new { @class = "form-control" })    
-                <br />
-                <span asp-validation-for="ReasonConsultation" class="text-danger"></span>
-            </div>
+                             new { @class = "form-control" })
+                </div>
+                    <div class="row">
+                    <span asp-validation-for="ReasonConsultation" class="text-danger"></span>
+                    </div>
+         </div>
         </div>
 
 
@@ -199,11 +209,11 @@
                 <div class="row justify-content-around">
 
                     <div id="arrowLeft" class="col">
-                        <i class="bi bi-arrow-left-short pointer-arrow"></i>
+                       @*  <i class="bi bi-arrow-left-short pointer-arrow"></i> *@
                     </div>
                     <div id="arrowRight" class="col text-end">
-                        <i class="bi bi-arrow-right-short pointer-arrow"></i>
-                    </div>
+@*                         <i class="bi bi-arrow-right-short pointer-arrow"></i>
+ *@                    </div>
                 </div>
             </div>
 

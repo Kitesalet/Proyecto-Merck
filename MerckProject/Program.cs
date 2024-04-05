@@ -21,10 +21,10 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
     {
         new CultureInfo("pt"),
         new CultureInfo("en"),
-        new CultureInfo("es-ar")
+        new CultureInfo("es-AR")
     };
 
-    options.DefaultRequestCulture = new RequestCulture("es-ar");
+    options.DefaultRequestCulture = new RequestCulture("es-AR");
     options.SupportedCultures = supportedCultures;
     options.SupportedUICultures = supportedCultures;
 
@@ -39,7 +39,6 @@ DependencyInyector.InyectServices(builder.Services, builder.Configuration);
 var app = builder.Build();
 
 app.UseRequestLocalization();
-
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

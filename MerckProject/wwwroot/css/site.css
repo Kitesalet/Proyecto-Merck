@@ -1,5 +1,19 @@
+* {
+    font-family: Verdana;
+}
+
+@font-face {
+    font-family: 'Merck';
+    src: url('/fonts/merck.ttf') format('truetype');
+    /* You can specify font-weight and font-style here if needed */
+}
+
+.merck-font{
+    font-family: 'Merck';
+}
+
 html {
-    font-family: 'Roboto', sans-serif;
+    font-family: Verdana;
     font-size: 14px;
     height: 100vh;
     width: 100vw;
@@ -7,8 +21,6 @@ html {
     position: relative;
     min-height: 100%;
 }
-
-
 
 @media (min-width: 768px) {
     html {
@@ -34,9 +46,9 @@ html {
 }
 
 .subheader-img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    height: 10%;
+    width:50%;
+
 }
 
 .rounded-header {
@@ -48,7 +60,7 @@ html {
 }
 
 .subheader-div {
-    margin-top: 65px;
+    margin-top: 35px;
     margin-bottom: 45px;
     color: #aff3fb;
 }
@@ -182,7 +194,6 @@ html {
     background-color: #EC3B96;
     border-radius: 8px;
     font-size: 4em;
-    box-shadow: 5px 5px 5px gray;
 }
 
 .clinic-container {

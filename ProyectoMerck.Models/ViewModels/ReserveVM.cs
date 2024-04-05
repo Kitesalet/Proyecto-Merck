@@ -17,6 +17,9 @@ namespace ProyectoMerck.Models.ViewModels
         public double OvoCount { get; set; }
 
         public string OvoMatrix { get; set; }
+
+        public int EndAge { get; set; }
+        public double EndOvocites { get; set; }
         public FertilityLevel FertilityLevel { get; set; }
 
     }

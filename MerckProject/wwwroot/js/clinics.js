@@ -300,6 +300,9 @@ function paginate(page, container, itemsPerPage) {
     var startIndex = (page - 1) * itemsPerPage;
     var endIndex = startIndex + itemsPerPage;
 
+    startIndex = 0;
+    endIndex = filteredClinics.length;
+
     renderClinics(startIndex, endIndex, container);
     updatePagination();
 }

@@ -20,9 +20,9 @@
         </div>
     </nav>
     <div class="container">
-        <div class="row">
+        <div class="row pb-3">
             <div class="d-flex justify-content-center">
-                <img src="/Imagenes/LogoMerckRosa.jpg" style="margin-bottom:30px; width:50%" />
+                <img src="/Imagenes/MERCK_LOGO_White_RGB.png" style="height:33px" />
             </div>
         </div>
         <div class="row">
@@ -36,7 +36,7 @@
             </div>
         </div>
         <div class="row d-flex justify-content-center">
-            <a class="btn col-5 col-md-4 p-2 my-5 border-light merck-button" href="@Url.Action("RedirectIndicator", "Reserve", new {CurrentAge = @Model.SelectedYear})">
+            <a class="btn col-5 col-md-4 p-2 my-5 border-light merck-button" href="@Url.Action("RedirectIndicator", "Reserve", new {SelectedYear = @Model.SelectedYear})">
                 <span class="m-button-span">@Localizer["KnowMore"].Value</span>
                 <span class="spinner-container"></span>    
             </a>
@@ -45,13 +45,14 @@
     <div style="height:50px; background-color: white; border-top-left-radius:30px; border-top-right-radius:30px">
     </div>
 </header>
- <h3 class="text-center">@Localizer["FertilityRate"].Value</h3>
- <h5 class="text-center">@String.Format(Localizer["OvoLevel"].Value, Model.OvoCount.ToString())</h5>
+    <h3 class="text-center merck-font" style="color:#EA3B95;">@Localizer["FertilityRate"].Value</h3>
+<p class="text-center" style="color:#2EBDCD; font-weight:400; font-size: 12px">Cantidad de Ovocitos Actual (@Model.SelectedYear AÑOS) - <span style="font-weight:800">@Model.OvoCount.ToString()</span></p>
+<p class="text-center" style="color:#2EBDCD; font-weight:400; font-size: 12px">Cantidad de Ovocitos a los @Model.EndAge AÑOS - <span style="font-weight:800">@Model.EndOvocites.ToString()</span></p>
 
 <div class="container">
     <div class="row">
         <div class="col-12 d-flex justify-content-center">
-            <canvas id="myChart"></canvas>
+            <canvas id="myChart" height="200"></canvas>
         </div>
     </div>
 </div>

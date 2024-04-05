@@ -13,13 +13,21 @@ namespace ProyectoMerck.Utilities
         public static string GetCultureFromCookie(string cookieString)
         {
 
-            string culture = cookieString;
+            if(cookieString == null)
+            {
+                return "es-AR";
+            }
+            else
+            {
+                string culture = cookieString;
 
-            string[] culturePart = culture.Split('|');
+                string[] culturePart = culture.Split('|');
 
-            string realCulture = culturePart[0].Substring(2);
+                string realCulture = culturePart[0].Substring(2);
 
-            return realCulture;
+                return realCulture;
+            }
+
         }
 
     }
