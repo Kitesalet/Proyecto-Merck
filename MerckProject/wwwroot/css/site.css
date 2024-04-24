@@ -8,6 +8,63 @@
     /* You can specify font-weight and font-style here if needed */
 }
 
+.footer-detail {
+    padding-top: 30px !important;
+}
+
+.footer-legal{
+    text-align:center;
+}
+
+@media (min-width: 0) and (max-width: 767px) {
+    .footer-legal {
+        text-align: left;
+    }
+}
+
+.small{
+    text-align:center;
+}
+
+.legal-titles h1,
+.legal-titles h2,
+.legal-titles h3,
+.legal-titles h4 {
+    font-family: 'Merck';
+    src: url('/fonts/merck.ttf') format('truetype');
+    color: #2EBDCD;
+}
+
+ul.unstyled {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.flush-bottom {
+    margin-bottom: 0 !important;
+}
+
+.footer-legal-item {
+    display: inline;
+    padding-right: 24px !important;
+    padding-left: 24px !important;
+    border-right: 1px solid #454545;
+    line-height: 1;
+    margin-bottom: 30px !important;
+}
+
+@media (min-width: 0) and (max-width: 767px) {
+    .footer-legal-item {
+        display: block;
+        padding: 0 !important;
+        border: 0;
+        display: block;
+    }
+}
+
+
+
 .merck-font{
     font-family: 'Merck';
 }

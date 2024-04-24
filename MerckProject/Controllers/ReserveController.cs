@@ -23,7 +23,7 @@ namespace MerckProject.Controllers
             return RedirectToAction("Indicator", "Indicator", new
             {
                 FertilityLevel = fertLevel,
-                CurrentAge = model.SelectedYear,
+                SelectedYear = model.SelectedYear,
                 QuestionUser = model.QuestionUser,
                 OvoCount = Math.Round(model.OvoCount,2)
             });

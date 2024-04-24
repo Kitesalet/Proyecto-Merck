@@ -55,7 +55,15 @@
             <canvas id="myChart" height="200"></canvas>
         </div>
     </div>
+    <div class="row mt-4">
+        <div class="col-12 d-flex justify-content-center">
+            <a id="showAlertButton" style="color:blue; text-decoration:underline">Disclaimer resultados</a>
+        </div>
+    </div>
 </div>
+
+
+
 
 <script src="~/js/chart.js"></script>
 <script>
@@ -71,4 +79,20 @@
         drawChart2(dataValues, foliName);
     });
 
+</script>
+
+<script>
+    document.getElementById('showAlertButton').addEventListener('click', function () {
+        Swal.fire({
+            title: 'Información',
+            html: `
+                    <p>Los resultados obtenidos se basan en <a href="#citaEstudio">[cita estudio]</a>.</p>
+                    <p>El método utilizado es meramente estimativo, y no representa una medición precisa de tu reserva ovárica.</p>
+                    <p>La presente herramienta no constituye consejo médico de ningún tipo ni reemplaza la opinión de un médico.</p>
+                    <p>Merck no recolecta ninguno de los datos personales que ingreses dentro de este sitio web, sin perjuicio de la eventual recolección de data de navegación o cookies conforme a nuestra <a href="/Legal/Privacy">Política de Privacidad</a>.</p>
+                `,
+            icon: 'info',
+            confirmButtonText: 'Comprendido!'
+        });
+    });
 </script>
