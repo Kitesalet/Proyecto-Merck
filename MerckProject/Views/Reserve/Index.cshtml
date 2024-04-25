@@ -27,7 +27,7 @@
         </div>
         <div class="row">
             <div class="col offset-3">
-                <h3 class="text-light">@Localizer["ActualAge"].Value</h3>
+                <h3 class="text-light">EDAD ACTUAL</h3>
             </div>
         </div>
         <div class="row">
@@ -37,7 +37,7 @@
         </div>
         <div class="row d-flex justify-content-center">
             <a class="btn col-5 col-md-4 p-2 my-5 border-light merck-button" href="@Url.Action("RedirectIndicator", "Reserve", new {SelectedYear = @Model.SelectedYear})">
-                <span class="m-button-span">@Localizer["KnowMore"].Value</span>
+                <span class="m-button-span">Quiero saber más!</span>
                 <span class="spinner-container"></span>    
             </a>
         </div>
@@ -45,7 +45,9 @@
     <div style="height:50px; background-color: white; border-top-left-radius:30px; border-top-right-radius:30px">
     </div>
 </header>
-    <h3 class="text-center merck-font" style="color:#EA3B95;">@Localizer["FertilityRate"].Value</h3>
+<h3 class="text-center merck-font" style="color:#EA3B95;">
+    Tasa de Fertilidad
+</h3>
 <p class="text-center" style="color:#2EBDCD; font-weight:400; font-size: 12px">Cantidad de Ovocitos Actual (@Model.SelectedYear AÑOS) - <span style="font-weight:800">@Model.OvoCount.ToString()</span></p>
 <p class="text-center" style="color:#2EBDCD; font-weight:400; font-size: 12px">Cantidad de Ovocitos a los @Model.EndAge AÑOS - <span style="font-weight:800">@Model.EndOvocites.ToString()</span></p>
 
@@ -60,8 +62,34 @@
             <a id="showAlertButton" style="color:blue; text-decoration:underline">Disclaimer resultados</a>
         </div>
     </div>
-</div>
 
+    <footer>
+
+        <div class="footer-detail" bis_skin_checked="1">
+            <div class="row" bis_skin_checked="1">
+                <div class="sm-col-6 md-col-12 lg-col-16 xl-col-16" bis_skin_checked="1">
+                    <div class="footer-copyright" bis_skin_checked="1">
+                        <p class="small">© 2024 Merck KGaA, Darmstadt, Alemania y/o sus filiales. Todos los derechos reservados.</p>
+                    </div>
+                </div>
+                <div class="sm-col-6 md-col-12 lg-col-16 xl-col-16" bis_skin_checked="1">
+                    <div class="footer-legal" bis_skin_checked="1">
+                        <ul class="unstyled small flush-bottom">
+                            <li class="footer-legal-item">
+                                <a asp-action="Privacy" asp-controller="Legal" style="text-decoration:none"><strong class="text-black">Declaración de Privacidad</strong></a>
+                            </li>
+                            <li class="footer-legal-item">
+                                <a asp-action="TyC" asp-controller="Legal" style="text-decoration:none"><strong class="text-black">Términos y Condiciones</strong></a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</div>
 
 
 

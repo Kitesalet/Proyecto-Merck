@@ -16,6 +16,11 @@
     text-align:center;
 }
 
+.legal-bg-color {
+    background-color: #FFC832;
+}
+
+
 @media (min-width: 0) and (max-width: 767px) {
     .footer-legal {
         text-align: left;
@@ -32,7 +37,7 @@
 .legal-titles h4 {
     font-family: 'Merck';
     src: url('/fonts/merck.ttf') format('truetype');
-    color: #2EBDCD;
+    color: #503291;
 }
 
 ul.unstyled {
