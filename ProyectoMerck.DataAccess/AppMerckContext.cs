@@ -160,7 +160,8 @@ public class AppMerckContext : IdentityDbContext<IdentityUser>
                 Longitude = -58.387263729958455,
                 Title = "CEGYR",
                 Subtitle = "Centro Fertilidad",
-                ProvinceLocationId = 1
+                ProvinceLocationId = 1,
+                Email = "mercktest111@gmail.com"
             }, new Location()
             {
                 Id = 2,
@@ -168,7 +169,8 @@ public class AppMerckContext : IdentityDbContext<IdentityUser>
                 Longitude = -58.43026097362766,
                 Title = "CER",
                 Subtitle = "Centro Fertilidad",
-                ProvinceLocationId = 2
+                ProvinceLocationId = 2,
+                Email = "mercktest111@gmail.com"
             }, new Location()
             {
                 Id = 3,
@@ -176,7 +178,8 @@ public class AppMerckContext : IdentityDbContext<IdentityUser>
                 Longitude = -58.46010393197798,
                 Title = "CIMER",
                 Subtitle = "Centro Fertilidad",
-                ProvinceLocationId = 3
+                ProvinceLocationId = 3,
+                Email = "mercktest111@gmail.com"
             }, new Location()
             {
                 Id = 4,
@@ -184,7 +187,8 @@ public class AppMerckContext : IdentityDbContext<IdentityUser>
                 Longitude = -58.40181033949003,
                 Title = "CRECER",
                 Subtitle = "Centro Fertilidad",
-                ProvinceLocationId = 4
+                ProvinceLocationId = 4,
+                Email = "mercktest111@gmail.com"
             }, new Location()
             {
                 Id = 5,
@@ -192,7 +196,8 @@ public class AppMerckContext : IdentityDbContext<IdentityUser>
                 Longitude = -58.39718927947347,
                 Title = "HIALITUS",
                 Subtitle = "Centro Fertilidad",
-                ProvinceLocationId = 5
+                ProvinceLocationId = 5,
+                Email = "mercktest111@gmail.com"
             }, new Location()
             {
                 Id = 6,
@@ -200,7 +205,8 @@ public class AppMerckContext : IdentityDbContext<IdentityUser>
                 Longitude = -58.425645264604945,
                 Title = "HOSPITAL ITALIANO",
                 Subtitle = "Centro Fertilidad",
-                ProvinceLocationId = 5
+                ProvinceLocationId = 5,
+                Email = "mercktest111@gmail.com"
             }, new Location()
             {
                 Id = 7,
@@ -208,7 +214,8 @@ public class AppMerckContext : IdentityDbContext<IdentityUser>
                 Longitude = -58.39973481534347,
                 Title = "IFER",
                 Subtitle = "Centro Fertilidad",
-                ProvinceLocationId = 4
+                ProvinceLocationId = 4,
+                Email = "mercktest111@gmail.com"
             }, new Location()
             {
                 Id = 8,
@@ -216,7 +223,8 @@ public class AppMerckContext : IdentityDbContext<IdentityUser>
                 Longitude = -58.44761812883586,
                 Title = "WEFIV",
                 Subtitle = "Centro Fertilidad",
-                ProvinceLocationId = 3
+                ProvinceLocationId = 3,
+                Email = "mercktest111@gmail.com"
             }
             );
 

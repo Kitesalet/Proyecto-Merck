@@ -20,6 +20,8 @@ namespace ProyectoMerck.Models.Entities
 
         public string Subtitle { get; set; }
 
+        public string Email { get; set; }
+
 
         [ForeignKey(nameof(ProvinceLocation))]
         public int ProvinceLocationId { get; set; }

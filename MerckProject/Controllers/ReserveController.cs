@@ -7,8 +7,16 @@ namespace MerckProject.Controllers
 {
     public class ReserveController : Controller
     {
+        private readonly ILogger<ReserveController> _logger;
+
+        public ReserveController(ILogger<ReserveController> logger)
+        {
+            _logger = logger;
+        }
         public IActionResult Index(ReserveVM model)
         {
+            _logger.LogInformation("Accesing Reserve Index screen");
+
 
             return View(model);
 
@@ -18,6 +26,8 @@ namespace MerckProject.Controllers
         {
 
             FertilityLevel fertLevel = FertCalculator.FertLevelCalculator(model.SelectedYear);
+
+            _logger.LogInformation("Clicked the redirect button in Reserve Controller with the data aside");
 
 
             return RedirectToAction("Indicator", "Indicator", new

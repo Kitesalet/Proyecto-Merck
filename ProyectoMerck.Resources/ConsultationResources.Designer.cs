@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MerckProject.Resources {
+namespace ProyectoMerck.Resources {
     using System;
     
     

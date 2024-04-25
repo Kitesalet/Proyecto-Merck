@@ -17,12 +17,14 @@ namespace MerckProject.Controllers
         private readonly IConsultationService _service;
         private readonly AppMerckContext _context;
         private readonly IMapper _mapper;
+        private readonly ILogger<ConsultationController> _logger;   
 
-        public ConsultationController(IConsultationService service, AppMerckContext context, IMapper mapper)
+        public ConsultationController(IConsultationService service, AppMerckContext context, IMapper mapper, ILogger<ConsultationController> logger)
         {
             _context = context;
             _service = service;
             _mapper = mapper;
+            _logger = logger;
 
         }
 
@@ -38,6 +40,8 @@ namespace MerckProject.Controllers
 
             model.LocationsList = locationsDto;
             model.Locations = JsonConvert.SerializeObject(locationsDto, Formatting.Indented);
+
+            _logger.LogInformation("Accesed consultation screen");
 
             return View("Consultation", model);
         }
@@ -158,6 +162,8 @@ namespace MerckProject.Controllers
                 })
                 .ToList();
 
+            _logger.LogInformation("Accesed clinic db and turned them into a json file");
+
             return Json(leakedClinics);
         }
 
@@ -165,6 +171,8 @@ namespace MerckProject.Controllers
         [HttpPost]
         public async Task<IActionResult> AddConsultation(ConsultationViewModel model)
         {
+            _logger.LogInformation("Submitted the consultation formulary");
+
             if (ModelState.IsValid)
             {
 
@@ -173,6 +181,8 @@ namespace MerckProject.Controllers
                 var flag = await _service.CreateConsultationAsync(model);
 
                 TempData["Success"] = "True";
+
+                _logger.LogInformation("A consultation was saved into the database succesfully");
 
                 return RedirectToAction("Index", "Fertform");
 
@@ -204,15 +214,20 @@ namespace MerckProject.Controllers
                 //    text: c => c.CountryName
                 //);
 
+
+
                 model.CountryList = await _context.Countries.ToListAsync();
                 model.ProvincList = await _context.Provinces.ToListAsync();
                 model.ProvinceLocationList = await _context.ProvinceLocations.ToListAsync();
                 var locationsDto = await _context.Locations.ToListAsync();
+                model.SubmitError = true;
 
                 model.LocationsList = locationsDto;
                 model.Locations = JsonConvert.SerializeObject(locationsDto, Formatting.Indented);
 
                 TempData["Error"] = "El envio del formulario no se pudo enviar correctamente";
+
+                _logger.LogError("There has been an error sending the formulary");
 
                 return View("Consultation", model);
 

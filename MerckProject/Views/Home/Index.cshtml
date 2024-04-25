@@ -17,12 +17,12 @@
     <header class="header-bg-color">
         <nav class="navbar navbar-expand-sm navbar-light">
             <div class="container-fluid">
- @*                <form action="@Url.Action("ChangeCulture","Language")" method="get" id="languageForm" class="m-2">
+                <form action="@Url.Action("ChangeCulture","Language")" method="get" id="languageForm" class="m-2">
                     <input type="hidden" id="cultureInput" name="culture" />
                     <span value="en"  class="btn"><img src="~/Imagenes/Flag_of_the_United_Kingdom.png" class="flag-small @(Model.CurrentCulture == "en" ? "flag-selected" : "")" /></span>
                     <span value="pt"  class="btn"><img src="~/Imagenes/Flag_of_Portugal.svg" class="flag-small @(Model.CurrentCulture == "pt" ? "flag-selected" : "")" /></span>
                     <span value="es"  class="btn"><img src="~/Imagenes/Spain_flag_300.png" class="flag-small @(Model.CurrentCulture == "es" ? "flag-selected" : "")" /></span>
-                </form> *@
+                </form>
             </div>
         </nav>
     </header>
@@ -39,7 +39,7 @@
             <div class="col-12">
                 <a id="m-button" class="btn py-4 my-5 border-light merck-button" style="" href="@Url.Action("Index", "Fertform")">
                     <span class="spinner-container"></span>
-                    <span class="m-button-span">@(Localizer["Start"])</span>
+                    <span class="m-button-span">@* @(Localizer["Start"]) *@Comenzar</span>
                 </a>
             </div>
         </div>

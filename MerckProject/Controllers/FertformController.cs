@@ -11,19 +11,30 @@ namespace MerckProject.Controllers
     public class FertformController : Controller
     {
         private const string _ValidationResourceLocation = "ProyectoMerck.Resources.ValidationResources";
+        private readonly ILogger<FertformController> _logger;
+
+        public FertformController(ILogger<FertformController> logger)
+        {
+            _logger = logger;
+        }
 
         public IActionResult Index()
         {
-
+            _logger.LogInformation("Accesed fertform index screen");
             return View();
         }
 
         [HttpPost]
         public IActionResult FertilityCalculator(FertformVM model) //dxdfsojgofgipdfl
         {
-            if(model.SelectedDate == DateTime.MinValue)
+            _logger.LogInformation("Submitted the formulary from the fertfom index screen");
+
+
+            if (model.SelectedDate == DateTime.MinValue)
             {
                 TempData["Error"] = "Por favor, seleccione una fecha valida";
+
+                _logger.LogError("Invalid age setted up at the fertility form");
 
                 return View(nameof(Index), model);
             }
@@ -72,6 +83,8 @@ namespace MerckProject.Controllers
                 {
                     TempData["Error"] = $"No puede elegir esa opcion teniendo su edad actual!";
                     ModelState.AddModelError("InvalidAges", $"No puede elegir esa opcion teniendo su edad actual!");
+                    _logger.LogError("There was an error in the selected option whilst having sleected an the users actual age");
+
                     return View("Index", model);
                 }
 
@@ -387,6 +400,8 @@ namespace MerckProject.Controllers
                 string ovoMatrixJson = JsonConvert.SerializeObject(dataValues);
 
 
+                _logger.LogInformation("The fertility form was submitted succesfully");
+
                 return RedirectToAction("Index", "Reserve", new
                 {
                     OvoCount = folicularOvocites,
@@ -402,6 +417,8 @@ namespace MerckProject.Controllers
                 // Manejar el caso de error si la conversión falla
                 TempData["Error"] = $"No puede elegir esa opción teniendo {questionUserInt}!";
                 ModelState.AddModelError("InvalidAges", $"No puede elegir esa opción teniendo {questionUserInt}!");
+                _logger.LogError("Fertility form was submitted unsuccesfully because of the current users age");
+
                 return View("Index", model);
             }
         }

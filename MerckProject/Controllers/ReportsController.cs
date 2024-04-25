@@ -14,21 +14,25 @@ namespace MerckProject.Controllers
 
         private readonly AppMerckContext _context;
         private readonly IConsultationService _service;
+        private readonly ILogger<ReportsController> _logger;
 
 
-        public ReportsController(AppMerckContext context, IConsultationService service)
+        public ReportsController(AppMerckContext context, IConsultationService service, ILogger<ReportsController> logger)
         {
             _service = service;
             _context = context;
+            _logger = logger;
         }
         public IActionResult Index()
         {
+            _logger.LogInformation("Accesing Reports Index screen");
             return View();
         }
 
 
         public IActionResult Reports()
         {
+            _logger.LogInformation("Accesed Reports Reports screen");
             return View();
         }
 
@@ -37,9 +41,15 @@ namespace MerckProject.Controllers
 
         public IActionResult PrintPdf(ExportViewModel model)
         {
+            _logger.LogInformation("Attempting to create a pdf file");
+
+
             if (ModelState.IsValid == false)
             {
                 TempData["Error"] = "Las fechas ingresadas son invalidas!";
+
+                _logger.LogError("Dates selected in reports formulary were invalid");
+
 
                 return View("Reports", model);
             }
@@ -50,6 +60,7 @@ namespace MerckProject.Controllers
             {
 
                 TempData["Error"] = "Las fechas ingresadas son invalidas!";
+                _logger.LogError("Dates selected in reports formulary were invalid");
 
                 return View("Reports", model);
             }
@@ -79,7 +90,8 @@ namespace MerckProject.Controllers
                 })
                 .ToList();
 
-            
+            _logger.LogInformation("Creating and downloading a pdf file with the consultations data");
+
 
             return new Rotativa.AspNetCore.ViewAsPdf("/Views/Reports/PrintPdf.cshtml", consultas)
             {
@@ -93,9 +105,13 @@ namespace MerckProject.Controllers
         public async Task<IActionResult> ExportPeopleToExcel(ExportViewModel model)
         {
 
+            _logger.LogInformation("Attempting to create an excel file");
+
+
             if (ModelState.IsValid == false)
             {
                 TempData["Error"] = "Las fechas ingresadas son invalidas!";
+                _logger.LogError("Dates selected in reports formulary were invalid");
 
                 return View("Reports", model);
             }
@@ -104,9 +120,12 @@ namespace MerckProject.Controllers
             {
 
                 TempData["Error"] = "Las fechas ingresadas son invalidas!";
+                _logger.LogError("Dates selected in reports formulary were invalid");
 
                 return View("Reports", model);
             }
+
+            _logger.LogInformation("Creating an excel file with the consultation data");
 
             return await ExportPeopleToExcel1(model.FechaInicio, model.FechaFin);
 

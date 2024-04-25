@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Razor;
 using ProyectoMerck.DataAccess.Interfaces;
 using ProyectoMerck.Utilities;
+using Serilog;
 using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -33,6 +34,12 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
 builder.Services.AddScoped<IEmailSendeer, EmailSender>();
 builder.Services.AddScoped<IRegexHelper, RegexHelper>();
 
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Information()
+    .WriteTo.File("log/MerckFertility.txt", rollingInterval: RollingInterval.Minute)
+    .CreateLogger();
+
+builder.Host.UseSerilog();
 
 DependencyInyector.InyectServices(builder.Services, builder.Configuration);
 

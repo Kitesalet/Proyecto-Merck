@@ -1,4 +1,9 @@
-﻿
+﻿@inject Microsoft.Extensions.Configuration.IConfiguration configuration
+
+@{
+    string trackingId = configuration["GoogleAnalyticsTrackingId"];
+}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +25,17 @@
     <script type="text/javascript">
         google.charts.load('current', { 'packages': ['corechart'] });
     </script>
+
 </head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9KCKFRKCGL"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', '@trackingId');
+</script>
 <body>
     <div>
         <main>

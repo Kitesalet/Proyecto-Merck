@@ -10,10 +10,10 @@ using ProyectoMerck.Models.Entities;
 using ProyectoMerck.Models.ViewModels;
 using ProyectoMerck.Utilities;
 using System.Resources;
-using MerckProject.Resources;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.IdentityModel.Abstractions;
 using Microsoft.EntityFrameworkCore;
+using ProyectoMerck.Resources;
 
 namespace ProyectoMerck.Business.Services
 {
@@ -51,12 +51,12 @@ namespace ProyectoMerck.Business.Services
                     Url = model.Url
                 };
 
-                string? clinicName = await _dbContext.Locations
+                Location clinic = await _dbContext.Locations
                                                     .Where(c => c.Id == model.SelectedLocationIndex)
-                                                    .Select(c => c.Title)
                                                     .FirstOrDefaultAsync();
 
-                consultation.ClinicName = clinicName;
+                consultation.ClinicName = clinic.Title;
+                
 
                 flag = await _context.ConsultationRepository.Add(consultation);
 
@@ -69,9 +69,9 @@ namespace ProyectoMerck.Business.Services
                 var emailBody = manager.GetString("EmailBody");
 
                 var emailSubjectFormatted = String.Format(emailSubject, new Random().Next(1, 9999999));
-                var emailBodyFormatted = String.Format(emailBody, clinicName, model.Email, model.ReasonConsultation);
+                var emailBodyFormatted = String.Format(emailBody, clinic.Title, model.Email, model.ReasonConsultation);
 
-                await _mailSender.EmailAsync(model.Email, emailSubjectFormatted, emailBodyFormatted);
+                await _mailSender.EmailAsync(clinic.Email, emailSubjectFormatted, emailBodyFormatted);
 
                 return flag;
             }
