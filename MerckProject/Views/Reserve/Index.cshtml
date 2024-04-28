@@ -2,6 +2,10 @@
 @using Microsoft.AspNetCore.Mvc.Localization
 @inject IViewLocalizer Localizer
 
+@{
+    ViewData["Title"] = "Reserve";
+}
+
 <header style="background-color:#EA3B95;">
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light mb-3 ">
         <div class="container-fluid">
@@ -36,7 +40,7 @@
             </div>
         </div>
         <div class="row d-flex justify-content-center">
-            <a class="btn col-5 col-md-4 p-2 my-5 border-light merck-button" href="@Url.Action("RedirectIndicator", "Reserve", new {SelectedYear = @Model.SelectedYear})">
+            <a id="reserveButton" class="btn col-5 col-md-4 p-2 my-5 border-light merck-button" href="@Url.Action("RedirectIndicator", "Reserve", new {SelectedYear = @Model.SelectedYear})">
                 <span class="m-button-span">Quiero saber más!</span>
                 <span class="spinner-container"></span>    
             </a>
@@ -45,7 +49,7 @@
     <div style="height:50px; background-color: white; border-top-left-radius:30px; border-top-right-radius:30px">
     </div>
 </header>
-<h3 class="text-center merck-font" style="color:#EA3B95;">
+<h3 id="tasaFertilidad" class="text-center merck-font" style="color:#EA3B95;">
     Tasa de Fertilidad
 </h3>
 <p class="text-center" style="color:#2EBDCD; font-weight:400; font-size: 12px">Cantidad de Ovocitos Actual (@Model.SelectedYear AÑOS) - <span style="font-weight:800">@Model.OvoCount.ToString()</span></p>
@@ -106,6 +110,25 @@
     google.charts.setOnLoadCallback(function () {
         drawChart2(dataValues, foliName);
     });
+
+
+
+    document.getElementById('tasaFertilidad').addEventListener('click', function () {
+
+        gtag('event', 'reserve_button_clicked', {
+            'event_category': 'Button Click',
+            'event_label': 'Reserve Button Clicked'
+        });
+
+    })
+
+    document.getElementById('tasaFertilidad').addEventListener('click', function () {
+    
+        gtag('event', 'fertility_text_clicked', {
+            'event_category': 'Text Click',
+            'event_label': 'Fertility Text Clicked!'
+        });
+    })
 
 </script>
 

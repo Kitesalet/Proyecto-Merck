@@ -4,7 +4,7 @@
 @inject IViewLocalizer Localizer
 
 @{
-    ViewData["Title"] = "Consutation";
+    ViewData["Title"] = "Consultation";
 }
 
 <header class="header-bg-color">
@@ -62,7 +62,7 @@
         @Html.HiddenFor(c => c.Locations)
         @Html.HiddenFor(c => c.SelectedLocationIndex, new { id = "SelectedLocationIndex" })
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="row">
+        <div class="row d-none" >
             <div class="col text-center">
                 <img src="~/imagenes/FotoUbicacion.png" class="img-fluid" />
             </div>

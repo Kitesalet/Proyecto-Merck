@@ -81,7 +81,7 @@ namespace MerckProject.Controllers
 
                 if (errorFlag)
                 {
-                    TempData["Error"] = $"No puede elegir esa opcion teniendo su edad actual!";
+                    TempData["Error"] = $"No puede elegir esa opcion teniendo su edad: {model.SelectedYear}!";
                     ModelState.AddModelError("InvalidAges", $"No puede elegir esa opcion teniendo su edad actual!");
                     _logger.LogError("There was an error in the selected option whilst having sleected an the users actual age");
 

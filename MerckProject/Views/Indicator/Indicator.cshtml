@@ -58,7 +58,7 @@
             @switch (Model.SelectedYear)
             {
                 case >= 35:
-                    <div id="Height" class="text-center">
+                    <div id="Height" class="text-start">
                         <p>
                             La <span style="text-decoration:underline; color:aqua; font-weight:bold" id="reservaOvarica">reserva ovárica</span>
                             de las mujeres disminuye gradualmente tanto en cantidad como en calidad con el paso del
@@ -101,7 +101,7 @@
                     break;
 
                 case < 35:
-                    <div id="Medium" class="text-center">
+                    <div id="Medium" class="text-start">
                         <p>
                             La <span style="text-decoration:underline; color:aqua; font-weight:bold" id="reservaOvarica">reserva ovárica</span> de las mujeres disminuye gradualmente
                             tanto en cantidad como en calidad con el paso del tiempo.<sup><a href="#ref1">1</a></sup>
@@ -181,7 +181,7 @@
         </div>
         </div>
         <div class="d-flex align-items-center justify-content-center">
-            <a asp-controller="Consultation" asp-action="Consultation" class="btn col-5 col-md-4 p-2 my-5 border-light merck-button">
+            <a id="indicatorButton" asp-controller="Consultation" asp-action="Consultation" class="btn col-5 col-md-4 p-2 my-5 border-light merck-button">
                 <span class="m-button-span">@Localizer["ContactCenter"]</span>
                 <span class="spinner-container"></span>
             </a>
@@ -216,3 +216,9 @@
 
 </div>
 
+
+<script>
+    document.getElementById('indicatorButton').addEventListener('click',function(){
+        gtag('event', 'indicator_button_clicked');
+    })
+</script>

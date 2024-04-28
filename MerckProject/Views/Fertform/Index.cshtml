@@ -2,7 +2,11 @@
 @inject IViewLocalizer Localizer
 @model ProyectoMerck.Models.ViewModels.FertformVM
 
-@using (Html.BeginForm("FertilityCalculator", "Fertform", HttpMethod.Post))
+@{
+    ViewData["Title"] = "Fertform";
+}
+
+@using (Html.BeginForm("FertilityCalculator", "Fertform", FormMethod.Post, new { id = "fertFormulary" }))
 {
     <header class="header-bg-color">
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light">
@@ -86,7 +90,7 @@
                             new SelectListItem { Text = "No lo sé aún", Value = "0" }
                             };
 
-                        @Html.DropDownListFor(model => model.QuestionUser, ageOptions, new { @class = "form-control" })
+                                        @Html.DropDownListFor(model => model.QuestionUser, ageOptions, new { @class = "form-control" })
                     }
                 </div>
             </div>
@@ -137,3 +141,62 @@
 
 }
 
+ <script>
+
+     document.getElementById('fertFormulary').addEventListener('submit',function(e){
+         e.preventDefault();
+         
+         console.log(this);
+
+         let formData = new FormData(this);
+
+         
+        var selectedOption = formData.get('QuestionUser');
+
+        let birthdateString = formData.get('SelectedDate');
+
+        switch(selectedOption){
+            case '3':
+                selectedOption = '0-3 Años'
+                break;
+
+            case '6':
+                selectedOption = '4-6 Años'
+                break;
+
+            case '10':
+                selectedOption = '7-10 Años'
+                break;
+
+            case '11':
+                selectedOption = '+10 Años'
+                break;
+
+            case '0':
+                selectedOption = 'No lo se aun';
+                break;
+        
+        }
+
+        var birthdate = new Date(birthdateString);
+        var currentDate = new Date();
+
+        var age = currentDate.getFullYear() - birthdate.getFullYear();
+
+        //Se fija si ya cumplio anos o no en el ano actual
+        if (currentDate.getMonth() < birthdate.getMonth() ||
+            (currentDate.getMonth() === birthdate.getMonth() && currentDate.getDate() < birthdate.getDate())) {
+            age--;
+        }
+
+        gtag('event','fertility_form_submitted',{
+            'event_category': 'Form Submission',
+            'event_label': 'Fertility Formulary Submitted',
+            'edad': age,
+            'opcion_seleccionada': selectedOption
+        })
+
+         this.submit();
+
+     })
+</script>
