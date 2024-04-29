@@ -17,6 +17,7 @@ namespace MerckProject.Controllers
         {
             _logger.LogInformation("Accesing Reserve Index screen");
 
+            
 
             return View(model);
 

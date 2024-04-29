@@ -40,7 +40,7 @@
             </div>
         </div>
         <div class="row d-flex justify-content-center">
-            <a id="reserveButton" class="btn col-5 col-md-4 p-2 my-5 border-light merck-button" href="@Url.Action("RedirectIndicator", "Reserve", new {SelectedYear = @Model.SelectedYear})">
+            <a id="reserveButton" class="btn col-5 col-md-4 p-2 my-5 merck-button" href="@Url.Action("RedirectIndicator", "Reserve", new {SelectedYear = @Model.SelectedYear})">
                 <span class="m-button-span">Quiero saber más!</span>
                 <span class="spinner-container"></span>    
             </a>
@@ -61,6 +61,11 @@
             <canvas id="myChart" height="200"></canvas>
         </div>
     </div>
+<small>
+    <em>
+            *Estimación teórica de ovocitos de buena calidad
+    </em>
+</small>
     <div class="row mt-4">
         <div class="col-12 d-flex justify-content-center">
             <a id="showAlertButton" text-decoration:none"><strong class="text-black">Disclaimer resultados</strong></a>
@@ -137,7 +142,8 @@
         Swal.fire({
             title: 'Información',
             html: ` <div>
-                        <i class="bi bi bi-journal-text" style="font-size: 50px; color: #6c757d; margin-right: 10px;"></i>
+                        <i class="bi bi bi-book" style="font-size: 50px; color: #6c757d; margin-right: 10px; padding-bottom:15px"></i>
+                        <br>
                             <div class="text-start">
                                 <p>Los resultados obtenidos se basan en <a href="#citaEstudio">[cita estudio]</a>.</p>
                                 <p>El método utilizado es meramente estimativo, y no representa una medición precisa de tu reserva ovárica.</p>

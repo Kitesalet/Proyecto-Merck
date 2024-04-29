@@ -53,6 +53,12 @@
     </div>
 </div>
 <div class="container">
+    <div class="d-flex align-items-center justify-content-center">
+        <a id="indicatorButton" asp-controller="Consultation" asp-action="Consultation" class="btn col-5 col-md-4 p-2 my-5 border-light merck-button">
+            <span class="m-button-span">Quiero saber más</span>
+            <span class="spinner-container"></span>
+        </a>
+    </div>
     <div class="row justify-content-center align-items-center h-100">
         <div class="col-12">
             @switch (Model.SelectedYear)
@@ -60,7 +66,7 @@
                 case >= 35:
                     <div id="Height" class="text-start">
                         <p>
-                            La <span style="text-decoration:underline; color:aqua; font-weight:bold" id="reservaOvarica">reserva ovárica</span>
+                            La <span style="color:#503291; font-weight:bold" id="reservaOvarica">reserva ovárica</span>
                             de las mujeres disminuye gradualmente tanto en cantidad como en calidad con el paso del
                             tiempo.<sup><a href="#ref1">1</a></sup> Este declive es particularmente evidente a partir de los 30 años, acelerándose significativamente después de los 35,
                             lo que afecta directamente las probabilidades de lograr un embarazo.
@@ -68,7 +74,7 @@
                         <br />
                         <p>
                             Al nacer, una mujer tiene alrededor de 1 millón de
-                            <span style="text-decoration:underline; color:aqua; font-weight:bold" id="ovocitos">ovocitos</span>,
+                            <span style="color:#503291; font-weight:bold" id="ovocitos">ovocitos</span>,
                             pero para la primera menstruación solo quedan entre 300.000 y 400.000.
                             <sup><a href="#ref2">2</a></sup> Aunque la etapa más óptima para la fertilidad es entre los 20 y los 30 años,
                             la postergación de la maternidad por diversas razones, como profesionales,
@@ -76,7 +82,7 @@
                         </p>
                         <br />
                         <p>
-                            La <span style="text-decoration:underline; color:aqua; font-weight:bold" id="criopreservacion">criopreservación de ovocitos</span>
+                            La <span style="color:#503291; font-weight:bold" id="criopreservacion">criopreservación de ovocitos</span>
                             ofrece a las mujeres la opción de preservar
                             su fertilidad y tener la libertad de decidir
                             cuándo desean embarazarse, independientemente de su edad. Este proceso les otorga
@@ -85,7 +91,7 @@
                         </p>
                         <br />
                         <p>
-                            La <span style="text-decoration:underline; color:aqua; font-weight:bold" id="criopreservacion">criopreservación de ovocitos</span>
+                            La <span style="color:#503291; font-weight:bold" id="criopreservacion">criopreservación de ovocitos</span>
                             es una opción valiosa para todas las mujeres en edad fértil y dichos beneficios son mayores a menor edad.<sup><a href="#ref4">4</a></sup>
                         </p>
                         <br />
@@ -103,7 +109,7 @@
                 case < 35:
                     <div id="Medium" class="text-start">
                         <p>
-                            La <span style="text-decoration:underline; color:aqua; font-weight:bold" id="reservaOvarica">reserva ovárica</span> de las mujeres disminuye gradualmente
+                            La <span style="color:#503291; font-weight:bold" id="reservaOvarica">reserva ovárica</span> de las mujeres disminuye gradualmente
                             tanto en cantidad como en calidad con el paso del tiempo.<sup><a href="#ref1">1</a></sup>
                             Este declive es particularmente evidente a partir de los 30
                             años, acelerándose significativamente después de los 35,
@@ -112,7 +118,7 @@
                         </p>
                         <br />
                         <p>
-                            Al nacer, una mujer tiene alrededor de 1 millón de <span style="text-decoration:underline; color:aqua; font-weight:bold" id="ovocitos">ovocitos</span>,
+                            Al nacer, una mujer tiene alrededor de 1 millón de <span style=" color:#503291; font-weight:bold" id="ovocitos">ovocitos</span>,
                             pero para la primera menstruación solo quedan entre 300.000 y
                             400.000.<sup><a href="#ref2">2</a></sup> Aunque la etapa más óptima para la fertilidad es entre
                             los 20 y los 30 años, la postergación de la maternidad por diversas
@@ -121,7 +127,7 @@
                         </p>
                         <br />
                         <p>
-                            La <span style="text-decoration:underline; color:aqua; font-weight:bold" id="criopreservacion">criopreservación de ovocitos</span> ofrece a las mujeres la opción de
+                            La <span style=" color:#503291; font-weight:bold" id="criopreservacion">criopreservación de ovocitos</span> ofrece a las mujeres la opción de
                             preservar su fertilidad y tener la libertad de decidir cuándo
                             desean embarazarse, independientemente de su edad. Este proceso
                             les otorga la libertad de planificar su futura maternidad y las
@@ -129,8 +135,8 @@
                         </p>
                         <br />
                         <p>
-                            Realizar la <span style="text-decoration:underline; color:aqua; font-weight:bold" id="criopreservacion">criopreservación</span> antes de los 35 años asegura una mayor cantidad de
-                            <span style="text-decoration:underline; color:aqua; font-weight:bold" id="ovocitos">ovocitos</span> y de mejor calidad. La utilización de ovocitos criopreservados en el
+                            Realizar la <span style="color:#503291; font-weight:bold" id="criopreservacion">criopreservación</span> antes de los 35 años asegura una mayor cantidad de
+                            <span style=" color:#503291; font-weight:bold; " id="ovocitos">ovocitos</span> y de mejor calidad. La utilización de ovocitos criopreservados en el
                             futuro puede aumentar las probabilidades de lograr un recién nacido vivo y sano.<sup><a href="#ref4">4</a></sup>
                         </p>
                         <br />
@@ -180,12 +186,7 @@
             </ol>
         </div>
         </div>
-        <div class="d-flex align-items-center justify-content-center">
-            <a id="indicatorButton" asp-controller="Consultation" asp-action="Consultation" class="btn col-5 col-md-4 p-2 my-5 border-light merck-button">
-                <span class="m-button-span">Quiero saber más</span>
-                <span class="spinner-container"></span>
-            </a>
-        </div>
+
     <footer>
 
         <div class="footer-detail" bis_skin_checked="1">

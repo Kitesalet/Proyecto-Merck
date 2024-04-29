@@ -8,6 +8,14 @@
     /* You can specify font-weight and font-style here if needed */
 }
 
+.fixed-image {
+    max-width: 100%;
+    height: auto;
+    width: 110px; /* Adjust the width as needed */
+    max-height: 120px; /* Adjust the max-height as needed */
+}
+
+
 .footer-detail {
     padding-top: 30px !important;
 }
@@ -179,10 +187,9 @@ html {
 }
 
 .merck-button {
-    font-weight:bold;
+    font-weight: bold;
     color: white;
-    border-radius: 5px;
-    background-color: darkcyan;
+    background-color: #503291;
 }
 
 
@@ -267,7 +274,7 @@ html {
 .submit-button {
     color: white;
     border-radius: 50px;
-    background-color: darkcyan;
+    background-color: #503291;
 }
 
 .clinic-container-error {
