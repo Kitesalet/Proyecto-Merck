@@ -28,11 +28,11 @@
 <div class="row subheader-body">
     <div class="col-md-12">
         <div class="col-12 text-center vh-50 mt-35">
-            <div class="row">
+@*             <div class="row">
                 <div class="d-flex justify-content-center">
                     <img src="/Imagenes/MERCK_LOGO_White_RGB.png" style="height:33px" />
                 </div>
-            </div>
+            </div> *@
             <div class="text-center subheader-div">
                 <div class="row align-items-center">
                     <div class="col">
@@ -58,11 +58,12 @@
 <div class="container">
 
 @using (Html.BeginForm("AddConsultation", "Consultation", FormMethod.Post))
-{
+{       
+        <input type="hidden" name="SelectedCountry" id="SelectedCountry" value="2"/>
         @Html.HiddenFor(c => c.Locations)
         @Html.HiddenFor(c => c.SelectedLocationIndex, new { id = "SelectedLocationIndex" })
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="row d-none" >
+@*         <div class="row" >
             <div class="col text-center">
                 <img src="~/imagenes/FotoUbicacion.png" class="img-fluid" />
             </div>
@@ -77,7 +78,7 @@
                          new { @class = "form-select form-select-lg mb-3", aria_label = ".form-select-lg example", id = "countryDropdown" })
                 <span asp-validation-for="Country" class="text-danger"></span>
             </div>
-        </div>
+        </div> *@
 
 
         <div class="row mt-3">
@@ -93,12 +94,12 @@
             {
                 Value = c.Id.ToString(),
                 Text = c.Name
-            }), "--- Seleccione una opción ---",
+            }), "Seleccionar",
                              new { @class = "form-select form-select-lg mb-3", aria_label = ".form-select-lg example", id = "provinceDropdown" })
                 }
                 else
                 {
-                    @Html.DropDownListFor(p => p.SelectedProvince, Enumerable.Empty<SelectListItem>(), "--- Seleccione una opción ---", new { @class = "form-select form-select-lg mb-3", aria_label = ".form-select-lg example", id = "provinceDropdown" })
+                    @Html.DropDownListFor(p => p.SelectedProvince, Enumerable.Empty<SelectListItem>(), "Seleccionar", new { @class = "form-select form-select-lg mb-3", aria_label = ".form-select-lg example", id = "provinceDropdown" })
                 }
                 <span asp-validation-for="Province" class="text-danger"></span>
             </div>
@@ -111,7 +112,7 @@
                 <img src="~/imagenes/FotoUbicacion.png" class="img-fluid" />
             </div>
             <div class="col-8 pe-3">
-                <label asp-for="Location" class="form-label consultation-label">Locacion</label>
+                <label asp-for="Location" class="form-label consultation-label">Localidad</label>
                 @if (Model.SubmitError == true)
                 {
                     @Html.DropDownListFor(p => p.SelectedProvinceLocation, Model.ProvinceLocationList.Select(c =>
@@ -121,14 +122,13 @@
                 Value = c.Id.ToString()
             }
                              )
-                             , "--- Seleccione una opción ---",
+                             , "Seleccionar",
                              new { @class = "form-select form-select-lg mb-3", aria_label = ".form-select-lg example", id = "provinceLocationDropdown" })
 
                 }
                 else
                 {
-                    @Html.DropDownListFor(p => p.SelectedProvinceLocation, Enumerable.Empty<SelectListItem>(), "--- Seleccione una opción ---", new { @class = "form-select form-select-lg mb-3", aria_label = ".form-select-lg example", id = "provinceLocationDropdown" })
-
+                    @Html.DropDownListFor(p => p.SelectedProvinceLocation, Enumerable.Empty<SelectListItem>(), new { @class = "form-select form-select-lg mb-3", aria_label = ".form-select-lg example", id = "provinceLocationDropdown" })
                 }
                 <span asp-validation-for="Location" class="text-danger"></span>
             </div>
@@ -179,9 +179,19 @@
             <div class="col-8 pe-3">
                 <label asp-for="ReasonConsultation" class="form-label consultation-label-2">Motivo consulta</label>
                 <div class="d-flex align-self-end">
+                    @{
+                        var consultMotives = new List<SelectListItem>
+                {
+                new SelectListItem {Text = "Seleccionar", Value = "Seleccionar", Disabled = true, Selected = true },
+                new SelectListItem { Text = "Consulta Fertilidad", Value = "Consulta Fertilidad" },
+                new SelectListItem { Text = "Sin Consulta", Value = "Sin Consulta" },
+                new SelectListItem { Text = "Problemas Fertilidad", Value = "Problemas Fertilidad" },
+                new SelectListItem { Text = "Poder Gestar", Value = "Poder Gestar" }
+                };
 
-                    @Html.TextAreaFor(p => p.ReasonConsultation,
-                             new { @class = "form-control" })
+                        @Html.DropDownListFor(model => model.ReasonConsultation,consultMotives,"Seleccionar", new { @class = "form-control" })
+                    }
+
                 </div>
                     <div class="row">
                     <span asp-validation-for="ReasonConsultation" class="text-danger"></span>
@@ -226,33 +236,16 @@
         </div>
 
 
-        <small class="text-center">
-            <em class="text-center">
-                <p class="text-center"></p>
+        <small class="text-start">
+            <em class="text-start">
+                <p class="text-start"></p>
                 Aquellos Centros que no se encuentren incluidos en el localizador pueden enviar una solicitud a Merck para solicitar su incorporación en el marco de este Projecto.
             </em>
         </small>
 
         <div class="row mt-4">
             <div class="col-12 d-flex justify-content-center">
-                <a id="showAlertButton" style="color:darkblue; text-decoration:underline">Disclaimer Formulario de Contacto y Datos Personales</a>
-            </div>
-        </div>
-
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" data-bs-backdrop="static">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">@Localizer["ConsultAgain"].Value</h5>
-                    </div>
-                    <div class="modal-body">
-                        <h1 class="text-center" style="color:#2EBDCD;">@Localizer["ThankYou"].Value</h1>
-                    </div>
-                    <div class="modal-footer">
-                        <a href="@Url.Action("Index", "Home")" class="btn btn-primary">@Localizer["ConsultAgain"]</a>
-                    </div>
-                </div>
+                <a id="showAlertButton" style="text-decoration:none"><strong class="text-black">Disclaimer Formulario de Contacto y Datos Personales</strong></a>
             </div>
         </div>
 
@@ -299,6 +292,8 @@
     var clinicLocationList = @Html.Raw(Json.Serialize(Model.LocationsList));
     var errorHappened = '@Model.SubmitError'.toLowerCase() === 'true';
 
+    countryHandler(provinceList, '2');
+
 </script>
 
 
@@ -307,268 +302,18 @@
         Swal.fire({
             title: 'Información',
             html: `
-                                <p>Este formulario te ofrece una vía directa de contacto con el centro de fertilidad que has seleccionado, por lo que entiendes y reconoces que tu mensaje está siendo enviado a la plataforma de un tercero, regida por sus propias políticas de privacidad. El centro no recibirá información alguna asociada a tus resultados dentro de la calculadora de reserva ovárica u otras funcionalidades del sitio.</p>
-                                <p>Merck no accede al mensaje que envíes al centro seleccionado ni a alguno de los datos personales que llegues a ingresar en el presente sitio web, sin perjuicio de la eventual recolección de data de navegación o cookies conforme a nuestra <a href="/Legal/Privacy">Política de Privacidad</a>.</p>
-                        `,
-            icon: 'info',
-            confirmButtonText: 'Comprendido!'
+                    <div>
+                            <i class="bi bi bi-journal-text" style="font-size: 50px; color: #6c757d; margin-right: 10px;"></i>
+                        <div class="text-start">
+                            <p>Este formulario te ofrece una vía directa de contacto con el centro de fertilidad que has seleccionado, por lo que entiendes y reconoces que tu mensaje está siendo enviado a la plataforma de un tercero, regida por sus propias políticas de privacidad. El centro no recibirá información alguna asociada a tus resultados dentro de la calculadora de reserva ovárica u otras funcionalidades del sitio.</p>
+                            <p>Merck no accede al mensaje que envíes al centro seleccionado ni a alguno de los datos personales que llegues a ingresar en el presente sitio web, sin perjuicio de la eventual recolección de data de navegación o cookies conforme a nuestra <a href="/Legal/Privacy">Política de Privacidad</a>.</p>
+                        </div>
+                    </div>
+                `,
+            confirmButtonText: 'Volver'
         });
     });
 </script>
-
-
-
-@* @model ConsultationViewModel
-@using ProyectoMerck.Models.ViewModels
-@using Microsoft.AspNetCore.Mvc.Localization
-@inject IViewLocalizer Localizer
-
-@{
-    ViewData["Title"] = "Consutation";
-
-}
-
-<header class="header-bg-color">
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light">
-        <div class="container-fluid">
-            <a href="@Url.Action("Index", "Home")" class="btn"><i class="bi bi-chevron-left header-icon-left"></i></a>
-            <button class="navbar-toggler header-burger" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <i class="bi bi-list text-light"></i>
-            </button>
-            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item">
-                        <a style="color:white" class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Login</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-</header>
-<div class="row subheader-body">
-    <div class="col-md-12">
-        <div class="col-12 text-center vh-50 mt-35">
-            <img class="mb-4 subheader-img" src="~/imagenes/LogoMerck.jpg" />
-            <div class="text-center subheader-div">
-                <div class="row align-items-center">
-                    <div class="col">
-                        <a href="@Url.Action("Indicator","Indicator")">
-                            <img src="~/imagenes/FlechaIzquierda.png" />
-                        </a>
-                    </div>
-                    <div class="col">
-                        <p class="display-4 mb-0">
-                            @Localizer["Consultation"].Value
-                        </p>
-                    </div>
-                    <div class="col"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row rounded-header">
-    </div>
-</div>
-
-
-<div class="container">
-    <form method="post" asp-action="AddConsultation" class="mx-auto mt-5 consultation-form-width">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-        <div class="mb-3 pt-40">
-            <div class="input-group">
-                <div class="input-group-append">
-                    <img src="~/imagenes/FotoUbicacion.png" class="w-80-h-80"/>
-                </div>
-                <div class="input-group-append ml-40">
-                    <label asp-for="Country" class="form-label consultation-label">@Localizer["Country"].Value</label>
-                    <select asp-for="Country" class="form-control consultation-select" id="Country">
-                        <option value="">@Localizer["SelectCountry"].Value</option>
-                        @foreach (var country in Model.Countries)
-                        {
-                            <option value="@country.Value">@country.Text</option>
-                        }
-                        
-                    </select>
-                </div>
-            </div>
-            <span asp-validation-for="Country" class="text-danger"></span>
-        </div>
-
-
-        <div class="mb-3 pt-40">
-            <div class="input-group">
-                <div class="input-group-append">
-                    <img src="~/imagenes/FotoUbicacion.png" class="w-80-h-80"/>
-                </div>
-                <div class="input-group-append ml-20">
-                    <label asp-for="Province" class="form-label consultation-label">Provincia</label>
-                    <select asp-for="Province" name="Province" class="form-control consultation-select" id="Province">
-                        <option value="">@Localizer["SelectProvince"].Value</option>
-                        @foreach (var province in Model.Provinces)
-                        {
-                            <option value="@province.Value">@province.Text</option>
-                        }
-                    </select>
-                </div>
-            </div>
-            <span asp-validation-for="Province" class="text-danger"></span>
-        </div>
-
-
-
-        <div class="mb-3 pt-40">
-            <div class="input-group">
-                <div class="input-group-append">
-                    <img src="~/imagenes/FotoUbicacion.png" class="w-80-h-80"/>
-                </div>
-                <div class="input-group-append ml-20">
-                    <label asp-for="Location" class="form-label consultation-label">@Localizer["Location"].Value</label>
-                    <select asp-for="Location" name="Location" class="form-control consultation-select" id="Location">
-                        <option value="">@Localizer["SelectLocation"].Value</option>
-                        @foreach (var location in Model.Locations)
-                        {
-                            <option value="@location.Value">@location.Text</option>
-                        }
-                    </select>
-                </div>
-            </div>
-            <span asp-validation-for="Location" class="text-danger"></span>
-        </div>
-
-        <div class="mb-3 pt-40">
-            <div class="input-group">
-                <div class="input-group-append">
-                    <img src="~/imagenes/FotoUbicacion.png" class="w-80-h-80" />
-                </div>
-                <div class="input-group-append ml-20">
-                    <label asp-for="Clinic" class="form-label consultation-label">@Localizer["Clinic"].Value</label>
-                    <select asp-for="Clinic" name="Clinic" class="form-control consultation-select" id="Clinic">
-                        <option value="">@Localizer["SelectClinic"]</option>
-                        @foreach (var clinic in Model.Clinics)
-                        {
-                            <option value="@clinic.Value">@clinic.Text</option>
-                        }
-                    </select>
-                </div>
-            </div>
-            <span asp-validation-for="Clinic" class="text-danger"></span>
-        </div>
-
-
-
-        <div class="mb-3 pt-40">
-            <div class="input-group">
-                <div class="input-group-append">
-                    <img src="~/imagenes/FotoEmail.png" class="w-80-h-80" />
-                </div>
-                <div class="input-group-append ml-20">
-                    <label asp-for="Email" class="form-label consultation-label-2">@Localizer["ContactMail"]</label>
-                    <input asp-for="Email" class="form-control consultation-select" placeholder="@Localizer["MailPlaceholder"].Value">
-                </div>
-            </div>
-            <span asp-validation-for="Email" class="text-danger"></span>
-        </div>
-
-
-        <div class="mb-3 pt-40">
-            <div class="input-group">
-                <div class="input-group-append">
-                    <img src="~/imagenes/FotoConsulta.png" class="w-80-h-80"/>
-                </div>
-                <div class="input-group-append ml-20">
-                    <label asp-for="ReasonConsultation" class="form-label consultation-label-2">@Localizer["ReasonConsultation"].Value</label>
-                    <input asp-for="ReasonConsultation" class="form-control consultation-select" placeholder="@Localizer["MotivePlaceholder"].Value">
-                </div>
-            </div>
-            <span asp-validation-for="ReasonConsultation" class="text-danger"></span>
-        </div>
-        <div class="d-flex align-items-center justify-content-center">
-            <button type="submit" class="btn col-5 col-md-4 p-2 my-5 border-light merck-button">
-                <span class="m-button-span">@Localizer["Send"].Value</span>
-                <span class="spinner-container"></span></button>
-        </div>
-    </form>
-</div>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        var provinceSelect = document.getElementById("Province");
-        var locationSelect = document.getElementById("Location");
-        var clinicSelect = document.getElementById("Clinic");
-
-        provinceSelect.addEventListener("change", function () {
-            var selectedProvince = provinceSelect.value;
-
-            // Realiza una solicitud fetch al servidor para obtener las localidades
-            fetch(`/Consultation/GetLocaties?province=${selectedProvince}`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`Error: ${response.statusText}`);
-                    }
-                    return response.json();
-                })
-                .then(locations => {
-                    // Maneja la respuesta del servidor y actualiza el select de localidades
-                    updateLocationSelect(locations);
-                })
-                .catch(error => {
-                    console.error(error);
-                });
-
-            // Realiza una solicitud fetch adicional para obtener las clínicas basadas en la provincia seleccionada
-            fetch(`/Consultation/GetClinics?province=${selectedProvince}`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`Error: ${response.statusText}`);
-                    }
-                    return response.json();
-                })
-                .then(clinics => {
-                    // Maneja la respuesta del servidor y actualiza el select de clínicas
-                    updateClinicSelect(clinics);
-                })
-                .catch(error => {
-                    console.error(error);
-                });
-        });
-
-        function updateLocationSelect(locations) {
-            // Borra las opciones actuales en el select de localidades
-            locationSelect.innerHTML = "<option value=''>" + @Localizer["SelectLocation"].Value + "</option>";
-
-            // Agrega las nuevas opciones basadas en la respuesta del servidor
-            locations.forEach(function (location) {
-                var option = document.createElement("option");
-                option.value = location.value;
-                option.text = location.text;
-                locationSelect.add(option);
-            });
-        }
-
-        function updateClinicSelect(clinics) {
-            // Borra las opciones actuales en el select de clínicas
-            clinicSelect.innerHTML = "<option value=''>" + @Localizer["SelectClinic"] + "</option>";
-
-            // Agrega las nuevas opciones basadas en la respuesta del servidor
-            clinics.forEach(function (clinic) {
-                var option = document.createElement("option");
-                option.value = clinic.text;
-                option.text = clinic.text;
-                clinicSelect.add(option);
-            });
-        }
-
-    });
-</script>
-
-
-
-
-
- *@
-
 
 
 

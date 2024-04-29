@@ -14,12 +14,12 @@ var filteredClinics = JSON.parse(localStorage.getItem('filteredClinics')) || nul
 var provinceValue = parseInt(localStorage.getItem('provinceValue')) || null;
 var locationValue = parseInt(localStorage.getItem('locationValue')) || null;
 var selectedIconId = parseInt(localStorage.getItem('selectedIconId')) || null;
-document.getElementById('countryDropdown').addEventListener('change', function () {
+//document.getElementById('countryDropdown').addEventListener('change', function () {
 
 
-    countryHandler(provinceList, this.value);
+//    countryHandler(provinceList, this.value);
 
-});
+//});
 
 document.getElementById('provinceDropdown').addEventListener('change', function () {
     provinceHandler(locationList, this.value);

@@ -36,7 +36,7 @@
         </div>
         <div class="row">
             <div class="col offset-3">
-                <h3 style="font-weight:300; opacity:0.7" class="text-light">@String.Format(Localizer["ActualAgeNumber"].Value, Model.SelectedYear.ToString())</h3>
+                <h3 style="font-weight:300; opacity:0.7" class="text-light">@Model.SelectedYear.ToString() AÑOS</h3>
             </div>
         </div>
         <div class="row d-flex justify-content-center">
@@ -63,7 +63,7 @@
     </div>
     <div class="row mt-4">
         <div class="col-12 d-flex justify-content-center">
-            <a id="showAlertButton" style="color:blue; text-decoration:underline">Disclaimer resultados</a>
+            <a id="showAlertButton" text-decoration:none"><strong class="text-black">Disclaimer resultados</strong></a>
         </div>
     </div>
 
@@ -103,7 +103,7 @@
     var startAge = @Model.SelectedYear;
     var startMonth = @Model.SelectedMonth;
     var dataValues = JSON.parse('@Html.Raw(Model.OvoMatrix)');
-    var foliName = '@Localizer["FoliName"].Value'
+    var foliName = 'Ovocitos'
     
     console.log(dataValues[1]);
 
@@ -136,14 +136,17 @@
     document.getElementById('showAlertButton').addEventListener('click', function () {
         Swal.fire({
             title: 'Información',
-            html: `
-                    <p>Los resultados obtenidos se basan en <a href="#citaEstudio">[cita estudio]</a>.</p>
-                    <p>El método utilizado es meramente estimativo, y no representa una medición precisa de tu reserva ovárica.</p>
-                    <p>La presente herramienta no constituye consejo médico de ningún tipo ni reemplaza la opinión de un médico.</p>
-                    <p>Merck no recolecta ninguno de los datos personales que ingreses dentro de este sitio web, sin perjuicio de la eventual recolección de data de navegación o cookies conforme a nuestra <a href="/Legal/Privacy">Política de Privacidad</a>.</p>
-                `,
-            icon: 'info',
-            confirmButtonText: 'Comprendido!'
+            html: ` <div>
+                        <i class="bi bi bi-journal-text" style="font-size: 50px; color: #6c757d; margin-right: 10px;"></i>
+                            <div class="text-start">
+                                <p>Los resultados obtenidos se basan en <a href="#citaEstudio">[cita estudio]</a>.</p>
+                                <p>El método utilizado es meramente estimativo, y no representa una medición precisa de tu reserva ovárica.</p>
+                                <p>La presente herramienta no constituye consejo médico de ningún tipo ni reemplaza la opinión de un médico.</p>
+                                <p>Merck no recolecta ninguno de los datos personales que ingreses dentro de este sitio web, sin perjuicio de la eventual recolección de data de navegación o cookies conforme a nuestra <a href="/Legal/Privacy">Política de Privacidad</a>.</p>
+                            </div>
+                    </div>
+                                `,
+            confirmButtonText: 'Volver'
         });
     });
 </script>
