@@ -139,9 +139,11 @@
         &lt;hr style="border: 1px solid #e0e0e0; margin: 20px 0;"&gt;
 
         &lt;p style="text-align: center; font-size: 16px; color: #333;"&gt;Clínica elegida: &lt;strong&gt;{0}&lt;/strong&gt;&lt;/p&gt;
-        &lt;p style="text-align: center; font-size: 16px; color: #333;"&gt;Email del usuario: &lt;strong&gt;{1}&lt;/strong&gt;&lt;/p&gt;
+        &lt;p style="text-align: center; font-size: 16px; color: #333;"&gt;Email: &lt;strong&gt;{1}&lt;/strong&gt;&lt;/p&gt;
+        &lt;p style="text-align: center; font-size: 16px; color: #333;"&gt;Telefono: &lt;strong&gt;{2}&lt;/strong&gt;&lt;/p&gt;
+        &lt;p style="text-align: center; font-size: 16px; color: #333;"&gt;Nombre: &lt;strong&gt;{2}&lt;/strong&gt;&lt;/p&gt;
         &lt;p style="text-align: center; font-size: 16px; color: #333;"&gt;Motivo de Consulta: &lt;strong&gt;{2}&lt;/strong&gt;&lt;/p&gt;
-        
+
         &lt;hr style="border: 1px solid #e0e0e0; margin: 20px 0;"&gt;
 
     &lt;/div&gt;
@@ -151,8 +153,7 @@
     &lt;/div&gt;
 
 &lt;/body&gt;
-&lt;/html&gt;
-&lt;/footer&gt;</value>
+&lt;/html&gt;</value>
   </data>
   <data name="EmailSubject" xml:space="preserve">
     <value>Consulta N# {0}</value>

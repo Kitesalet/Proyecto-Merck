@@ -44,129 +44,7 @@ namespace MerckProject.Controllers
             _logger.LogInformation("Accesed consultation screen");
 
             return View("Consultation", model);
-        }
-
-        //public IActionResult Consultation()
-        //{
-        //    var model = new ConsultationViewModel
-        //    {
-        //        Provinces = GetSelectListItems(
-        //            items: _context.Provinces.ToList(),
-        //            value: p => p.Id.ToString(),
-        //            text: p => p.ProvinceName
-        //        ), 
-
-        //        Locations = GetSelectListItems(
-        //            items: _context.Locations.ToList(),
-        //            value: c => c.Id.ToString(),
-        //            text: c => c.LocationName
-        //        ),
-
-        //        Clinics = GetSelectListItems(
-        //            items: _context.Clinics.ToList(),
-        //            value: c => c.Id.ToString(),
-        //            text: c => c.ClinicName
-        //        ),
-
-        //        Countries = GetSelectListItems(
-        //            items: _context.Countries.ToList(),
-        //            value: c => c.Id.ToString(),
-        //            text: c => c.CountryName
-        //        ),
-
-        //    };
-
-        //    return View("Consultation", model);
-        //}
-
-        private List<SelectListItem> GetSelectListItems<T>(IEnumerable<T> items, Func<T, string> value, Func<T, string> text)
-        {
-            return items.Select(item => new SelectListItem
-            {
-                Value = value(item),
-                Text = text(item)
-            }).ToList();
-        }
-
-        //[HttpGet]
-        //public IActionResult GetLocaties(string province)
-        //{
-        //    if (string.IsNullOrEmpty(province))
-        //    {
-        //        return Json(new List<SelectListItem>());
-        //    }
-
-        //    int provinceId = Convert.ToInt32(province);
-
-        //    var locationsFiltered = _context.Locations
-        //        .Where(l => l.ProvinceId == provinceId)
-        //        .Select(l => new SelectListItem
-        //        {
-        //            Value = l.Id.ToString(),
-        //            Text = l.LocationName.ToString()
-        //        })
-        //        .ToList();
-
-        //    return Json(locationsFiltered);
-        //}
-
-
-        [HttpGet]
-        public IActionResult GetClinics(string province)
-        {
-            if (string.IsNullOrEmpty(province))
-            {
-                return Json(new List<SelectList>());
-            }
-
-            var provinces = new Dictionary<string, string>
-    {
-            {"1", "Buenos Aires" },
-            {"2", "Buenos Aires-GBA" },
-            {"3", "Capital Federal" },
-            {"4", "Catamarca"},
-            {"5", "Chaco"},
-            {"6", "Chubut"},
-            {"7", "Córdoba"},
-            {"8", "Corrientes"},
-            {"9", "Entre Ríos"},
-            {"10", "Formosa"},
-            {"11", "Jujuy"},
-            {"12", "La Pampa"},
-            {"13", "La Rioja"},
-            {"14", "Mendoza"},
-            {"15", "Misiones"},
-            {"16", "Neuquén"},
-            {"17", "Río Negro"},
-            {"18", "Salta"},
-            {"19", "San Juan"},
-            {"20", "San Luis"},
-            {"21", "Santa Cruz"},
-            {"22", "Santa Fe"},
-            {"23", "Santiago del Estero"},
-            {"24", "Tierra del Fuego"},
-            {"25", "Tucumán"},
-    };
-
-            if (!provinces.TryGetValue(province, out var provinceName))
-            {
-                return Json(new List<SelectListItem>());
-            }
-
-            var leakedClinics = _context.Clinics
-                .Where(c => c.ProvinceName == provinceName)
-                .Select(c => new SelectListItem
-                {
-                    Value = c.Id.ToString(),
-                    Text = c.ClinicName
-                })
-                .ToList();
-
-            _logger.LogInformation("Accesed clinic db and turned them into a json file");
-
-            return Json(leakedClinics);
-        }
-
+        }     
 
         [HttpPost]
         public async Task<IActionResult> AddConsultation(ConsultationViewModel model)
@@ -190,32 +68,6 @@ namespace MerckProject.Controllers
             else
             {
 
-                //model.Provinces = GetSelectListItems(
-                //items: _context.Provinces.ToList(),
-                //value: p => p.Id.ToString(),
-                //text: p => p.ProvinceName);
-
-
-                //model.Locations = GetSelectListItems(
-                //         items: _context.Locations.ToList(),
-                //         value: c => c.Id.ToString(),
-                //         text: c => c.LocationName
-                //     );
-
-                //model.Clinics = GetSelectListItems(
-                //    items: _context.Clinics.ToList(),
-                //    value: c => c.Id.ToString(),
-                //    text: c => c.ClinicName
-                //);
-
-                //model.Countries = GetSelectListItems(
-                //    items: _context.Countries.ToList(),
-                //    value: c => c.Id.ToString(),
-                //    text: c => c.CountryName
-                //);
-
-
-
                 model.CountryList = await _context.Countries.ToListAsync();
                 model.ProvincList = await _context.Provinces.ToListAsync();
                 model.ProvinceLocationList = await _context.ProvinceLocations.ToListAsync();
@@ -227,7 +79,7 @@ namespace MerckProject.Controllers
 
                 TempData["Error"] = "El envio del formulario no se pudo enviar correctamente";
 
-                _logger.LogError("There has been an error sending the formulary");
+                _logger.LogError("There has been an error sending the form");
 
                 return View("Consultation", model);
 

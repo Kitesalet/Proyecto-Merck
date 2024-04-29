@@ -76,7 +76,25 @@ ul.unstyled {
     }
 }
 
+.vibrant-pink {
+    color: #eb3c96;
+}
 
+.rich-purple {
+    color: #503291;
+}
+
+.rich-purple-bg {
+    background-color: #503291;
+}
+
+.rich-blue {
+    color: #0f69af;
+}
+
+.rich-blue-bg {
+    background-color: #0f69af;
+}
 
 .merck-font{
     font-family: 'Merck';
@@ -145,7 +163,6 @@ html {
 }
 
 .subheader-body {
-    background-color: #2EBDCD;
     margin: 0
 }
 
@@ -222,7 +239,7 @@ html {
 }
 
 .consultation-label {
-    color: #776793;
+    color: #503291;
     text-align: center;
     font-size: 23px;
     font-weight: 500;
@@ -235,7 +252,7 @@ html {
 }
 
 .consultation-label-2 {
-    color: #ef4488;
+    color: #eb3c96;
     text-align: center;
     font-size: 23px;
     font-weight: 500;

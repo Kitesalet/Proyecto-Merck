@@ -6,9 +6,9 @@
     ViewData["Title"] = "Fertform";
 }
 
-@using (Html.BeginForm("FertilityCalculator", "Fertform", FormMethod.Post, new { id = "fertFormulary" }))
+@using (Html.BeginForm("FertilityCalculator", "Fertform", FormMethod.Post, new { id = "fertFormulary", style="background-color:white" }))
 {
-    <header class="header-bg-color">
+    <header class="rich-purple-bg">
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light">
             <div class="container-fluid">
                 <a href="@Url.Action("Index", "Home")" class="btn"><i class="bi bi-chevron-left header-icon-left"></i></a>
@@ -19,30 +19,19 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a style="color:white" class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Login</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="row subheader-body">
+    <div class="row subheader-body rich-purple-bg">
         <div class="col-md-12">
             <div class="col-12 text-center vh-50 mt-35">
-                <div class="row">
-                    <div class="d-flex justify-content-center">
-                        <img src="/Imagenes/MERCK_LOGO_White_RGB.png" style="height:33px" />
-                    </div>
-                </div>
                 <div class="text-center subheader-div">
                     <div class="row align-items-center">
-                        <div class="col">
-                            <a href="@Url.Action("Index","Login")">
-                                <img src="~/imagenes/FlechaIzquierda.png" />
-                            </a>
-                        </div>
-                        <div class="col">
-                            <p class="display-4 mb-0">@* @Localizer["FertilityCalculator"].Value *@Indicador</p>
+                        <div class="col-12">
+                            <p class="h1 mb-0 text-white opacity-75"><strong class="vibrant-pink">Querés conocer más sobre tu fertilidad?</strong></p>
                         </div>
                         <div class="col"></div>
                     </div>
@@ -52,7 +41,7 @@
         <div class="row rounded-header">
         </div>
     </div>
-    <div class="container">
+    <div class="container" style="background-color:white">
         <div class="row border-bottom pb-5 pt-3">
             <div class="col-5 col-md-4 col-lg-3 d-flex justify-content-end">
                 <img src="/Imagenes/IconoEdadActual.png" class="img-fluid fixed-image">
@@ -60,7 +49,7 @@
             <div class="col-6 col-md-7 col-lg-8">
                 <!-- Adjusted column size -->
                 <div class="row mt-2">
-                    <h3 class="ps-0" style="color:#4A1896">Edad</h3>
+                    <h3 class="ps-0" style="color:#4A1896">Qué edad tenés?</h3>
                 </div>
                 <div class="row">
                     <div class="col px-0">
@@ -78,7 +67,7 @@
             <div class="col-6 col-md-7 col-lg-8">
                 <!-- Adjusted column size -->
                 <div class="row pb-3 d-flex">
-                    <h5 class="ps-0" style="color:#4A1896">Tiempo de Planificación Familiar</h5>
+                    <h4 class="ps-0" style="color:#4A1896">En cuánto tiempo querés ser mamá?</h4>
                 </div>
                 <div class="row d-flex">
                     <div class="col px-0">
@@ -92,7 +81,7 @@
                     new SelectListItem { Text = "No lo sé aún", Value = "0" }
                     };
 
-                            @Html.DropDownListFor(model => model.QuestionUser, ageOptions, new { @class = "form-control align-bottom" })
+                                @Html.DropDownListFor(model => model.QuestionUser, ageOptions, new { @class = "form-control align-bottom" })
                         }
                     </div>
                 </div>
@@ -111,15 +100,10 @@
             </div>
         </div>
 
-        <footer>
+        <footer class="mt-5" style="background-color:white">
 
             <div class="footer-detail" bis_skin_checked="1">
-                <div class="row" bis_skin_checked="1">
-                    <div class="sm-col-6 md-col-12 lg-col-16 xl-col-16" bis_skin_checked="1">
-                        <div class="footer-copyright" bis_skin_checked="1">
-                            <p class="small">© 2024 Merck KGaA, Darmstadt, Alemania y/o sus filiales. Todos los derechos reservados.</p>
-                        </div>
-                    </div>
+                <div class="row g-0" bis_skin_checked="1">
                     <div class="sm-col-6 md-col-12 lg-col-16 xl-col-16" bis_skin_checked="1">
                         <div class="footer-legal" bis_skin_checked="1">
                             <ul class="unstyled small flush-bottom">
@@ -135,9 +119,15 @@
                     </div>
                 </div>
             </div>
+
         </footer>
 
+        <div class="d-flex justify-content-center" style="border-radius:5px">
+            <span class="px-4 py-2 my-3 rich-purple-bg merck-font vibrant-pink border-1" style="border-radius:10px">Merck</span>
+        </div>
+
     </div>
+
 
 
 
@@ -145,64 +135,64 @@
 
  <script>
 
-     document.getElementById('fertFormulary').addEventListener('submit',function(e){
+     document.getElementById('fertFormulary').addEventListener('submit', function (e) {
          e.preventDefault();
-         
+
          console.log(this);
 
          let formData = new FormData(this);
 
-         
-        var selectedOption = formData.get('QuestionUser');
 
-        let birthdateString = formData.get('SelectedDate');
+         var selectedOption = formData.get('QuestionUser');
 
-        switch(selectedOption){
-            case '3':
-                selectedOption = '0-3 Años'
-                break;
+         let birthdateString = formData.get('SelectedDate');
 
-            case '6':
-                selectedOption = '4-6 Años'
-                break;
+         switch (selectedOption) {
+             case '3':
+                 selectedOption = '0-3 Años'
+                 break;
 
-            case '10':
-                selectedOption = '7-10 Años'
-                break;
+             case '6':
+                 selectedOption = '4-6 Años'
+                 break;
 
-            case '11':
-                selectedOption = '+10 Años'
-                break;
+             case '10':
+                 selectedOption = '7-10 Años'
+                 break;
 
-            case '0':
-                selectedOption = 'No lo se aun';
-                break;
-        
-        }
+             case '11':
+                 selectedOption = '+10 Años'
+                 break;
 
-        var birthdate = new Date(birthdateString);
-        var currentDate = new Date();
-
-        var age = currentDate.getFullYear() - birthdate.getFullYear();
-
-        //Se fija si ya cumplio anos o no en el ano actual
-        if (currentDate.getMonth() < birthdate.getMonth() ||
-            (currentDate.getMonth() === birthdate.getMonth() && currentDate.getDate() < birthdate.getDate())) {
-            age--;
-        }
-
-         if (age >= 12 && age <= 50) {
-            gtag('event', 'fertility_form_submitted', {
-                'event_category': 'Form Submission',
-                'event_label': 'Fertility Formulary Submitted',
-                'edad': age,
-                'opcion_seleccionada': selectedOption
-            })
+             case '0':
+                 selectedOption = 'No lo se aún';
+                 break;
 
          }
 
-       
+         var birthdate = new Date(birthdateString);
+         var currentDate = new Date();
+
+         var age = currentDate.getFullYear() - birthdate.getFullYear();
+
+         //Se fija si ya cumplio anos o no en el ano actual
+         if (currentDate.getMonth() < birthdate.getMonth() ||
+             (currentDate.getMonth() === birthdate.getMonth() && currentDate.getDate() < birthdate.getDate())) {
+             age--;
+         }
+
+         if (age >= 12 && age <= 50) {
+             gtag('event', 'fertility_form_submitted', {
+                 'event_category': 'Form Submission',
+                 'event_label': 'Fertility Formulary Submitted',
+                 'edad': age,
+                 'opcion_seleccionada': selectedOption
+             })
+
+         }
+
+
          this.submit();
 
-     })
+     });
 </script>

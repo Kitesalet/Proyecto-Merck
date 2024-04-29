@@ -69,7 +69,7 @@ namespace ProyectoMerck.Business.Services
                 var emailBody = manager.GetString("EmailBody");
 
                 var emailSubjectFormatted = String.Format(emailSubject, new Random().Next(1, 9999999));
-                var emailBodyFormatted = String.Format(emailBody, clinic.Title, model.Email, model.ReasonConsultation);
+                var emailBodyFormatted = String.Format(emailBody, clinic.Title, model.Email, model.TelephoneNumber, model.FullName, model.ReasonConsultation);
 
                 await _mailSender.EmailAsync(clinic.Email, emailSubjectFormatted, emailBodyFormatted);
 

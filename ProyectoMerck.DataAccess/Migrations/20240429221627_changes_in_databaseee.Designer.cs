@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Proyecto_Merck.Areas.Identity.Data;
 
@@ -11,9 +12,11 @@ using Proyecto_Merck.Areas.Identity.Data;
 namespace ProyectoMerck.DataAccess.Migrations
 {
     [DbContext(typeof(AppMerckContext))]
-    partial class AppMerckContextModelSnapshot : ModelSnapshot
+    [Migration("20240429221627_changes_in_databaseee")]
+    partial class changes_in_databaseee
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -290,7 +293,7 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Id = 1,
                             ClinicName = "HIALITUS",
                             ConsultationReason = "Stringer",
-                            DateAndtime = new DateTime(2024, 4, 29, 19, 53, 59, 801, DateTimeKind.Local).AddTicks(7308),
+                            DateAndtime = new DateTime(2024, 4, 29, 19, 16, 27, 71, DateTimeKind.Local).AddTicks(4471),
                             SelectedLocationIndex = 2,
                             Url = "www.google.com"
                         },
@@ -308,7 +311,7 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Id = 3,
                             ClinicName = "HOSPITAL ITALIANO",
                             ConsultationReason = "Inter",
-                            DateAndtime = new DateTime(2024, 4, 29, 19, 53, 59, 801, DateTimeKind.Local).AddTicks(7325),
+                            DateAndtime = new DateTime(2024, 4, 29, 19, 16, 27, 71, DateTimeKind.Local).AddTicks(4487),
                             SelectedLocationIndex = 4,
                             Url = "www.google.com"
                         },
@@ -317,7 +320,7 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Id = 4,
                             ClinicName = "MERCK 1",
                             ConsultationReason = "Inter",
-                            DateAndtime = new DateTime(2024, 4, 29, 19, 53, 59, 801, DateTimeKind.Local).AddTicks(7327),
+                            DateAndtime = new DateTime(2024, 4, 29, 19, 16, 27, 71, DateTimeKind.Local).AddTicks(4489),
                             SelectedLocationIndex = 5,
                             Url = "www.google.com"
                         },
@@ -326,7 +329,7 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Id = 5,
                             ClinicName = "IDERT",
                             ConsultationReason = "Inter",
-                            DateAndtime = new DateTime(2024, 4, 29, 19, 53, 59, 801, DateTimeKind.Local).AddTicks(7328),
+                            DateAndtime = new DateTime(2024, 4, 29, 19, 16, 27, 71, DateTimeKind.Local).AddTicks(4490),
                             SelectedLocationIndex = 6,
                             Url = "www.google.com"
                         },
@@ -335,7 +338,7 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Id = 6,
                             ClinicName = "JUERTE",
                             ConsultationReason = "Inter",
-                            DateAndtime = new DateTime(2024, 4, 29, 19, 53, 59, 801, DateTimeKind.Local).AddTicks(7330),
+                            DateAndtime = new DateTime(2024, 4, 29, 19, 16, 27, 71, DateTimeKind.Local).AddTicks(4492),
                             SelectedLocationIndex = 7,
                             Url = "www.google.com"
                         },
@@ -344,7 +347,7 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Id = 7,
                             ClinicName = "CRECER",
                             ConsultationReason = "Inter",
-                            DateAndtime = new DateTime(2024, 4, 29, 19, 53, 59, 801, DateTimeKind.Local).AddTicks(7332),
+                            DateAndtime = new DateTime(2024, 4, 29, 19, 16, 27, 71, DateTimeKind.Local).AddTicks(4493),
                             SelectedLocationIndex = 8,
                             Url = "www.google.com"
                         });

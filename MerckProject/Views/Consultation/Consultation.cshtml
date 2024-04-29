@@ -7,7 +7,7 @@
     ViewData["Title"] = "Consultation";
 }
 
-<header class="header-bg-color">
+<header class="rich-purple-bg">
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light">
         <div class="container-fluid">
             <a href="@Url.Action("Index", "Home")" class="btn"><i class="bi bi-chevron-left header-icon-left"></i></a>
@@ -18,32 +18,19 @@
             <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
                     <li class="nav-item">
-                        <a style="color:white" class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Login</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 </header>
-<div class="row subheader-body">
+<div class="row subheader-body rich-purple-bg">
     <div class="col-md-12">
         <div class="col-12 text-center vh-50 mt-35">
-@*             <div class="row">
-                <div class="d-flex justify-content-center">
-                    <img src="/Imagenes/MERCK_LOGO_White_RGB.png" style="height:33px" />
-                </div>
-            </div> *@
             <div class="text-center subheader-div">
                 <div class="row align-items-center">
-                    <div class="col">
-                        <a href="@Url.Action("Indicator","Indicator")">
-                            <img src="~/imagenes/FlechaIzquierda.png" />
-                        </a>
-                    </div>
-                    <div class="col">
-                        <p class="display-4 mb-0">
-                            Consulta
-                        </p>
+                    <div class="col-12">
+                        <p class="h2 mb-0 text-white opacity-75"><strong class="vibrant-pink">CONSULTA</strong></p>
                     </div>
                     <div class="col"></div>
                 </div>
@@ -53,7 +40,6 @@
     <div class="row rounded-header">
     </div>
 </div>
-
 
 <div class="container">
 
@@ -80,7 +66,6 @@
             </div>
         </div> *@
 
-
         <div class="row mt-3">
             <div class="col text-center">
                 <img src="~/imagenes/FotoUbicacion.png" class="img-fluid" />
@@ -95,7 +80,7 @@
                 Value = c.Id.ToString(),
                 Text = c.Name
             }), "Seleccionar",
-                             new { @class = "form-select form-select-lg mb-3", aria_label = ".form-select-lg example", id = "provinceDropdown" })
+                             new { @class = "form-select form-select-lg mb-3", aria_label = ".form-select-lg example", id = "provinceDropdown", disabled = "disabled"})
                 }
                 else
                 {
@@ -134,25 +119,22 @@
             </div>
         </div>
 
-       @*  <div class="row mt-3">
+        <div class="row mt-3">
             <div class="col text-center">
-                <img src="~/imagenes/FotoUbicacion.png" class="img-fluid" />
+                <img src="~/imagenes/FotoEmail.png" class="img-fluid" />
             </div>
-            <div class="col-8 p-0">
-                <label asp-for="Clinic" class="form-label consultation-label">Clinica</label>
-                <select asp-for="Clinic" name="Clinic" class="form-control consultation-select" id="Clinic">
-                    <option value="">Seleccionar Clinica</option>
-                    @foreach (var clinic in Model.Clinics)
-                    {
-                        <option value="@clinic.Value">@clinic.Text</option>
-                    }
-                </select>
-                <span asp-validation-for="Clinic" class="text-danger"></span>
+            <div class="col-8 pe-3">
+                <label asp-for="FullName" class="form-label consultation-label-2">Nombre Completo</label>
+                <div class="d-flex align-self-end">
+                    @Html.TextBoxFor(p => p.FullName,
+                             new { @class = "form-control" })
+                </div>
+                <div class="row">
+                    <span asp-validation-for="FullName" class="text-danger"></span>
+
+                </div>
             </div>
         </div>
- *@
-
-
 
         <div class="row mt-3">
             <div class="col text-center">
@@ -171,6 +153,21 @@
             </div>
         </div>
 
+        <div class="row mt-3">
+            <div class="col text-center">
+                <img src="~/imagenes/FotoEmail.png" class="img-fluid" />
+            </div>
+            <div class="col-8 pe-3">
+                <label asp-for="TelephoneNumber" class="form-label consultation-label-2">Teléfono</label>
+                <div class="d-flex align-self-end">
+                    @Html.TextBoxFor(p => p.TelephoneNumber,
+                             new { @class = "form-control" })
+                </div>
+                <div class="row">
+                    <span asp-validation-for="TelephoneNumber" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
 
         <div class="row mt-3">
             <div class="col text-center">
@@ -183,13 +180,12 @@
                         var consultMotives = new List<SelectListItem>
                 {
                 new SelectListItem {Text = "Seleccionar", Value = "Seleccionar", Disabled = true, Selected = true },
-                new SelectListItem { Text = "Consulta Fertilidad", Value = "Consulta Fertilidad" },
-                new SelectListItem { Text = "Sin Consulta", Value = "Sin Consulta" },
-                new SelectListItem { Text = "Problemas Fertilidad", Value = "Problemas Fertilidad" },
-                new SelectListItem { Text = "Poder Gestar", Value = "Poder Gestar" }
+                new SelectListItem { Text = "Quiero criopreservar ovocitos", Value = "Quiero criopreservar ovocitos" },
+                new SelectListItem { Text = "Quiero conocer más sobre el estado de mi fertilidad", Value = "Quiero conocer más sobre el estado de mi fertilidad" },
+                new SelectListItem { Text = "Otras razones", Value = "Otras razones" },
                 };
 
-                        @Html.DropDownListFor(model => model.ReasonConsultation,consultMotives,"Seleccionar", new { @class = "form-control" })
+                            @Html.DropDownListFor(model => model.ReasonConsultation,consultMotives, new { @class = "form-control" })
                     }
 
                 </div>
@@ -230,7 +226,7 @@
 
             <div id="submitter" class="d-flex align-items-center justify-content-center d-none">
                 <button id="clinicButton" type="submit" class="btn col-5 col-md-4 p-2 my-5 border-light merck-button" @* data-bs-toggle="modal" data-bs-target="#exampleModal" *@>
-                    Enviar
+                    Enviar Consulta
                 </button>
             </div>
         </div>
@@ -251,15 +247,10 @@
 
     }
 
-    <footer>
+    <footer class="mt-3" style="background-color:white">
 
         <div class="footer-detail" bis_skin_checked="1">
-            <div class="row" bis_skin_checked="1">
-                <div class="sm-col-6 md-col-12 lg-col-16 xl-col-16" bis_skin_checked="1">
-                    <div class="footer-copyright" bis_skin_checked="1">
-                        <p class="small">© 2024 Merck KGaA, Darmstadt, Alemania y/o sus filiales. Todos los derechos reservados.</p>
-                    </div>
-                </div>
+            <div class="row g-0" bis_skin_checked="1">
                 <div class="sm-col-6 md-col-12 lg-col-16 xl-col-16" bis_skin_checked="1">
                     <div class="footer-legal" bis_skin_checked="1">
                         <ul class="unstyled small flush-bottom">
@@ -275,7 +266,12 @@
                 </div>
             </div>
         </div>
+
     </footer>
+
+    <div class="d-flex justify-content-center" style="border-radius:5px">
+        <span class="px-4 py-2 my-3 rich-purple-bg merck-font vibrant-pink border-1" style="border-radius:10px">Merck</span>
+    </div>
       
 </div>
 
@@ -292,9 +288,71 @@
     var clinicLocationList = @Html.Raw(Json.Serialize(Model.LocationsList));
     var errorHappened = '@Model.SubmitError'.toLowerCase() === 'true';
 
+    //Se hace esto porque se estan escondiendo el selector de pais y porque quiere que solo se pueda selecconar capital desde un inicio
     countryHandler(provinceList, '2');
 
+    document.getElementById('fertFormulary').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        console.log(this);
+
+        let formData = new FormData(this);
+
+
+        var selectedOption = formData.get('QuestionUser');
+
+        let birthdateString = formData.get('SelectedDate');
+
+        switch (selectedOption) {
+            case '3':
+                selectedOption = '0-3 Años'
+                break;
+
+            case '6':
+                selectedOption = '4-6 Años'
+                break;
+
+            case '10':
+                selectedOption = '7-10 Años'
+                break;
+
+            case '11':
+                selectedOption = '+10 Años'
+                break;
+
+            case '0':
+                selectedOption = 'No lo se aún';
+                break;
+
+        }
+
+        var birthdate = new Date(birthdateString);
+        var currentDate = new Date();
+
+        var age = currentDate.getFullYear() - birthdate.getFullYear();
+
+        //Se fija si ya cumplio anos o no en el ano actual
+        if (currentDate.getMonth() < birthdate.getMonth() ||
+            (currentDate.getMonth() === birthdate.getMonth() && currentDate.getDate() < birthdate.getDate())) {
+            age--;
+        }
+
+        if (age >= 12 && age <= 50) {
+            gtag('event', 'fertility_form_submitted', {
+                'event_category': 'Form Submission',
+                'event_label': 'Fertility Formulary Submitted',
+                'edad': age,
+                'opcion_seleccionada': selectedOption
+            })
+
+        }
+
+
+        this.submit();
+
+    })
 </script>
+
 
 
 <script>

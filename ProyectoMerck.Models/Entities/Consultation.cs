@@ -16,7 +16,6 @@ namespace ProyectoMerck.Models.Entities
 
         [ForeignKey("Location")]
         public int SelectedLocationIndex { get; set; }
-
         public string? ClinicName { get; set; }
         public DateTime DateAndtime { get; set; } 
         public string? Url { get; set; }
