@@ -290,7 +290,7 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Id = 1,
                             ClinicName = "HIALITUS",
                             ConsultationReason = "Stringer",
-                            DateAndtime = new DateTime(2024, 4, 29, 19, 53, 59, 801, DateTimeKind.Local).AddTicks(7308),
+                            DateAndtime = new DateTime(2024, 4, 29, 20, 9, 19, 280, DateTimeKind.Local).AddTicks(3264),
                             SelectedLocationIndex = 2,
                             Url = "www.google.com"
                         },
@@ -308,7 +308,7 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Id = 3,
                             ClinicName = "HOSPITAL ITALIANO",
                             ConsultationReason = "Inter",
-                            DateAndtime = new DateTime(2024, 4, 29, 19, 53, 59, 801, DateTimeKind.Local).AddTicks(7325),
+                            DateAndtime = new DateTime(2024, 4, 29, 20, 9, 19, 280, DateTimeKind.Local).AddTicks(3283),
                             SelectedLocationIndex = 4,
                             Url = "www.google.com"
                         },
@@ -317,7 +317,7 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Id = 4,
                             ClinicName = "MERCK 1",
                             ConsultationReason = "Inter",
-                            DateAndtime = new DateTime(2024, 4, 29, 19, 53, 59, 801, DateTimeKind.Local).AddTicks(7327),
+                            DateAndtime = new DateTime(2024, 4, 29, 20, 9, 19, 280, DateTimeKind.Local).AddTicks(3285),
                             SelectedLocationIndex = 5,
                             Url = "www.google.com"
                         },
@@ -326,7 +326,7 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Id = 5,
                             ClinicName = "IDERT",
                             ConsultationReason = "Inter",
-                            DateAndtime = new DateTime(2024, 4, 29, 19, 53, 59, 801, DateTimeKind.Local).AddTicks(7328),
+                            DateAndtime = new DateTime(2024, 4, 29, 20, 9, 19, 280, DateTimeKind.Local).AddTicks(3287),
                             SelectedLocationIndex = 6,
                             Url = "www.google.com"
                         },
@@ -335,7 +335,7 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Id = 6,
                             ClinicName = "JUERTE",
                             ConsultationReason = "Inter",
-                            DateAndtime = new DateTime(2024, 4, 29, 19, 53, 59, 801, DateTimeKind.Local).AddTicks(7330),
+                            DateAndtime = new DateTime(2024, 4, 29, 20, 9, 19, 280, DateTimeKind.Local).AddTicks(3288),
                             SelectedLocationIndex = 7,
                             Url = "www.google.com"
                         },
@@ -344,7 +344,7 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Id = 7,
                             ClinicName = "CRECER",
                             ConsultationReason = "Inter",
-                            DateAndtime = new DateTime(2024, 4, 29, 19, 53, 59, 801, DateTimeKind.Local).AddTicks(7332),
+                            DateAndtime = new DateTime(2024, 4, 29, 20, 9, 19, 280, DateTimeKind.Local).AddTicks(3290),
                             SelectedLocationIndex = 8,
                             Url = "www.google.com"
                         });
@@ -526,7 +526,7 @@ namespace ProyectoMerck.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 3,
+                            Id = 1,
                             CountryId = 2,
                             Name = "Capital Federal"
                         });
@@ -558,25 +558,25 @@ namespace ProyectoMerck.DataAccess.Migrations
                         {
                             Id = 1,
                             Name = "Palermo",
-                            ProvinceId = 3
+                            ProvinceId = 1
                         },
                         new
                         {
                             Id = 2,
                             Name = "Recoleta",
-                            ProvinceId = 3
+                            ProvinceId = 1
                         },
                         new
                         {
                             Id = 3,
                             Name = "Caballito",
-                            ProvinceId = 3
+                            ProvinceId = 1
                         },
                         new
                         {
                             Id = 4,
                             Name = "Belgrano",
-                            ProvinceId = 3
+                            ProvinceId = 1
                         });
                 });
 

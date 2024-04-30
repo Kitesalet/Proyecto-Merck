@@ -60,15 +60,15 @@ public class AppMerckContext : IdentityDbContext<IdentityUser>
         modelBuilder.Entity<ProvinceLocation>().HasData(
 
             // Capital Federal
-            new ProvinceLocation { Id = 1, Name = "Palermo", ProvinceId = 3 },
-            new ProvinceLocation { Id = 2, Name = "Recoleta", ProvinceId = 3 },
-            new ProvinceLocation { Id = 3, Name = "Caballito", ProvinceId = 3 },
-            new ProvinceLocation { Id = 4,  Name = "Belgrano", ProvinceId = 3 }
+            new ProvinceLocation { Id = 1, Name = "Palermo", ProvinceId = 1 },
+            new ProvinceLocation { Id = 2, Name = "Recoleta", ProvinceId = 1 },
+            new ProvinceLocation { Id = 3, Name = "Caballito", ProvinceId = 1 },
+            new ProvinceLocation { Id = 4,  Name = "Belgrano", ProvinceId = 1 }
 
         );
 
         modelBuilder.Entity<Province>().HasData(
-      new Province { Id = 3, Name = "Capital Federal", CountryId = 2 }
+      new Province { Id = 1, Name = "Capital Federal", CountryId = 2 }
       );
 
         modelBuilder.Entity<Location>().HasData(

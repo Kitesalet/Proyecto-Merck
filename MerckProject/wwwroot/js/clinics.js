@@ -33,6 +33,10 @@ document.getElementById('provinceLocationDropdown').addEventListener('change', f
     localStorage.setItem('locationValue', this.value);
 
     provinceLocationDropdownHandler(clinicLocationList, this.value);
+
+    var endOfPage = document.getElementById('endContainer');
+;
+    endOfPage.scrollIntoView({ behavior: 'smooth' });
 })
 
 rightArrow.addEventListener('click', function () {
@@ -109,21 +113,21 @@ function countryHandler(provincias, value) {
 
     localStorage.setItem('filteredProvincias', JSON.stringify(filteredProvincias));
 
-        if (filteredProvincias.length == 0) {
-            Swal.fire({
-                icon: "error",
-                title: "Ups...",
-                text: "No hay clinicas disponibles en el pais seleccionado! Por favor, elija otro pais",
-                showConfirmButton: false,
-                timer: 1500
-            });
+        //if (filteredProvincias.length == 0) {
+        //    Swal.fire({
+        //        icon: "error",
+        //        title: "Ups...",
+        //        text: "No hay clinicas disponibles en el pais seleccionado! Por favor, elija otro pais",
+        //        showConfirmButton: false,
+        //        timer: 1500
+        //    });
 
-            container.innerHTML = '<h2 class="text-center text-light align-self-center">Por favor, seleccione otro Pais</h2>'
+        //    container.innerHTML = '<h2 class="text-center text-light align-self-center">Por favor, seleccione otro Pais</h2>'
 
-        }
-        else {
-            container.innerHTML = '<h2 class="text-center text-light align-self-center">Por favor, seleccione una Provincia</h2>'
-        }
+        //}
+        //else {
+        //    container.innerHTML = '<h2 class="text-center text-light align-self-center">Por favor, seleccione una Provincia</h2>'
+        //}
 
 
     document.querySelectorAll('.clinic-icon, .clinic-text').forEach(function (element) {
@@ -157,24 +161,24 @@ function provinceHandler(provinceLocations, value) {
 
     localStorage.setItem('filteredProvinceLocations', JSON.stringify(filteredProvinceLocations));
 
-    if (filteredProvinceLocations.length == 0) {
-        Swal.fire({
-            icon: "error",
-            title: "Ups...",
-            text: "No hay clinicas disponibles en la provincia solicitada! Por favor, elija otra provincia",
-            showConfirmButton: false,
-            timer: 1500
-        });
+    //if (filteredProvinceLocations.length == 0) {
+    //    Swal.fire({
+    //        icon: "error",
+    //        title: "Ups...",
+    //        text: "No hay clinicas disponibles en la provincia solicitada! Por favor, elija otra provincia",
+    //        showConfirmButton: false,
+    //        timer: 1500
+    //    });
 
-        container.innerHTML = '<h2 class="text-center text-light align-self-center">Por favor, seleccione una Provincia</h2>'
+    //    container.innerHTML = '<h2 class="text-center text-light align-self-center">Por favor, seleccione una Provincia</h2>'
 
-    }
-    else {
+    //}
+    //else {
 
-        container.innerHTML = '<h2 class="text-center text-light align-self-center">Por favor, seleccione una localidad</h2>'
+    //    container.innerHTML = '<h2 class="text-center text-light align-self-center">Por favor, seleccione una localidad</h2>'
 
 
-    }
+    //}
 
     updateDropdown('provinceLocationDropdown', filteredProvinceLocations);
   
@@ -203,26 +207,26 @@ function provinceLocationDropdownHandler(clinicLocations, value) {
     localStorage.setItem('filteredClinics', JSON.stringify(filteredClinics));
 
     if (filteredClinics.length == 0) {
-        Swal.fire({
-            icon: "error",
-            title: "Ups...",
-            text: "No hay clinicas disponibles en la localidad solicitada! Por favor, elija otra localidad",
-            showConfirmButton: false,
-            timer: 1500
-        });
+        //Swal.fire({
+        //    icon: "error",
+        //    title: "Ups...",
+        //    text: "No hay clinicas disponibles en la localidad solicitada! Por favor, elija otra localidad",
+        //    showConfirmButton: false,
+        //    timer: 1500
+        //});
 
-        container.innerHTML = '<h2 class="text-center text-light align-self-center">Por favor, seleccione otra localidad</h2>'
+        //container.innerHTML = '<h2 class="text-center text-light align-self-center">Por favor, seleccione otra localidad</h2>'
 
     }
     else {
 
-        Swal.fire({
-            icon: "info",
-            title: "Clinicas disponibles",
-            text: "Por favor, seleccione una clinica a continuacion!",
-            showConfirmButton: false,
-            timer: 1000
-        });
+        //Swal.fire({
+        //    icon: "info",
+        //    title: "Clinicas disponibles",
+        //    text: "Por favor, seleccione una clinica a continuacion!",
+        //    showConfirmButton: false,
+        //    timer: 700
+        //});
 
         currentPage = 1;
         itemsPerPage = 2;
@@ -240,7 +244,6 @@ function provinceLocationDropdownHandler(clinicLocations, value) {
         //Renders everything for a first time
         paginate(currentPage,container,itemsPerPage);
         
-        
        
     }
 
@@ -256,7 +259,9 @@ function updateDropdown(dropdownId, data) {
 
     var defaultOption = document.createElement('option');
     defaultOption.value = 0;
-    defaultOption.text = '--- Seleccione una opcion ---';
+    defaultOption.text = 'Seleccionar';
+    defaultOption.selected = true;
+    defaultOption.disabled = true;
     dropdown.add(defaultOption);
 
     data.forEach(function (element) {
@@ -352,31 +357,31 @@ function updatePagination() {
 
 }
 
-window.onload = function () {
+//window.onload = function () {
 
-    if (errorHappened == true) {
+//    if (errorHappened == true) {
 
-        container.classList.remove('clinic-container');
-        container.classList.remove('clinic-container-error');
-        arrowContainer.classList.remove('d-none');
+//        container.classList.remove('clinic-container');
+//        container.classList.remove('clinic-container-error');
+//        arrowContainer.classList.remove('d-none');
 
-        updateDropdown('provinceDropdown', filteredProvincias);
-        updateDropdown('provinceLocationDropdown', filteredProvinceLocations);
+//        updateDropdown('provinceDropdown', filteredProvincias);
+//        updateDropdown('provinceLocationDropdown', filteredProvinceLocations);
 
-        var provinceDropdown = document.getElementById('provinceDropdown');
-        var provinceLocationDropdown = document.getElementById('provinceLocationDropdown');
+//        var provinceDropdown = document.getElementById('provinceDropdown');
+//        var provinceLocationDropdown = document.getElementById('provinceLocationDropdown');
 
-        provinceDropdown.value = provinceValue;
-        provinceLocationDropdown.value = locationValue;
+//        provinceDropdown.value = provinceValue;
+//        provinceLocationDropdown.value = locationValue;
 
-        paginate(currentPage, container, itemsPerPage);
+//        paginate(currentPage, container, itemsPerPage);
 
 
-    } else {
-        console.log("Nard")
-    }
+//    } else {
+//        console.log("Nard")
+//    }
 
-}
+//}
 
 
 

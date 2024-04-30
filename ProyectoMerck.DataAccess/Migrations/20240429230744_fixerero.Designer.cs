@@ -12,8 +12,8 @@ using Proyecto_Merck.Areas.Identity.Data;
 namespace ProyectoMerck.DataAccess.Migrations
 {
     [DbContext(typeof(AppMerckContext))]
-    [Migration("20240321222358_dss")]
-    partial class dss
+    [Migration("20240429230744_fixerero")]
+    partial class fixerero
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -293,7 +293,7 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Id = 1,
                             ClinicName = "HIALITUS",
                             ConsultationReason = "Stringer",
-                            DateAndtime = new DateTime(2024, 3, 21, 19, 23, 57, 510, DateTimeKind.Local).AddTicks(3594),
+                            DateAndtime = new DateTime(2024, 4, 29, 20, 7, 44, 412, DateTimeKind.Local).AddTicks(9110),
                             SelectedLocationIndex = 2,
                             Url = "www.google.com"
                         },
@@ -311,7 +311,7 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Id = 3,
                             ClinicName = "HOSPITAL ITALIANO",
                             ConsultationReason = "Inter",
-                            DateAndtime = new DateTime(2024, 3, 21, 19, 23, 57, 510, DateTimeKind.Local).AddTicks(3610),
+                            DateAndtime = new DateTime(2024, 4, 29, 20, 7, 44, 412, DateTimeKind.Local).AddTicks(9128),
                             SelectedLocationIndex = 4,
                             Url = "www.google.com"
                         },
@@ -320,7 +320,7 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Id = 4,
                             ClinicName = "MERCK 1",
                             ConsultationReason = "Inter",
-                            DateAndtime = new DateTime(2024, 3, 21, 19, 23, 57, 510, DateTimeKind.Local).AddTicks(3611),
+                            DateAndtime = new DateTime(2024, 4, 29, 20, 7, 44, 412, DateTimeKind.Local).AddTicks(9129),
                             SelectedLocationIndex = 5,
                             Url = "www.google.com"
                         },
@@ -329,7 +329,7 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Id = 5,
                             ClinicName = "IDERT",
                             ConsultationReason = "Inter",
-                            DateAndtime = new DateTime(2024, 3, 21, 19, 23, 57, 510, DateTimeKind.Local).AddTicks(3613),
+                            DateAndtime = new DateTime(2024, 4, 29, 20, 7, 44, 412, DateTimeKind.Local).AddTicks(9131),
                             SelectedLocationIndex = 6,
                             Url = "www.google.com"
                         },
@@ -338,7 +338,7 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Id = 6,
                             ClinicName = "JUERTE",
                             ConsultationReason = "Inter",
-                            DateAndtime = new DateTime(2024, 3, 21, 19, 23, 57, 510, DateTimeKind.Local).AddTicks(3657),
+                            DateAndtime = new DateTime(2024, 4, 29, 20, 7, 44, 412, DateTimeKind.Local).AddTicks(9132),
                             SelectedLocationIndex = 7,
                             Url = "www.google.com"
                         },
@@ -347,7 +347,7 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Id = 7,
                             ClinicName = "CRECER",
                             ConsultationReason = "Inter",
-                            DateAndtime = new DateTime(2024, 3, 21, 19, 23, 57, 510, DateTimeKind.Local).AddTicks(3659),
+                            DateAndtime = new DateTime(2024, 4, 29, 20, 7, 44, 412, DateTimeKind.Local).AddTicks(9134),
                             SelectedLocationIndex = 8,
                             Url = "www.google.com"
                         });
@@ -395,6 +395,10 @@ namespace ProyectoMerck.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<double>("Latitude")
                         .HasColumnType("float");
 
@@ -422,74 +426,12 @@ namespace ProyectoMerck.DataAccess.Migrations
                         new
                         {
                             Id = 1,
+                            Email = "mercktest111@gmail.com",
                             Latitude = -34.600677504040895,
                             Longitude = -58.387263729958455,
                             ProvinceLocationId = 1,
                             Subtitle = "Centro Fertilidad",
-                            Title = "CEGYR"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Latitude = -34.580702852634481,
-                            Longitude = -58.430260973627661,
-                            ProvinceLocationId = 2,
-                            Subtitle = "Centro Fertilidad",
-                            Title = "CER"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Latitude = -34.578846588221204,
-                            Longitude = -58.460103931977983,
-                            ProvinceLocationId = 3,
-                            Subtitle = "Centro Fertilidad",
-                            Title = "CIMER"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Latitude = -34.599254733727243,
-                            Longitude = -58.401810339490027,
-                            ProvinceLocationId = 4,
-                            Subtitle = "Centro Fertilidad",
-                            Title = "CRECER"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Latitude = -34.597439056459208,
-                            Longitude = -58.397189279473473,
-                            ProvinceLocationId = 5,
-                            Subtitle = "Centro Fertilidad",
-                            Title = "HIALITUS"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Latitude = -34.606202223417398,
-                            Longitude = -58.425645264604945,
-                            ProvinceLocationId = 5,
-                            Subtitle = "Centro Fertilidad",
-                            Title = "HOSPITAL ITALIANO"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Latitude = -34.596689236707874,
-                            Longitude = -58.399734815343471,
-                            ProvinceLocationId = 4,
-                            Subtitle = "Centro Fertilidad",
-                            Title = "IFER"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Latitude = -34.557128982074609,
-                            Longitude = -58.447618128835863,
-                            ProvinceLocationId = 3,
-                            Subtitle = "Centro Fertilidad",
-                            Title = "WEFIV"
+                            Title = "Clínica Roja"
                         });
                 });
 
@@ -519,151 +461,7 @@ namespace ProyectoMerck.DataAccess.Migrations
                         {
                             Id = 1,
                             CountryId = 2,
-                            Name = "Buenos Aires"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CountryId = 2,
-                            Name = "Buenos Aires-GBA"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CountryId = 2,
                             Name = "Capital Federal"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CountryId = 2,
-                            Name = "Catamarca"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CountryId = 2,
-                            Name = "Chaco"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CountryId = 2,
-                            Name = "Chubut"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            CountryId = 2,
-                            Name = "Córdoba"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            CountryId = 2,
-                            Name = "Corrientes"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            CountryId = 2,
-                            Name = "Entre Ríos"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            CountryId = 2,
-                            Name = "Formosa"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            CountryId = 2,
-                            Name = "Jujuy"
-                        },
-                        new
-                        {
-                            Id = 12,
-                            CountryId = 2,
-                            Name = "La Pampa"
-                        },
-                        new
-                        {
-                            Id = 13,
-                            CountryId = 2,
-                            Name = "La Rioja"
-                        },
-                        new
-                        {
-                            Id = 14,
-                            CountryId = 2,
-                            Name = "Mendoza"
-                        },
-                        new
-                        {
-                            Id = 15,
-                            CountryId = 2,
-                            Name = "Misiones"
-                        },
-                        new
-                        {
-                            Id = 16,
-                            CountryId = 2,
-                            Name = "Neuquén"
-                        },
-                        new
-                        {
-                            Id = 17,
-                            CountryId = 2,
-                            Name = "Río Negro"
-                        },
-                        new
-                        {
-                            Id = 18,
-                            CountryId = 2,
-                            Name = "Salta"
-                        },
-                        new
-                        {
-                            Id = 19,
-                            CountryId = 2,
-                            Name = "San Juan"
-                        },
-                        new
-                        {
-                            Id = 20,
-                            CountryId = 2,
-                            Name = "San Luis"
-                        },
-                        new
-                        {
-                            Id = 21,
-                            CountryId = 2,
-                            Name = "Santa Cruz"
-                        },
-                        new
-                        {
-                            Id = 22,
-                            CountryId = 2,
-                            Name = "Santa Fe"
-                        },
-                        new
-                        {
-                            Id = 23,
-                            CountryId = 2,
-                            Name = "Santiago del Estero"
-                        },
-                        new
-                        {
-                            Id = 24,
-                            CountryId = 2,
-                            Name = "Tierra del Fuego"
-                        },
-                        new
-                        {
-                            Id = 25,
-                            CountryId = 2,
-                            Name = "Tucumán"
                         });
                 });
 
@@ -692,194 +490,8 @@ namespace ProyectoMerck.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "Magdalena",
-                            ProvinceId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "La Plata",
-                            ProvinceId = 1
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Quilmes",
-                            ProvinceId = 2
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Avellaneda",
-                            ProvinceId = 2
-                        },
-                        new
-                        {
-                            Id = 5,
                             Name = "Palermo",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "Recoleta",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Name = "Oasis del Desierto",
-                            ProvinceId = 4
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Name = "Pico de la Luna",
-                            ProvinceId = 4
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Name = "Selva Esmeralda",
-                            ProvinceId = 5
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Name = "Río Dorado",
-                            ProvinceId = 5
-                        },
-                        new
-                        {
-                            Id = 11,
-                            Name = "Costa Azul",
-                            ProvinceId = 6
-                        },
-                        new
-                        {
-                            Id = 12,
-                            Name = "Bosque Mágico",
-                            ProvinceId = 6
-                        },
-                        new
-                        {
-                            Id = 13,
-                            Name = "Sierras Doradas",
-                            ProvinceId = 7
-                        },
-                        new
-                        {
-                            Id = 14,
-                            Name = "Valle de los Suspiros",
-                            ProvinceId = 7
-                        },
-                        new
-                        {
-                            Id = 15,
-                            Name = "Río Paraná",
-                            ProvinceId = 8
-                        },
-                        new
-                        {
-                            Id = 16,
-                            Name = "Bosque Encantado",
-                            ProvinceId = 8
-                        },
-                        new
-                        {
-                            Id = 17,
-                            Name = "Termas del Guaychú",
-                            ProvinceId = 9
-                        },
-                        new
-                        {
-                            Id = 18,
-                            Name = "Puerto de las Palmas",
-                            ProvinceId = 9
-                        },
-                        new
-                        {
-                            Id = 19,
-                            Name = "Lago Formosa",
-                            ProvinceId = 10
-                        },
-                        new
-                        {
-                            Id = 20,
-                            Name = "Pueblo de las Aves",
-                            ProvinceId = 10
-                        },
-                        new
-                        {
-                            Id = 21,
-                            Name = "Valle de los Colores",
-                            ProvinceId = 11
-                        },
-                        new
-                        {
-                            Id = 22,
-                            Name = "Cerro de Siete Colores",
-                            ProvinceId = 11
-                        },
-                        new
-                        {
-                            Id = 23,
-                            Name = "Pampa Dorada",
-                            ProvinceId = 12
-                        },
-                        new
-                        {
-                            Id = 24,
-                            Name = "Laguna Escondida",
-                            ProvinceId = 12
-                        },
-                        new
-                        {
-                            Id = 25,
-                            Name = "Valle de la Luna",
-                            ProvinceId = 13
-                        },
-                        new
-                        {
-                            Id = 26,
-                            Name = "Cascada del Cielo",
-                            ProvinceId = 13
-                        },
-                        new
-                        {
-                            Id = 27,
-                            Name = "Viñedos del Sol",
-                            ProvinceId = 14
-                        },
-                        new
-                        {
-                            Id = 28,
-                            Name = "Cerro Aconcagua",
-                            ProvinceId = 14
-                        },
-                        new
-                        {
-                            Id = 29,
-                            Name = "Cataratas del Iguazú",
-                            ProvinceId = 15
-                        },
-                        new
-                        {
-                            Id = 30,
-                            Name = "Bosque Misionero",
-                            ProvinceId = 15
-                        },
-                        new
-                        {
-                            Id = 31,
-                            Name = "Lago Nahuel Huapi",
-                            ProvinceId = 16
-                        },
-                        new
-                        {
-                            Id = 32,
-                            Name = "Cerro Chapelco",
-                            ProvinceId = 16
+                            ProvinceId = 1
                         });
                 });
 

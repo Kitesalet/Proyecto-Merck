@@ -46,6 +46,7 @@
 @using (Html.BeginForm("AddConsultation", "Consultation", FormMethod.Post))
 {       
         <input type="hidden" name="SelectedCountry" id="SelectedCountry" value="2"/>
+        <input type="hidden" name="SelectedProvince" id="SelectedProvince" value="1"/>
         @Html.HiddenFor(c => c.Locations)
         @Html.HiddenFor(c => c.SelectedLocationIndex, new { id = "SelectedLocationIndex" })
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -72,23 +73,24 @@
             </div>
             <div class="col-8 pe-3">
                 <label asp-for="Province" class="form-label consultation-label">Provincia</label>
-                @if (Model.SubmitError == true)
-                {
+
                     @Html.DropDownListFor(p => p.SelectedProvince, Model.ProvincList.Select(c =>
                              new SelectListItem()
-            {
-                Value = c.Id.ToString(),
-                Text = c.Name
-            }), "Seleccionar",
-                             new { @class = "form-select form-select-lg mb-3", aria_label = ".form-select-lg example", id = "provinceDropdown", disabled = "disabled"})
-                }
-                else
+                    {
+                        Value = c.Id.ToString(),
+                        Text = c.Name
+                    }), "Seleccionar",
+                     new { @class = "form-select form-select-lg mb-3", aria_label = ".form-select-lg example", id = "provinceDropdown", disabled = true})
+                
+                @*else
                 {
                     @Html.DropDownListFor(p => p.SelectedProvince, Enumerable.Empty<SelectListItem>(), "Seleccionar", new { @class = "form-select form-select-lg mb-3", aria_label = ".form-select-lg example", id = "provinceDropdown" })
-                }
+                } *@
                 <span asp-validation-for="Province" class="text-danger"></span>
             </div>
         </div>
+
+        <div id="endContainer"></div>
 
 
 
@@ -97,15 +99,15 @@
                 <img src="~/imagenes/FotoUbicacion.png" class="img-fluid" />
             </div>
             <div class="col-8 pe-3">
-                <label asp-for="Location" class="form-label consultation-label">Localidad</label>
+                <label asp-for="Location" class="form-label consultation-label">Barrio</label>
                 @if (Model.SubmitError == true)
                 {
                     @Html.DropDownListFor(p => p.SelectedProvinceLocation, Model.ProvinceLocationList.Select(c =>
                              new SelectListItem()
-            {
-                Text = c.Name.ToString(),
-                Value = c.Id.ToString()
-            }
+                    {
+                        Text = c.Name.ToString(),
+                        Value = c.Id.ToString()
+                    }
                              )
                              , "Seleccionar",
                              new { @class = "form-select form-select-lg mb-3", aria_label = ".form-select-lg example", id = "provinceLocationDropdown" })
@@ -161,7 +163,7 @@
                 <label asp-for="TelephoneNumber" class="form-label consultation-label-2">Teléfono</label>
                 <div class="d-flex align-self-end">
                     @Html.TextBoxFor(p => p.TelephoneNumber,
-                             new { @class = "form-control" })
+                             new { @class = "form-control", type = "number" })
                 </div>
                 <div class="row">
                     <span asp-validation-for="TelephoneNumber" class="text-danger"></span>
@@ -185,7 +187,7 @@
                 new SelectListItem { Text = "Otras razones", Value = "Otras razones" },
                 };
 
-                            @Html.DropDownListFor(model => model.ReasonConsultation,consultMotives, new { @class = "form-control" })
+                                @Html.DropDownListFor(model => model.ReasonConsultation,consultMotives, new { @class = "form-control" })
                     }
 
                 </div>
@@ -194,7 +196,6 @@
                     </div>
          </div>
         </div>
-
 
         <div class="container mt-4">
 
@@ -288,69 +289,29 @@
     var clinicLocationList = @Html.Raw(Json.Serialize(Model.LocationsList));
     var errorHappened = '@Model.SubmitError'.toLowerCase() === 'true';
 
-    //Se hace esto porque se estan escondiendo el selector de pais y porque quiere que solo se pueda selecconar capital desde un inicio
-    countryHandler(provinceList, '2');
+    provinceHandler(locationList, 1);
 
-    document.getElementById('fertFormulary').addEventListener('submit', function (e) {
-        e.preventDefault();
-
-        console.log(this);
-
-        let formData = new FormData(this);
+    // document.getElementById('fertFormulary').addEventListener('submit', function (e) {
+    //     e.preventDefault();
 
 
-        var selectedOption = formData.get('QuestionUser');
-
-        let birthdateString = formData.get('SelectedDate');
-
-        switch (selectedOption) {
-            case '3':
-                selectedOption = '0-3 Años'
-                break;
-
-            case '6':
-                selectedOption = '4-6 Años'
-                break;
-
-            case '10':
-                selectedOption = '7-10 Años'
-                break;
-
-            case '11':
-                selectedOption = '+10 Años'
-                break;
-
-            case '0':
-                selectedOption = 'No lo se aún';
-                break;
-
-        }
-
-        var birthdate = new Date(birthdateString);
-        var currentDate = new Date();
-
-        var age = currentDate.getFullYear() - birthdate.getFullYear();
-
-        //Se fija si ya cumplio anos o no en el ano actual
-        if (currentDate.getMonth() < birthdate.getMonth() ||
-            (currentDate.getMonth() === birthdate.getMonth() && currentDate.getDate() < birthdate.getDate())) {
-            age--;
-        }
-
-        if (age >= 12 && age <= 50) {
-            gtag('event', 'fertility_form_submitted', {
-                'event_category': 'Form Submission',
-                'event_label': 'Fertility Formulary Submitted',
-                'edad': age,
-                'opcion_seleccionada': selectedOption
-            })
-
-        }
+    //     let formData = new FormData(this);
 
 
-        this.submit();
 
-    })
+        
+    //         gtag('event', 'fertility_form_submitted', {
+    //             'event_category': 'Form Submission',
+    //             'event_label': 'Fertility Formulary Submitted',
+    //             'edad': age,
+    //             'opcion_seleccionada': selectedOption
+    //         })
+
+      
+
+    //     this.submit();
+
+    // })
 </script>
 
 

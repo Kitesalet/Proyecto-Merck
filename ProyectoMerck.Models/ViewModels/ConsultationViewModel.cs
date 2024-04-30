@@ -19,16 +19,14 @@ namespace ProyectoMerck.Models.ViewModels
         //[Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(ValidationResources))]
         public string? Location { get; set; }
 
-        [Display(Name = "ReasonConsultation", ResourceType = typeof(ValidationResources))]
-        [Required(ErrorMessageResourceName = "Required", ErrorMessage = "Es obligatorio introducir un motivo de consulta")]
+        [Required(ErrorMessage = "Es obligatorio introducir un motivo de consulta")]
         public string? ReasonConsultation { get; set; }
 
         [Display(Name = "Clinic", ResourceType = typeof(ValidationResources))]
         //[Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(ValidationResources))]
         public string? Clinic { get; set; } = null;
 
-        [Display(Name = "Email", ResourceType = typeof(ValidationResources))]
-        [Required(ErrorMessageResourceName = "Required", ErrorMessage = "Es obligatorio introducir un email válido")]
+        [Required( ErrorMessage = "Es obligatorio introducir un email válido")]
         public string? Email { get; set; }
 
         [Display(Name = "DateAndTime", ResourceType = typeof(ValidationResources))]
@@ -43,7 +41,7 @@ namespace ProyectoMerck.Models.ViewModels
 
         [Required(ErrorMessage = "Es obligatorio introducir un número de télefono")]
         [Range(100000,10000000000, ErrorMessage = "Por favor, introduce un número de teléfono válido")]
-        public int TelephoneNumber { get; set; }
+        public int? TelephoneNumber { get; set; }
 
         [Required(ErrorMessage = "Es obligatorio introducir su nombre completo")]
         public string FullName { get; set; }
