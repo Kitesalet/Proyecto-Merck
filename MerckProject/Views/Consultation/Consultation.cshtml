@@ -30,7 +30,7 @@
             <div class="text-center subheader-div">
                 <div class="row align-items-center">
                     <div class="col-12">
-                        <p class="h2 mb-0 text-white opacity-75"><strong class="vibrant-pink">CONSULTA</strong></p>
+                        <h1 class="mb-0 text-white opacity-75"><strong class="vibrant-pink merck-font">CONSULTA</strong></h1>
                     </div>
                     <div class="col"></div>
                 </div>
@@ -43,7 +43,7 @@
 
 <div class="container">
 
-@using (Html.BeginForm("AddConsultation", "Consultation", FormMethod.Post))
+@using (Html.BeginForm("AddConsultation", "Consultation", FormMethod.Post, new {Id = "fertFormulary"}))
 {       
         <input type="hidden" name="SelectedCountry" id="SelectedCountry" value="2"/>
         <input type="hidden" name="SelectedProvince" id="SelectedProvince" value="1"/>
@@ -187,7 +187,7 @@
                 new SelectListItem { Text = "Otras razones", Value = "Otras razones" },
                 };
 
-                                @Html.DropDownListFor(model => model.ReasonConsultation,consultMotives, new { @class = "form-control" })
+                                        @Html.DropDownListFor(model => model.ReasonConsultation,consultMotives, new { @class = "form-control" })
                     }
 
                 </div>
@@ -291,27 +291,55 @@
 
     provinceHandler(locationList, 1);
 
-    // document.getElementById('fertFormulary').addEventListener('submit', function (e) {
-    //     e.preventDefault();
+    document.getElementById('fertFormulary').addEventListener('submit', function (e) {
+        e.preventDefault();
 
 
-    //     let formData = new FormData(this);
+        let formData = new FormData(this);
+
+        console.log(formData);
+
+        var selectedClinicId = parseInt(formData.get("SelectedLocationIndex"));
+        var selectedConsult = formData.get("ReasonConsultation");
+        var selectedName = formData.get("FullName");
+        var selectedMail = formData.get("Email");
+        var selectedPhone = formData.get("TelephoneNumber");
+
+        var gtagFlag = true;
+
+        function isNullOrEmpty(value) {
+            return value === null || value === undefined || (typeof value === 'string' && value.trim() === '') || (typeof value === 'number' && isNaN(value));
+        }
+
+        if (isNullOrEmpty(selectedConsult) || isNullOrEmpty(selectedName) || isNullOrEmpty(selectedMail) || isNullOrEmpty(selectedPhone)) {
+            gtagFlag = false // At least one field is null, undefined, or empty
+        }
+
+        // Check if phone number has at least 5 digits and less than 14 digits
+        if (isNaN(selectedPhone) || selectedPhone.length < 5 || selectedPhone.length >= 14) {
+            gtagFlag = false; // Phone number is not valid
+        }
 
 
+        var selectedClinic = clinicLocationList.find(function(e){
+           return e.id === selectedClinicId;
+        })
 
+        if(gtagFlag === true){
+             gtag('event', 'consultation_form_submitted', {
+                        'event_category': 'Form Submission',
+                        'event_label': 'Fertility Formulary Submitted',
+                        'clinica_seleccionada': selectedClinic.title,
+                        'opcion_consulta': selectedConsult
+             });
         
-    //         gtag('event', 'fertility_form_submitted', {
-    //             'event_category': 'Form Submission',
-    //             'event_label': 'Fertility Formulary Submitted',
-    //             'edad': age,
-    //             'opcion_seleccionada': selectedOption
-    //         })
+            console.log('gtag sent');
+        }
 
-      
 
-    //     this.submit();
+        this.submit();
 
-    // })
+    })
 </script>
 
 

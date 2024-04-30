@@ -49,6 +49,7 @@ namespace MerckProject.Controllers
 
         [HttpPost]
         public async Task<IActionResult> AddConsultation(ConsultationViewModel model)
+        
         {
             _logger.LogInformation("Submitted the consultation formulary");
 
