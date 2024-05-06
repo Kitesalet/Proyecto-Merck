@@ -6,132 +6,141 @@
     ViewData["Title"] = "Fertform";
 }
 
-@using (Html.BeginForm("FertilityCalculator", "Fertform", FormMethod.Post, new { id = "fertFormulary", style="background-color:white" }))
-{
-    <header class="rich-purple-bg">
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light">
-            <div class="container-fluid">
-                <a href="@Url.Action("Index", "Home")" class="btn"><i class="bi bi-chevron-left header-icon-left"></i></a>
-                <button class="navbar-toggler header-burger" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="bi bi-list text-light"></i>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="row subheader-body rich-purple-bg">
-        <div class="col-md-12">
-            <div class="col-12 text-center vh-50 mt-35">
-                <div class="text-center subheader-div">
-                    <div class="row align-items-center">
-                        <div class="col-12">
-                            <p class="h1 mb-0 text-white opacity-75"><strong class="vibrant-pink">Querés conocer más sobre tu fertilidad?</strong></p>
+<div class="row gx-0 rich-purple-bg justify-content-center">
+    <div class="col-12 col-md-8">
+        @using (Html.BeginForm("FertilityCalculator", "Fertform", FormMethod.Post, new {id = "fertFormulary", style = "background-color:white" }))
+        {
+       
+                <header class="rich-purple-bg">
+                    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light">
+                        <div class="container-fluid">
+                            <a href="@Url.Action("Index", "Home")" class="btn"><i class="bi bi-chevron-left header-icon-left"></i></a>
+                            <button class="navbar-toggler header-burger" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                                    aria-expanded="false" aria-label="Toggle navigation">
+                                <i class="bi bi-list text-light"></i>
+                            </button>
+                            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                                <ul class="navbar-nav flex-grow-1">
+                                    <li class="nav-item">
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="col"></div>
+                    </nav>
+                </header>        
+            <div class="row subheader-body rich-purple-bg">
+                <div class="col-md-12">
+                    <div class="col-12 text-center vh-50 mt-35">
+                        <div class="text-center subheader-div">
+                            <div class="row align-items-center">
+                                <div class="col-12">
+                                    <p class="h1 mb-0 text-white opacity-75"><strong class="vibrant-pink">Querés conocer más sobre tu fertilidad?</strong></p>
+                                </div>
+                                <div class="col"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="row rounded-header">
-        </div>
-    </div>
-    <div class="container" style="background-color:white">
-        <div class="row border-bottom pb-5 pt-3">
-            <div class="col-5 col-md-4 col-lg-3 d-flex justify-content-end">
-                <img src="/Imagenes/IconoEdadActual.png" class="img-fluid fixed-image">
-            </div>
-            <div class="col-6 col-md-7 col-lg-8">
-                <!-- Adjusted column size -->
-                <div class="row mt-2">
-                    <h3 class="ps-0" style="color:#4A1896">Qué edad tenés?</h3>
+                <div class="row rounded-header">
                 </div>
+            </div>
+            <div class="container" style="background-color:white">
+                <div class="row justify-content-md-center border-bottom pb-5 pt-3">
+                    <div class="col-5 col-md-4 col-lg-4 d-flex justify-content-end">
+                        <img src="/Imagenes/IconoEdadActual.png" class="img-fluid fixed-image">
+                    </div>
+                    <div class="col-6 col-md-7 col-lg-8">
+                        <!-- Adjusted column size -->
+                        <div class="row mt-2">
+                            <h3 class="ps-0" style="color:#4A1896">Qué edad tenés?</h3>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-6 col-lg-6 px-0">
+                                <label for="currentAgeYears">Fecha Nacimiento:</label>
+                                <input type="month" class="form-control align-bottom" id="SelectedDate" name="SelectedDate" placeholder="Seleccione" lang="es">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row justify-content-md-center border-bottom pb-5 pt-3">
+                    <div class="col-5 col-md-4 col-lg-4 d-flex justify-content-end">
+                        <img src="/Imagenes/IconoEdadActual.png" class="img-fluid fixed-image">
+                    </div>
+                    <div class="col-6 col-md-7 col-lg-8">
+                        <!-- Adjusted column size -->
+                        <div class="row pb-3 d-flex">
+                            <h4 class="ps-0" style="color:#4A1896">En cuánto tiempo querés ser mamá?</h4>
+                        </div>
+                        <div class="row d-flex">
+                            <div class="col-12 col-md-6 col-lg-6 px-0">
+                                @{
+                                    var ageOptions = new List<SelectListItem>
+                            {
+                            new SelectListItem { Text = "0-3 años", Value = "3" },
+                            new SelectListItem { Text = "4-6 años", Value = "6" },
+                            new SelectListItem { Text = "7-10 años", Value = "10" },
+                            new SelectListItem { Text = ">10 años", Value = "11" },
+                            new SelectListItem { Text = "No lo sé aún", Value = "0" }
+                            };
+
+                                    @Html.DropDownListFor(model => model.QuestionUser, ageOptions, new { @class = "form-control align-bottom" })
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="row">
-                    <div class="col px-0">
-                        <label for="currentAgeYears">Fecha Nacimiento:</label>
-                        <input type="month" class="form-control align-bottom" id="SelectedDate" name="SelectedDate" placeholder="Seleccione" lang="es">
+                    <div class="col-12 d-flex justify-content-center h5" style="color: #e61e50">
+                        @* @Html.ValidationSummary(false) *@
+                    </div>
+                    <div class="col-12 d-flex justify-content-center">
+                        <button type="submit" class="btn col-6 col-m-4 col-lg-3 px-3 border-light merck-button">
+                            <span class="spinner-container"></span>
+                            <span class="m-button-span">@* @Localizer["Send"] *@Enviar</span>
+                        </button>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="row border-bottom pb-5 pt-3">
-            <div class="col-5 col-md-4 col-lg-3 d-flex justify-content-end">
-                <img src="/Imagenes/IconoEdadActual.png" class="img-fluid fixed-image">
-            </div>
-            <div class="col-6 col-md-7 col-lg-8">
-                <!-- Adjusted column size -->
-                <div class="row pb-3 d-flex">
-                    <h4 class="ps-0" style="color:#4A1896">En cuánto tiempo querés ser mamá?</h4>
-                </div>
-                <div class="row d-flex">
-                    <div class="col px-0">
-                        @{
-                            var ageOptions = new List<SelectListItem>
-                    {
-                    new SelectListItem { Text = "0-3 años", Value = "3" },
-                    new SelectListItem { Text = "4-6 años", Value = "6" },
-                    new SelectListItem { Text = "7-10 años", Value = "10" },
-                    new SelectListItem { Text = ">10 años", Value = "11" },
-                    new SelectListItem { Text = "No lo sé aún", Value = "0" }
-                    };
+                <footer class="mt-5" style="background-color:white">
 
-                                @Html.DropDownListFor(model => model.QuestionUser, ageOptions, new { @class = "form-control align-bottom" })
-                        }
-                    </div>
-                </div>
-            </div>
-        </div>
+                    <div class="footer-detail" bis_skin_checked="1">
+                        <div class="row g-0" bis_skin_checked="1">
+                            <div class="sm-col-6 md-col-12 lg-col-16 xl-col-16" bis_skin_checked="1">
+                                <div class="footer-legal" bis_skin_checked="1">
+                                    <ul class="unstyled small flush-bottom">
+                                        <li class="footer-legal-item">
+                                            <a asp-action="Privacy" asp-controller="Legal" style="text-decoration:none"><strong class="text-black">Declaración de Privacidad</strong></a>
+                                        </li>
+                                        <li class="footer-legal-item">
+                                            <a asp-action="TyC" asp-controller="Legal" style="text-decoration:none"><strong class="text-black">Términos y Condiciones</strong></a>
+                                        </li>
 
-        <div class="row">
-            <div class="col-12 d-flex justify-content-center h5" style="color: #e61e50">
-                @* @Html.ValidationSummary(false) *@
-            </div>
-            <div class="col-12 d-flex justify-content-center">
-                <button type="submit" class="btn col-6 col-m-4 col-lg-3 px-3 border-light merck-button">
-                    <span class="spinner-container"></span>
-                    <span class="m-button-span">@* @Localizer["Send"] *@Enviar</span>
-                </button>
-            </div>
-        </div>
-
-        <footer class="mt-5" style="background-color:white">
-
-            <div class="footer-detail" bis_skin_checked="1">
-                <div class="row g-0" bis_skin_checked="1">
-                    <div class="sm-col-6 md-col-12 lg-col-16 xl-col-16" bis_skin_checked="1">
-                        <div class="footer-legal" bis_skin_checked="1">
-                            <ul class="unstyled small flush-bottom">
-                                <li class="footer-legal-item">
-                                    <a asp-action="Privacy" asp-controller="Legal" style="text-decoration:none"><strong class="text-black">Declaración de Privacidad</strong></a>
-                                </li>
-                                <li class="footer-legal-item">
-                                    <a asp-action="TyC" asp-controller="Legal" style="text-decoration:none"><strong class="text-black">Términos y Condiciones</strong></a>
-                                </li>
-
-                            </ul>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+
+                </footer>
+
+
+
             </div>
 
-        </footer>
 
-        <div class="d-flex justify-content-center" style="border-radius:5px">
-            <span class="px-4 py-2 my-3 rich-purple-bg merck-font vibrant-pink border-1" style="border-radius:10px">Merck</span>
+
+
+        }
+
+
+        <div class="d-flex justify-content-center rich-purple-bg mt-md-4">
+            <span class="px-4 py-2 my-3 rich-purple-bg merck-font vibrant-pink">Merck</span>
         </div>
-
     </div>
+</div>
 
-
-
-
-}
 
  <script>
 
@@ -194,5 +203,5 @@
 
          this.submit();
 
-     });
+     }); 
 </script>
