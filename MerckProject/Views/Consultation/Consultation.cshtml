@@ -45,7 +45,7 @@
 
 <div class="container px-3 pb-3">
 
-@using (Html.BeginForm("AddConsultation", "Consultation", FormMethod.Post, new {Id = "fertFormulary"}))
+@using (Html.BeginForm("AddConsultation", "Consultation", FormMethod.Post, new {Id = "fertFormulary", @class="container justify-content-center"}))
 {       
         <input type="hidden" name="SelectedCountry" id="SelectedCountry" value="2"/>
         <input type="hidden" name="SelectedProvince" id="SelectedProvince" value="1"/>
@@ -70,10 +70,10 @@
         </div> *@
 
         <div class="row mt-3">
-            <div class="col text-center">
-                <img src="~/imagenes/Logo_Provincia.svg" class="img-fluid fixed-image" />
+            <div class="col-4 text-center">
+                <img src="~/imagenes/Logo_Provincia.svg" class="img-fluid fixed-image-2" />
             </div>
-            <div class="col-8 pe-3">
+            <div class="col-7 col-sm-5 pe-3">
                 <label asp-for="Province" class="form-label consultation-label">Provincia</label>
 
                     @Html.DropDownListFor(p => p.SelectedProvince, Model.ProvincList.Select(c =>
@@ -97,10 +97,10 @@
 
 
         <div class="row mt-3">
-            <div class="col text-center">
-                <img src="~/imagenes/Logo_Barrio.svg" class="img-fluid fixed-image" />
+            <div class="col-4 text-center">
+                <img src="~/imagenes/Logo_Barrio.svg" class="img-fluid fixed-image-2" />
             </div>
-            <div class="col-8 pe-3">
+            <div class="col-7 col-sm-5 pe-3">
                 <label asp-for="Location" class="form-label consultation-label">Barrio</label>
                 @if (Model.SubmitError == true)
                 {
@@ -124,11 +124,11 @@
         </div>
 
         <div class="row mt-3">
-            <div class="col text-center">
-                        <img src="~/imagenes/Logo_Nombre.svg" class="img-fluid fixed-image" />
+            <div class="col-4 text-center">
+                        <img src="~/imagenes/Logo_Nombre.svg" class="img-fluid fixed-image-2" />
                     </div>
-            <div class="col-8 pe-3">
-                <label asp-for="FullName" class="form-label consultation-label-2">Nombre Completo</label>
+            <div class="col-7 col-sm-5 pe-3">
+                <label asp-for="FullName" class="form-label consultation-label-2">Nombre</label>
                 <div class="d-flex align-self-end">
                     @Html.TextBoxFor(p => p.FullName,
                              new { @class = "form-control" })
@@ -141,10 +141,10 @@
         </div>
 
         <div class="row mt-3">
-            <div class="col text-center">
-                <img src="~/imagenes/Logo_Email.svg" class="img-fluid fixed-image" />
+            <div class="col-4 text-center">
+                <img src="~/imagenes/Logo_Email.svg" class="img-fluid fixed-image-2" />
             </div>
-            <div class="col-8 pe-3">
+            <div class="col-7 col-sm-5 pe-3">
                 <label asp-for="Email" class="form-label consultation-label-2">Mail contacto</label>
                 <div class="d-flex align-self-end">
                     @Html.TextBoxFor(p => p.Email,
@@ -158,10 +158,10 @@
         </div>
 
         <div class="row mt-3">
-            <div class="col text-center">
-                <img src="~/imagenes/Logo_Telefono.svg" class="img-fluid fixed-image" />
+            <div class="col-4 text-center">
+                <img src="~/imagenes/Logo_Telefono.svg" class="img-fluid fixed-image-2" />
             </div>
-            <div class="col-8 pe-3">
+            <div class="col-7 col-sm-5 pe-3">
                 <label asp-for="TelephoneNumber" class="form-label consultation-label-2">Teléfono</label>
                 <div class="d-flex align-self-end">
                     @Html.TextBoxFor(p => p.TelephoneNumber,
@@ -174,10 +174,10 @@
         </div>
 
         <div class="row mt-3">
-            <div class="col text-center">
-                <img src="~/imagenes/Logo_Motivo.svg" class="img-fluid fixed-image" />
+            <div class="col-4 text-center">
+                <img src="~/imagenes/Logo_Motivo.svg" class="img-fluid fixed-image-2" />
             </div>
-            <div class="col-8 pe-3">
+            <div class="col-7 col-sm-5 pe-3">
                 <label asp-for="ReasonConsultation" class="form-label consultation-label-2">Motivo consulta</label>
                 <div class="d-flex align-self-end">
                     @{

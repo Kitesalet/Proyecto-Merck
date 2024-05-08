@@ -1,89 +1,130 @@
-﻿@using Microsoft.AspNetCore.Mvc.Localization
-@inject IViewLocalizer Localizer
-@model ProyectoMerck.Models.ViewModels.HomeVM
+﻿@inject Microsoft.Extensions.Configuration.IConfiguration configuration
+
 
 @{
     ViewData["Title"] = "Home";
+    Layout = null;
+    string trackingId = configuration["GoogleAnalyticsTrackingId"];
+
 }
+
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-
+    <head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>@ViewData["Title"] - Proyecto_Merck</title>
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;1,100&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet"
+      href="https://unpkg.com/tippy.js@6/animations/scale-subtle.css" />
+<script type="text/javascript">
+    google.charts.load('current', { 'packages': ['corechart'] });
+</script>
 
 </head>
-<body class="d-flex align-items-center justify-content-center body">
-    <header class="header-bg-color">
-        <nav class="navbar navbar-expand-sm navbar-light">
-            <div class="container-fluid">
-                <form action="@Url.Action("ChangeCulture","Language")" method="get" id="languageForm" class="m-2">
-                    <input type="hidden" id="cultureInput" name="culture" />
-                    <span value="en"  class="btn"><img src="~/Imagenes/Flag_of_the_United_Kingdom.png" class="flag-small @(Model.CurrentCulture == "en" ? "flag-selected" : "")" /></span>
-                    <span value="pt"  class="btn"><img src="~/Imagenes/Flag_of_Portugal.svg" class="flag-small @(Model.CurrentCulture == "pt" ? "flag-selected" : "")" /></span>
-                    <span value="es"  class="btn"><img src="~/Imagenes/Spain_flag_300.png" class="flag-small @(Model.CurrentCulture == "es" ? "flag-selected" : "")" /></span>
-                </form>
-            </div>
-        </nav>
-    </header>
-@*     <h1 class="text-center text-light">@Localizer["ScreenLanguage"]: @Localizer["Language"]</h1>
- *@    <div class="container text-center">
-        <div class="row">
-            <div class="col-12">
-                <img src="~/Imagenes/LogoInicioMerck.png" />
-            </div>
-        </div>
-    </div>
-    <div class="container text-center">
-        <div class="row">
-            <div class="col-12">
-                <a id="m-button" class="btn py-4 my-5 border-light merck-button" style="" href="@Url.Action("Index", "Fertform")">
-                    <span class="spinner-container"></span>
-                    <span class="m-button-span">@* @(Localizer["Start"]) *@Comenzar</span>
-                </a>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=@trackingId"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', '@trackingId');
+</script>
+
+    <body class="d-flex align-items-center justify-content-center body">
+    @*     <h1 class="text-center text-light">@Localizer["ScreenLanguage"]: @Localizer["Language"]</h1>
+     *@    <div class="container text-center">
+            <div class="row">
+                <div class="col-12">
+                    <img src="~/Imagenes/LogoInicioMerck.png" />
+                </div>
             </div>
         </div>
-    </div>
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-12">
+                    <a id="m-button" class="btn py-4 my-5 border-light merck-button" style="" href="@Url.Action("Index", "Fertform")">
+                        <span class="spinner-container"></span>
+                        <span class="m-button-span">@* @(Localizer["Start"]) *@Comenzar</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <script src="/js/site.js"></script>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
 
+        <script src="https://unpkg.com/@@popperjs/core@2/dist/umd/popper.min.js"></script>
+        <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/js/chart.js"></script>
+        <script>
+            // With the above scripts loaded, you can call `tippy()` with a CSS
+            // selector and a `content` prop:
+            tippy('#myButtone', {
+                content: 'My tooltip!',
+            });
 
-    <script src="/js/site.js"></script>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+            tippy('#reservaOvarica', {
+                content: '<strong>Es la cantidad y calidad de los ovocitos que una mujer tiene en sus ovarios en un momento determinado de su vida.</strong>',
+                allowHTML: true,
+                placement: 'bottom',
+                animation: 'scale-subtle',
+            });
 
+            tippy('#ovocitos', {
+                content: '<strong>También conocidos como óvulos, son las células reproductivas femeninas maduras. Son producidos en los ovarios y son liberados durante la ovulación para ser fertilizados por un espermatozoide.</strong>',
+                placement: 'bottom',
+                animation: 'scale-subtle',
+                allowHTML: true,
+            });
 
-</body>
+            tippy('#criopreservacion', {
+                content: '<strong>La criopreservación de ovocitos es un proceso en el que los ovocitos (células reproductivas femeninas) se congelan y almacenan a temperaturas extremadamente bajas, típicamente alrededor de -196°C, para conservar su viabilidad y fertilidad para su uso futuro. Este método permite a las mujeres preservar su capacidad reproductiva y tener la opción de concebir en el momento que lo deseen, sin que la edad sea una limitación tan significativa.</strong>',
+                placement: 'bottom',
+                theme: 'light',
+                allowHTML: true,
+                animation: 'scale-subtle',
+                popperOptions: {
+                    modifiers: [
+                        {
+                            name: 'preventOverflow', // Prevents tooltip from overflowing the viewport
+                            options: {
+                                boundary: 'window', // Specify boundary to window
+                            },
+                        },
+                        {
+                            name: 'flip', // Flips tooltip placement if it's about to overflow
+                            options: {
+                                fallbackPlacements: ['bottom'], // Fallback placement to top if necessary
+                            },
+                        },
+                        // Add more modifiers as needed
+                    ],
+                },
+            });
+        </script>
+
+    </body>
+
 
 </html>
-<footer>
-
-    <div class="footer-detail" bis_skin_checked="1">
-        <div class="row" bis_skin_checked="1">
-            <div class="sm-col-6 md-col-12 lg-col-16 xl-col-16" bis_skin_checked="1">
-                <div class="footer-copyright" bis_skin_checked="1">
-                    <p class="small">© 2024 Merck KGaA, Darmstadt, Alemania y/o sus filiales. Todos los derechos reservados.</p>
-                </div>
-            </div>
-            <div class="sm-col-6 md-col-12 lg-col-16 xl-col-16" bis_skin_checked="1">
-                <div class="footer-legal" bis_skin_checked="1">
-                    <ul class="unstyled small flush-bottom">
-                        <li class="footer-legal-item">
-                            <a asp-action="Privacy" asp-controller="Legal" style="text-decoration:none"><strong class="text-black">Declaración de Privacidad</strong></a>
-                        </li>
-                        <li class="footer-legal-item">
-                            <a asp-action="TyC" asp-controller="Legal" style="text-decoration:none"><strong class="text-black">Términos y Condiciones</strong></a>
-                        </li>
-
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
 
 <script>
 

@@ -24,6 +24,12 @@
     max-height: 120px; /* Adjust the max-height as needed */
 }
 
+.fixed-image-2 {
+    max-width: 100%;
+    height: auto;
+    width: 90px; /* Adjust the width as needed */
+    max-height: 120px; /* Adjust the max-height as needed */
+}
 
 .footer-detail {
     padding-top: 30px !important;
