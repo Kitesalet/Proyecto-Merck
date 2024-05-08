@@ -8,10 +8,12 @@ namespace MerckProject.Controllers
     public class ReserveController : Controller
     {
         private readonly ILogger<ReserveController> _logger;
+        private readonly HttpContext _httpContext;
 
-        public ReserveController(ILogger<ReserveController> logger)
+        public ReserveController(ILogger<ReserveController> logger, IHttpContextAccessor httpContext)
         {
             _logger = logger;
+            _httpContext = httpContext.HttpContext;
         }
         public IActionResult Index(ReserveVM model)
         {
@@ -23,6 +25,12 @@ namespace MerckProject.Controllers
 
         }
 
+        public IActionResult BackToIndex(ReserveVM model)
+        {
+
+            return Redirect(model.Referer);
+        }
+
         public IActionResult RedirectIndicator(ReserveVM model)
         {
 
@@ -30,13 +38,15 @@ namespace MerckProject.Controllers
 
             _logger.LogInformation("Clicked the redirect button in Reserve Controller with the data aside");
 
+            model.Referer = _httpContext.Request.Headers["referer"].ToString();
 
             return RedirectToAction("Indicator", "Indicator", new
             {
                 FertilityLevel = fertLevel,
                 SelectedYear = model.SelectedYear,
                 QuestionUser = model.QuestionUser,
-                OvoCount = Math.Round(model.OvoCount,2)
+                OvoCount = Math.Round(model.OvoCount, 2),
+                Referer = model.Referer
             });
 
         }

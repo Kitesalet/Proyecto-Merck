@@ -2,6 +2,12 @@
     font-family: Verdana;
 }
 
+.ovocite-bg-image {
+    background-image: url('../Imagenes/Ovocito_95.jpg');
+    background-repeat: repeat;
+    background-position: center;
+    background-size: contain;
+}
 
 
 @font-face {
@@ -108,8 +114,20 @@ ul.unstyled {
     background-color: #eb3c96;
 }
 
+.disclaimer-text{
+    cursor:pointer;
+}
+
+    .disclaimer-text:hover {
+        color: #eb3c96;
+    }
+
 .white-bg{
     background-color:white;
+}
+
+.footer-legal-item:last-child {
+    border-right: none;
 }
 
 .rich-blue {

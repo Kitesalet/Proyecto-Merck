@@ -18,6 +18,8 @@ namespace ProyectoMerck.Models.ViewModels
 
         public string OvoMatrix { get; set; }
 
+        public string Referer { get; set; }
+
         public int EndAge { get; set; }
         public double EndOvocites { get; set; }
         public FertilityLevel FertilityLevel { get; set; }

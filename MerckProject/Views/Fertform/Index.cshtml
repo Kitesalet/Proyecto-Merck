@@ -9,7 +9,7 @@
 
 <div class="row gx-0 rich-purple-bg justify-content-center">
     <div class="col-12 col-md-8">
-        @using (Html.BeginForm("FertilityCalculator", "Fertform", FormMethod.Post, new {id = "fertFormulary", style = "background-color:white" }))
+        @using (Html.BeginForm("FertilityCalculator", "Fertform", FormMethod.Post, new {id = "fertFormulary", style = "background-color:white; margin-bottom:0px"  }))
         {
        
                 <header class="rich-purple-bg">
@@ -105,38 +105,38 @@
                     </div>
                 </div>
 
-                <footer class="mt-5 mb-4" style="background-color:white">
+         
 
-                    <div class="footer-detail pb-0 pb-sm-3" bis_skin_checked="1">
-                        <div class="row g-0" bis_skin_checked="1">
-                            <div class="sm-col-6 md-col-12 lg-col-16 xl-col-16" bis_skin_checked="1">
-                                <div class="footer-legal" bis_skin_checked="1">
-                                    <ul class="unstyled small flush-bottom">
-                                        <li class="footer-legal-item">
-                                            <a asp-action="Privacy" asp-controller="Legal" style="text-decoration:none"><strong class="text-black">Declaración de Privacidad</strong></a>
-                                        </li>
-                                        <li class="footer-legal-item">
-                                            <a asp-action="TyC" asp-controller="Legal" style="text-decoration:none"><strong class="text-black">Términos y Condiciones</strong></a>
-                                        </li>
 
-                                    </ul>
-                                </div>
+
+            </div>
+
+            <footer class="mt-5 rich-purple-bg">
+                <div class="footer-detail pb-0 pb-sm-3 vibrant-pink" bis_skin_checked="1">
+                    <div class="row g-0" bis_skin_checked="1">
+                        <div class="sm-col-6 md-col-12 lg-col-16 xl-col-16" bis_skin_checked="1">
+                            <div class="footer-legal" bis_skin_checked="1">
+                                <ul class="unstyled small flush-bottom">
+                                    <li class="footer-legal-item">
+                                        <a asp-action="Privacy" asp-controller="Legal" style="text-decoration:none"><strong class="vibrant-pink">Declaración de Privacidad</strong></a>
+                                    </li>
+                                    <li class="footer-legal-item">
+                                        <a asp-action="TyC" asp-controller="Legal" style="text-decoration:none"><strong class="vibrant-pink">Términos y Condiciones</strong></a>
+                                    </li>
+
+                                </ul>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                </footer>
-
-
-
-            </div>
-
-
+            </footer>
 
             <div class="d-flex justify-content-center rich-purple-bg">
-                <span class="px-4 py-2 my-3 rich-purple-bg merck-font vibrant-pink">Merck</span>
+                <span class="px-4 py-2 mb-3 rich-purple-bg merck-font vibrant-pink">Merck</span>
             </div>
 
+            
         }
 
 
