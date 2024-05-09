@@ -9,10 +9,14 @@
 
   <ItemGroup>
     <Content Remove="wwwroot\js\chart.js" />
+    <Content Remove="wwwroot\Rotativa\Windows\wkhtmltoimage.exe" />
+    <Content Remove="wwwroot\Rotativa\Windows\wkhtmltopdf.exe" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="wwwroot\js\chart.js" />
+    <None Include="wwwroot\Rotativa\Windows\wkhtmltoimage.exe" />
+    <None Include="wwwroot\Rotativa\Windows\wkhtmltopdf.exe" />
   </ItemGroup>
 
   <ItemGroup>
