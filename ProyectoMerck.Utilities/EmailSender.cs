@@ -21,15 +21,15 @@ namespace ProyectoMerck.Utilities
         {
             SendGridSecret = _config["Sendgrid:SecretKey"];
             FromEmail = _config["Sendgrid:FromEmail"];
-            ToEmail = _config["Sendgrid:ToEmail"];
         }
 
         public async Task<bool> EmailAsync(string email, string subject, string htmlMessage)
         {
+            ToEmail = email;
             var client = new SendGridClient(SendGridSecret);
             var from = new EmailAddress(FromEmail);
             //Si queremos hacer pruebas, se cambia el mail del to;
-            var to = new EmailAddress(ToEmail); //mariocoria025@gmail.com
+            var to = new EmailAddress(ToEmail); 
             var msg = MailHelper.CreateSingleEmail(from, to, subject, "", htmlMessage);
 
             try

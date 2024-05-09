@@ -29,6 +29,7 @@ namespace MerckProject.Controllers
 
             }
 
+            _logger.LogInformation("Accesed Home Index screen");
             return View(model);
         }
     }

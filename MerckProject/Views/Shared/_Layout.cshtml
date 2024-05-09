@@ -1,7 +1,22 @@
-﻿
+﻿@inject Microsoft.Extensions.Configuration.IConfiguration configuration
+
+@{
+    string trackingId = configuration["GoogleAnalyticsTrackingId"];
+}
+
 <!DOCTYPE html>
-<html lang="en">
 <head>
+@*     <!-- Google Tag Manager -->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-5HPZ8D6F');</script>
+    <!-- End Google Tag Manager --> *@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Proyecto_Merck</title>
@@ -15,17 +30,34 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet"
+          href="https://unpkg.com/tippy.js@6/animations/scale-subtle.css" />
     <script type="text/javascript">
         google.charts.load('current', { 'packages': ['corechart'] });
     </script>
-</head>
-<body>
 
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=@trackingId"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', '@trackingId');
+</script>
+
+<body style="margin: 0; padding: 0;" class="rich-purple-bg">
+@*     <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5HPZ8D6F"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) --> *@
     <div>
         <main>
             @RenderBody()
         </main>
     </div>
+  
 
     @if (TempData["Error"] != null)
     {
@@ -33,7 +65,22 @@
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
-                text: "@TempData["Error"]"
+                text: "@TempData["Error"]",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        </script>
+    }
+
+    @if (TempData["Success"] != null)
+    {
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Confirmado!',
+                text: 'El formulario se ha enviado correctamente',
+                showConfirmButton: false,
+                timer: 1500
             });
         </script>
     }
@@ -43,10 +90,59 @@
         <h5 class="text-center">Mario Coria 2024 - Todos los derehocs reservados</h5>
         <br />
     </footer> *@
+    <script src="https://unpkg.com/@@popperjs/core@2/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/js/chart.js"></script>
+    <script>
+        // With the above scripts loaded, you can call `tippy()` with a CSS
+        // selector and a `content` prop:
+        tippy('#myButtone', {
+            content: 'My tooltip!',
+        });
+
+        tippy('#reservaOvarica', {
+            content: '<strong>Es la cantidad y calidad de los ovocitos que una mujer tiene en sus ovarios en un momento determinado de su vida.</strong>',
+            allowHTML: true,
+            placement: 'bottom',
+            animation: 'scale-subtle',
+        });
+
+        tippy('#ovocitos', {
+            content: '<strong>También conocidos como óvulos, son las células reproductivas femeninas maduras. Son producidos en los ovarios y son liberados durante la ovulación para ser fertilizados por un espermatozoide.</strong>',
+            placement: 'bottom',
+            animation: 'scale-subtle',
+            allowHTML: true,
+        });
+
+        tippy('#criopreservacion', {
+            content: '<strong>La criopreservación de ovocitos es un proceso en el que los ovocitos (células reproductivas femeninas) se congelan y almacenan a temperaturas extremadamente bajas, típicamente alrededor de -196°C, para conservar su viabilidad y fertilidad para su uso futuro. Este método permite a las mujeres preservar su capacidad reproductiva y tener la opción de concebir en el momento que lo deseen, sin que la edad sea una limitación tan significativa.</strong>',
+            placement: 'bottom',
+            theme: 'light',
+            allowHTML: true,
+            animation: 'scale-subtle',
+            popperOptions: {
+                modifiers: [
+                    {
+                        name: 'preventOverflow', // Prevents tooltip from overflowing the viewport
+                        options: {
+                            boundary: 'window', // Specify boundary to window
+                        },
+                    },
+                    {
+                        name: 'flip', // Flips tooltip placement if it's about to overflow
+                        options: {
+                            fallbackPlacements: ['bottom'], // Fallback placement to top if necessary
+                        },
+                    },
+                    // Add more modifiers as needed
+                ],
+            },
+        });
+    </script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
-</html>

@@ -2,59 +2,109 @@
 @using Microsoft.AspNetCore.Mvc.Localization
 @inject IViewLocalizer Localizer
 
-<header style="background-color:#EA3B95;">
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light mb-3 ">
-        <div class="container-fluid">
-            <a href="@Url.Action("Index", "Home")" class="btn"><i style="color: white; font-size: 1.5em" class="bi bi-chevron-left"></i></a>
-            <button style="color: white; font-size: 2em" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <i class="bi bi-list" style="color:white"></i>
-            </button>
-            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item">
-                        <a style="color:white" class="nav-link" asp-area="" asp-controller="Login" asp-action="Index">Login</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <div class="container">
-        <div class="row">
-            <div class="d-flex justify-content-center">
-                <img src="/Imagenes/LogoMerckRosa.jpg" style="margin-bottom:30px; width:50%" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col offset-3">
-                <h3 class="text-light">@Localizer["ActualAge"].Value</h3>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col offset-3">
-                <h3 style="font-weight:300; opacity:0.7" class="text-light">@String.Format(Localizer["ActualAgeNumber"].Value, Model.SelectedYear.ToString())</h3>
-            </div>
-        </div>
-        <div class="row d-flex justify-content-center">
-            <a class="btn col-5 col-md-4 p-2 my-5 border-light merck-button" href="@Url.Action("RedirectIndicator", "Reserve", new {CurrentAge = @Model.SelectedYear})">
-                <span class="m-button-span">@Localizer["KnowMore"].Value</span>
-                <span class="spinner-container"></span>    
-            </a>
-        </div>
-    </div>
-    <div style="height:50px; background-color: white; border-top-left-radius:30px; border-top-right-radius:30px">
-    </div>
-</header>
- <h3 class="text-center">@Localizer["FertilityRate"].Value</h3>
- <h5 class="text-center">@String.Format(Localizer["OvoLevel"].Value, Model.OvoCount.ToString())</h5>
+@{
+    ViewData["Title"] = "Reserve";
+}
 
-<div class="container">
-    <div class="row">
-        <div class="col-12 d-flex justify-content-center">
-            <canvas id="myChart"></canvas>
+<div class="row gx-0 vibrant-pink-bg justify-content-center">
+  <div class="col-12 col-md-8">
+    <header style="background-color:#EA3B95;">
+      <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light mb-3 ">
+        <div class="container-fluid">
+          <a href="@Url.Action(" Index", "Home" )" class="btn"><i style="color: white; font-size: 1.5em"
+              class="bi bi-chevron-left"></i></a>
+          <button style="color: white; font-size: 2em" class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <i class="bi bi-list" style="color:white"></i>
+          </button>
+          <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+            <ul class="navbar-nav flex-grow-1">
+            </ul>
+          </div>
         </div>
+      </nav>
+        <div class="row me-0">
+          <div class="col offset-3">
+            <h3 class="text-light">EDAD ACTUAL</h3>
+          </div>
+        </div>
+        <div class="row me-0">
+          <div class="col offset-3">
+            <h3 style="font-weight:300; opacity:0.7" class="text-light">@Model.SelectedYear.ToString() AÑOS</h3>
+          </div>
+        </div>
+        <div class="row me-0 d-flex justify-content-center">
+          <a id="reserveButton" class="btn col-5 col-md-4 p-2 my-5 merck-button" href="@Url.Action("RedirectIndicator", "Reserve" , new {SelectedYear=@Model.SelectedYear})">
+            <span class="m-button-span">Quiero saber más!</span>
+            <span class="spinner-container"></span>
+          </a>
+        </div>
+        <div style="height:50px; background-color: white; border-top-left-radius:30px; border-top-right-radius:30px">
+        </div>
+    </header>
+    <div class="bg-white">
+      <h3 id="tasaFertilidad" class="text-center merck-font bg-white" style="color:#EA3B95;">
+        Tasa de Fertilidad
+      </h3>
+      <p class="text-center" style="color:#2EBDCD; font-weight:400; font-size: 12px">Cantidad de Ovocitos Actual
+        (@Model.SelectedYear AÑOS) - <span style="font-weight:800">@Model.OvoCount.ToString("N0")</span></p>
+      <p class="text-center mb-0" style="color:#2EBDCD; font-weight:400; font-size: 12px">Cantidad de Ovocitos a los
+        @Model.EndAge AÑOS - <span style="font-weight:800">@Model.EndOvocites.ToString("N0")</span></p>
+
+
+  <div class="container bg-white">
+    <div class="row me-0">
+      <div class="col-12 d-flex justify-content-center">
+        <canvas id="myChart" height="200"></canvas>
+      </div>
     </div>
+    <small>
+      <em class="ps-2">
+        *Estimación teórica de ovocitos de buena calidad
+      </em>
+    </small>
+    <div class="row me-0 mt-4 pb-5">
+      <div class="col-12 d-flex justify-content-center">
+        <a id="showAlertButton" text-decoration:none"><strong class="disclaimer-text">Disclaimer resultados</strong></a>
+      </div>
+    </div>
+
+
+    
+
+
+
+  </div>
 </div>
+</div>
+</div>
+
+ <footer class="vibrant-pink-bg">
+                <div class="footer-detail pb-0 pb-sm-3 rich-purple" bis_skin_checked="1">
+                    <div class="row g-0" bis_skin_checked="1">
+                        <div class="sm-col-6 md-col-12 lg-col-16 xl-col-16" bis_skin_checked="1">
+                            <div class="footer-legal" bis_skin_checked="1">
+                                <ul class="unstyled small flush-bottom">
+                                    <li class="footer-legal-item">
+                                        <a asp-action="Privacy" asp-controller="Legal" style="text-decoration:none"><strong class="rich-purple">Declaración de Privacidad</strong></a>
+                                    </li>
+                                    <li class="footer-legal-item">
+                                        <a asp-action="TyC" asp-controller="Legal" style="text-decoration:none"><strong class="rich-purple">Términos y Condiciones</strong></a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </footer>
+
+            <div class="d-flex justify-content-center vibrant-pink-bg">
+                <span class="px-4 py-2 mb-3 vibrant-pink-bg merck-font rich-purple">Merck</span>
+            </div>
+
 
 <script src="~/js/chart.js"></script>
 <script>
@@ -62,7 +112,7 @@
     var startAge = @Model.SelectedYear;
     var startMonth = @Model.SelectedMonth;
     var dataValues = JSON.parse('@Html.Raw(Model.OvoMatrix)');
-    var foliName = '@Localizer["FoliName"].Value'
+    var foliName = 'Ovocitos'
     
     console.log(dataValues[1]);
 
@@ -70,4 +120,61 @@
         drawChart2(dataValues, foliName);
     });
 
+
+
+    document.getElementById('tasaFertilidad').addEventListener('click', function () {
+
+        gtag('event', 'reserve_button_clicked', {
+            'event_category': 'Button Click',
+            'event_label': 'Reserve Button Clicked'
+        });
+
+    })
+
+    document.getElementById('tasaFertilidad').addEventListener('click', function () {
+    
+        gtag('event', 'fertility_text_clicked', {
+            'event_category': 'Text Click',
+            'event_label': 'Fertility Text Clicked!'
+        });
+    })
+
+</script>
+
+<script>
+    document.getElementById('showAlertButton').addEventListener('click', function () {
+        Swal.fire({
+            title: 'Información',
+            html: ` <div>
+                        <i class="bi bi bi-book" style="font-size: 50px; color: #6c757d; margin-right: 10px; padding-bottom:15px"></i>
+                        <br>
+                            <div class="text-start">
+                                    <p>Los resultados obtenidos se basan en estos estudios:</p>
+                                    <div id="footnotes">
+                                    <ol>
+                                        <li id="ref1">
+                                            <small>
+                                                <em>
+                                                    Faddy MJ, Gosden RG, Gougeon A, Richardson SJ, Nelson JF. Accelerated disappearance of ovarian follicles in mid-life: implications for forecasting menopause. Hum Reprod. 1992 Nov;7(10):1342-6. doi: 10.1093/oxfordjournals.humrep.a137570. PMID: 1291557
+                                                </em>
+                                            </small>
+                                        </li>
+                                        <li id="ref2">
+                                            <small>
+                                                <em>
+                                                    Nair J, Shetty S, Kasi CI, Thondehalmath N, Ganesh D, Bhat VR, Mannadia S, Ranganath A, Nayak R, Gunasheela D, Shetty S. Preimplantation genetic testing for aneuploidy (PGT-A)-a single-center experience. J Assist Reprod Genet. 2022; 39(3):729-738. doi: 10.1007/s10815-022-02413-3
+                                                </em>
+                                            </small>
+                                        </li>
+                                    </ol>
+                                </div>
+                                <p>El método utilizado es meramente estimativo, y no representa una medición precisa de tu reserva ovárica.</p>
+                                <p>La presente herramienta no constituye consejo médico de ningún tipo ni reemplaza la opinión de un médico.</p>
+                                <p>Merck no recolecta ninguno de los datos personales que ingreses dentro de este sitio web, sin perjuicio de la eventual recolección de data de navegación o cookies conforme a nuestra <a href="/Legal/Privacy">Política de Privacidad</a>.</p>
+                            </div>
+                    </div>
+                                `,
+            confirmButtonText: 'Volver'
+        });
+    });
 </script>

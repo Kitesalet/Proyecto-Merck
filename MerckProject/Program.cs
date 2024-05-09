@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Razor;
 using ProyectoMerck.DataAccess.Interfaces;
 using ProyectoMerck.Utilities;
+using Serilog;
 using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,12 +20,10 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
 {
     var supportedCultures = new[]
     {
-        new CultureInfo("pt"),
-        new CultureInfo("en"),
-        new CultureInfo("es-ar")
+        new CultureInfo("es-AR")
     };
 
-    options.DefaultRequestCulture = new RequestCulture("es-ar");
+    options.DefaultRequestCulture = new RequestCulture("es-AR");
     options.SupportedCultures = supportedCultures;
     options.SupportedUICultures = supportedCultures;
 
@@ -33,13 +32,18 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
 builder.Services.AddScoped<IEmailSendeer, EmailSender>();
 builder.Services.AddScoped<IRegexHelper, RegexHelper>();
 
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Information()
+    .WriteTo.File("log/MerckFertility.txt", rollingInterval: RollingInterval.Minute)
+    .CreateLogger();
+
+builder.Host.UseSerilog();
 
 DependencyInyector.InyectServices(builder.Services, builder.Configuration);
 
 var app = builder.Build();
 
 app.UseRequestLocalization();
-
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -59,7 +63,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Fertform}/{action=Index}/{id?}");
 
 IWebHostEnvironment env = app.Environment;
 Rotativa.AspNetCore.RotativaConfiguration.Setup(env.WebRootPath, "../Rotativa/Windows");

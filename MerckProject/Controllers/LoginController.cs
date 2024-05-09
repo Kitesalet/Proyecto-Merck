@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ProyectoMerck.DataAccess.Interfaces;
 using ProyectoMerck.Models.ViewModels;
+using ProyectoMerck.Resources;
 using ProyectoMerck.Utilities;
 using System.Resources;
 
@@ -10,14 +11,15 @@ namespace MerckProject.Controllers
 {
     public class LoginController : Controller
     {
+        private readonly ILogger<LoginController> _logger;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IRegexHelper _regexHelper;
         private const string _validationResourceLocation = "ProyectoMerck.Resources.ValidationResources"; 
 
-        public LoginController(SignInManager<IdentityUser> user, IRegexHelper regexHelper, UserManager<IdentityUser> userManager)
+        public LoginController(SignInManager<IdentityUser> user, IRegexHelper regexHelper, UserManager<IdentityUser> userManager, ILogger<LoginController> logger)
         {
-
+            _logger = logger;
             _signInManager = user;
             _regexHelper = regexHelper;
             _userManager = userManager;
@@ -26,6 +28,7 @@ namespace MerckProject.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginVM model)
         {
+            _logger.LogInformation("Attempting to log in");
 
             string culture = CultureHelper.GetCultureFromCookie(HttpContext.Request.Cookies[".AspNetCore.Culture"]);
 
@@ -37,6 +40,7 @@ namespace MerckProject.Controllers
             {
                 ModelState.AddModelError("Email", manager.GetString("Email"));
                 TempData["Error"] = manager.GetString("Email");
+
 
             }
 

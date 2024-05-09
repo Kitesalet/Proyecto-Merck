@@ -8,10 +8,13 @@
     ViewData["Title"] = "Indicator";
 }
 
-<header class="header-bg-color">
+
+<div class="row gx-0 rich-purple-bg justify-content-center">
+    <div class="col-12 col-sm-8 col-md-8">
+<header class="rich-purple-bg">
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light">
         <div class="container-fluid">
-            <a href="@Url.Action("Index", "Home")" class="btn"><i class="bi bi-chevron-left header-icon-left"></i></a>
+            <a asp-action="BackToIndex" asp-controller="Reserve" asp-route-referer="@Model.Referer" class="btn"><i class="bi bi-chevron-left header-icon-left"></i></a>
             <button class="navbar-toggler header-burger" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <i class="bi bi-list text-light"></i>
@@ -19,71 +22,199 @@
             <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
                     <li class="nav-item">
-                        <a style="color:white" class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Login</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 </header>
-<div class="row subheader-body">
+<div class="row subheader-body rich-purple-bg">
     <div class="col-md-12">
         <div class="col-12 text-center vh-50 mt-35">
-            <img class="mb-4 subheader-img" src="~/imagenes/LogoMerck.jpg" />
             <div class="text-center subheader-div">
                 <div class="row align-items-center">
-                    <div class="col">
-                        <a href="@Url.Action("Index","Reserve")">
-                            <img src="~/imagenes/FlechaIzquierda.png" />
-                        </a>
-                    </div>
-                    <div class="col">
-                        <p class="display-4 mb-0">@Localizer["Indicatorr"].Value</p>
+                    <div class="col-12">
+                        <p class="h2 mb-0 text-white opacity-75"><strong class="vibrant-pink">Conocé más acerca de los ovocitos de buena calidad</strong></p>
                     </div>
                     <div class="col"></div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row rounded-header">
-    </div>
+            <div class="row rounded-header">
+            </div>
 </div>
-<div class="container">
-    <div class="row justify-content-center align-items-center h-100">
+<div class="container ovocite-bg-image">
+    <div class="d-flex align-items-center justify-content-center">
+        <a id="indicatorButton" asp-controller="Consultation" asp-action="Consultation" class="btn col-8 col-md-4 p-2 my-5 border-light merck-button">
+            <span class="m-button-span">Quiero Saber Más y Contactar a un Centro de Fertilidad</span>
+            <span class="spinner-container"></span>
+        </a>
+    </div>
+    <div class="container row justify-content-center align-items-center h-100">
         <div class="col-12">
-            @switch (Model.FertilityLevel)
+            @switch (Model.SelectedYear)
             {
-                case FertilityLevel.High:
-                    <p id="Height">
-                    @Localizer["HighReserve"].Value  
-                    </p>
+                case >= 35:
+                    <div id="Height" class="text-start">
+                        <p>
+                            La <span style="color:#503291; font-weight:bold" id="reservaOvarica">reserva ovárica</span>
+                            de las mujeres disminuye gradualmente tanto en cantidad como en calidad con el paso del
+                            tiempo.<sup><a href="#ref1" class="text-black">1</a></sup> Este declive es particularmente evidente a partir de los 30 años, acelerándose significativamente después de los 35,
+                            lo que afecta directamente las probabilidades de lograr un embarazo.
+                        </p>
+                        <br />
+                        <p>
+                            Al nacer, una mujer tiene alrededor de 1 millón de
+                            <span style="color:#503291; font-weight:bold" id="ovocitos">ovocitos</span>,
+                            pero para la primera menstruación solo quedan entre 300.000 y 400.000.
+                            <sup ><a href="#ref2" class="text-black">2</a></sup> Aunque la etapa más óptima para la fertilidad es entre los 20 y los 30 años,
+                            la postergación de la maternidad por diversas razones, como profesionales,
+                            personales o médicas, es una opción cada vez más elegida a nivel mundial<sup><a href="#ref3" class="text-black">3</a></sup>.
+                        </p>
+                        <br />
+                        <p>
+                            La <span style="color:#503291; font-weight:bold" id="criopreservacion">criopreservación de ovocitos</span>
+                            ofrece a las mujeres la opción de preservar
+                            su fertilidad y tener la libertad de decidir
+                            cuándo desean embarazarse, independientemente de su edad. Este proceso les otorga
+                            la libertad de planificar su
+                            futura maternidad y las empodera a tomar decisiones informadas y proactivas sobre su fertilidad.
+                        </p>
+                        <br />
+                        <p>
+                            La <span style="color:#503291; font-weight:bold" id="criopreservacion">criopreservación de ovocitos</span>
+                            es una opción valiosa para todas las mujeres en edad fértil y dichos beneficios son mayores a menor edad.<sup><a href="#ref4" class="text-black">4</a></sup>
+                        </p>
+                        <br />
+                        <p>
+                            Si bien la edad es un factor importante, no es el único determinante.
+                            Es importante realizar una consulta con un especialista en ginecología/fertilidad para
+                            obtener un diagnóstico sobre el estado de la fertilidad y explorar las opciones más
+                            adecuadas para cada uno.
+                        </p>
+                      
+                    </div>
+
                     break;
 
-                case FertilityLevel.Medium:
-                    <p id="Medium">
-                    @Localizer["MidReserve"].Value    
-                    </p>
-                    break;
+                case < 35:
+                    <div id="Medium" class="text-start">
+                        <p>
+                            La <span style="color:#503291; font-weight:bold" id="reservaOvarica">reserva ovárica</span> de las mujeres disminuye gradualmente
+                            tanto en cantidad como en calidad con el paso del tiempo.<sup><a href="#ref1" class="text-black">1</a></sup>
+                            Este declive es particularmente evidente a partir de los 30
+                            años, acelerándose significativamente después de los 35,
+                            que afecta directamente las
+                            probabilidades de lograr un embarazo.
+                        </p>
+                        <br />
+                        <p>
+                            Al nacer, una mujer tiene alrededor de 1 millón de <span style=" color:#503291; font-weight:bold" id="ovocitos">ovocitos</span>,
+                            pero para la primera menstruación solo quedan entre 300.000 y
+                            400.000.<sup><a href="#ref2" class="text-black">2</a></sup> Aunque la etapa más óptima para la fertilidad es entre
+                            los 20 y los 30 años, la postergación de la maternidad por diversas
+                            razones, como profesionales, personales o médicas, es una opción cada
+                            vez más elegida a nivel mundial<sup><a href="#ref3" class="text-black">3</a></sup>.
+                        </p>
+                        <br />
+                        <p>
+                            La <span style=" color:#503291; font-weight:bold" id="criopreservacion">criopreservación de ovocitos</span> ofrece a las mujeres la opción de
+                            preservar su fertilidad y tener la libertad de decidir cuándo
+                            desean embarazarse, independientemente de su edad. Este proceso
+                            les otorga la libertad de planificar su futura maternidad y las
+                            empodera a tomar decisiones informadas y proactivas sobre su fertilidad.
+                        </p>
+                        <br />
+                        <p>
+                            Realizar la <span style="color:#503291; font-weight:bold" id="criopreservacion">criopreservación</span> antes de los 35 años asegura una mayor cantidad de
+                            <span style=" color:#503291; font-weight:bold; " id="ovocitos">ovocitos</span> y de mejor calidad. La utilización de ovocitos criopreservados en el
+                            futuro puede aumentar las probabilidades de lograr un recién nacido vivo y sano.<sup><a href="#ref4" class="text-black">4</a></sup>
+                        </p>
+                        <br />
+                        <p>
+                            Si bien la edad es un factor importante, no es el único determinante.
+                            Es importante realizar una consulta con un especialista en
+                            ginecología/fertilidad para obtener un diagnóstico sobre el estado de
+                            la fertilidad y explorar las opciones más adecuadas para cada uno.
+                        </p>
+                    </div>                  
+                break;
 
-                case FertilityLevel.Low:
-                    <p id="Low">
-                    @Localizer["LowReserve"].Value    
-                    </p>
-                    break;
-
-                default:
-                    <p> Nivel de fertilidad no reconocido </p>
-                    break;
             }
         </div>
+            <div id="footnotes">
+                <p style="text-decoration:underline">Referencias:</p>
+                <ol>
+                    <li id="ref1">
+                        <small>
+                            <em>
+                            Moghadam y col, 2022.
+                        </em>
+                        </small>
+                    </li>
+                    <li id="ref2">
+                        <small>
+                            <em>
+                            Faddy y col, 1992.
+                        </em>
+                        </small>
 
-        <div class="d-flex align-items-center justify-content-center">
-            <a asp-controller="Consultation" asp-action="Consultation" class="btn col-5 col-md-4 p-2 my-5 border-light merck-button">
-                <span class="m-button-span">@Localizer["ContactCenter"]</span>
-                <span class="spinner-container"></span>
-            </a>
+                    </li>
+                    <li id="ref3">
+                        <small>
+                            <em>
+                            Broekmans y col, 2009.
+                        </em>
+                        </small>
+                    </li>
+                    <li id="ref4">
+                        <small>
+                            <em>
+                            Cobo y col, 2021.
+                        </em>
+                        </small>
+                    </li>
+                </ol>
+            </div>
+    </div>
+
+    <footer class="mt-3 rich-purple-bg">
+
+        <div class="footer-detail" bis_skin_checked="1">
+            <div class="row g-0" bis_skin_checked="1">
+                <div class="sm-col-6 md-col-12 lg-col-16 xl-col-16" bis_skin_checked="1">
+                    <div class="footer-legal" bis_skin_checked="1">
+                        <ul class="unstyled small flush-bottom">
+                            <li class="footer-legal-item">
+                                <a asp-action="Privacy" asp-controller="Legal" style="text-decoration:none"><strong class="vibrant-pink">Declaración de Privacidad</strong></a>
+                            </li>
+                            <li class="footer-legal-item">
+                                <a asp-action="TyC" asp-controller="Legal" style="text-decoration:none"><strong class="vibrant-pink">Términos y Condiciones</strong></a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
 
+    </footer>
+
+    <div class="d-flex justify-content-center rich-purple-bg">
+        <span class="px-4 py-2 mb-3 rich-purple-bg merck-font vibrant-pink border-1" style="border-radius:10px">Merck</span>
     </div>
+    </div>
+
+
 </div>
 
+</<div>
+</div>
+
+
+<script>
+    document.getElementById('indicatorButton').addEventListener('click',function(){
+        gtag('event', 'indicator_button_clicked');
+    })
+</script>

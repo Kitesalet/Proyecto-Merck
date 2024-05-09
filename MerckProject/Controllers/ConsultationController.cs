@@ -1,8 +1,12 @@
-﻿using Microsoft.AspNetCore.Http.Extensions;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using Proyecto_Merck.Areas.Identity.Data;
 using ProyectoMerck.Business.Interfaces;
+using ProyectoMerck.Models.Entities;
 using ProyectoMerck.Models.ViewModels;
 
 namespace MerckProject.Controllers
@@ -12,187 +16,82 @@ namespace MerckProject.Controllers
 
         private readonly IConsultationService _service;
         private readonly AppMerckContext _context;
+        private readonly IMapper _mapper;
+        private readonly ILogger<ConsultationController> _logger;   
 
-        public ConsultationController(IConsultationService service, AppMerckContext context)
+        public ConsultationController(IConsultationService service, AppMerckContext context, IMapper mapper, ILogger<ConsultationController> logger)
         {
             _context = context;
             _service = service;
+            _mapper = mapper;
+            _logger = logger;
 
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Consultation()
         {
-            return View();
-        }
 
-        public IActionResult Consultation()
-        {
-            var model = new ConsultationViewModel
-            {
-                Provinces = GetSelectListItems(
-                    items: _context.Provinces.ToList(),
-                    value: p => p.Id.ToString(),
-                    text: p => p.ProvinceName
-                ), 
+            ConsultationViewModel model = new ConsultationViewModel();
 
-                Locations = GetSelectListItems(
-                    items: _context.Locations.ToList(),
-                    value: c => c.Id.ToString(),
-                    text: c => c.LocationName
-                ),
+            model.CountryList = await _context.Countries.ToListAsync();
+            model.ProvincList = await _context.Provinces.ToListAsync();
+            model.ProvinceLocationList = await _context.ProvinceLocations.ToListAsync();
+            var locationsDto = await _context.Locations.ToListAsync();
 
-                Clinics = GetSelectListItems(
-                    items: _context.Clinics.ToList(),
-                    value: c => c.Id.ToString(),
-                    text: c => c.ClinicName
-                ),
+            model.LocationsList = locationsDto;
+            model.Locations = JsonConvert.SerializeObject(locationsDto, Formatting.Indented);
+            model.SelectedProvince = 1;
 
-                Countries = GetSelectListItems(
-                    items: _context.Countries.ToList(),
-                    value: c => c.Id.ToString(),
-                    text: c => c.CountryName
-                ),
-
-            };
+            _logger.LogInformation("Accesed consultation screen");
 
             return View("Consultation", model);
-        }
-
-        private List<SelectListItem> GetSelectListItems<T>(IEnumerable<T> items, Func<T, string> value, Func<T, string> text)
-        {
-            return items.Select(item => new SelectListItem
-            {
-                Value = value(item),
-                Text = text(item)
-            }).ToList();
-        }
-
-        [HttpGet]
-        public IActionResult GetLocaties(string province)
-        {
-            if (string.IsNullOrEmpty(province))
-            {
-                return Json(new List<SelectListItem>());
-            }
-
-            int provinceId = Convert.ToInt32(province);
-
-            var locationsFiltered = _context.Locations
-                .Where(l => l.ProvinceId == provinceId)
-                .Select(l => new SelectListItem
-                {
-                    Value = l.Id.ToString(),
-                    Text = l.LocationName.ToString()
-                })
-                .ToList();
-
-            return Json(locationsFiltered);
-        }
-
-
-        [HttpGet]
-        public IActionResult GetClinics(string province)
-        {
-            if (string.IsNullOrEmpty(province))
-            {
-                return Json(new List<SelectList>());
-            }
-
-            var provinces = new Dictionary<string, string>
-    {
-            {"1", "Buenos Aires" },
-            {"2", "Buenos Aires-GBA" },
-            {"3", "Capital Federal" },
-            {"4", "Catamarca"},
-            {"5", "Chaco"},
-            {"6", "Chubut"},
-            {"7", "Córdoba"},
-            {"8", "Corrientes"},
-            {"9", "Entre Ríos"},
-            {"10", "Formosa"},
-            {"11", "Jujuy"},
-            {"12", "La Pampa"},
-            {"13", "La Rioja"},
-            {"14", "Mendoza"},
-            {"15", "Misiones"},
-            {"16", "Neuquén"},
-            {"17", "Río Negro"},
-            {"18", "Salta"},
-            {"19", "San Juan"},
-            {"20", "San Luis"},
-            {"21", "Santa Cruz"},
-            {"22", "Santa Fe"},
-            {"23", "Santiago del Estero"},
-            {"24", "Tierra del Fuego"},
-            {"25", "Tucumán"},
-    };
-
-            if (!provinces.TryGetValue(province, out var provinceName))
-            {
-                return Json(new List<SelectListItem>());
-            }
-
-            var leakedClinics = _context.Clinics
-                .Where(c => c.ProvinceName == provinceName)
-                .Select(c => new SelectListItem
-                {
-                    Value = c.Id.ToString(),
-                    Text = c.ClinicName
-                })
-                .ToList();
-
-            return Json(leakedClinics);
-        }
-
+        }     
 
         [HttpPost]
         public async Task<IActionResult> AddConsultation(ConsultationViewModel model)
+        
         {
+            _logger.LogInformation("Submitted the consultation formulary");
+
             if (ModelState.IsValid)
             {
 
                 model.Url = HttpContext.Request.GetDisplayUrl();
-                
+
                 var flag = await _service.CreateConsultationAsync(model);
 
-                return RedirectToAction("Consultation", model);
+                TempData["Success"] = "True";
+
+                _logger.LogInformation("A consultation was saved into the database succesfully");
+
+                return RedirectToAction("Index", "Fertform");
 
             }
             else
             {
 
-                model.Provinces = GetSelectListItems(
-                items: _context.Provinces.ToList(),
-                value: p => p.Id.ToString(),
-                text: p => p.ProvinceName);
+                model.CountryList = await _context.Countries.ToListAsync();
+                model.ProvincList = await _context.Provinces.ToListAsync();
+                model.ProvinceLocationList = await _context.ProvinceLocations.ToListAsync();
+                var locationsDto = await _context.Locations.ToListAsync();
+                model.SubmitError = true;
+                model.SelectedProvince = 1;
 
+                model.LocationsList = locationsDto;
+                model.Locations = JsonConvert.SerializeObject(locationsDto, Formatting.Indented);
 
-                model.Locations = GetSelectListItems(
-                         items: _context.Locations.ToList(),
-                         value: c => c.Id.ToString(),
-                         text: c => c.LocationName
-                     );
+                TempData["Error"] = "El envio del formulario no se pudo enviar correctamente";
 
-                model.Clinics = GetSelectListItems(
-                    items: _context.Clinics.ToList(),
-                    value: c => c.Id.ToString(),
-                    text: c => c.ClinicName
-                );
-
-                model.Countries = GetSelectListItems(
-                    items: _context.Countries.ToList(),
-                    value: c => c.Id.ToString(),
-                    text: c => c.CountryName
-                );
-
+                _logger.LogError("There has been an error sending the form");
 
                 return View("Consultation", model);
 
             }
 
 
- 
-        }
 
+
+
+        }
     }
 }

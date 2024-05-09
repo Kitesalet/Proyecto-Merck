@@ -1,14 +1,162 @@
-html {
-    font-family: 'Roboto', sans-serif;
-    font-size: 14px;
-    height: 100vh;
-    width: 100vw;
-    box-sizing: border-box;
-    position: relative;
-    min-height: 100%;
+* {
+    font-family: Verdana;
+}
+
+.ovocite-bg-image {
+    background-image: url('../Imagenes/Ovocito_95.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-color:white;
 }
 
 
+@font-face {
+    font-family: 'Merck';
+    src: url('/fonts/merck.ttf') format('truetype');
+    /* You can specify font-weight and font-style here if needed */
+}
+
+.fixed-image {
+    max-width: 100%;
+    height: auto;
+    width: 110px; /* Adjust the width as needed */
+    max-height: 120px; /* Adjust the max-height as needed */
+}
+
+.fixed-image-2 {
+    max-width: 100%;
+    height: auto;
+    width: 90px; /* Adjust the width as needed */
+    max-height: 120px; /* Adjust the max-height as needed */
+}
+
+.footer-detail {
+    padding-top: 30px !important;
+}
+
+@media (min-width: 767){
+    .footer-detail {
+        padding-bottom: 30px;
+        padding-top: 0px !important;
+    }
+}
+
+.footer-legal{
+    text-align:center;
+}
+
+.legal-bg-color {
+    background-color: #FFC832;
+}
+
+
+@media (min-width: 0) and (max-width: 767px) {
+    .footer-legal {
+        text-align: left;
+    }
+}
+
+.small{
+    text-align:center;
+}
+
+.legal-titles h1,
+.legal-titles h2,
+.legal-titles h3,
+.legal-titles h4 {
+    font-family: 'Merck';
+    src: url('/fonts/merck.ttf') format('truetype');
+    color: #503291;
+}
+
+ul.unstyled {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.flush-bottom {
+    margin-bottom: 0 !important;
+}
+
+.border-bottom-custom {
+    border-bottom: 1px solid #CED4DA;
+    width: 90%;
+    margin: 0 auto; /* Center the border */
+}
+
+
+.footer-legal-item {
+    display: inline;
+    padding-right: 24px !important;
+    padding-left: 24px !important;
+    border-right: 1px solid #454545;
+    line-height: 1;
+    margin-bottom: 30px !important;
+}
+
+@media (min-width: 0) and (max-width: 767px) {
+    .footer-legal-item {
+        display: block;
+        padding: 0 !important;
+        border: 0;
+        display: block;
+    }
+}
+
+.vibrant-pink {
+    color: #eb3c96;
+}
+
+.rich-purple {
+    color: #503291;
+}
+
+.rich-purple-bg {
+    background-color: #503291;
+}
+
+.vibrant-pink-bg {
+    background-color: #eb3c96;
+}
+
+.disclaimer-text{
+    cursor:pointer;
+}
+
+    .disclaimer-text:hover {
+        color: #eb3c96;
+    }
+
+.white-bg{
+    background-color:white;
+}
+
+.footer-legal-item:last-child {
+    border-right: none;
+}
+
+.rich-blue {
+    color: #0f69af;
+}
+
+.rich-blue-bg {
+    background-color: #0f69af;
+}
+
+.merck-font{
+    font-family: 'Merck';
+}
+
+html {
+    font-family: Verdana;
+    font-size: 14px;
+    height: 100vh;
+    box-sizing: border-box;
+    position: relative;
+
+}
 
 @media (min-width: 768px) {
     html {
@@ -34,9 +182,9 @@ html {
 }
 
 .subheader-img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    height: 10%;
+    width:50%;
+
 }
 
 .rounded-header {
@@ -48,7 +196,7 @@ html {
 }
 
 .subheader-div {
-    margin-top: 65px;
+    margin-top: 35px;
     margin-bottom: 45px;
     color: #aff3fb;
 }
@@ -63,7 +211,6 @@ html {
 }
 
 .subheader-body {
-    background-color: #2EBDCD;
     margin: 0
 }
 
@@ -105,10 +252,9 @@ html {
 }
 
 .merck-button {
-    font-weight:bold;
+    font-weight: bold;
     color: white;
-    border-radius: 5px;
-    background-color: darkcyan;
+    background-color: #503291;
 }
 
 
@@ -141,7 +287,7 @@ html {
 }
 
 .consultation-label {
-    color: #776793;
+    color: #503291;
     text-align: center;
     font-size: 23px;
     font-weight: 500;
@@ -154,15 +300,60 @@ html {
 }
 
 .consultation-label-2 {
-    color: #ef4488;
+    color: #eb3c96;
     text-align: center;
     font-size: 23px;
     font-weight: 500;
     margin: 0px;
 }
 
+.clinic-text{
+    text-align: center;
+}
+
 .w-200{
     width:200px;
+}
+
+.nonselected-clinic {
+    color: #8C92AC;
+    background-color: #E4E7F8;
+    border-radius: 10px;
+    font-size: 4em;
+    cursor: pointer;
+}
+
+.selected-clinic {
+    color: white;
+    background-color: #EC3B96;
+    border-radius: 8px;
+    font-size: 4em;
+}
+
+.clinic-container {
+/*    height: 6rem;
+    border-radius: 10px;
+    background-color: #583B93;*/
+}
+
+.submit-button {
+    color: white;
+    border-radius: 50px;
+    background-color: #503291;
+}
+
+.clinic-container-error {
+    height: 6rem;
+    border-radius: 10px;
+    background-color: red;
+}
+
+.hidden-icon {
+    display: none;
+}
+
+.visible-icon {
+    display: block;
 }
 
 /*Reporte*/

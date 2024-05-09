@@ -130,4 +130,7 @@ Idade</value>
   <data name="Send" xml:space="preserve">
     <value>Enviar</value>
   </data>
+  <data name="At what age would you like to be a mother in the future?" xml:space="preserve">
+    <value>Edade planificada</value>
+  </data>
 </root>

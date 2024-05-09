@@ -10,7 +10,10 @@ using ProyectoMerck.Models.Entities;
 using ProyectoMerck.Models.ViewModels;
 using ProyectoMerck.Utilities;
 using System.Resources;
-using MerckProject.Resources;
+using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.IdentityModel.Abstractions;
+using Microsoft.EntityFrameworkCore;
+using ProyectoMerck.Resources;
 
 namespace ProyectoMerck.Business.Services
 {
@@ -19,10 +22,11 @@ namespace ProyectoMerck.Business.Services
         private readonly IUnitOfWork _context;
         private readonly IMapper _mapper;
         private readonly IEmailSendeer _mailSender;
+        private readonly AppMerckContext _dbContext;
 
-        public ConsultationService(IUnitOfWork context, IMapper mapper, IEmailSendeer mailSender)
+        public ConsultationService(IUnitOfWork context, IMapper mapper, IEmailSendeer mailSender, AppMerckContext dbContext)
         {
-
+            _dbContext = dbContext;
             _context = context;
             _mapper = mapper;
             _mailSender = mailSender;
@@ -42,10 +46,17 @@ namespace ProyectoMerck.Business.Services
                 Consultation consultation = new Consultation()
                 {
                     DateAndtime = DateTime.Now,
-                    Clinic = model.Clinic,
+                    SelectedLocationIndex = model.SelectedLocationIndex,
                     ConsultationReason = model.ReasonConsultation,
-                    Url = newUri
+                    Url = model.Url
                 };
+
+                Location clinic = await _dbContext.Locations
+                                                    .Where(c => c.Id == model.SelectedLocationIndex)
+                                                    .FirstOrDefaultAsync();
+
+                consultation.ClinicName = clinic.Title;
+                
 
                 flag = await _context.ConsultationRepository.Add(consultation);
 
@@ -58,9 +69,9 @@ namespace ProyectoMerck.Business.Services
                 var emailBody = manager.GetString("EmailBody");
 
                 var emailSubjectFormatted = String.Format(emailSubject, new Random().Next(1, 9999999));
-                var emailBodyFormatted = String.Format(emailBody, model.Clinic, model.Email, model.ReasonConsultation);
+                var emailBodyFormatted = String.Format(emailBody, clinic.Title, model.Email, model.TelephoneNumber, model.FullName, model.ReasonConsultation);
 
-                await _mailSender.EmailAsync(model.Email, emailSubjectFormatted, emailBodyFormatted);
+                await _mailSender.EmailAsync(clinic.Email, emailSubjectFormatted, emailBodyFormatted);
 
                 return flag;
             }

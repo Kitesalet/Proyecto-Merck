@@ -254,78 +254,6 @@ namespace ProyectoMerck.DataAccess.Migrations
                     b.HasIndex("ProvinceId");
 
                     b.ToTable("Clinics");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Address = "Viamonte 1432",
-                            ClinicName = "CEGYR Medicina Reproductiva",
-                            Latitude = -34.6007441,
-                            Length = -58.387174100000003,
-                            ProvinceId = 3,
-                            ProvinceName = "Capital Federal"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Address = "Humboldt 2263",
-                            ClinicName = "CER",
-                            Latitude = -34.5806714,
-                            Length = -58.4302438,
-                            ProvinceId = 4,
-                            ProvinceName = "Catamarca"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Address = "Av.Forest 1166",
-                            ClinicName = "Centro de Investigaciones en Medicina Reproductiva",
-                            Latitude = -34.578822199999998,
-                            Length = -58.460096700000001,
-                            ProvinceId = 4,
-                            ProvinceName = "Chaco"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Address = "Alvear 514",
-                            ClinicName = "Centro Gens",
-                            Latitude = -34.7197709,
-                            Length = -58.256260400000002,
-                            ProvinceId = 5,
-                            ProvinceName = "Chubut"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Address = "Marcelo T. de Alvear 2084",
-                            ClinicName = "Halitus Instituto Médico",
-                            Latitude = -34.597464299999999,
-                            Length = -58.3971746,
-                            ProvinceId = 3,
-                            ProvinceName = "Capital Federal"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Address = "Bulnes 1104",
-                            ClinicName = "Maternity Bank",
-                            Latitude = -34.598300000000002,
-                            Length = -58.417900000000003,
-                            ProvinceId = 3,
-                            ProvinceName = "Capital Federal"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Address = "Av. del Libertador 5962",
-                            ClinicName = "WeFIV",
-                            Latitude = -34.557099999999998,
-                            Length = -58.447600000000001,
-                            ProvinceId = 3,
-                            ProvinceName = "Capital Federal"
-                        });
                 });
 
             modelBuilder.Entity("ProyectoMerck.Models.Entities.Consultation", b =>
@@ -336,8 +264,7 @@ namespace ProyectoMerck.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Clinic")
-                        .IsRequired()
+                    b.Property<string>("ClinicName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ConsultationReason")
@@ -347,8 +274,10 @@ namespace ProyectoMerck.DataAccess.Migrations
                     b.Property<DateTime>("DateAndtime")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("SelectedLocationIndex")
+                        .HasColumnType("int");
+
                     b.Property<string>("Url")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -359,18 +288,65 @@ namespace ProyectoMerck.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            Clinic = "CEGYR Medicina Reproductiva",
-                            ConsultationReason = "Edad y Reserva Ovarica",
-                            DateAndtime = new DateTime(2024, 2, 23, 12, 5, 52, 338, DateTimeKind.Local).AddTicks(1071),
-                            Url = "https://ejemplo.com/"
+                            ClinicName = "HIALITUS",
+                            ConsultationReason = "Stringer",
+                            DateAndtime = new DateTime(2024, 4, 29, 20, 9, 19, 280, DateTimeKind.Local).AddTicks(3264),
+                            SelectedLocationIndex = 2,
+                            Url = "www.google.com"
                         },
                         new
                         {
                             Id = 2,
-                            Clinic = "Centro de Investigaciones en Medicina Reproductiva",
-                            ConsultationReason = "Evaluación de Reserva Ovárica",
-                            DateAndtime = new DateTime(2024, 2, 23, 12, 5, 52, 338, DateTimeKind.Local).AddTicks(1169),
-                            Url = "https://ejemplo2.com/"
+                            ClinicName = "CRECER",
+                            ConsultationReason = "Inter",
+                            DateAndtime = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SelectedLocationIndex = 3,
+                            Url = "www.google.com"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ClinicName = "HOSPITAL ITALIANO",
+                            ConsultationReason = "Inter",
+                            DateAndtime = new DateTime(2024, 4, 29, 20, 9, 19, 280, DateTimeKind.Local).AddTicks(3283),
+                            SelectedLocationIndex = 4,
+                            Url = "www.google.com"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ClinicName = "MERCK 1",
+                            ConsultationReason = "Inter",
+                            DateAndtime = new DateTime(2024, 4, 29, 20, 9, 19, 280, DateTimeKind.Local).AddTicks(3285),
+                            SelectedLocationIndex = 5,
+                            Url = "www.google.com"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            ClinicName = "IDERT",
+                            ConsultationReason = "Inter",
+                            DateAndtime = new DateTime(2024, 4, 29, 20, 9, 19, 280, DateTimeKind.Local).AddTicks(3287),
+                            SelectedLocationIndex = 6,
+                            Url = "www.google.com"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            ClinicName = "JUERTE",
+                            ConsultationReason = "Inter",
+                            DateAndtime = new DateTime(2024, 4, 29, 20, 9, 19, 280, DateTimeKind.Local).AddTicks(3288),
+                            SelectedLocationIndex = 7,
+                            Url = "www.google.com"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            ClinicName = "CRECER",
+                            ConsultationReason = "Inter",
+                            DateAndtime = new DateTime(2024, 4, 29, 20, 9, 19, 280, DateTimeKind.Local).AddTicks(3290),
+                            SelectedLocationIndex = 8,
+                            Url = "www.google.com"
                         });
                 });
 
@@ -382,7 +358,7 @@ namespace ProyectoMerck.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("CountryName")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -394,7 +370,17 @@ namespace ProyectoMerck.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CountryName = "Argentina"
+                            Name = "Brasil"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Argentina"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Chile"
                         });
                 });
 
@@ -406,16 +392,30 @@ namespace ProyectoMerck.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("LocationName")
+                    b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ProvinceId")
+                    b.Property<double>("Latitude")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Longitude")
+                        .HasColumnType("float");
+
+                    b.Property<int>("ProvinceLocationId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Subtitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProvinceId");
+                    b.HasIndex("ProvinceLocationId");
 
                     b.ToTable("Locations");
 
@@ -423,1112 +423,82 @@ namespace ProyectoMerck.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            LocationName = "25 de Mayo",
-                            ProvinceId = 1
+                            Email = "mercktest111@gmail.com",
+                            Latitude = -34.600677504040895,
+                            Longitude = -58.387263729958455,
+                            ProvinceLocationId = 1,
+                            Subtitle = "Centro Fertilidad",
+                            Title = "Clínica Roja"
                         },
                         new
                         {
                             Id = 2,
-                            LocationName = "3 de febrero",
-                            ProvinceId = 1
+                            Email = "mercktest111@gmail.com",
+                            Latitude = -34.580702852634481,
+                            Longitude = -58.430260973627661,
+                            ProvinceLocationId = 1,
+                            Subtitle = "Centro Fertilidad",
+                            Title = "Clínica Azul"
                         },
                         new
                         {
                             Id = 3,
-                            LocationName = "A. Alsina",
-                            ProvinceId = 1
+                            Email = "mercktest111@gmail.com",
+                            Latitude = -34.578846588221204,
+                            Longitude = -58.460103931977983,
+                            ProvinceLocationId = 2,
+                            Subtitle = "Centro Fertilidad",
+                            Title = "Clínica Violeta"
                         },
                         new
                         {
                             Id = 4,
-                            LocationName = "A. Gonzáles Cháves",
-                            ProvinceId = 1
+                            Email = "mercktest111@gmail.com",
+                            Latitude = -34.599254733727243,
+                            Longitude = -58.401810339490027,
+                            ProvinceLocationId = 2,
+                            Subtitle = "Centro Fertilidad",
+                            Title = "Clínica Verde"
                         },
                         new
                         {
                             Id = 5,
-                            LocationName = "Aguas Verdes",
-                            ProvinceId = 1
+                            Email = "mercktest111@gmail.com",
+                            Latitude = -34.597439056459208,
+                            Longitude = -58.397189279473473,
+                            ProvinceLocationId = 3,
+                            Subtitle = "Centro Fertilidad",
+                            Title = "Clínica Amarilla"
                         },
                         new
                         {
                             Id = 6,
-                            LocationName = "Alberti",
-                            ProvinceId = 1
+                            Email = "mercktest111@gmail.com",
+                            Latitude = -34.606202223417398,
+                            Longitude = -58.425645264604945,
+                            ProvinceLocationId = 3,
+                            Subtitle = "Centro Fertilidad",
+                            Title = "Hospital Rojo"
                         },
                         new
                         {
                             Id = 7,
-                            LocationName = "Arrecifes",
-                            ProvinceId = 1
+                            Email = "mercktest111@gmail.com",
+                            Latitude = -34.596689236707874,
+                            Longitude = -58.399734815343471,
+                            ProvinceLocationId = 4,
+                            Subtitle = "Centro Fertilidad",
+                            Title = "Hospital Fucsia"
                         },
                         new
                         {
                             Id = 8,
-                            LocationName = "Ayacucho",
-                            ProvinceId = 1
-                        },
-                        new
-                        {
-                            Id = 9,
-                            LocationName = "Azul",
-                            ProvinceId = 1
-                        },
-                        new
-                        {
-                            Id = 10,
-                            LocationName = "Bahía Blanca",
-                            ProvinceId = 1
-                        },
-                        new
-                        {
-                            Id = 11,
-                            LocationName = "Balcarce",
-                            ProvinceId = 1
-                        },
-                        new
-                        {
-                            Id = 12,
-                            LocationName = "Baradero",
-                            ProvinceId = 1
-                        },
-                        new
-                        {
-                            Id = 13,
-                            LocationName = "Benito Juárez",
-                            ProvinceId = 1
-                        },
-                        new
-                        {
-                            Id = 14,
-                            LocationName = "Berisso",
-                            ProvinceId = 1
-                        },
-                        new
-                        {
-                            Id = 15,
-                            LocationName = "Bolívar",
-                            ProvinceId = 1
-                        },
-                        new
-                        {
-                            Id = 16,
-                            LocationName = "Bragado",
-                            ProvinceId = 1
-                        },
-                        new
-                        {
-                            Id = 17,
-                            LocationName = "Brandsen",
-                            ProvinceId = 1
-                        },
-                        new
-                        {
-                            Id = 18,
-                            LocationName = "Campana",
-                            ProvinceId = 1
-                        },
-                        new
-                        {
-                            Id = 19,
-                            LocationName = "Cañuelas",
-                            ProvinceId = 1
-                        },
-                        new
-                        {
-                            Id = 20,
-                            LocationName = "Capilla del Señor",
-                            ProvinceId = 1
-                        },
-                        new
-                        {
-                            Id = 21,
-                            LocationName = "Capitán Sarmiento",
-                            ProvinceId = 1
-                        },
-                        new
-                        {
-                            Id = 22,
-                            LocationName = "Carapachay",
-                            ProvinceId = 1
-                        },
-                        new
-                        {
-                            Id = 23,
-                            LocationName = "Carhue",
-                            ProvinceId = 1
-                        },
-                        new
-                        {
-                            Id = 24,
-                            LocationName = "Cariló",
-                            ProvinceId = 1
-                        },
-                        new
-                        {
-                            Id = 25,
-                            LocationName = "Carlos Casares",
-                            ProvinceId = 1
-                        },
-                        new
-                        {
-                            Id = 26,
-                            LocationName = "Carlos Tejedor",
-                            ProvinceId = 1
-                        },
-                        new
-                        {
-                            Id = 27,
-                            LocationName = "Carmen de Areco",
-                            ProvinceId = 1
-                        },
-                        new
-                        {
-                            Id = 28,
-                            LocationName = "Carmen de Patagones",
-                            ProvinceId = 1
-                        },
-                        new
-                        {
-                            Id = 29,
-                            LocationName = "Castelli",
-                            ProvinceId = 1
-                        },
-                        new
-                        {
-                            Id = 30,
-                            LocationName = "Chacabuco",
-                            ProvinceId = 1
-                        },
-                        new
-                        {
-                            Id = 31,
-                            LocationName = "Chascomús",
-                            ProvinceId = 1
-                        },
-                        new
-                        {
-                            Id = 32,
-                            LocationName = "Chivilcoy",
-                            ProvinceId = 1
-                        },
-                        new
-                        {
-                            Id = 33,
-                            LocationName = "Colón",
-                            ProvinceId = 1
-                        },
-                        new
-                        {
-                            Id = 34,
-                            LocationName = "Coronel Dorrego",
-                            ProvinceId = 1
-                        },
-                        new
-                        {
-                            Id = 35,
-                            LocationName = "Coronel Pringles",
-                            ProvinceId = 1
-                        },
-                        new
-                        {
-                            Id = 36,
-                            LocationName = "Coronel Rosales",
-                            ProvinceId = 1
-                        },
-                        new
-                        {
-                            Id = 37,
-                            LocationName = "Coronel Suarez",
-                            ProvinceId = 1
-                        },
-                        new
-                        {
-                            Id = 38,
-                            LocationName = "Costa Azul",
-                            ProvinceId = 1
-                        },
-                        new
-                        {
-                            Id = 39,
-                            LocationName = "Costa Chica",
-                            ProvinceId = 1
-                        },
-                        new
-                        {
-                            Id = 40,
-                            LocationName = "Costa del Este",
-                            ProvinceId = 1
-                        },
-                        new
-                        {
-                            Id = 41,
-                            LocationName = "Costa Esmeralda",
-                            ProvinceId = 1
-                        },
-                        new
-                        {
-                            Id = 42,
-                            LocationName = "Daireaux",
-                            ProvinceId = 1
-                        },
-                        new
-                        {
-                            Id = 43,
-                            LocationName = "Darregueira",
-                            ProvinceId = 1
-                        },
-                        new
-                        {
-                            Id = 44,
-                            LocationName = "Del Viso",
-                            ProvinceId = 1
-                        },
-                        new
-                        {
-                            Id = 45,
-                            LocationName = "Dolores",
-                            ProvinceId = 1
-                        },
-                        new
-                        {
-                            Id = 46,
-                            LocationName = "Don Torcuato",
-                            ProvinceId = 1
-                        },
-                        new
-                        {
-                            Id = 47,
-                            LocationName = "Ensenada",
-                            ProvinceId = 1
-                        },
-                        new
-                        {
-                            Id = 48,
-                            LocationName = "Escobar",
-                            ProvinceId = 1
-                        },
-                        new
-                        {
-                            Id = 49,
-                            LocationName = "Exaltación de la Cruz",
-                            ProvinceId = 1
-                        },
-                        new
-                        {
-                            Id = 50,
-                            LocationName = "Florentino Ameghino",
-                            ProvinceId = 1
-                        },
-                        new
-                        {
-                            Id = 282,
-                            LocationName = "Agronomía",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 283,
-                            LocationName = "Almagro",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 284,
-                            LocationName = "Balvanera",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 285,
-                            LocationName = "Barracas",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 286,
-                            LocationName = "Belgrano",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 287,
-                            LocationName = "Boca",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 288,
-                            LocationName = "Boedo",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 289,
-                            LocationName = "Caballito",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 290,
-                            LocationName = "Chacarita",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 291,
-                            LocationName = "Coghlan",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 292,
-                            LocationName = "Colegiales",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 293,
-                            LocationName = "Constitución",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 294,
-                            LocationName = "Flores",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 295,
-                            LocationName = "Floresta",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 296,
-                            LocationName = "La Paternal",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 297,
-                            LocationName = "Liniers",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 298,
-                            LocationName = "Mataderos",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 299,
-                            LocationName = "Monserrat",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 300,
-                            LocationName = "Monte Castro",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 301,
-                            LocationName = "Nueva Pompeya",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 302,
-                            LocationName = "Núñez",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 303,
-                            LocationName = "Palermo",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 304,
-                            LocationName = "Parque Avellaneda",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 305,
-                            LocationName = "Parque Chacabuco",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 306,
-                            LocationName = "Parque Chas",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 307,
-                            LocationName = "Parque Patricios",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 308,
-                            LocationName = "Puerto Madero",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 309,
-                            LocationName = "Recoleta",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 310,
-                            LocationName = "Retiro",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 311,
-                            LocationName = "Saavedra",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 312,
-                            LocationName = "San Cristóbal",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 313,
-                            LocationName = "San Nicolás",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 314,
-                            LocationName = "San Telmo",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 315,
-                            LocationName = "Vélez Sársfield",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 316,
-                            LocationName = "Versalles",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 317,
-                            LocationName = "Villa Crespo",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 318,
-                            LocationName = "Villa del Parque",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 319,
-                            LocationName = "Villa Devoto",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 320,
-                            LocationName = "Villa Gral. Mitre",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 321,
-                            LocationName = "Villa Lugano",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 322,
-                            LocationName = "Villa Luro",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 323,
-                            LocationName = "Villa Ortúzar",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 324,
-                            LocationName = "Villa Pueyrredón",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 325,
-                            LocationName = "Villa Real",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 326,
-                            LocationName = "Villa Riachuelo",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 327,
-                            LocationName = "Villa Santa Rita",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 328,
-                            LocationName = "Villa Soldati",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 329,
-                            LocationName = "Villa Urquiza",
-                            ProvinceId = 3
-                        },
-                        new
-                        {
-                            Id = 330,
-                            LocationName = "Aconquija",
-                            ProvinceId = 4
-                        },
-                        new
-                        {
-                            Id = 331,
-                            LocationName = "Ancasti",
-                            ProvinceId = 4
-                        },
-                        new
-                        {
-                            Id = 332,
-                            LocationName = "Andalgalá",
-                            ProvinceId = 4
-                        },
-                        new
-                        {
-                            Id = 333,
-                            LocationName = "Antofagasta",
-                            ProvinceId = 4
-                        },
-                        new
-                        {
-                            Id = 334,
-                            LocationName = "Belén",
-                            ProvinceId = 4
-                        },
-                        new
-                        {
-                            Id = 335,
-                            LocationName = "Capayán",
-                            ProvinceId = 4
-                        },
-                        new
-                        {
-                            Id = 336,
-                            LocationName = "Capital",
-                            ProvinceId = 4
-                        },
-                        new
-                        {
-                            Id = 337,
-                            LocationName = "4",
-                            ProvinceId = 4
-                        },
-                        new
-                        {
-                            Id = 338,
-                            LocationName = "Corral Quemado",
-                            ProvinceId = 4
-                        },
-                        new
-                        {
-                            Id = 339,
-                            LocationName = "El Alto",
-                            ProvinceId = 4
-                        },
-                        new
-                        {
-                            Id = 340,
-                            LocationName = "El Rodeo",
-                            ProvinceId = 4
-                        },
-                        new
-                        {
-                            Id = 341,
-                            LocationName = "F.Mamerto Esquiú",
-                            ProvinceId = 4
-                        },
-                        new
-                        {
-                            Id = 342,
-                            LocationName = "Fiambalá",
-                            ProvinceId = 4
-                        },
-                        new
-                        {
-                            Id = 343,
-                            LocationName = "Hualfín",
-                            ProvinceId = 4
-                        },
-                        new
-                        {
-                            Id = 344,
-                            LocationName = "Huillapima",
-                            ProvinceId = 4
-                        },
-                        new
-                        {
-                            Id = 345,
-                            LocationName = "Icaño",
-                            ProvinceId = 4
-                        },
-                        new
-                        {
-                            Id = 346,
-                            LocationName = "La Puerta",
-                            ProvinceId = 4
-                        },
-                        new
-                        {
-                            Id = 347,
-                            LocationName = "Las Juntas",
-                            ProvinceId = 4
-                        },
-                        new
-                        {
-                            Id = 348,
-                            LocationName = "Londres",
-                            ProvinceId = 4
-                        },
-                        new
-                        {
-                            Id = 381,
-                            LocationName = "Col. Elisa",
-                            ProvinceId = 5
-                        },
-                        new
-                        {
-                            Id = 382,
-                            LocationName = "Col. Popular",
-                            ProvinceId = 5
-                        },
-                        new
-                        {
-                            Id = 383,
-                            LocationName = "Colonias Unidas",
-                            ProvinceId = 5
-                        },
-                        new
-                        {
-                            Id = 384,
-                            LocationName = "Concepción",
-                            ProvinceId = 5
-                        },
-                        new
-                        {
-                            Id = 385,
-                            LocationName = "Corzuela",
-                            ProvinceId = 5
-                        },
-                        new
-                        {
-                            Id = 386,
-                            LocationName = "Cote Lai",
-                            ProvinceId = 5
-                        },
-                        new
-                        {
-                            Id = 387,
-                            LocationName = "El Sauzalito",
-                            ProvinceId = 5
-                        },
-                        new
-                        {
-                            Id = 388,
-                            LocationName = "Enrique Urien",
-                            ProvinceId = 5
-                        },
-                        new
-                        {
-                            Id = 389,
-                            LocationName = "Fontana",
-                            ProvinceId = 5
-                        },
-                        new
-                        {
-                            Id = 390,
-                            LocationName = "Fte. Esperanza",
-                            ProvinceId = 5
-                        },
-                        new
-                        {
-                            Id = 391,
-                            LocationName = "Gancedo",
-                            ProvinceId = 5
-                        },
-                        new
-                        {
-                            Id = 392,
-                            LocationName = "Gral. Capdevila",
-                            ProvinceId = 5
-                        },
-                        new
-                        {
-                            Id = 393,
-                            LocationName = "Gral. Pinero",
-                            ProvinceId = 5
-                        },
-                        new
-                        {
-                            Id = 394,
-                            LocationName = "Gral. San Martín",
-                            ProvinceId = 5
-                        },
-                        new
-                        {
-                            Id = 395,
-                            LocationName = "Gral. Vedia",
-                            ProvinceId = 5
-                        },
-                        new
-                        {
-                            Id = 396,
-                            LocationName = "Hermoso Campo",
-                            ProvinceId = 5
-                        },
-                        new
-                        {
-                            Id = 397,
-                            LocationName = "I. del Cerrito",
-                            ProvinceId = 5
-                        },
-                        new
-                        {
-                            Id = 398,
-                            LocationName = "J.J. Castelli",
-                            ProvinceId = 5
-                        },
-                        new
-                        {
-                            Id = 399,
-                            LocationName = "La Clotilde",
-                            ProvinceId = 5
-                        },
-                        new
-                        {
-                            Id = 400,
-                            LocationName = "La Eduvigis",
-                            ProvinceId = 5
-                        },
-                        new
-                        {
-                            Id = 401,
-                            LocationName = "La Escondida",
-                            ProvinceId = 5
-                        },
-                        new
-                        {
-                            Id = 402,
-                            LocationName = "La Leonesa",
-                            ProvinceId = 5
-                        },
-                        new
-                        {
-                            Id = 403,
-                            LocationName = "La Tigra",
-                            ProvinceId = 5
-                        },
-                        new
-                        {
-                            Id = 404,
-                            LocationName = "La Verde",
-                            ProvinceId = 5
-                        },
-                        new
-                        {
-                            Id = 453,
-                            LocationName = "Dolavón",
-                            ProvinceId = 6
-                        },
-                        new
-                        {
-                            Id = 454,
-                            LocationName = "Dr. R. Rojas",
-                            ProvinceId = 6
-                        },
-                        new
-                        {
-                            Id = 455,
-                            LocationName = "El Hoyo",
-                            ProvinceId = 6
-                        },
-                        new
-                        {
-                            Id = 456,
-                            LocationName = "El Maitén",
-                            ProvinceId = 6
-                        },
-                        new
-                        {
-                            Id = 457,
-                            LocationName = "Epuyén",
-                            ProvinceId = 6
-                        },
-                        new
-                        {
-                            Id = 458,
-                            LocationName = "Esquel",
-                            ProvinceId = 6
-                        },
-                        new
-                        {
-                            Id = 459,
-                            LocationName = "Facundo",
-                            ProvinceId = 6
-                        },
-                        new
-                        {
-                            Id = 460,
-                            LocationName = "Gaimán",
-                            ProvinceId = 6
-                        },
-                        new
-                        {
-                            Id = 461,
-                            LocationName = "Gan Gan",
-                            ProvinceId = 6
-                        },
-                        new
-                        {
-                            Id = 462,
-                            LocationName = "Gastre",
-                            ProvinceId = 6
-                        },
-                        new
-                        {
-                            Id = 463,
-                            LocationName = "Gdor. Costa",
-                            ProvinceId = 6
-                        },
-                        new
-                        {
-                            Id = 464,
-                            LocationName = "Gualjaina",
-                            ProvinceId = 6
-                        },
-                        new
-                        {
-                            Id = 465,
-                            LocationName = "J. de San Martín",
-                            ProvinceId = 6
-                        },
-                        new
-                        {
-                            Id = 466,
-                            LocationName = "Lago Blanco",
-                            ProvinceId = 6
-                        },
-                        new
-                        {
-                            Id = 467,
-                            LocationName = "Lago Puelo",
-                            ProvinceId = 6
-                        },
-                        new
-                        {
-                            Id = 468,
-                            LocationName = "Lagunita Salada",
-                            ProvinceId = 6
-                        },
-                        new
-                        {
-                            Id = 469,
-                            LocationName = "Las Plumas",
-                            ProvinceId = 6
-                        },
-                        new
-                        {
-                            Id = 470,
-                            LocationName = "Los Altares",
-                            ProvinceId = 6
-                        },
-                        new
-                        {
-                            Id = 504,
-                            LocationName = "Arias",
-                            ProvinceId = 7
-                        },
-                        new
-                        {
-                            Id = 505,
-                            LocationName = "Arroyito",
-                            ProvinceId = 7
-                        },
-                        new
-                        {
-                            Id = 506,
-                            LocationName = "Arroyo Algodon",
-                            ProvinceId = 7
-                        },
-                        new
-                        {
-                            Id = 507,
-                            LocationName = "Arroyo Cabral",
-                            ProvinceId = 7
-                        },
-                        new
-                        {
-                            Id = 508,
-                            LocationName = "Arroyo Los Patos",
-                            ProvinceId = 7
-                        },
-                        new
-                        {
-                            Id = 509,
-                            LocationName = "Assunta",
-                            ProvinceId = 7
-                        },
-                        new
-                        {
-                            Id = 510,
-                            LocationName = "Atahona",
-                            ProvinceId = 7
-                        },
-                        new
-                        {
-                            Id = 511,
-                            LocationName = "Ausonia",
-                            ProvinceId = 7
-                        },
-                        new
-                        {
-                            Id = 512,
-                            LocationName = "Avellaneda",
-                            ProvinceId = 7
-                        },
-                        new
-                        {
-                            Id = 513,
-                            LocationName = "Ballesteros",
-                            ProvinceId = 7
-                        },
-                        new
-                        {
-                            Id = 514,
-                            LocationName = "Ballesteros Sud",
-                            ProvinceId = 7
-                        },
-                        new
-                        {
-                            Id = 515,
-                            LocationName = "Balnearia",
-                            ProvinceId = 7
-                        },
-                        new
-                        {
-                            Id = 516,
-                            LocationName = "Bañado de Soto",
-                            ProvinceId = 7
-                        },
-                        new
-                        {
-                            Id = 517,
-                            LocationName = "Bell Ville",
-                            ProvinceId = 7
-                        },
-                        new
-                        {
-                            Id = 518,
-                            LocationName = "Bengolea",
-                            ProvinceId = 7
-                        },
-                        new
-                        {
-                            Id = 519,
-                            LocationName = "Benjamin Gould",
-                            ProvinceId = 7
-                        },
-                        new
-                        {
-                            Id = 520,
-                            LocationName = "Berrotaran",
-                            ProvinceId = 7
-                        },
-                        new
-                        {
-                            Id = 521,
-                            LocationName = "Bialet Masse",
-                            ProvinceId = 7
-                        },
-                        new
-                        {
-                            Id = 522,
-                            LocationName = "Bouwer",
-                            ProvinceId = 7
-                        },
-                        new
-                        {
-                            Id = 523,
-                            LocationName = "Brinkmann",
-                            ProvinceId = 7
-                        },
-                        new
-                        {
-                            Id = 524,
-                            LocationName = "Buchardo",
-                            ProvinceId = 7
-                        },
-                        new
-                        {
-                            Id = 525,
-                            LocationName = "Bulnes",
-                            ProvinceId = 7
-                        },
-                        new
-                        {
-                            Id = 526,
-                            LocationName = "Cabalango",
-                            ProvinceId = 7
-                        },
-                        new
-                        {
-                            Id = 527,
-                            LocationName = "Calamuchita",
-                            ProvinceId = 7
-                        },
-                        new
-                        {
-                            Id = 963,
-                            LocationName = "Saladas",
-                            ProvinceId = 8
-                        },
-                        new
-                        {
-                            Id = 964,
-                            LocationName = "San Antonio",
-                            ProvinceId = 8
+                            Email = "mercktest111@gmail.com",
+                            Latitude = -34.557128982074609,
+                            Longitude = -58.447618128835863,
+                            ProvinceLocationId = 4,
+                            Subtitle = "Centro Fertilidad",
+                            Title = "Hospital Magenta"
                         });
                 });
 
@@ -1540,11 +510,16 @@ namespace ProyectoMerck.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("ProvinceName")
+                    b.Property<int>("CountryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CountryId");
 
                     b.ToTable("Provinces");
 
@@ -1552,127 +527,56 @@ namespace ProyectoMerck.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            ProvinceName = "Buenos Aires"
+                            CountryId = 2,
+                            Name = "Capital Federal"
+                        });
+                });
+
+            modelBuilder.Entity("ProyectoMerck.Models.Entities.ProvinceLocation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProvinceId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProvinceId");
+
+                    b.ToTable("ProvinceLocations");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Palermo",
+                            ProvinceId = 1
                         },
                         new
                         {
                             Id = 2,
-                            ProvinceName = "Buenos Aires-GBA"
+                            Name = "Recoleta",
+                            ProvinceId = 1
                         },
                         new
                         {
                             Id = 3,
-                            ProvinceName = "Capital Federal"
+                            Name = "Caballito",
+                            ProvinceId = 1
                         },
                         new
                         {
                             Id = 4,
-                            ProvinceName = "Catamarca"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            ProvinceName = "Chaco"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            ProvinceName = "Chubut"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            ProvinceName = "Córdoba"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            ProvinceName = "Corrientes"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            ProvinceName = "Entre Ríos"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            ProvinceName = "Formosa"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            ProvinceName = "Jujuy"
-                        },
-                        new
-                        {
-                            Id = 12,
-                            ProvinceName = "La Pampa"
-                        },
-                        new
-                        {
-                            Id = 13,
-                            ProvinceName = "La Rioja"
-                        },
-                        new
-                        {
-                            Id = 14,
-                            ProvinceName = "Mendoza"
-                        },
-                        new
-                        {
-                            Id = 15,
-                            ProvinceName = "Misiones"
-                        },
-                        new
-                        {
-                            Id = 16,
-                            ProvinceName = "Neuquén"
-                        },
-                        new
-                        {
-                            Id = 17,
-                            ProvinceName = "Río Negro"
-                        },
-                        new
-                        {
-                            Id = 18,
-                            ProvinceName = "Salta"
-                        },
-                        new
-                        {
-                            Id = 19,
-                            ProvinceName = "San Juan"
-                        },
-                        new
-                        {
-                            Id = 20,
-                            ProvinceName = "San Luis"
-                        },
-                        new
-                        {
-                            Id = 21,
-                            ProvinceName = "Santa Cruz"
-                        },
-                        new
-                        {
-                            Id = 22,
-                            ProvinceName = "Santa Fe"
-                        },
-                        new
-                        {
-                            Id = 23,
-                            ProvinceName = "Santiago del Estero"
-                        },
-                        new
-                        {
-                            Id = 24,
-                            ProvinceName = "Tierra del Fuego"
-                        },
-                        new
-                        {
-                            Id = 25,
-                            ProvinceName = "Tucumán"
+                            Name = "Belgrano",
+                            ProvinceId = 1
                         });
                 });
 
@@ -1740,16 +644,35 @@ namespace ProyectoMerck.DataAccess.Migrations
 
             modelBuilder.Entity("ProyectoMerck.Models.Entities.Location", b =>
                 {
-                    b.HasOne("ProyectoMerck.Models.Entities.Province", "Province")
-                        .WithMany("Localities")
-                        .HasForeignKey("ProvinceId");
+                    b.HasOne("ProyectoMerck.Models.Entities.ProvinceLocation", "ProvinceLocation")
+                        .WithMany()
+                        .HasForeignKey("ProvinceLocationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("Province");
+                    b.Navigation("ProvinceLocation");
                 });
 
             modelBuilder.Entity("ProyectoMerck.Models.Entities.Province", b =>
                 {
-                    b.Navigation("Localities");
+                    b.HasOne("ProyectoMerck.Models.Entities.Country", "Country")
+                        .WithMany()
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Country");
+                });
+
+            modelBuilder.Entity("ProyectoMerck.Models.Entities.ProvinceLocation", b =>
+                {
+                    b.HasOne("ProyectoMerck.Models.Entities.Province", "Province")
+                        .WithMany()
+                        .HasForeignKey("ProvinceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Province");
                 });
 #pragma warning restore 612, 618
         }
