@@ -257,6 +257,12 @@ html {
     background-color: #503291;
 }
 
+.merck-button-2 {
+    font-weight: bold;
+    color: white;
+    background-color: #503291;
+}
+
 
     .merck-button:hover {
         background-color: #0f69af;
@@ -265,6 +271,15 @@ html {
 
 .metck-button:active{
     background-color:blue;
+}
+
+.merck-button-2:hover {
+    background-color: #0f69af;
+    color: white;
+}
+
+.metck-button-2:active {
+    background-color: blue;
 }
 
 

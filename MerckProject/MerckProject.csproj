@@ -8,17 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot\js\chart.js" />
-    <Content Remove="wwwroot\Rotativa\Windows\wkhtmltoimage.exe" />
-    <Content Remove="wwwroot\Rotativa\Windows\wkhtmltopdf.exe" />
+    <Content Include="wwwroot\js\chart.js" />
   </ItemGroup>
-
-  <ItemGroup>
-    <None Include="wwwroot\js\chart.js" />
-    <None Include="wwwroot\Rotativa\Windows\wkhtmltoimage.exe" />
-    <None Include="wwwroot\Rotativa\Windows\wkhtmltopdf.exe" />
-  </ItemGroup>
-
+   
   <ItemGroup>
     <PackageReference Include="ClosedXML" Version="0.102.2" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.2" />
