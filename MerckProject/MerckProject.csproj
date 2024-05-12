@@ -7,11 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot\js\chart.js" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="wwwroot\js\chart.js" />
+    <Content Include="wwwroot\js\chart.js" />
   </ItemGroup>
 
   <ItemGroup>
