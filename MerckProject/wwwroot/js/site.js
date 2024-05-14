@@ -14,8 +14,8 @@ buttons.forEach(function (button) {
         button.addEventListener('click', function () {
 
             let spinnerContainer = this.querySelector('.spinner-container');
+            spinnerContainer.classList.remove('d-none');
             let buttonSpan = this.querySelector('.m-button-span');
-
             buttonSpan.classList.add('d-none');
             spinnerContainer.classList.add('spinner-grow', 'text-light');
 
