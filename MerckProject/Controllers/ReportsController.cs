@@ -101,7 +101,6 @@ namespace MerckProject.Controllers
             };
         }
 
-
         public async Task<IActionResult> ExportPeopleToExcel(ExportViewModel model)
         {
 
@@ -116,14 +115,14 @@ namespace MerckProject.Controllers
                 return View("Reports", model);
             }
 
-            if (model.FechaInicio > model.FechaFin || model.FechaInicio == DateTime.MinValue || model.FechaFin == DateTime.MinValue)
-            {
+            //if (model.FechaInicio > model.FechaFin || model.FechaInicio == DateTime.MinValue || model.FechaFin == DateTime.MinValue)
+            //{
 
-                TempData["Error"] = "Las fechas ingresadas son invalidas!";
-                _logger.LogError("Dates selected in reports formulary were invalid");
+            //    TempData["Error"] = "Las fechas ingresadas son invalidas!";
+            //    _logger.LogError("Dates selected in reports formulary were invalid");
 
-                return View("Reports", model);
-            }
+            //    return View("Reports", model);
+            //}
 
             _logger.LogInformation("Creating an excel file with the consultation data");
 
@@ -135,6 +134,7 @@ namespace MerckProject.Controllers
         public async Task<FileResult> ExportPeopleToExcel1(DateTime? fechaInicio, DateTime? fechaFin)
         {
             IQueryable<Consultation> consultasQuery = _context.Consultations;
+            IQueryable<AgePlan> planQuery = _context.AgePlans;
 
             if (fechaInicio != null)
             {
@@ -146,17 +146,18 @@ namespace MerckProject.Controllers
             if (fechaFin != null)
             {
                 // Considerar solo la parte de la fecha
-                fechaFin = fechaFin?.Date;
+                fechaFin = DateTime.Now;
                 consultasQuery = consultasQuery.Where(c => c.DateAndtime.Date <= fechaFin);
             }
 
             var consultas = await consultasQuery.ToListAsync();
-            var nombreArchivo = $"Reporte.xlsx";
-            return GenerarExcel(nombreArchivo, consultas);
+            var edadPlan = await planQuery.ToListAsync();
+            var nombreArchivo = $"Reporte-{fechaFin}.xlsx";
+            return GenerarExcel(nombreArchivo, consultas, edadPlan);
         }
 
 
-        private FileResult GenerarExcel(string nombreArchivo, IEnumerable<Consultation> consultas)
+        private FileResult GenerarExcel(string nombreArchivo, IEnumerable<Consultation> consultas, IEnumerable<AgePlan> agePlan)
         {
 
             DataTable dataTable = new DataTable("Reporte");
@@ -164,8 +165,7 @@ namespace MerckProject.Controllers
             {
                 new DataColumn("MotivoConsulta"),
                 new DataColumn("Clinica"),
-                new DataColumn("FechaYhora"),
-                new DataColumn("Url")
+                new DataColumn("FechaYhora")
             });
 
             foreach (var consulta in consultas)
@@ -173,14 +173,31 @@ namespace MerckProject.Controllers
                 dataTable.Rows.Add(
                     consulta.ConsultationReason,
                     consulta.ClinicName,
-                    consulta.DateAndtime,
-                    consulta.Url
+                    consulta.DateAndtime
+                    );
+            }
+
+            DataTable dataTablePlan = new DataTable("Edad Y Planificación");
+            dataTablePlan.Columns.AddRange(new DataColumn[]
+            {
+                new DataColumn("Edad"),
+                new DataColumn("Planificación"),
+                new DataColumn("FechaYhora")
+            });
+
+            foreach (var ap in agePlan)
+            {
+                dataTablePlan.Rows.Add(
+                    ap.Age,
+                    ap.PlannedAge,
+                    ap.DateAndtime
                     );
             }
 
             using (XLWorkbook wb = new XLWorkbook())
             {
                 wb.Worksheets.Add(dataTable);
+                wb.Worksheets.Add(dataTablePlan);
 
                 using (MemoryStream stream = new MemoryStream())
                 {

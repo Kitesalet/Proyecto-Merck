@@ -114,26 +114,34 @@
 <script src="~/js/chart.js"></script>
 <script>
 
-    var spinners = document.querySelectorAll('.spinner-container');
+    window.addEventListener('popstate', function (event) {
+        // Reload the page to ensure scripts are executed again
+        window.location.reload();
+    });
 
-    spinners.forEach((spinner) => {
-        spinner.classList.add('d-none');
-    })
+    document.addEventListener('DOMContentLoaded', function () {
+        // Your JavaScript code here
+        var spinners = document.querySelectorAll('.spinner-container');
+        spinners.forEach(function (spinner) {
+            spinner.classList.add('d-none');
+        });
 
+        var buttonSpan = document.querySelectorAll('.m-button-span');
+        buttonSpan.forEach(function (button) {
+            button.classList.remove('d-none');
+        });
 
-    var buttonSpan = document.querySelectorAll('.m-button-span');
-
-    console.log(buttonSpan);
-
-    buttonSpan.forEach(function(button) {
-        button.classList.remove('d-none');
-    })
-
-    var infoButton = document.getElementById('infoButton');
-    var clinicButton = document.getElementById('clinicButton');
-    
-    infoButton.innerHTML = 'Quiero Saber Más Información!'
-    clinicButton.innerHTML = 'Quiero Seleccionar Una Clínica!'
+        var buttons = document.querySelectorAll('.merck-button');
+        buttons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                let spinnerContainer = this.querySelector('.spinner-container');
+                spinnerContainer.classList.remove('d-none');
+                let buttonSpan = this.querySelector('.m-button-span');
+                buttonSpan.classList.add('d-none');
+                spinnerContainer.classList.add('spinner-grow', 'text-light');
+            });
+        });
+    });
 
     var startAge = @Model.SelectedYear;
     var startMonth = @Model.SelectedMonth;

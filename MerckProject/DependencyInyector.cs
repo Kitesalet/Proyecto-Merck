@@ -32,12 +32,15 @@ namespace MerckProject
             services.AddScoped<IClinicRepository, ClinicRepository>();
             services.AddScoped<IProvinceRepository, ProvinceRepository>();
             services.AddScoped<ILocationRepository, LocationRepository>();
+            services.AddScoped<IAgePlanRepository, AgePlanRepository>();
 
             //Services
             services.AddScoped<IConsultationService, ConsultationService>();
             services.AddScoped<IProvinceService, ProvinceService>();
             services.AddScoped<IClinicService, ClinicService>();
             services.AddScoped<ILocationService, LocationService>();
+            services.AddScoped<IAgePlanService, AgePlanService>();
+
 
             return services;
 

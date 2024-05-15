@@ -14,6 +14,8 @@ namespace ProyectoMerck.DataAccess.Interfaces
         public ClinicRepository ClinicRepository { get; }
         public LocationRepository LocationRepository { get; }
         public ConsultationRepository ConsultationRepository { get; }
+
+        public AgePlanRepository AgePlanRepository { get; }
         public Task SaveChanges();
 
     }

@@ -21,6 +21,8 @@ namespace ProyectoMerck.DataAccess
 
         public ProvinceRepository ProvinceRepository { get; }
 
+        public AgePlanRepository AgePlanRepository { get; } 
+
         public UnitOfWork(AppMerckContext context)
         {
 
@@ -34,7 +36,7 @@ namespace ProyectoMerck.DataAccess
 
             ProvinceRepository = new ProvinceRepository(context);
 
-
+            AgePlanRepository = new AgePlanRepository(context);
 
         }
 

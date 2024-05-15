@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using ProyectoMerck.Business.Interfaces;
 using ProyectoMerck.Models.ViewModels;
 using ProyectoMerck.Resources;
 using ProyectoMerck.Utilities;
@@ -12,10 +13,14 @@ namespace MerckProject.Controllers
     {
         private const string _ValidationResourceLocation = "ProyectoMerck.Resources.ValidationResources";
         private readonly ILogger<FertformController> _logger;
+        private readonly IAgePlanService _service;
 
-        public FertformController(ILogger<FertformController> logger)
+        private HttpClient _httpClient { get; set; } = new HttpClient();
+
+        public FertformController(ILogger<FertformController> logger, IAgePlanService service)
         {
             _logger = logger;
+            _service = service;
         }
 
         public IActionResult Index()
@@ -25,7 +30,7 @@ namespace MerckProject.Controllers
         }
 
         [HttpPost]
-        public IActionResult FertilityCalculator(FertformVM model) //dxdfsojgofgipdfldfgdff
+        public async Task<IActionResult> FertilityCalculator(FertformVM model) //dxdfsojgofgipdfldfgdff
         {
             _logger.LogInformation("Submitted the formulary from the fertfom index screen");
 
@@ -69,12 +74,12 @@ namespace MerckProject.Controllers
             if (int.TryParse(model.QuestionUser, out questionUserInt))
             {
 
-                if(model.SelectedYear > 50)
+                if (model.SelectedYear > 50)
                 {
                     errorFlag = true;
                 }
 
-                if(model.SelectedYear < 18)
+                if (model.SelectedYear < 18)
                 {
                     TempData["Error"] = $"La edad minima de calculo es de 18!";
                     ModelState.AddModelError("InvalidAges", $"No puede elegir esa opcion teniendo su edad actual!");
@@ -458,7 +463,34 @@ namespace MerckProject.Controllers
 
                 //Paso a JSON la matriz de ovocitos creada arriba
                 string ovoMatrixJson = JsonConvert.SerializeObject(dataValues);
+            
+                
 
+                switch (model.QuestionUser)
+                {
+                    case "3":
+                        model.QuestionUser = "0-3 Años";
+                 break;
+
+                    case "6":
+                        model.QuestionUser = "4-6 Años";
+                 break;
+
+                    case "10":
+                        model.QuestionUser = "7-10 Años";
+                 break;
+
+                    case "11":
+                        model.QuestionUser = "+10 Años";
+                 break;
+
+                    case "0":
+                        model.QuestionUser = "No lo se aún";
+                        break;
+
+                }
+
+                await _service.CreateConsultationAsync(model);
 
                 _logger.LogInformation("The fertility form was submitted succesfully");
 
