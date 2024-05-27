@@ -5,7 +5,7 @@
 @inject IViewLocalizer Localizer
 
 @{
-    ViewData["Title"] = "Indicator";
+    ViewData["Title"] = "Información";
 }
 
 
@@ -15,10 +15,10 @@
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light">
         <div class="container-fluid">
             <a asp-action="BackToIndex" asp-controller="Reserve" asp-route-referer="@Model.Referer" class="btn"><i class="bi bi-chevron-left header-icon-left"></i></a>
-            <button class="navbar-toggler header-burger" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+@*             <button class="navbar-toggler header-burger" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <i class="bi bi-list text-light"></i>
-            </button>
+            </button> *@
             <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
                     <li class="nav-item">
@@ -44,14 +44,14 @@
             <div class="row rounded-header">
             </div>
 </div>
-<div class="container ovocite-bg-image">
+<div class="ovocite-bg-image">
     <div class="d-flex align-items-center justify-content-center">
-        <a id="indicatorButton" asp-controller="Consultation" asp-action="Consultation" class="btn col-8 col-md-4 p-2 my-5 border-light merck-button">
+        <a id="indicatorButton" asp-controller="Consultation" asp-action="Consultation" class="btn col-8 col-md-4 p-2 my-5 button-border-pink merck-button">
             <span class="m-button-span">Quiero Saber Más y Contactar a un Centro de Fertilidad</span>
             <span class="spinner-container"></span>
         </a>
     </div>
-    <div class="container row justify-content-center align-items-center h-100">
+    <div class="px-5 row justify-content-center align-items-center h-100">
         <div class="col-12">
             @switch (Model.SelectedYear)
             {

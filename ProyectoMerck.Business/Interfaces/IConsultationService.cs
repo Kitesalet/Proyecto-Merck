@@ -11,13 +11,13 @@ using System.Threading.Tasks;
 
 namespace ProyectoMerck.Business.Interfaces
 {
-    public interface IConsultationService
+    public interface IAgePlanService
     {
 
-        public Task<List<GetConsultationDto>> GetAllConsultationsAsync();
+        public Task<List<AgePlan>> GetAllConsultationsAsync();
 
 
-        public Task<bool> CreateConsultationAsync(ConsultationViewModel model);
+        public Task<bool> CreateConsultationAsync(FertformVM model);
 
 
 

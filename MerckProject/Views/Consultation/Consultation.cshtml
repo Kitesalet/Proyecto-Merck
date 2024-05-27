@@ -4,7 +4,7 @@
 @inject IViewLocalizer Localizer
 
 @{
-    ViewData["Title"] = "Consultation";
+    ViewData["Title"] = "Consulta";
 }
 
 <div class="row gx-0 rich-purple-bg justify-content-center">
@@ -12,11 +12,11 @@
 <header class="rich-purple-bg">
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light">
         <div class="container-fluid">
-            <a href="@Url.Action("Index", "Home")" class="btn"><i class="bi bi-chevron-left header-icon-left"></i></a>
-            <button class="navbar-toggler header-burger" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+@*             <a href="@Url.Action("Indicator", "Indicator")" class="btn"><i class="bi bi-chevron-left header-icon-left"></i></a>
+ *@@*             <button class="navbar-toggler header-burger" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <i class="bi bi-list text-light"></i>
-            </button>
+            </button> *@
             <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
                     <li class="nav-item">
@@ -48,7 +48,6 @@
 @using (Html.BeginForm("AddConsultation", "Consultation", FormMethod.Post, new {Id = "fertFormulary", @class="container justify-content-center"}))
 {       
         <input type="hidden" name="SelectedCountry" id="SelectedCountry" value="2"/>
-        <input type="hidden" name="SelectedProvince" id="SelectedProvince" value="1"/>
         @Html.HiddenFor(c => c.Locations)
         @Html.HiddenFor(c => c.SelectedLocationIndex, new { id = "SelectedLocationIndex" })
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -73,17 +72,15 @@
             <div class="col-4 text-center">
                 <img src="~/imagenes/Logo_Provincia.svg" class="img-fluid fixed-image-2" />
             </div>
-            <div class="col-7 col-sm-5 pe-3">
+            <div class="col-7 col-sm-7 pe-3">
                 <label asp-for="Province" class="form-label consultation-label">Provincia</label>
-
-                    @Html.DropDownListFor(p => p.SelectedProvince, Model.ProvincList.Select(c =>
-                             new SelectListItem()
-                    {
-                        Value = c.Id.ToString(),
-                        Text = c.Name
-                    }), "Seleccionar",
-                     new { @class = "form-select form-select-lg mb-3", aria_label = ".form-select-lg example", id = "provinceDropdown", disabled = true})
-                
+                        <select id="provinceDropdown" class="form-select form-select-lg mb-3" aria_label=".form-select-lg example">
+                            <option disabled selected>Seleccionar</option>
+                            @foreach (var province in Model.ProvincList)
+                            {
+                                <option value="@province.Id">@province.Name</option>
+                            }
+                        </select>
                 @*else
                 {
                     @Html.DropDownListFor(p => p.SelectedProvince, Enumerable.Empty<SelectListItem>(), "Seleccionar", new { @class = "form-select form-select-lg mb-3", aria_label = ".form-select-lg example", id = "provinceDropdown" })
@@ -100,8 +97,8 @@
             <div class="col-4 text-center">
                 <img src="~/imagenes/Logo_Barrio.svg" class="img-fluid fixed-image-2" />
             </div>
-            <div class="col-7 col-sm-5 pe-3">
-                <label asp-for="Location" class="form-label consultation-label">Barrio</label>
+            <div class="col-7 col-sm-7 pe-3">
+                <label asp-for="Location" class="form-label consultation-label">Localidad</label>
                 @if (Model.SubmitError == true)
                 {
                     @Html.DropDownListFor(p => p.SelectedProvinceLocation, Model.ProvinceLocationList.Select(c =>
@@ -117,7 +114,7 @@
                 }
                 else
                 {
-                    @Html.DropDownListFor(p => p.SelectedProvinceLocation, Enumerable.Empty<SelectListItem>(), new { @class = "form-select form-select-lg mb-3", aria_label = ".form-select-lg example", id = "provinceLocationDropdown" })
+                    @Html.DropDownListFor(p => p.SelectedProvinceLocation, Enumerable.Empty<SelectListItem>(),"Seleccionar", new { @class = "form-select form-select-lg mb-3", aria_label = ".form-select-lg example", id = "provinceLocationDropdown" })
                 }
                 <span asp-validation-for="Location" class="text-danger"></span>
             </div>
@@ -127,11 +124,11 @@
             <div class="col-4 text-center">
                         <img src="~/imagenes/Logo_Nombre.svg" class="img-fluid fixed-image-2" />
                     </div>
-            <div class="col-7 col-sm-5 pe-3">
+            <div class="col-7 col-sm-7 pe-3">
                 <label asp-for="FullName" class="form-label consultation-label-2">Nombre</label>
                 <div class="d-flex align-self-end">
                     @Html.TextBoxFor(p => p.FullName,
-                             new { @class = "form-control" })
+                             new { @class = "form-control", required = true, type = "text" })
                 </div>
                 <div class="row">
                     <span asp-validation-for="FullName" class="text-danger"></span>
@@ -144,15 +141,14 @@
             <div class="col-4 text-center">
                 <img src="~/imagenes/Logo_Email.svg" class="img-fluid fixed-image-2" />
             </div>
-            <div class="col-7 col-sm-5 pe-3">
+            <div class="col-7 col-sm-7 pe-3">
                 <label asp-for="Email" class="form-label consultation-label-2">Mail contacto</label>
                 <div class="d-flex align-self-end">
                     @Html.TextBoxFor(p => p.Email,
-                             new { @class = "form-control" })    
+                             new { @class = "form-control", required = true, type = "email" })    
                 </div>
                 <div class="row">
                         <span asp-validation-for="Email" class="text-danger"></span>
-
                 </div>
             </div>
         </div>
@@ -161,11 +157,11 @@
             <div class="col-4 text-center">
                 <img src="~/imagenes/Logo_Telefono.svg" class="img-fluid fixed-image-2" />
             </div>
-            <div class="col-7 col-sm-5 pe-3">
+            <div class="col-7 col-sm-7 pe-3">
                 <label asp-for="TelephoneNumber" class="form-label consultation-label-2">Teléfono</label>
                 <div class="d-flex align-self-end">
                     @Html.TextBoxFor(p => p.TelephoneNumber,
-                             new { @class = "form-control", type = "number" })
+                             new { @class = "form-control", type = "number", required = true })
                 </div>
                 <div class="row">
                     <span asp-validation-for="TelephoneNumber" class="text-danger"></span>
@@ -177,19 +173,19 @@
             <div class="col-4 text-center">
                 <img src="~/imagenes/Logo_Motivo.svg" class="img-fluid fixed-image-2" />
             </div>
-            <div class="col-7 col-sm-5 pe-3">
+            <div class="col-7 col-sm-7 pe-3">
                 <label asp-for="ReasonConsultation" class="form-label consultation-label-2">Motivo consulta</label>
                 <div class="d-flex align-self-end">
                     @{
                         var consultMotives = new List<SelectListItem>
                 {
-                new SelectListItem {Text = "Seleccionar", Value = "Seleccionar", Disabled = true, Selected = true },
+                new SelectListItem { Text = "Seleccionar", Value = "Seleccionar", Disabled = true, Selected = true },
                 new SelectListItem { Text = "Quiero criopreservar ovocitos", Value = "Quiero criopreservar ovocitos" },
                 new SelectListItem { Text = "Quiero conocer más sobre el estado de mi fertilidad", Value = "Quiero conocer más sobre el estado de mi fertilidad" },
                 new SelectListItem { Text = "Otras razones", Value = "Otras razones" },
                 };
 
-                                        @Html.DropDownListFor(model => model.ReasonConsultation,consultMotives, new { @class = "form-control" })
+                                        @Html.DropDownListFor(model => model.ReasonConsultation,consultMotives, new { @class = "form-control" , required = true})
                     }
 
                 </div>
@@ -228,8 +224,9 @@
 
 
             <div id="submitter" class="d-flex align-items-center justify-content-center d-none">
-                <button id="clinicButton" type="submit" class="btn col-5 col-md-4 p-2 my-5 border-light merck-button" @* data-bs-toggle="modal" data-bs-target="#exampleModal" *@>
-                    Enviar Consulta
+                        <button id="clinicButton" type="submit" class="btn col-5 col-md-4 p-2 my-5 border-light merck-button-2 button-border-pink" @* data-bs-toggle="modal" data-bs-target="#exampleModal" *@>
+                    <span class="m-button-span">Enviar Consulta</span>
+                    <span id="spinner-container"></span>
                 </button>
             </div>
         </div>
@@ -294,7 +291,7 @@
     var clinicLocationList = @Html.Raw(Json.Serialize(Model.LocationsList));
     var errorHappened = '@Model.SubmitError'.toLowerCase() === 'true';
 
-    provinceHandler(locationList, 1);
+    var button = document.getElementById('clinicButton');
 
     document.getElementById('fertFormulary').addEventListener('submit', function (e) {
         e.preventDefault();
@@ -302,8 +299,8 @@
 
         let formData = new FormData(this);
 
-        console.log(formData);
 
+      
         var selectedClinicId = parseInt(formData.get("SelectedLocationIndex"));
         var selectedConsult = formData.get("ReasonConsultation");
         var selectedName = formData.get("FullName");
@@ -333,16 +330,30 @@
         if(gtagFlag === true){
              gtag('event', 'consultation_form_submitted', {
                         'event_category': 'Form Submission',
-                        'event_label': 'Fertility Formulary Submitted',
-                        'clinica_seleccionada': selectedClinic.title,
-                        'opcion_consulta': selectedConsult
+                        'event_label': 'Fertility Formulary Submitted'
+                        // 'clinica_seleccionada': selectedClinic.title,
+                        // 'opcion_consulta': selectedConsult
              });
         
             console.log('gtag sent');
         }
 
 
+            let spinnerContainer = document.getElementById('spinner-container');
+            let buttonSpan = document.querySelector('.m-button-span');
+
+            
+
+            buttonSpan.classList.add('d-none');
+            spinnerContainer.classList.add('spinner-grow', 'text-light');
+
+            console.log(spinnerContainer);
+
+
+
         this.submit();
+
+
 
     })
 </script>

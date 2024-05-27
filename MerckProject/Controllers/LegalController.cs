@@ -50,6 +50,11 @@ namespace MerckProject.Controllers
         {
             HttpContext context = _context;
 
+            if (model.Referer.Contains("/Legal"))
+            {
+                return RedirectToAction("Index", "Fertform");
+            }
+
             return Redirect(model.Referer);
         }
 

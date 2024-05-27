@@ -28,7 +28,15 @@ namespace MerckProject.Controllers
         public IActionResult BackToIndex(ReserveVM model)
         {
 
-            return Redirect(model.Referer);
+            try
+            {
+                return Redirect(model.Referer);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Index", "Fertform");
+            }
+
         }
 
         public IActionResult RedirectIndicator(ReserveVM model)

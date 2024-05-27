@@ -220,6 +220,29 @@ namespace ProyectoMerck.DataAccess.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("ProyectoMerck.Models.Entities.AgePlan", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Age")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateAndtime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PlannedAge")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AgePlans");
+                });
+
             modelBuilder.Entity("ProyectoMerck.Models.Entities.Clinic", b =>
                 {
                     b.Property<int>("Id")
@@ -290,7 +313,7 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Id = 1,
                             ClinicName = "HIALITUS",
                             ConsultationReason = "Stringer",
-                            DateAndtime = new DateTime(2024, 4, 29, 20, 9, 19, 280, DateTimeKind.Local).AddTicks(3264),
+                            DateAndtime = new DateTime(2024, 5, 15, 13, 12, 37, 818, DateTimeKind.Local).AddTicks(4635),
                             SelectedLocationIndex = 2,
                             Url = "www.google.com"
                         },
@@ -308,7 +331,7 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Id = 3,
                             ClinicName = "HOSPITAL ITALIANO",
                             ConsultationReason = "Inter",
-                            DateAndtime = new DateTime(2024, 4, 29, 20, 9, 19, 280, DateTimeKind.Local).AddTicks(3283),
+                            DateAndtime = new DateTime(2024, 5, 15, 13, 12, 37, 818, DateTimeKind.Local).AddTicks(4656),
                             SelectedLocationIndex = 4,
                             Url = "www.google.com"
                         },
@@ -317,7 +340,7 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Id = 4,
                             ClinicName = "MERCK 1",
                             ConsultationReason = "Inter",
-                            DateAndtime = new DateTime(2024, 4, 29, 20, 9, 19, 280, DateTimeKind.Local).AddTicks(3285),
+                            DateAndtime = new DateTime(2024, 5, 15, 13, 12, 37, 818, DateTimeKind.Local).AddTicks(4658),
                             SelectedLocationIndex = 5,
                             Url = "www.google.com"
                         },
@@ -326,7 +349,7 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Id = 5,
                             ClinicName = "IDERT",
                             ConsultationReason = "Inter",
-                            DateAndtime = new DateTime(2024, 4, 29, 20, 9, 19, 280, DateTimeKind.Local).AddTicks(3287),
+                            DateAndtime = new DateTime(2024, 5, 15, 13, 12, 37, 818, DateTimeKind.Local).AddTicks(4660),
                             SelectedLocationIndex = 6,
                             Url = "www.google.com"
                         },
@@ -335,7 +358,7 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Id = 6,
                             ClinicName = "JUERTE",
                             ConsultationReason = "Inter",
-                            DateAndtime = new DateTime(2024, 4, 29, 20, 9, 19, 280, DateTimeKind.Local).AddTicks(3288),
+                            DateAndtime = new DateTime(2024, 5, 15, 13, 12, 37, 818, DateTimeKind.Local).AddTicks(4662),
                             SelectedLocationIndex = 7,
                             Url = "www.google.com"
                         },
@@ -344,7 +367,7 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Id = 7,
                             ClinicName = "CRECER",
                             ConsultationReason = "Inter",
-                            DateAndtime = new DateTime(2024, 4, 29, 20, 9, 19, 280, DateTimeKind.Local).AddTicks(3290),
+                            DateAndtime = new DateTime(2024, 5, 15, 13, 12, 37, 818, DateTimeKind.Local).AddTicks(4664),
                             SelectedLocationIndex = 8,
                             Url = "www.google.com"
                         });
@@ -427,7 +450,7 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Latitude = -34.600677504040895,
                             Longitude = -58.387263729958455,
                             ProvinceLocationId = 1,
-                            Subtitle = "Centro Fertilidad",
+                            Subtitle = "Calle 1293",
                             Title = "Clínica Roja"
                         },
                         new
@@ -437,7 +460,7 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Latitude = -34.580702852634481,
                             Longitude = -58.430260973627661,
                             ProvinceLocationId = 1,
-                            Subtitle = "Centro Fertilidad",
+                            Subtitle = "Calle 2983",
                             Title = "Clínica Azul"
                         },
                         new
@@ -447,7 +470,7 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Latitude = -34.578846588221204,
                             Longitude = -58.460103931977983,
                             ProvinceLocationId = 2,
-                            Subtitle = "Centro Fertilidad",
+                            Subtitle = "Calle 3892",
                             Title = "Clínica Violeta"
                         },
                         new
@@ -457,7 +480,7 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Latitude = -34.599254733727243,
                             Longitude = -58.401810339490027,
                             ProvinceLocationId = 2,
-                            Subtitle = "Centro Fertilidad",
+                            Subtitle = "Calle 2293",
                             Title = "Clínica Verde"
                         },
                         new
@@ -467,7 +490,7 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Latitude = -34.597439056459208,
                             Longitude = -58.397189279473473,
                             ProvinceLocationId = 3,
-                            Subtitle = "Centro Fertilidad",
+                            Subtitle = "Calle 3948",
                             Title = "Clínica Amarilla"
                         },
                         new
@@ -477,7 +500,7 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Latitude = -34.606202223417398,
                             Longitude = -58.425645264604945,
                             ProvinceLocationId = 3,
-                            Subtitle = "Centro Fertilidad",
+                            Subtitle = "Calle 4693",
                             Title = "Hospital Rojo"
                         },
                         new
@@ -487,7 +510,7 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Latitude = -34.596689236707874,
                             Longitude = -58.399734815343471,
                             ProvinceLocationId = 4,
-                            Subtitle = "Centro Fertilidad",
+                            Subtitle = "Calle 3849",
                             Title = "Hospital Fucsia"
                         },
                         new
@@ -497,7 +520,37 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Latitude = -34.557128982074609,
                             Longitude = -58.447618128835863,
                             ProvinceLocationId = 4,
-                            Subtitle = "Centro Fertilidad",
+                            Subtitle = "Calle 8394",
+                            Title = "Hospital Magenta"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Email = "mercktest111@gmail.com",
+                            Latitude = -34.557128982074609,
+                            Longitude = -58.447618128835863,
+                            ProvinceLocationId = 6,
+                            Subtitle = "Calle 3940",
+                            Title = "Hospital Magenta"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Email = "mercktest111@gmail.com",
+                            Latitude = -34.557128982074609,
+                            Longitude = -58.447618128835863,
+                            ProvinceLocationId = 7,
+                            Subtitle = "Calle 3930",
+                            Title = "Hospital Magenta"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Email = "mercktest111@gmail.com",
+                            Latitude = -34.557128982074609,
+                            Longitude = -58.447618128835863,
+                            ProvinceLocationId = 8,
+                            Subtitle = "Calle 2093",
                             Title = "Hospital Magenta"
                         });
                 });
@@ -529,6 +582,24 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Id = 1,
                             CountryId = 2,
                             Name = "Capital Federal"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CountryId = 2,
+                            Name = "Córdoba"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CountryId = 2,
+                            Name = "Santa Fe"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CountryId = 2,
+                            Name = "Santa Cruz"
                         });
                 });
 
@@ -577,6 +648,30 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Id = 4,
                             Name = "Belgrano",
                             ProvinceId = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Todas",
+                            ProvinceId = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Ciudad de Córdoba",
+                            ProvinceId = 2
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "Rosario",
+                            ProvinceId = 3
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Name = "Río Gallegos",
+                            ProvinceId = 4
                         });
                 });
 

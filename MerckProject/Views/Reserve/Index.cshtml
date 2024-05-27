@@ -3,7 +3,7 @@
 @inject IViewLocalizer Localizer
 
 @{
-    ViewData["Title"] = "Reserve";
+    ViewData["Title"] = "Reserva";
 }
 
 <div class="row gx-0 vibrant-pink-bg justify-content-center">
@@ -11,13 +11,13 @@
     <header style="background-color:#EA3B95;">
       <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light mb-3 ">
         <div class="container-fluid">
-          <a href="@Url.Action(" Index", "Home" )" class="btn"><i style="color: white; font-size: 1.5em"
+          <a href="@Url.Action("Index", "Fertform" )" class="btn"><i style="color: white; font-size: 1.5em"
               class="bi bi-chevron-left"></i></a>
-          <button style="color: white; font-size: 2em" class="navbar-toggler" type="button" data-bs-toggle="collapse"
+@*           <button style="color: white; font-size: 2em" class="navbar-toggler" type="button" data-bs-toggle="collapse"
             data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false"
             aria-label="Toggle navigation">
             <i class="bi bi-list" style="color:white"></i>
-          </button>
+          </button> *@
           <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
             <ul class="navbar-nav flex-grow-1">
             </ul>
@@ -25,27 +25,31 @@
         </div>
       </nav>
         <div class="row me-0">
-          <div class="col offset-3">
-            <h3 class="text-light">EDAD ACTUAL</h3>
+          <div class="col justify-content-center">
+            <h3 class="text-light text-center">EDAD ACTUAL</h3>
           </div>
         </div>
         <div class="row me-0">
-          <div class="col offset-3">
-            <h3 style="font-weight:300; opacity:0.7" class="text-light">@Model.SelectedYear.ToString() AÑOS</h3>
+          <div class="col">
+            <h3 style="font-weight:300; opacity:0.7" class="text-light text-center">@Model.SelectedYear.ToString() AÑOS</h3>
           </div>
         </div>
-        <div class="row me-0 d-flex justify-content-center">
-          <a id="reserveButton" class="btn col-5 col-md-4 p-2 my-5 merck-button" href="@Url.Action("RedirectIndicator", "Reserve" , new {SelectedYear=@Model.SelectedYear})">
-            <span class="m-button-span">Quiero saber más!</span>
+        <div class="row me-0 d-flex justify-content-around">
+          <a id="reserveButton" class="btn col-5 col-md-4 p-2 my-5 merck-button button-border-pink align-content-center" href="@Url.Action("RedirectIndicator", "Reserve" , new {SelectedYear=@Model.SelectedYear})">
+            <span id="infoButton" class="m-button-span">Quiero Más Información!</span>
             <span class="spinner-container"></span>
           </a>
+                <a id="reserveButton" class="btn col-5 col-md-4 p-2 my-5 merck-button button-border-pink align-content-center" href="@Url.Action("Consultation", "Consultation" , new {SelectedYear=@Model.SelectedYear})">
+                    <span id="clinicButton" class="m-button-span">Centros de Salud Relacionados en mi Zona</span>
+                    <span class="spinner-container"></span>
+                </a>
         </div>
         <div style="height:50px; background-color: white; border-top-left-radius:30px; border-top-right-radius:30px">
         </div>
     </header>
     <div class="bg-white">
-      <h3 id="tasaFertilidad" class="text-center merck-font bg-white" style="color:#EA3B95;">
-        Tasa de Fertilidad
+      <h3 id="tasaFertilidad" class="text-center merck-font bg-white px-2" style="color:#EA3B95;">
+        Estimación Teórica de Ovocitos Actual
       </h3>
       <p class="text-center" style="color:#2EBDCD; font-weight:400; font-size: 12px">Cantidad de Ovocitos Actual
         (@Model.SelectedYear AÑOS) - <span style="font-weight:800">@Model.OvoCount.ToString("N0")</span></p>
@@ -54,20 +58,21 @@
 
 
   <div class="container bg-white">
-    <div class="row me-0">
+    <div class="row g-0">
       <div class="col-12 d-flex justify-content-center">
-        <canvas id="myChart" height="200"></canvas>
+        <canvas id="myChart" class="ps-2" height="200"></canvas>
       </div>
     </div>
-    <small>
+@*     <small>
       <em class="ps-2">
         *Estimación teórica de ovocitos de buena calidad
       </em>
-    </small>
-    <div class="row me-0 mt-4 pb-5">
+    </small> *@
+    <div class="row g-0 mt-1 pb-5">
       <div class="col-12 d-flex justify-content-center">
-        <a id="showAlertButton" text-decoration:none"><strong class="disclaimer-text">Disclaimer resultados</strong></a>
+                        <a id="showAlertButton" text-decoration:none"><i id="merck-plus" class="bi bi-plus-circle-fill merck-plus"></i></a>
       </div>
+      <div class="col-12 d-flex justify-content-center"><small><em>Más Información...</em></small></div>
     </div>
 
 
@@ -108,6 +113,35 @@
 
 <script src="~/js/chart.js"></script>
 <script>
+
+    window.addEventListener('popstate', function (event) {
+        // Reload the page to ensure scripts are executed again
+        window.location.reload();
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        // Your JavaScript code here
+        var spinners = document.querySelectorAll('.spinner-container');
+        spinners.forEach(function (spinner) {
+            spinner.classList.add('d-none');
+        });
+
+        var buttonSpan = document.querySelectorAll('.m-button-span');
+        buttonSpan.forEach(function (button) {
+            button.classList.remove('d-none');
+        });
+
+        var buttons = document.querySelectorAll('.merck-button');
+        buttons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                let spinnerContainer = this.querySelector('.spinner-container');
+                spinnerContainer.classList.remove('d-none');
+                let buttonSpan = this.querySelector('.m-button-span');
+                buttonSpan.classList.add('d-none');
+                spinnerContainer.classList.add('spinner-grow', 'text-light');
+            });
+        });
+    });
 
     var startAge = @Model.SelectedYear;
     var startMonth = @Model.SelectedMonth;
