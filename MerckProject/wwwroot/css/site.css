@@ -214,11 +214,8 @@ html {
     margin: 0
 }
 
-/*Body del Home Index*/
-.body {
-    background-color: #2EBDCD;
-    height: 100vh;
-    margin: 0;
+#background-image {
+    object-fit: cover;
 }
 
 .flag-large{
