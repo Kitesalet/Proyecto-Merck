@@ -30,30 +30,42 @@
 <script type="text/javascript">
     google.charts.load('current', { 'packages': ['corechart'] });
 </script>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        .container-fluid {
+            height: 100vh; /* 100% of viewport height */
+            width: 100vw; /* 100% of viewport width */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* Ensure no overflow issues */
+        }
+
+        svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+    </style>
 </head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=@trackingId"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-
-    gtag('config', '@trackingId');
-</script>
-
-<body>
+<body style="background-color:#FF00FF">
     <div class="container-fluid p-0">
-        <img src="/Imagenes/back_3.svg" id="background-image" class="img-fluid">
+        <svg id="background-image" @* preserveAspectRatio="xMidYMid slice" *@>
+            <image style="background-color:#FF00FF" width="100%" height="100%" xlink:href="/Imagenes/back-hd-11.svg"></image>
+        </svg>
     </div>
-        <script src="/js/site.js"></script>
-        <script src="~/lib/jquery/dist/jquery.min.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="https://unpkg.com/@@popperjs/core@2/dist/umd/popper.min.js"></script>
-        <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
-        <script src="~/lib/jquery/dist/jquery.min.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
+    <script src="/js/site.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/@@popperjs/core@2/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
