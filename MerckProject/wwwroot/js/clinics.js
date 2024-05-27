@@ -25,6 +25,7 @@ document.getElementById('provinceDropdown').addEventListener('change', function 
     provinceHandler(locationList, this.value);
 
     localStorage.setItem('provinceValue', this.value);
+    container.innerHTML = '';
 
 })
 

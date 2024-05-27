@@ -490,6 +490,8 @@ namespace MerckProject.Controllers
 
                 }
 
+                model.SelectedYear = oldSelectedYear;
+
                 await _service.CreateConsultationAsync(model);
 
                 _logger.LogInformation("The fertility form was submitted succesfully");

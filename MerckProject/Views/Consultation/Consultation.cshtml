@@ -74,16 +74,13 @@
             </div>
             <div class="col-7 col-sm-7 pe-3">
                 <label asp-for="Province" class="form-label consultation-label">Provincia</label>
-
-                        @Html.DropDownListFor(p => p.SelectedProvince, new SelectList(Model.ProvincList.Select((c, index) =>
-                                 new SelectListItem()
-                    {
-                        Value = c.Id.ToString(),
-                        Text = c.Name,
-                        Disabled = index == 0  // Setting Disabled property to true for the first item
-                    }), "Value", "Text"), "Seleccionar",
-                                 new { @class = "form-select form-select-lg mb-3", aria_label = ".form-select-lg example", id = "provinceDropdown" })
-
+                        <select id="provinceDropdown" class="form-select form-select-lg mb-3" aria_label=".form-select-lg example">
+                            <option disabled selected>Seleccionar</option>
+                            @foreach (var province in Model.ProvincList)
+                            {
+                                <option value="@province.Id">@province.Name</option>
+                            }
+                        </select>
                 @*else
                 {
                     @Html.DropDownListFor(p => p.SelectedProvince, Enumerable.Empty<SelectListItem>(), "Seleccionar", new { @class = "form-select form-select-lg mb-3", aria_label = ".form-select-lg example", id = "provinceDropdown" })
@@ -227,7 +224,7 @@
 
 
             <div id="submitter" class="d-flex align-items-center justify-content-center d-none">
-                <button id="clinicButton" type="submit" class="btn col-5 col-md-4 p-2 my-5 border-light merck-button-2 button-border-pink" @* data-bs-toggle="modal" data-bs-target="#exampleModal" *@>
+                        <button id="clinicButton" type="submit" class="btn col-5 col-md-4 p-2 my-5 border-light merck-button-2 button-border-pink" @* data-bs-toggle="modal" data-bs-target="#exampleModal" *@>
                     <span class="m-button-span">Enviar Consulta</span>
                     <span id="spinner-container"></span>
                 </button>
