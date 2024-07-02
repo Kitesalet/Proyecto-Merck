@@ -371,31 +371,24 @@ function updatePagination() {
 
 }
 
-//window.onload = function () {
+window.onload = function () {
 
-//    if (errorHappened == true) {
+    if (errorHappened == true) {
 
-//        container.classList.remove('clinic-container');
-//        container.classList.remove('clinic-container-error');
-//        arrowContainer.classList.remove('d-none');
+        var provinceDropdown = document.getElementById('provinceDropdown');
+        var provinceLocationDropdown = document.getElementById('provinceLocationDropdown');
 
-//        updateDropdown('provinceDropdown', filteredProvincias);
-//        updateDropdown('provinceLocationDropdown', filteredProvinceLocations);
+        provinceDropdown.value = provinceValue;
+        provinceLocationDropdown.value = locationValue;
 
-//        var provinceDropdown = document.getElementById('provinceDropdown');
-//        var provinceLocationDropdown = document.getElementById('provinceLocationDropdown');
-
-//        provinceDropdown.value = provinceValue;
-//        provinceLocationDropdown.value = locationValue;
-
-//        paginate(currentPage, container, itemsPerPage);
+        paginate(currentPage, container, itemsPerPage);
 
 
-//    } else {
-//        console.log("Nard")
-//    }
+    } else {
+        console.log("Nard")
+    }
 
-//}
+}
 
 
 

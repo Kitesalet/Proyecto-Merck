@@ -48,7 +48,7 @@
 @using (Html.BeginForm("AddConsultation", "Consultation", FormMethod.Post, new {Id = "fertFormulary", @class="container justify-content-center"}))
 {       
         <input type="hidden" name="SelectedCountry" id="SelectedCountry" value="2"/>
-        @Html.HiddenFor(c => c.Locations)
+        @Html.HiddenFor(c => c.Location)
         @Html.HiddenFor(c => c.SelectedLocationIndex, new { id = "SelectedLocationIndex" })
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 @*         <div class="row" >
@@ -74,11 +74,17 @@
             </div>
             <div class="col-7 col-sm-7 pe-3">
                 <label asp-for="Province" class="form-label consultation-label">Provincia</label>
-                        <select id="provinceDropdown" class="form-select form-select-lg mb-3" aria_label=".form-select-lg example">
+                        <select id="provinceDropdown" name="SelectedProvince" class="form-select form-select-lg mb-3" aria_label=".form-select-lg example">
                             <option disabled selected>Seleccionar</option>
                             @foreach (var province in Model.ProvincList)
                             {
-                                <option value="@province.Id">@province.Name</option>
+                                if(Model.SelectedProvinceLocation == province.Id){
+                                    <option selected value="@province.Id">@province.Name</option>
+                                }
+                                else
+                                {
+                                    <option value="@province.Id">@province.Name</option>
+                                }
                             }
                         </select>
                 @*else
@@ -197,7 +203,7 @@
 
         <div class="container mt-4">
 
-            <div  id="clinicContainer" class="@* row mx-5 d-flex *@ @(Model.SubmitError == true ? "clinic-container-error" : "clinic-container")">
+            <div  id="clinicContainer" class=" row mx-5 d-flex clinic-containe">
 
               @*   @if (Model.SubmitError == true)
                 {
