@@ -40,7 +40,6 @@ namespace MerckProject.Controllers
 
             model.LocationsList = locationsDto;
             model.Locations = JsonConvert.SerializeObject(locationsDto, Formatting.Indented);
-            model.SelectedProvince = 1;
 
             _logger.LogInformation("Accesed consultation screen");
 
@@ -75,7 +74,6 @@ namespace MerckProject.Controllers
                 model.ProvinceLocationList = await _context.ProvinceLocations.ToListAsync();
                 var locationsDto = await _context.Locations.ToListAsync();
                 model.SubmitError = true;
-                model.SelectedProvince = 1;
 
                 model.LocationsList = locationsDto;
                 model.Locations = JsonConvert.SerializeObject(locationsDto, Formatting.Indented);

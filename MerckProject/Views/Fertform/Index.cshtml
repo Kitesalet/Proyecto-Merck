@@ -53,11 +53,10 @@
                     <div class="col-6 col-md-7 col-lg-8">
                         <!-- Adjusted column size -->
                         <div class="row mt-2">
-                            <h3 class="ps-0" style="color:#4A1896">Qué edad tenés?</h3>
+                            <h3 class="ps-0" style="color:#4A1896">Mes y Año de Nacimiento</h3>
                         </div>
                         <div class="row">
-                            <div class="col-12 col-md-6 col-lg-6 px-0">
-                                <label for="currentAgeYears">Fecha Nacimiento:</label>
+                            <div class="col-12 col-md-8 col-lg-6 px-0">
                                 <input type="month" class="form-control align-bottom" id="SelectedDate" name="SelectedDate" placeholder="Seleccione" lang="es">
                             </div>
                         </div>
@@ -75,7 +74,7 @@
                             <h4 class="ps-0" style="color:#4A1896">En cuánto tiempo querés ser mamá?</h4>
                         </div>
                         <div class="row d-flex">
-                            <div class="col-12 col-md-6 col-lg-6 px-0">
+                            <div class="col-12 col-md-8 col-lg-6 px-0">
                                 @{
                                     var ageOptions = new List<SelectListItem>
                             {
@@ -86,7 +85,7 @@
                             new SelectListItem { Text = "No lo sé aún", Value = "0" }
                             };
 
-                                    @Html.DropDownListFor(model => model.QuestionUser, ageOptions, new { @class = "form-control align-bottom" })
+                                        @Html.DropDownListFor(model => model.QuestionUser, ageOptions, new { @class = "form-control align-bottom" })
                                 }
                             </div>
                         </div>
@@ -98,7 +97,7 @@
                         @* @Html.ValidationSummary(false) *@
                     </div>
                     <div class="col-12 d-flex justify-content-center pe-0">
-                        <button type="submit" class="btn col-6 col-m-4 col-lg-3 px-3 border-light merck-button">
+                        <button type="submit" class="btn col-6 col-m-4 col-lg-3 px-3 button-border-pink merck-button">
                             <span class="spinner-container"></span>
                             <span class="m-button-span">@* @Localizer["Send"] *@Enviar</span>
                         </button>
@@ -145,6 +144,8 @@
 
 
  <script>
+
+     console.log('X');
 
      document.getElementById('fertFormulary').addEventListener('submit', function (e) {
          e.preventDefault();
@@ -193,12 +194,17 @@
          }
 
          if (age >= 12 && age <= 50) {
-             gtag('event', 'fertility_form_submitted', {
-                 'event_category': 'Form Submission',
-                 'event_label': 'Fertility Formulary Submitted',
-                 'edad': age,
-                 'opcion_seleccionada': selectedOption
-             })
+             // gtag('event', 'fertility_form_submitted', {
+             //     'event_category': 'Form Submission',
+             //     'event_label': 'Fertility Formulary Submitted',
+             //     'edad': age,
+             //     'opcion_seleccionada': selectedOption
+             // })
+
+            gtag('event', 'fertility_form_submitted', {
+                'event_category': 'Form Submission',
+                'event_label': 'Fertility Formulary Submitted'
+            })
 
          }
 

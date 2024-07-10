@@ -20,6 +20,7 @@ public class AppMerckContext : IdentityDbContext<IdentityUser>
     public DbSet<Location> Locations { get; set; }
     public DbSet<Province> Provinces { get; set; }
     public DbSet<Country> Countries { get; set; }
+    public DbSet<AgePlan> AgePlans { get; set; }
 
     public DbSet<ProvinceLocation> ProvinceLocations { get; set; }
     public object Country { get; set; }
@@ -63,12 +64,19 @@ public class AppMerckContext : IdentityDbContext<IdentityUser>
             new ProvinceLocation { Id = 1, Name = "Palermo", ProvinceId = 1 },
             new ProvinceLocation { Id = 2, Name = "Recoleta", ProvinceId = 1 },
             new ProvinceLocation { Id = 3, Name = "Caballito", ProvinceId = 1 },
-            new ProvinceLocation { Id = 4,  Name = "Belgrano", ProvinceId = 1 }
+            new ProvinceLocation { Id = 4,  Name = "Belgrano", ProvinceId = 1 },
+            new ProvinceLocation { Id = 5, Name = "Todas", ProvinceId = 1},
+            new ProvinceLocation { Id = 6, Name = "Ciudad de Córdoba", ProvinceId = 2},
+            new ProvinceLocation { Id = 7, Name = "Rosario", ProvinceId = 3},
+            new ProvinceLocation { Id = 8, Name = "Río Gallegos", ProvinceId = 4}
 
         );
 
         modelBuilder.Entity<Province>().HasData(
-      new Province { Id = 1, Name = "Capital Federal", CountryId = 2 }
+      new Province { Id = 1, Name = "Capital Federal", CountryId = 2 },
+      new Province { Id = 2, Name = "Córdoba", CountryId = 2},
+      new Province { Id = 3, Name = "Santa Fe", CountryId = 2},
+      new Province { Id = 4, Name = "Santa Cruz", CountryId = 2}
       );
 
         modelBuilder.Entity<Location>().HasData(
@@ -78,7 +86,7 @@ public class AppMerckContext : IdentityDbContext<IdentityUser>
                 Latitude = -34.600677504040895,
                 Longitude = -58.387263729958455,
                 Title = "Clínica Roja",
-                Subtitle = "Centro Fertilidad",
+                Subtitle = "Calle 1293",
                 ProvinceLocationId = 1,
                 Email = "mercktest111@gmail.com"
             }, new Location()
@@ -87,7 +95,7 @@ public class AppMerckContext : IdentityDbContext<IdentityUser>
                 Latitude = -34.58070285263448,
                 Longitude = -58.43026097362766,
                 Title = "Clínica Azul",
-                Subtitle = "Centro Fertilidad",
+                Subtitle = "Calle 2983",
                 ProvinceLocationId = 1,
                 Email = "mercktest111@gmail.com"
             }, new Location()
@@ -96,7 +104,7 @@ public class AppMerckContext : IdentityDbContext<IdentityUser>
                 Latitude = -34.578846588221204,
                 Longitude = -58.46010393197798,
                 Title = "Clínica Violeta",
-                Subtitle = "Centro Fertilidad",
+                Subtitle = "Calle 3892",
                 ProvinceLocationId = 2,
                 Email = "mercktest111@gmail.com"
             }, new Location()
@@ -105,7 +113,7 @@ public class AppMerckContext : IdentityDbContext<IdentityUser>
                 Latitude = -34.59925473372724,
                 Longitude = -58.40181033949003,
                 Title = "Clínica Verde",
-                Subtitle = "Centro Fertilidad",
+                Subtitle = "Calle 2293",
                 ProvinceLocationId = 2,
                 Email = "mercktest111@gmail.com"
             }, new Location()
@@ -114,7 +122,7 @@ public class AppMerckContext : IdentityDbContext<IdentityUser>
                 Latitude = -34.59743905645921,
                 Longitude = -58.39718927947347,
                 Title = "Clínica Amarilla",
-                Subtitle = "Centro Fertilidad",
+                Subtitle = "Calle 3948",
                 ProvinceLocationId = 3,
                 Email = "mercktest111@gmail.com"
             }, new Location()
@@ -123,7 +131,7 @@ public class AppMerckContext : IdentityDbContext<IdentityUser>
                 Latitude = -34.6062022234174,
                 Longitude = -58.425645264604945,
                 Title = "Hospital Rojo",
-                Subtitle = "Centro Fertilidad",
+                Subtitle = "Calle 4693",
                 ProvinceLocationId = 3,
                 Email = "mercktest111@gmail.com"
             }, new Location()
@@ -132,7 +140,7 @@ public class AppMerckContext : IdentityDbContext<IdentityUser>
                 Latitude = -34.596689236707874,
                 Longitude = -58.39973481534347,
                 Title = "Hospital Fucsia",
-                Subtitle = "Centro Fertilidad",
+                Subtitle = "Calle 3849",
                 ProvinceLocationId = 4,
                 Email = "mercktest111@gmail.com"
             }, new Location()
@@ -141,8 +149,35 @@ public class AppMerckContext : IdentityDbContext<IdentityUser>
                 Latitude = -34.55712898207461,
                 Longitude = -58.44761812883586,
                 Title = "Hospital Magenta",
-                Subtitle = "Centro Fertilidad",
+                Subtitle = "Calle 8394",
                 ProvinceLocationId = 4,
+                Email = "mercktest111@gmail.com"
+            }, new Location()
+            {
+                Id = 9,
+                Latitude = -34.55712898207461,
+                Longitude = -58.44761812883586,
+                Title = "Hospital Magenta",
+                Subtitle = "Calle 3940",
+                ProvinceLocationId = 6,
+                Email = "mercktest111@gmail.com"
+            }, new Location()
+            {
+                Id = 10,
+                Latitude = -34.55712898207461,
+                Longitude = -58.44761812883586,
+                Title = "Hospital Magenta",
+                Subtitle = "Calle 3930",
+                ProvinceLocationId = 7,
+                Email = "mercktest111@gmail.com"
+            }, new Location()
+            {
+                Id = 11,
+                Latitude = -34.55712898207461,
+                Longitude = -58.44761812883586,
+                Title = "Hospital Magenta",
+                Subtitle = "Calle 2093",
+                ProvinceLocationId = 8,
                 Email = "mercktest111@gmail.com"
             }
             );

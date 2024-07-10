@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Proyecto_Merck.Areas.Identity.Data;
 
@@ -11,9 +12,11 @@ using Proyecto_Merck.Areas.Identity.Data;
 namespace ProyectoMerck.DataAccess.Migrations
 {
     [DbContext(typeof(AppMerckContext))]
-    partial class AppMerckContextModelSnapshot : ModelSnapshot
+    [Migration("20240515141744_newMigLocations")]
+    partial class newMigLocations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -220,29 +223,6 @@ namespace ProyectoMerck.DataAccess.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("ProyectoMerck.Models.Entities.AgePlan", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("Age")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("DateAndtime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("PlannedAge")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AgePlans");
-                });
-
             modelBuilder.Entity("ProyectoMerck.Models.Entities.Clinic", b =>
                 {
                     b.Property<int>("Id")
@@ -313,7 +293,7 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Id = 1,
                             ClinicName = "HIALITUS",
                             ConsultationReason = "Stringer",
-                            DateAndtime = new DateTime(2024, 5, 15, 13, 12, 37, 818, DateTimeKind.Local).AddTicks(4635),
+                            DateAndtime = new DateTime(2024, 5, 15, 11, 17, 43, 484, DateTimeKind.Local).AddTicks(6118),
                             SelectedLocationIndex = 2,
                             Url = "www.google.com"
                         },
@@ -331,7 +311,7 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Id = 3,
                             ClinicName = "HOSPITAL ITALIANO",
                             ConsultationReason = "Inter",
-                            DateAndtime = new DateTime(2024, 5, 15, 13, 12, 37, 818, DateTimeKind.Local).AddTicks(4656),
+                            DateAndtime = new DateTime(2024, 5, 15, 11, 17, 43, 484, DateTimeKind.Local).AddTicks(6138),
                             SelectedLocationIndex = 4,
                             Url = "www.google.com"
                         },
@@ -340,7 +320,7 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Id = 4,
                             ClinicName = "MERCK 1",
                             ConsultationReason = "Inter",
-                            DateAndtime = new DateTime(2024, 5, 15, 13, 12, 37, 818, DateTimeKind.Local).AddTicks(4658),
+                            DateAndtime = new DateTime(2024, 5, 15, 11, 17, 43, 484, DateTimeKind.Local).AddTicks(6139),
                             SelectedLocationIndex = 5,
                             Url = "www.google.com"
                         },
@@ -349,7 +329,7 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Id = 5,
                             ClinicName = "IDERT",
                             ConsultationReason = "Inter",
-                            DateAndtime = new DateTime(2024, 5, 15, 13, 12, 37, 818, DateTimeKind.Local).AddTicks(4660),
+                            DateAndtime = new DateTime(2024, 5, 15, 11, 17, 43, 484, DateTimeKind.Local).AddTicks(6141),
                             SelectedLocationIndex = 6,
                             Url = "www.google.com"
                         },
@@ -358,7 +338,7 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Id = 6,
                             ClinicName = "JUERTE",
                             ConsultationReason = "Inter",
-                            DateAndtime = new DateTime(2024, 5, 15, 13, 12, 37, 818, DateTimeKind.Local).AddTicks(4662),
+                            DateAndtime = new DateTime(2024, 5, 15, 11, 17, 43, 484, DateTimeKind.Local).AddTicks(6143),
                             SelectedLocationIndex = 7,
                             Url = "www.google.com"
                         },
@@ -367,7 +347,7 @@ namespace ProyectoMerck.DataAccess.Migrations
                             Id = 7,
                             ClinicName = "CRECER",
                             ConsultationReason = "Inter",
-                            DateAndtime = new DateTime(2024, 5, 15, 13, 12, 37, 818, DateTimeKind.Local).AddTicks(4664),
+                            DateAndtime = new DateTime(2024, 5, 15, 11, 17, 43, 484, DateTimeKind.Local).AddTicks(6144),
                             SelectedLocationIndex = 8,
                             Url = "www.google.com"
                         });

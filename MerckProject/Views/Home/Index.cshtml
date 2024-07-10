@@ -30,125 +30,104 @@
 <script type="text/javascript">
     google.charts.load('current', { 'packages': ['corechart'] });
 </script>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+        }
 
+        .container-fluid {
+            height: 100vh; /* 100% of viewport height */
+            width: 100vw; /* 100% of viewport width */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* Ensure no overflow issues */
+        }
+
+        svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+    </style>
 </head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=@trackingId"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
+<body style="background-color:#EB3C96">
+    <div class="container-fluid p-0">
+        <svg id="background-image" @* preserveAspectRatio="xMidYMid slice" *@>
+            <image style="background-color:#EB3C96" width="100%" height="100%" xlink:href="/Imagenes/back-hd-11-sp.svg"></image>
+        </svg>
+    </div>
+    <script src="/js/site.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/@@popperjs/core@2/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-    gtag('config', '@trackingId');
-</script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            setTimeout(function () {
+                window.location.href = '@Url.Action("Index", "Fertform")';
+            }, 3000);  //3000 milisegundos = 1 
+        });
+    </script>
+    <script src="https://unpkg.com/@@popperjs/core@2/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/chart.js"></script>
+    <script>
+        // With the above scripts loaded, you can call `tippy()` with a CSS
+        // selector and a `content` prop:
+        tippy('#myButtone', {
+            content: 'My tooltip!',
+        });
 
-    <body class="d-flex align-items-center justify-content-center body">
-    @*     <h1 class="text-center text-light">@Localizer["ScreenLanguage"]: @Localizer["Language"]</h1>
-     *@    <div class="container text-center">
-            <div class="row">
-                <div class="col-12">
-                    <img src="~/Imagenes/LogoInicioMerck.png" />
-                </div>
-            </div>
-        </div>
-        <div class="container text-center">
-            <div class="row">
-                <div class="col-12">
-                    <a id="m-button" class="btn py-4 my-5 border-light merck-button" style="" href="@Url.Action("Index", "Fertform")">
-                        <span class="spinner-container"></span>
-                        <span class="m-button-span">@* @(Localizer["Start"]) *@Comenzar</span>
-                    </a>
-                </div>
-            </div>
-        </div>
+        tippy('#reservaOvarica', {
+            content: '<strong>Es la cantidad y calidad de los ovocitos que una mujer tiene en sus ovarios en un momento determinado de su vida.</strong>',
+            allowHTML: true,
+            placement: 'bottom',
+            animation: 'scale-subtle',
+        });
 
-        <script src="/js/site.js"></script>
-        <script src="~/lib/jquery/dist/jquery.min.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        tippy('#ovocitos', {
+            content: '<strong>También conocidos como óvulos, son las células reproductivas femeninas maduras. Son producidos en los ovarios y son liberados durante la ovulación para ser fertilizados por un espermatozoide.</strong>',
+            placement: 'bottom',
+            animation: 'scale-subtle',
+            allowHTML: true,
+        });
 
-
-        <script src="https://unpkg.com/@@popperjs/core@2/dist/umd/popper.min.js"></script>
-        <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
-        <script src="~/lib/jquery/dist/jquery.min.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
-        <script src="~/js/chart.js"></script>
-        <script>
-            // With the above scripts loaded, you can call `tippy()` with a CSS
-            // selector and a `content` prop:
-            tippy('#myButtone', {
-                content: 'My tooltip!',
-            });
-
-            tippy('#reservaOvarica', {
-                content: '<strong>Es la cantidad y calidad de los ovocitos que una mujer tiene en sus ovarios en un momento determinado de su vida.</strong>',
-                allowHTML: true,
-                placement: 'bottom',
-                animation: 'scale-subtle',
-            });
-
-            tippy('#ovocitos', {
-                content: '<strong>También conocidos como óvulos, son las células reproductivas femeninas maduras. Son producidos en los ovarios y son liberados durante la ovulación para ser fertilizados por un espermatozoide.</strong>',
-                placement: 'bottom',
-                animation: 'scale-subtle',
-                allowHTML: true,
-            });
-
-            tippy('#criopreservacion', {
-                content: '<strong>La criopreservación de ovocitos es un proceso en el que los ovocitos (células reproductivas femeninas) se congelan y almacenan a temperaturas extremadamente bajas, típicamente alrededor de -196°C, para conservar su viabilidad y fertilidad para su uso futuro. Este método permite a las mujeres preservar su capacidad reproductiva y tener la opción de concebir en el momento que lo deseen, sin que la edad sea una limitación tan significativa.</strong>',
-                placement: 'bottom',
-                theme: 'light',
-                allowHTML: true,
-                animation: 'scale-subtle',
-                popperOptions: {
-                    modifiers: [
-                        {
-                            name: 'preventOverflow', // Prevents tooltip from overflowing the viewport
-                            options: {
-                                boundary: 'window', // Specify boundary to window
-                            },
+        tippy('#criopreservacion', {
+            content: '<strong>La criopreservación de ovocitos es un proceso en el que los ovocitos (células reproductivas femeninas) se congelan y almacenan a temperaturas extremadamente bajas, típicamente alrededor de -196°C, para conservar su viabilidad y fertilidad para su uso futuro. Este método permite a las mujeres preservar su capacidad reproductiva y tener la opción de concebir en el momento que lo deseen, sin que la edad sea una limitación tan significativa.</strong>',
+            placement: 'bottom',
+            theme: 'light',
+            allowHTML: true,
+            animation: 'scale-subtle',
+            popperOptions: {
+                modifiers: [
+                    {
+                        name: 'preventOverflow', // Prevents tooltip from overflowing the viewport
+                        options: {
+                            boundary: 'window', // Specify boundary to window
                         },
-                        {
-                            name: 'flip', // Flips tooltip placement if it's about to overflow
-                            options: {
-                                fallbackPlacements: ['bottom'], // Fallback placement to top if necessary
-                            },
+                    },
+                    {
+                        name: 'flip', // Flips tooltip placement if it's about to overflow
+                        options: {
+                            fallbackPlacements: ['bottom'], // Fallback placement to top if necessary
                         },
-                        // Add more modifiers as needed
-                    ],
-                },
-            });
-        </script>
-
+                    },
+                    // Add more modifiers as needed
+                ],
+            },
+        });
+    </script>
     </body>
 
 
 </html>
-
-<script>
-
-    var flags = document.querySelectorAll('.flag-small');
-
-    flags.forEach(function (flag) {
-
-        flag.addEventListener('click', function(){
-            
-            flags.forEach(function(flag){
-                flag.classList.remove('flag-selected');
-            })
-
-            console.log(flag);
-
-            flag.classList.add('flag-selected');
-
-            var cultureValue = flag.parentElement.getAttribute('value');
-
-            var elemento = document.getElementById('cultureInput').value = cultureValue;
-
-            document.getElementById('languageForm').submit();
-
-        })
-    })
-
-</script>

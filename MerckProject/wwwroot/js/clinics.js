@@ -25,6 +25,7 @@ document.getElementById('provinceDropdown').addEventListener('change', function 
     provinceHandler(locationList, this.value);
 
     localStorage.setItem('provinceValue', this.value);
+    container.innerHTML = '';
 
 })
 
@@ -39,54 +40,54 @@ document.getElementById('provinceLocationDropdown').addEventListener('change', f
     endOfPage.scrollIntoView({ behavior: 'smooth' });
 })
 
-rightArrow.addEventListener('click', function () {
+//rightArrow.addEventListener('click', function () {
 
-    localStorage.removeItem('selectedIconId');
-    selectedIconId = null;
+//    localStorage.removeItem('selectedIconId');
+//    selectedIconId = null;
 
-    if (currentPage < maxPage) {
+//    if (currentPage < maxPage) {
 
 
-        currentPage++;
-        localStorage.setItem('currentPage', currentPage);
+//        currentPage++;
+//        localStorage.setItem('currentPage', currentPage);
 
-        paginate(currentPage, container, itemsPerPage);
+//        paginate(currentPage, container, itemsPerPage);
 
-    } else {
+//    } else {
 
-        Swal.fire({
-            icon: "error",
-            title: "Ups...",
-            text: "Usted se encuentra en la ultima pagina!",
-            showConfirmButton: false,
-            timer: 1500
-        });
+//        Swal.fire({
+//            icon: "error",
+//            title: "Ups...",
+//            text: "Usted se encuentra en la ultima pagina!",
+//            showConfirmButton: false,
+//            timer: 1500
+//        });
 
-    }
-})
+//    }
+//})
 
-leftArrow.addEventListener('click', function () {
+//leftArrow.addEventListener('click', function () {
 
-    localStorage.removeItem('selectedIconId');
-    selectedIconId = null;
+//    localStorage.removeItem('selectedIconId');
+//    selectedIconId = null;
 
-    if (currentPage > 1) {
+//    if (currentPage > 1) {
 
-        currentPage--;
-        localStorage.setItem('currentPage', currentPage);
+//        currentPage--;
+//        localStorage.setItem('currentPage', currentPage);
 
-        paginate(currentPage, container, itemsPerPage);
+//        paginate(currentPage, container, itemsPerPage);
 
-    } else {
-        Swal.fire({
-            icon: "error",
-            title: "Ups...",
-            text: "Usted se encuentra en la primera pagina",
-            showConfirmButton: false,
-            timer: 1500
-        });
-    }
-})
+//    } else {
+//        Swal.fire({
+//            icon: "error",
+//            title: "Ups...",
+//            text: "Usted se encuentra en la primera pagina",
+//            showConfirmButton: false,
+//            timer: 1500
+//        });
+//    }
+//})
 
 function countryHandler(provincias, value) {
 
@@ -155,6 +156,7 @@ function provinceHandler(provinceLocations, value) {
 
     var valueNumber = parseInt(value);
 
+
     filteredProvinceLocations = provinceLocations.filter(function (provinceLocation) {
         return provinceLocation.provinceId === valueNumber;
     });
@@ -189,6 +191,8 @@ function provinceLocationDropdownHandler(clinicLocations, value) {
     localStorage.removeItem('selectedIconId');
     selectedIconId = null;
 
+    console.log(clinicLocations)
+
     var submitButton = document.getElementById('submitter');
     submitButton.classList.add('d-none');
 
@@ -200,9 +204,16 @@ function provinceLocationDropdownHandler(clinicLocations, value) {
 
     var valueInt = parseInt(value);
 
-    filteredClinics = clinicLocations.filter(function (clinic) {
-        return clinic.provinceLocationId === valueInt;
-    })
+    if (valueInt !== 5) {
+        filteredClinics = clinicLocations.filter(function (clinic) {
+            return clinic.provinceLocationId === valueInt;
+        })
+    } else {
+        filteredClinics = clinicLocations.filter(function (clinic) {
+            return clinic.provinceLocation.province.id === 1;
+        })
+    }
+
 
     localStorage.setItem('filteredClinics', JSON.stringify(filteredClinics));
 
@@ -282,6 +293,8 @@ function renderClinics(startIndex, endIndex, container) {
 
         var location = filteredClinics[i];
 
+        console.log(location)
+
         if (location !== undefined) {
 
             if (endIndex - startIndex === 1) {
@@ -292,7 +305,8 @@ function renderClinics(startIndex, endIndex, container) {
                 htmlString += '<div class="col-4 my-2 d-flex flex-column align-items-center">';
             }
             htmlString += '<i id="' + location.id + '" class="clinic-icon bi bi-flower1 d-flex"></i>';
-            htmlString += '<p class="clinic-text">' + location.title + '</p>';
+            htmlString += '<p class="clinic-text mb-0" style="font-family: Verdana"><strong>' + location.title + '</strong></p>';
+            htmlString += '<p class="clinic-text" style="font-family: Verdana">' + location.subtitle + '</p>'
             htmlString += '</div>';
         }
 
@@ -357,31 +371,24 @@ function updatePagination() {
 
 }
 
-//window.onload = function () {
+window.onload = function () {
 
-//    if (errorHappened == true) {
+    if (errorHappened == true) {
 
-//        container.classList.remove('clinic-container');
-//        container.classList.remove('clinic-container-error');
-//        arrowContainer.classList.remove('d-none');
+        var provinceDropdown = document.getElementById('provinceDropdown');
+        var provinceLocationDropdown = document.getElementById('provinceLocationDropdown');
 
-//        updateDropdown('provinceDropdown', filteredProvincias);
-//        updateDropdown('provinceLocationDropdown', filteredProvinceLocations);
+        provinceDropdown.value = provinceValue;
+        provinceLocationDropdown.value = locationValue;
 
-//        var provinceDropdown = document.getElementById('provinceDropdown');
-//        var provinceLocationDropdown = document.getElementById('provinceLocationDropdown');
-
-//        provinceDropdown.value = provinceValue;
-//        provinceLocationDropdown.value = locationValue;
-
-//        paginate(currentPage, container, itemsPerPage);
+        paginate(currentPage, container, itemsPerPage);
 
 
-//    } else {
-//        console.log("Nard")
-//    }
+    } else {
+        console.log("Nard")
+    }
 
-//}
+}
 
 
 

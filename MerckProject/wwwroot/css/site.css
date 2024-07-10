@@ -113,6 +113,35 @@ ul.unstyled {
     color: #503291;
 }
 
+.button-border-pink {
+    border: 3px solid #eb3c96;
+    animation: borderAnimation 3s infinite;
+}
+
+.merck-plus {
+    font-size: 30px;
+    cursor: pointer;
+    color: #503291;
+}
+
+.merck-plus:hover {
+    color: #eb3c96;
+}
+
+@keyframes borderAnimation {
+    0%, 100% {
+        border-color: #eb3c96; /* Starting color */
+    }
+
+    50% {
+        border-color: #f7a4c9; /* Lighter color */
+    }
+}
+
+.button-border-purple {
+    border: 1px double #503291;
+}
+
 .rich-purple-bg {
     background-color: #503291;
 }
@@ -214,11 +243,8 @@ html {
     margin: 0
 }
 
-/*Body del Home Index*/
-.body {
-    background-color: #2EBDCD;
-    height: 100vh;
-    margin: 0;
+#background-image {
+    object-fit: cover;
 }
 
 .flag-large{
